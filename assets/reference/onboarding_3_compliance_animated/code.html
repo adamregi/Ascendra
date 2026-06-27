@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ascendra - Onboarding Step 3</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Newsreader:opsz,wght@6..72,400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"on-secondary": "#ffffff", "secondary-container": "#d6e7d9", "on-primary": "#ffffff", "on-secondary-container": "#59685d", primary: "#181e1a", secondary: "#536257", outline: "#747873", "on-surface": "#1c1c1b", error: "#ba1a1a", "on-surface-variant": "#444844", "accent-warm": "#D4AF37", "inverse-primary": "#c2c8c1", surface: "#fcf9f7", "on-error-container": "#93000a", "surface-container-lowest": "#ffffff", "on-primary-fixed": "#171d18", "on-primary-fixed-variant": "#424843", "inverse-surface": "#313030", "on-tertiary-fixed-variant": "#504445", "secondary-fixed": "#d6e7d9", "error-container": "#ffdad6", "surface-container-high": "#ebe7e6", "surface-bright": "#fcf9f7", "surface-muted": "#F2F2ED", "on-tertiary-fixed": "#23191a", "inverse-on-surface": "#f3f0ef", "primary-fixed-dim": "#c2c8c1", "on-secondary-fixed-variant": "#3b4a40", "primary-container": "#2d332e", "tertiary-fixed-dim": "#d4c2c3", "on-tertiary-container": "#a69697", "outline-variant": "#c4c7c2", "border-subtle": "#E5E5E0", "surface-variant": "#e5e2e0", "on-secondary-fixed": "#111e16", "tertiary-fixed": "#f1dedf", tertiary: "#241a1b", "on-error": "#ffffff", "surface-tint": "#5a605a", background: "#fcf9f7", "surface-dim": "#dcd9d8", "secondary-fixed-dim": "#bacbbe", "surface-base": "#FBFBF9", "on-background": "#1c1c1b", "surface-container": "#f0edec", "surface-container-highest": "#e5e2e0", "surface-container-low": "#f6f3f1", "on-tertiary": "#ffffff", "tertiary-container": "#3a2f30", "primary-fixed": "#dee4dd", "on-primary-container": "#959b94"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, spacing: {"margin-mobile": "24px", "container-max": "1200px", "stack-sm": "8px", "margin-desktop": "64px", "stack-md": "16px", "stack-lg": "32px", gutter: "24px", base: "4px"}, fontFamily: {"body-md": ["Inter", "sans-serif"], "body-lg": ["Inter", "sans-serif"], "label-md": ["Inter", "sans-serif"], "label-sm": ["Inter", "sans-serif"], "headline-sm": ["Newsreader", "serif"], "display-lg": ["Newsreader", "serif"], "headline-md": ["Newsreader", "serif"], "display-lg-mobile": ["Newsreader", "serif"], headline: ["Newsreader"], display: ["Newsreader"], body: ["Hanken Grotesk"], label: ["Hanken Grotesk"]}, fontSize: {"body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "label-md": ["15px", {lineHeight: "20px", fontWeight: "600"}], "label-sm": ["13px", {lineHeight: "16px", fontWeight: "500", letterSpacing: "0.02em"}], "headline-sm": ["24px", {lineHeight: "32px", fontWeight: "500"}], "display-lg": ["48px", {lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "600"}], "headline-md": ["36px", {lineHeight: "44px", letterSpacing: "-0.01em", fontWeight: "500"}], "display-lg-mobile": ["36px", {lineHeight: "44px", letterSpacing: "-0.01em", fontWeight: "600"}]}, keyframes: {slideInRight: {"0%": {transform: "translateX(20px)", opacity: "0"}, "100%": {transform: "translateX(0)", opacity: "1"}}, slideOutLeft: {"0%": {transform: "translateX(0)", opacity: "1"}, "100%": {transform: "translateX(-20px)", opacity: "0"}}, drawRing: {"0%": {strokeDashoffset: "100"}, "100%": {strokeDashoffset: "var(--target)"}}}, animation: {"slide-in-right": "slideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards", "slide-out-left": "slideOutLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards", "draw-ring": "drawRing 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards"}}}};</script>
+<style>
+        .svg-ring-bg { stroke: #e5e2e0; }
+        .svg-ring-success { stroke: #536257; --target: 0; stroke-dasharray: 100; stroke-dashoffset: 100; }
+        .svg-ring-warning { stroke: #D4AF37; --target: 25; stroke-dasharray: 100; stroke-dashoffset: 100; }
+        .svg-ring-empty { stroke: transparent; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+    
+    .is-exiting {
+        animation: slideOutLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+    }
+  </style>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll('button');
+        const container = document.getElementById('mobile-container');
+        
+        buttons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                container.classList.add('is-exiting');
+                // Simulate navigation after animation
+                setTimeout(() => {
+                    container.classList.remove('is-exiting');
+                    // Reset animation for demo purposes
+                    container.style.animation = 'none';
+                    container.offsetHeight; /* trigger reflow */
+                    container.style.animation = null; 
+                }, 600);
+            });
+        });
+    });
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface h-screen w-full flex justify-center items-center font-sans antialiased text-on-surface overflow-hidden">
+<!-- Mobile Device Container for Demo Purposes -->
+<div class="relative w-full h-full sm:w-[390px] sm:h-[844px] bg-surface sm:rounded-[3rem] sm:shadow-2xl sm:border-[8px] sm:border-surface-variant flex flex-col overflow-hidden animate-slide-in-right" id="mobile-container">
+<!-- Top Navigation (Transactional/Onboarding) -->
+<header class="flex justify-between items-center px-margin-mobile py-6 z-20 bg-gradient-to-b from-surface to-transparent">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-muted transition-colors active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'wght' 400;">arrow_back_ios_new</span>
+</button>
+<button class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors active:scale-95">
+                Skip
+            </button>
+</header>
+<!-- Illustration Area (Top 50%) -->
+<div class="relative flex-1 flex items-center justify-start pl-margin-mobile overflow-visible">
+<div class="absolute inset-0 bg-gradient-to-r from-surface via-transparent to-transparent z-10 w-12 hidden"></div>
+<!-- Asymmetrical Calendar Grid SVG -->
+<svg class="w-[140%] h-auto max-h-[300px] -ml-4" fill="none" viewbox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+<!-- Grid Lines -->
+<path d="M0 50 L400 50 M0 150 L400 150 M0 250 L400 250" stroke="#e5e2e0" stroke-dasharray="4 4" stroke-width="1"></path>
+<path d="M100 0 L100 300 M200 0 L200 300 M300 0 L300 300" stroke="#e5e2e0" stroke-dasharray="4 4" stroke-width="1"></path>
+<!-- Nodes / Days -->
+<!-- Row 1 -->
+<circle class="svg-ring-bg" cx="50" cy="50" r="24" stroke-width="4"></circle>
+<circle class="svg-ring-success animate-draw-ring transform -rotate-90 origin-[50px_50px]" cx="50" cy="50" pathlength="100" r="24" stroke-linecap="round" stroke-width="4" style="animation-delay: 0.1s;"></circle>
+<circle class="svg-ring-bg" cx="150" cy="50" r="24" stroke-width="4"></circle>
+<circle class="svg-ring-warning animate-draw-ring transform -rotate-90 origin-[150px_50px]" cx="150" cy="50" pathlength="100" r="24" stroke-linecap="round" stroke-width="4" style="animation-delay: 0.2s;"></circle>
+<circle cx="150" cy="50" fill="#1c1c1b" r="4"></circle> <!-- Meeting Dot -->
+<circle class="svg-ring-bg" cx="250" cy="50" r="24" stroke-width="4"></circle>
+<!-- Row 2 -->
+<circle class="svg-ring-bg" cx="100" cy="150" r="32" stroke-width="4"></circle>
+<circle class="svg-ring-success animate-draw-ring transform -rotate-90 origin-[100px_150px]" cx="100" cy="150" pathlength="100" r="32" stroke-linecap="round" stroke-width="4" style="animation-delay: 0.3s;"></circle>
+<circle cx="100" cy="150" fill="#536257" r="6"></circle>
+<circle class="svg-ring-bg" cx="220" cy="150" r="24" stroke-width="4"></circle>
+<circle class="svg-ring-success animate-draw-ring transform -rotate-90 origin-[220px_150px]" cx="220" cy="150" pathlength="100" r="24" stroke-linecap="round" stroke-width="4" style="animation-delay: 0.4s;"></circle>
+<!-- Row 3 -->
+<circle class="svg-ring-bg" cx="50" cy="250" r="24" stroke-width="4"></circle>
+<circle class="svg-ring-bg" cx="180" cy="250" r="40" stroke-width="4"></circle>
+<circle class="svg-ring-warning animate-draw-ring transform -rotate-90 origin-[180px_250px]" cx="180" cy="250" pathlength="100" r="40" stroke-linecap="round" stroke-width="4" style="animation-delay: 0.5s;"></circle>
+<circle cx="180" cy="250" fill="#D4AF37" r="8"></circle>
+<circle class="svg-ring-bg" cx="300" cy="250" r="24" stroke-width="4"></circle>
+</svg>
+</div>
+<!-- Content Area (Bottom 50%) -->
+<div class="px-margin-mobile pb-margin-mobile flex flex-col z-20 bg-surface">
+<div class="mb-stack-lg">
+<!-- Eyebrow -->
+<p class="font-label-sm text-label-sm text-secondary tracking-[0.08em] uppercase mb-stack-sm">
+                    Compliance
+                </p>
+<!-- Headline -->
+<h1 class="font-headline-md text-headline-md text-on-surface mb-stack-md leading-[1.1]">
+                    Know who’s compliant before it’s too late.
+                </h1>
+<!-- Body -->
+<p class="font-body-md text-body-md text-on-surface-variant mb-stack-md">
+                    Automatic meeting attendance tracking. Get alerted before a member misses their threshold.
+                </p>
+<!-- Helper Chip -->
+<div class="inline-flex items-center gap-2 bg-surface-muted/50 backdrop-blur-md border border-border-subtle rounded-full px-3 py-1.5 mt-2 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
+<span class="material-symbols-outlined text-secondary" style="font-size: 16px; font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">90% attendance = compliant</span>
+</div>
+</div>
+<!-- Bottom Progress & CTA -->
+<div class="mt-auto flex items-center justify-between pt-4 border-t border-border-subtle/50">
+<!-- Progress Dots -->
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-surface-variant"></div>
+<div class="w-2 h-2 rounded-full bg-surface-variant"></div>
+<div class="w-6 h-2 rounded-full bg-primary transition-all duration-500"></div>
+</div>
+<!-- Primary CTA -->
+<button class="bg-primary text-on-primary rounded-xl h-14 px-6 flex items-center justify-center gap-2 hover:bg-primary-container active:scale-[0.97] transition-all duration-200 shadow-[0_4px_12px_rgba(24,30,26,0.1)]">
+<span class="font-label-md text-label-md">Get Started</span>
+<span class="material-symbols-outlined" style="font-size: 18px; font-weight: 500;">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</body></html>

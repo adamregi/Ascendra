@@ -1,0 +1,366 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Leadership Control Center - Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;600&amp;family=Hanken+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface": "#fcf9f7",
+                        "primary-container": "#2d332e",
+                        "on-secondary-fixed-variant": "#3b4a40",
+                        "secondary-container": "#d6e7d9",
+                        "on-surface-variant": "#444844",
+                        "on-surface": "#1c1c1b",
+                        "surface-tint": "#5a605a",
+                        "surface-container-high": "#ebe7e6",
+                        "on-secondary-container": "#59685d",
+                        "background": "#fcf9f7",
+                        "tertiary-container": "#3a2f30",
+                        "surface-dim": "#dcd9d8",
+                        "outline-variant": "#c4c7c2",
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#536257",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#f3f0ef",
+                        "secondary-fixed": "#d6e7d9",
+                        "primary-fixed-dim": "#c2c8c1",
+                        "secondary-fixed-dim": "#bacbbe",
+                        "inverse-surface": "#313030",
+                        "on-primary-container": "#959b94",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#d4c2c3",
+                        "on-primary-fixed": "#171d18",
+                        "primary-fixed": "#dee4dd",
+                        "primary": "#181e1a",
+                        "surface-container": "#f0edec",
+                        "surface-bright": "#fcf9f7",
+                        "on-primary-fixed-variant": "#424843",
+                        "inverse-primary": "#c2c8c1",
+                        "on-background": "#1c1c1b",
+                        "tertiary-fixed": "#f1dedf",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#747873",
+                        "on-tertiary-fixed-variant": "#504445",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#a69697",
+                        "surface-container-low": "#f6f3f1",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#e5e2e0",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#e5e2e0",
+                        "on-secondary-fixed": "#111e16",
+                        "on-tertiary-fixed": "#23191a",
+                        "on-error": "#ffffff",
+                        "tertiary": "#241a1b",
+                        "accent-warm": "#D4AF37",
+                        "border-subtle": "#E5E5E0"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        "headline": ["Newsreader"],
+                        "display": ["Newsreader"],
+                        "body": ["Hanken Grotesk"],
+                        "label": ["Hanken Grotesk"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-display, .font-headline { font-family: 'Newsreader', serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col pb-24 md:pb-0 pt-16">
+<!-- TopAppBar -->
+<header class="w-full sticky top-0 bg-surface dark:bg-surface-dim bg-surface-container-low dark:bg-surface-container-high flat no shadows flex items-center justify-between px-6 py-4 w-full z-40">
+<button class="text-primary dark:text-primary-fixed hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors active:scale-95 transition-transform p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<div class="font-display text-headline-sm font-bold text-primary dark:text-primary-fixed">Leadership Hub</div>
+<button class="text-primary dark:text-primary-fixed hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors active:scale-95 transition-transform p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-[1200px] mx-auto px-4 md:px-8 py-8 flex flex-col gap-12">
+<!-- Profile Hero -->
+<section class="flex flex-col md:flex-row items-center md:items-start gap-8 bg-surface-container-lowest rounded-2xl p-8 border border-border-subtle shadow-sm relative overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 bg-secondary-container opacity-20 rounded-bl-full -z-10"></div>
+<div class="relative group">
+<img alt="Vignesh Kumar Profile" class="w-32 h-32 rounded-full object-cover border-4 border-surface shadow-md" data-alt="A professional headshot of an executive team leader in a modern corporate setting. The man is wearing a sharp, tailored dark suit over a crisp white shirt. The lighting is soft and flattering, highlighting his confident and approachable expression. The background is a slightly blurred, high-end office environment with natural light and subtle architectural details, reflecting a Serene Modernist aesthetic with a sophisticated palette of deep blacks, pristine whites, and warm earthy tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRAmlWBdJi3HMcYKgEVXigwcwsZSmgxcKvCWYgtxPbYfVC-gaABEtURg_FKe7pELnTSBxXHnmSukGSl-dd6l-msLIMaKkpGcnFSI40PnjBBjNv4b_uuY4FLm6tgNIO1km6ydpjZaXXEBCJ0YRHv7FSG9vRjtbmBCoZVPo3NEjKpip2kjZB1mdEgnHYStYvhLa2CnAr0bqyr8_MAPFuIRm_KO7yPCBGreKH3E-wC44I3v-HAnFhjzkUQCNYIYbgg0TBtdFJ45i1Jn6t">
+<!-- Rank Ring (Platinum/Diamond analog) -->
+<div class="absolute -inset-1 rounded-full border-[3px] border-accent-warm opacity-80 pointer-events-none"></div>
+<div class="absolute bottom-0 right-0 bg-primary text-on-primary p-1.5 rounded-full border-2 border-surface shadow-sm">
+<span class="material-symbols-outlined text-[16px] leading-none" data-weight="fill" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+</div>
+<div class="flex-grow text-center md:text-left flex flex-col justify-center">
+<h1 class="font-display text-display-lg-mobile md:text-display-lg text-primary mb-1">Vignesh Kumar</h1>
+<p class="font-body text-body-lg text-on-surface-variant mb-4 flex items-center justify-center md:justify-start gap-2">
+<span class="font-medium text-primary">Team Leader</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="">Global Branch Alpha</span>
+</p>
+<div class="flex flex-wrap items-center justify-center md:justify-start gap-4">
+<div class="bg-surface-container-low px-4 py-2 rounded-lg flex items-center gap-2 border border-border-subtle">
+<span class="material-symbols-outlined text-outline text-sm" data-icon="groups">groups</span>
+<span class="font-label text-label-md text-primary">142 Members</span>
+</div>
+<div class="bg-surface-container-low px-4 py-2 rounded-lg flex items-center gap-2 border border-border-subtle">
+<span class="material-symbols-outlined text-outline text-sm" data-icon="verified">verified</span>
+<span class="font-label text-label-md text-primary">91% Compliance</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Personal Performance Snapshot (Bento Grid) -->
+<section>
+<h2 class="font-headline text-headline-sm text-primary mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="monitoring">monitoring</span>
+                Performance Snapshot
+            </h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-border-subtle flex flex-col justify-between hover:shadow-md transition-shadow">
+<span class="material-symbols-outlined text-outline mb-4" data-icon="video_camera_front">video_camera_front</span>
+<div>
+<div class="font-body text-body-md text-on-surface-variant mb-1">Meetings Hosted</div>
+<div class="font-display text-headline-md text-primary font-semibold">24</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-border-subtle flex flex-col justify-between hover:shadow-md transition-shadow">
+<span class="material-symbols-outlined text-outline mb-4" data-icon="assignment">assignment</span>
+<div>
+<div class="font-body text-body-md text-on-surface-variant mb-1">Tasks Created</div>
+<div class="font-display text-headline-md text-primary font-semibold">12</div>
+</div>
+</div>
+<div class="bg-primary-container p-6 rounded-xl border border-border-subtle flex flex-col justify-between hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-white opacity-5 rounded-bl-full pointer-events-none"></div>
+<span class="material-symbols-outlined text-on-primary-container mb-4" data-icon="trending_up">trending_up</span>
+<div>
+<div class="font-body text-body-md text-on-primary-container mb-1">Retention Rate</div>
+<div class="font-display text-headline-md text-on-primary font-semibold">98%</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-border-subtle flex flex-col justify-between hover:shadow-md transition-shadow">
+<span class="material-symbols-outlined text-outline mb-4" data-icon="rocket_launch">rocket_launch</span>
+<div>
+<div class="font-body text-body-md text-on-surface-variant mb-1">Growth Rate</div>
+<div class="font-display text-headline-md text-primary font-semibold">+12%</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Settings Groups -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Column 1 -->
+<div class="flex flex-col gap-8">
+<!-- Leadership Preferences -->
+<div class="bg-surface-container-lowest rounded-2xl border border-border-subtle overflow-hidden">
+<div class="bg-surface-container px-6 py-4 border-b border-border-subtle flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="tune">tune</span>
+<h3 class="font-headline text-body-lg font-semibold text-primary">Leadership Preferences</h3>
+</div>
+<ul class="divide-y divide-border-subtle">
+<li class="px-6 py-4 flex items-center justify-between hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<div class="flex flex-col">
+<span class="font-body text-body-md text-on-surface group-hover:text-primary transition-colors">Notification Settings</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</li>
+<li class="px-6 py-4 flex items-center justify-between hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<div class="flex flex-col">
+<span class="font-body text-body-md text-on-surface group-hover:text-primary transition-colors">Language</span>
+<span class="font-body text-label-sm text-outline">English</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</li>
+<li class="px-6 py-4 flex items-center justify-between hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<div class="flex flex-col">
+<span class="font-body text-body-md text-on-surface group-hover:text-primary transition-colors">Theme</span>
+<span class="font-body text-label-sm text-outline">Light</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</li>
+</ul>
+</div>
+<!-- AI Coach Intelligence -->
+<div class="bg-surface-container-lowest rounded-2xl border border-border-subtle overflow-hidden relative">
+<div class="absolute top-0 right-0 w-full h-1 bg-gradient-to-r from-transparent via-accent-warm to-transparent opacity-30"></div>
+<div class="bg-surface-container px-6 py-4 border-b border-border-subtle flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="psychology">psychology</span>
+<h3 class="font-headline text-body-lg font-semibold text-primary">AI Coach Intelligence</h3>
+</div>
+<ul class="divide-y divide-border-subtle">
+<li class="px-6 py-4 flex items-center justify-between hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<div class="flex flex-col">
+<span class="font-body text-body-md text-on-surface group-hover:text-primary transition-colors">AI Personality</span>
+<span class="font-body text-label-sm text-outline">Executive</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</li>
+<li class="px-6 py-4 flex items-center justify-between hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<div class="flex flex-col">
+<span class="font-body text-body-md text-on-surface group-hover:text-primary transition-colors">Coaching Style</span>
+<span class="font-body text-label-sm text-outline">Proactive</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</li>
+<li class="px-6 py-4 flex items-center justify-between hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<div class="flex flex-col">
+<span class="font-body text-body-md text-on-surface group-hover:text-primary transition-colors">Response Depth</span>
+<span class="font-body text-label-sm text-outline">Deep</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</li>
+</ul>
+</div>
+<!-- Productivity Tools -->
+<div class="bg-surface-container-lowest rounded-2xl border border-border-subtle overflow-hidden">
+<div class="bg-surface-container px-6 py-4 border-b border-border-subtle flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="build">build</span>
+<h3 class="font-headline text-body-lg font-semibold text-primary">Productivity Tools</h3>
+</div>
+<ul class="divide-y divide-border-subtle">
+<li class="px-6 py-4 flex items-center justify-between hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<span class="font-body text-body-md text-on-surface group-hover:text-primary transition-colors">Default Task Templates</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</li>
+<li class="px-6 py-4 flex items-center justify-between hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<span class="font-body text-body-md text-on-surface group-hover:text-primary transition-colors">Meeting Templates</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</li>
+<li class="px-6 py-4 flex items-center justify-between hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<span class="font-body text-body-md text-on-surface group-hover:text-primary transition-colors">Saved Filters</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Column 2 -->
+<div class="flex flex-col gap-8">
+<!-- Team Governance -->
+<div class="bg-surface-container-lowest rounded-2xl border border-border-subtle overflow-hidden">
+<div class="bg-surface-container px-6 py-4 border-b border-border-subtle flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="gavel">gavel</span>
+<h3 class="font-headline text-body-lg font-semibold text-primary">Team Governance</h3>
+</div>
+<ul class="divide-y divide-border-subtle">
+<li class="px-6 py-4 flex items-center justify-between hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<span class="font-body text-body-md text-on-surface group-hover:text-primary transition-colors">Company Settings</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</li>
+<li class="px-6 py-4 flex items-center justify-between hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<span class="font-body text-body-md text-on-surface group-hover:text-primary transition-colors">Compliance Rules</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</li>
+<li class="px-6 py-4 flex items-center justify-between hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<span class="font-body text-body-md text-on-surface group-hover:text-primary transition-colors">Training Library</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</li>
+<li class="px-6 py-4 flex items-center justify-between hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<span class="font-body text-body-md text-on-surface group-hover:text-primary transition-colors">Termination Logs</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</li>
+<li class="px-6 py-4 flex items-center justify-between hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<span class="font-body text-body-md text-on-surface group-hover:text-primary transition-colors">Audit Reports</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</li>
+</ul>
+</div>
+<!-- Security & Access -->
+<div class="bg-surface-container-lowest rounded-2xl border border-border-subtle overflow-hidden">
+<div class="bg-surface-container px-6 py-4 border-b border-border-subtle flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="shield_lock">shield_lock</span>
+<h3 class="font-headline text-body-lg font-semibold text-primary">Security &amp; Access</h3>
+</div>
+<ul class="divide-y divide-border-subtle">
+<li class="px-6 py-4 flex items-center justify-between hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<span class="font-body text-body-md text-on-surface group-hover:text-primary transition-colors">Password</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</li>
+<li class="px-6 py-4 flex items-center justify-between hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<span class="font-body text-body-md text-on-surface group-hover:text-primary transition-colors">Two-Factor Authentication</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</li>
+<li class="px-6 py-4 flex items-center justify-between hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<span class="font-body text-body-md text-on-surface group-hover:text-primary transition-colors">Active Sessions</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</li>
+</ul>
+</div>
+<!-- Support -->
+<div class="bg-surface-container-lowest rounded-2xl border border-border-subtle overflow-hidden">
+<div class="bg-surface-container px-6 py-4 border-b border-border-subtle flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="help">help</span>
+<h3 class="font-headline text-body-lg font-semibold text-primary">Support</h3>
+</div>
+<ul class="divide-y divide-border-subtle">
+<li class="px-6 py-4 flex items-center justify-between hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<span class="font-body text-body-md text-on-surface group-hover:text-primary transition-colors">Help Center</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="open_in_new">open_in_new</span>
+</li>
+<li class="px-6 py-4 flex items-center justify-between hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<span class="font-body text-body-md text-on-surface group-hover:text-primary transition-colors">Documentation</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="open_in_new">open_in_new</span>
+</li>
+<li class="px-6 py-4 flex items-center justify-between hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<span class="font-body text-body-md text-on-surface group-hover:text-primary transition-colors">Contact Support</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Danger Zone / Footer Actions -->
+<section class="mt-8 border-t border-border-subtle pt-8 pb-12 flex flex-col md:flex-row items-center justify-center gap-6">
+<button class="font-label text-label-md text-primary bg-surface-container px-6 py-3 rounded-lg hover:bg-surface-container-highest transition-colors border border-border-subtle w-full md:w-auto">
+                Export My Data
+            </button>
+<button class="font-label text-label-md text-primary flex items-center gap-2 hover:text-primary-container transition-colors w-full md:w-auto justify-center">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                Logout
+            </button>
+<button class="font-label text-label-md text-error flex items-center gap-2 hover:text-on-error-container transition-colors w-full md:w-auto justify-center mt-4 md:mt-0 md:ml-auto">
+<span class="material-symbols-outlined" data-icon="delete_forever">delete_forever</span>
+                Delete Account
+            </button>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="md:hidden bg-surface border-t border-border-subtle fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3"><button class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:text-primary active:scale-90 duration-150">
+    <span class="material-symbols-outlined" data-icon="home">home</span>
+    <span class="font-label text-label-sm uppercase tracking-wider mt-1">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:text-primary active:scale-90 duration-150">
+    <span class="material-symbols-outlined" data-icon="account_tree">account_tree</span>
+    <span class="font-label text-label-sm uppercase tracking-wider mt-1">Tree</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:text-primary active:scale-90 duration-150">
+    <span class="material-symbols-outlined" data-icon="groups">groups</span>
+    <span class="font-label text-label-sm uppercase tracking-wider mt-1">Meetings</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:text-primary active:scale-90 duration-150">
+    <span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+    <span class="font-label text-label-sm uppercase tracking-wider mt-1">AI</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-secondary-container text-primary rounded-xl px-5 py-1 active:scale-90 duration-150">
+    <span class="material-symbols-outlined font-bold" data-icon="person" style="font-variation-settings: 'FILL' 1">person</span>
+    <span class="font-label text-label-sm font-bold uppercase tracking-wider mt-1">Profile</span>
+</button></nav>
+
+
+</body></html>

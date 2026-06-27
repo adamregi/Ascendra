@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Meeting Detail - Serene Modernist</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&amp;family=Newsreader:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .countdown-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        /* Hide scrollbar for clean look */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#fcf9f7",
+                        "outline": "#747873",
+                        "surface-container-highest": "#e5e2e0",
+                        "on-tertiary-fixed-variant": "#504445",
+                        "on-primary-container": "#959b94",
+                        "surface-container-low": "#f6f3f1",
+                        "on-primary-fixed": "#171d18",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#dcd9d8",
+                        "secondary": "#536257",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#bacbbe",
+                        "on-error-container": "#93000a",
+                        "inverse-surface": "#313030",
+                        "inverse-primary": "#c2c8c1",
+                        "tertiary-container": "#3a2f30",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#424843",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#3b4a40",
+                        "primary-fixed": "#dee4dd",
+                        "on-surface": "#1c1c1b",
+                        "on-secondary-fixed": "#111e16",
+                        "surface-container": "#f0edec",
+                        "on-tertiary-fixed": "#23191a",
+                        "tertiary": "#241a1b",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed": "#d6e7d9",
+                        "primary-fixed-dim": "#c2c8c1",
+                        "on-tertiary-container": "#a69697",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#d4c2c3",
+                        "on-background": "#1c1c1b",
+                        "on-secondary-container": "#59685d",
+                        "primary": "#181e1a",
+                        "surface-bright": "#fcf9f7",
+                        "outline-variant": "#c4c7c2",
+                        "background": "#fcf9f7",
+                        "secondary-container": "#d6e7d9",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#e5e2e0",
+                        "surface-container-high": "#ebe7e6",
+                        "on-surface-variant": "#444844",
+                        "inverse-on-surface": "#f3f0ef",
+                        "surface-tint": "#5a605a",
+                        "tertiary-fixed": "#f1dedf",
+                        "primary-container": "#2d332e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader"],
+                        "display": ["Newsreader"],
+                        "body": ["Hanken Grotesk"],
+                        "label": ["Hanken Grotesk"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body antialiased min-h-screen selection:bg-primary-container selection:text-on-primary-container pb-24">
+<!-- Sub-page Navigation Header (Replaces Global Shell) -->
+<header class="sticky top-0 z-40 bg-surface/80 backdrop-blur-md border-b border-surface-container-highest transition-all duration-300">
+<div class="max-w-[1200px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors text-on-surface">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h1 class="font-label text-label-md tracking-widest text-on-surface uppercase">Meeting Detail</h1>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors text-on-surface">
+<span class="material-symbols-outlined text-2xl">more_vert</span>
+</button>
+</div>
+</header>
+<main class="max-w-[800px] mx-auto px-4 sm:px-6 pt-10 pb-16 space-y-12">
+<!-- Hero & Title Section -->
+<section class="space-y-6 text-center sm:text-left flex flex-col items-center sm:items-start">
+<div class="inline-flex items-center gap-3 bg-secondary-fixed text-on-secondary-fixed px-4 py-1.5 rounded-full font-label text-label-sm uppercase tracking-wider">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+</span>
+<span class="countdown-font font-medium">Scheduled</span>
+<span class="text-on-secondary-fixed-variant opacity-80 border-l border-outline-variant/30 pl-3">Starts in 2 days</span>
+</div>
+<div class="space-y-2">
+<h2 class="font-headline text-4xl sm:text-5xl font-semibold text-primary leading-tight tracking-tight">Branch Strategy:<br class="hidden sm:block"/> Q3 Planning</h2>
+<p class="font-body text-body-lg text-on-surface-variant">Chennai North Branch • 152 Invited</p>
+</div>
+</section>
+<!-- Countdown Hero Card (Bento Grid Style) -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container-highest overflow-hidden relative group transition-shadow hover:shadow-md">
+<div class="absolute top-0 left-0 w-full h-1 bg-primary"></div>
+<div class="p-8 sm:p-10 text-center space-y-8">
+<div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-8 countdown-font text-5xl sm:text-6xl lg:text-7xl font-bold text-primary tracking-tighter">
+<div class="flex flex-col items-center">
+<span id="cd-days">02</span>
+<span class="font-body font-medium text-label-sm text-on-surface-variant uppercase tracking-widest mt-2">Days</span>
+</div>
+<span class="text-surface-container-highest hidden sm:block -mt-8">:</span>
+<div class="flex flex-col items-center">
+<span id="cd-hours">14</span>
+<span class="font-body font-medium text-label-sm text-on-surface-variant uppercase tracking-widest mt-2">Hours</span>
+</div>
+<span class="text-surface-container-highest hidden sm:block -mt-8">:</span>
+<div class="flex flex-col items-center">
+<span id="cd-mins">35</span>
+<span class="font-body font-medium text-label-sm text-on-surface-variant uppercase tracking-widest mt-2">Mins</span>
+</div>
+<span class="text-surface-container-highest hidden sm:block -mt-8">:</span>
+<div class="flex flex-col items-center">
+<span class="text-secondary" id="cd-secs">09</span>
+<span class="font-body font-medium text-label-sm text-on-surface-variant uppercase tracking-widest mt-2">Secs</span>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-4 pt-8 border-t border-surface-container-highest">
+<div class="space-y-1">
+<p class="font-label text-label-sm text-on-surface-variant uppercase">Goal</p>
+<p class="font-headline text-2xl text-primary">95%</p>
+</div>
+<div class="space-y-1 border-x border-surface-container-highest">
+<p class="font-label text-label-sm text-on-surface-variant uppercase">Expected</p>
+<p class="font-headline text-2xl text-primary">142</p>
+</div>
+<div class="space-y-1">
+<p class="font-label text-label-sm text-on-surface-variant uppercase">Duration</p>
+<p class="font-headline text-2xl text-primary">90m</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Two Column Details Layout -->
+<div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+<!-- Logistics (Left Col) -->
+<section class="md:col-span-2 bg-surface-container-low rounded-xl p-6 space-y-6">
+<h3 class="font-headline text-xl text-primary border-b border-surface-container-highest pb-4">Logistics</h3>
+<ul class="space-y-5">
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-outline-variant mt-0.5">event</span>
+<div>
+<p class="font-label text-label-sm text-on-surface-variant uppercase mb-1">Date</p>
+<p class="font-body text-body-md text-on-surface font-medium">October 24, 2023</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-outline-variant mt-0.5">schedule</span>
+<div>
+<p class="font-label text-label-sm text-on-surface-variant uppercase mb-1">Time</p>
+<p class="font-body text-body-md text-on-surface font-medium">10:00 AM - 11:30 AM</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-outline-variant mt-0.5">public</span>
+<div>
+<p class="font-label text-label-sm text-on-surface-variant uppercase mb-1">Timezone</p>
+<p class="font-body text-body-md text-on-surface font-medium">India Standard Time (IST)</p>
+</div>
+</li>
+</ul>
+</section>
+<!-- Readiness & Invitees (Right Col) -->
+<div class="md:col-span-3 space-y-6">
+<!-- Readiness Section -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container-highest p-6">
+<h3 class="font-headline text-xl text-primary mb-5">Readiness Checklist</h3>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface hover:bg-surface-container transition-colors">
+<span class="font-body text-body-md text-on-surface">Invites Sent</span>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface hover:bg-surface-container transition-colors">
+<span class="font-body text-body-md text-on-surface">Reminder Scheduled</span>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface hover:bg-surface-container transition-colors">
+<span class="font-body text-body-md text-on-surface">Recording Enabled</span>
+<span class="material-symbols-outlined text-on-tertiary-fixed-variant" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg bg-error-container text-on-error-container">
+<span class="font-body text-body-md font-medium">12 Members Yet to Confirm</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">error</span>
+</div>
+</div>
+</section>
+<!-- Invitees Segment -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container-highest p-6">
+<div class="flex items-center justify-between mb-5">
+<h3 class="font-headline text-xl text-primary">Guest List</h3>
+<a class="font-label text-label-sm text-secondary hover:text-primary transition-colors uppercase tracking-widest" href="#">View All</a>
+</div>
+<!-- Segmented Control -->
+<div class="flex bg-surface-container-low rounded-lg p-1 mb-5">
+<button class="flex-1 py-1.5 text-label-sm font-label uppercase tracking-wider rounded-md bg-surface shadow-sm text-primary transition-all">Attending</button>
+<button class="flex-1 py-1.5 text-label-sm font-label uppercase tracking-wider rounded-md text-on-surface-variant hover:text-on-surface transition-all">Maybe</button>
+<button class="flex-1 py-1.5 text-label-sm font-label uppercase tracking-wider rounded-md text-on-surface-variant hover:text-on-surface transition-all">Pending</button>
+</div>
+<!-- Avatar Stack -->
+<div class="flex items-center">
+<div class="flex -space-x-3">
+<img alt="A professional headshot of a young male executive with dark hair, wearing a tailored light gray suit. The background is a minimalist office setting bathed in soft, natural daylight, perfectly aligning with the Serene Modernist high-end aesthetic." class="w-10 h-10 rounded-full border-2 border-surface-container-lowest object-cover" data-alt="A professional headshot of a young male executive with dark hair, wearing a tailored light gray suit. The background is a minimalist office setting bathed in soft, natural daylight, perfectly aligning with the Serene Modernist high-end aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtCcfMBY_E4AG4i2_V9tDShkC4lh7pTNm8PwPQmxTVApe27tDvL5cAGCav8WLr8z-Qep1kPBTBtJG-0d_ftaCpnRSUYGUFngG7ZyKNkgh1b5aUUYtgRmhKlbiHyRO-j5quIPvmPGBT8ctRXM78FPsnb0AawvI7RA8eUwfX79r9wBgMNy6_fUouK--DBa-8-sBTzrUPKmGeu9XkedmxamoMFJ4MHA731Kx4mA3rXigukhQhiCY90iFWAx7G4I0wcrw-h71ay7YUmZci"/>
+<img alt="A sophisticated portrait of a female leader with warm, natural lighting. She wears a crisp white blouse against a subtle, muted taupe background. The image exudes quiet confidence and elegance, matching the editorial and premium UI style." class="w-10 h-10 rounded-full border-2 border-surface-container-lowest object-cover" data-alt="A sophisticated portrait of a female leader with warm, natural lighting. She wears a crisp white blouse against a subtle, muted taupe background. The image exudes quiet confidence and elegance, matching the editorial and premium UI style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3_kQ4UctTOspyjof_VnnCkGJvnPYUvb_IgkGOIeGYdka7Fx8MDcKv4eHDtoTCNf3Qmsx6MP67vCt309LxNoMMuNqP7Omrjem2M5XgnGjjTkJ5EHoMyyWs_QN8IbwRdQ28WY3yRCKVxHdZbF2gg-YEInaVAQZmqhUS834ybOYVMdPypUEFIr-1lOaXbTqctvGr-GXPeypJC6pM5nWfQ8W0PJar85gYx2f2FrV3uGpfLkn2LB2xQHyW93srGCdkTB-JVvHFB2WGzj-L"/>
+<img alt="A portrait of a mature female professional with short silver hair, smiling warmly. The lighting is high-key and pristine, set in a modern, glass-walled conference room. The color palette emphasizes clean whites and soft grays." class="w-10 h-10 rounded-full border-2 border-surface-container-lowest object-cover" data-alt="A portrait of a mature female professional with short silver hair, smiling warmly. The lighting is high-key and pristine, set in a modern, glass-walled conference room. The color palette emphasizes clean whites and soft grays." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8taK3EVE9p5vTzCX6kDskDaM6rFbvxBQWbXoQhP4hQn-BEIwNI1Vr7HmbuLEd2lmRT4a22Rk0JyLr5P1YvJ6YlNm3ABV-RrBLGa41FNtgXVe1OmmWiNRvuMFDlOAofi_-9cYmjy9PHtauJB287nYfH27s0-MF2PdfgFzp7SdaL9wzntLB3HgDtZBUUV0t8pc-9D6KfjEv8cizQu0T9wj3DHLpZ-7H9TMibCeEcJRZ4qHu9pkmJoy8rZYDKkHE_FRT1X3RR9dACtFl"/>
+<img alt="A clean, minimalist headshot of a male professional looking slightly off-camera. Shot with a shallow depth of field against a soft, off-white background (#fcf9f7). The lighting is editorial and refined." class="w-10 h-10 rounded-full border-2 border-surface-container-lowest object-cover" data-alt="A clean, minimalist headshot of a male professional looking slightly off-camera. Shot with a shallow depth of field against a soft, off-white background (#fcf9f7). The lighting is editorial and refined." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnfdazVSbzTcoblpo9iDIRUNPM959NHkeb5dBhfc8YTjlIqQBLBkZLzz1dk164EjE9kKd6B720mruEImR4jMh0_M56g-YzXNqNeMyoFkxrM6ZcwGQtIWr21u0vmk0Nu-_OC0w36ySXeBB7GV86-QwcIsaZ7c75uEsFEQIEXiigWBWfuRDRqCpK0aZjS9M6yD8SySMroCe4sKerJoesFjYp1Che6qyqyK3Dzz7LcDbzRTEn6cfSNypV16IBNDC9lguRJUEIqfRBblcM"/>
+</div>
+<div class="ml-4 font-body text-body-sm text-on-surface-variant">
+                            + 138 others confirmed
+                        </div>
+</div>
+</section>
+</div>
+</div>
+<!-- Description -->
+<section class="bg-surface-container-lowest rounded-xl p-6 border border-surface-container-highest">
+<h3 class="font-headline text-xl text-primary mb-3">About this meeting</h3>
+<p class="font-body text-body-md text-on-surface-variant leading-relaxed">
+                This quarterly planning session will focus on aligning the Chennai North branch with the new enterprise objectives. Key focus areas include resource allocation for Q4, review of Q2 performance metrics, and defining actionable strategies for the upcoming product launch. Please review the attached pre-read materials prior to attendance.
+            </p>
+</section>
+</main>
+<!-- Sticky Action Area -->
+<div class="fixed bottom-0 left-0 w-full bg-surface/90 backdrop-blur-md border-t border-surface-container-highest p-4 sm:px-6 z-40 shadow-[0_-4px_20px_-4px_rgba(0,0,0,0.05)]">
+<div class="max-w-[800px] mx-auto flex gap-4">
+<button class="flex-1 bg-surface border border-outline-variant text-on-surface font-label text-label-md py-3.5 px-6 rounded-lg hover:bg-surface-container-low transition-colors uppercase tracking-widest text-center">Share Invite</button>
+<button class="flex-1 bg-primary text-on-primary font-label text-label-md py-3.5 px-6 rounded-lg shadow-md hover:opacity-90 transition-opacity uppercase tracking-widest text-center">Edit Meeting</button>
+</div>
+</div>
+<!-- Micro-interaction JS -->
+<script>
+        // Simple countdown logic for visual effect
+        let secs = 9;
+        const secsEl = document.getElementById('cd-secs');
+        
+        setInterval(() => {
+            secs--;
+            if (secs < 0) secs = 59;
+            
+            // Flip animation class
+            secsEl.style.transform = 'translateY(10px)';
+            secsEl.style.opacity = '0';
+            
+            setTimeout(() => {
+                secsEl.innerText = secs.toString().padStart(2, '0');
+                secsEl.style.transform = 'translateY(0)';
+                secsEl.style.opacity = '1';
+                secsEl.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+            }, 150);
+
+        }, 1000);
+    </script>
+</body></html>

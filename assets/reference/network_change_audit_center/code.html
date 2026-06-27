@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Network Change Audit - Ascendra</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=JetBrains+Mono:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e5e2e0",
+                        "primary-fixed": "#dee4dd",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#f0edec",
+                        "on-background": "#1c1c1b",
+                        "on-tertiary-fixed": "#23191a",
+                        "on-secondary-container": "#59685d",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-primary-container": "#959b94",
+                        "on-secondary-fixed": "#111e16",
+                        "on-surface": "#1c1c1b",
+                        "surface-tint": "#5a605a",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#f1dedf",
+                        "on-surface-variant": "#444844",
+                        "tertiary-fixed-dim": "#d4c2c3",
+                        "primary-container": "#2d332e",
+                        "primary": "#181e1a",
+                        "inverse-surface": "#313030",
+                        "error": "#ba1a1a",
+                        "secondary": "#536257",
+                        "primary-fixed-dim": "#c2c8c1",
+                        "tertiary-container": "#3a2f30",
+                        "surface-dim": "#dcd9d8",
+                        "tertiary": "#241a1b",
+                        "on-primary-fixed-variant": "#424843",
+                        "outline-variant": "#c4c7c2",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed-variant": "#3b4a40",
+                        "inverse-primary": "#c2c8c1",
+                        "on-primary-fixed": "#171d18",
+                        "surface": "#fcf9f7",
+                        "background": "#fcf9f7",
+                        "secondary-fixed": "#d6e7d9",
+                        "outline": "#747873",
+                        "surface-bright": "#fcf9f7",
+                        "surface-container-low": "#f6f3f1",
+                        "surface-container-highest": "#e5e2e0",
+                        "secondary-fixed-dim": "#bacbbe",
+                        "on-tertiary-fixed-variant": "#504445",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#a69697",
+                        "surface-container-high": "#ebe7e6",
+                        "secondary-container": "#d6e7d9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader", "serif"],
+                        "display": ["Newsreader", "serif"],
+                        "body": ["Hanken Grotesk", "sans-serif"],
+                        "label": ["Hanken Grotesk", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Hide scrollbar for clean look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body min-h-screen pb-24 md:pb-8 flex flex-col items-center">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface-container/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm flex justify-between items-center px-6 py-4 w-full max-w-[1200px] mx-auto">
+<button class="text-on-surface-variant dark:text-on-surface-variant/70 hover:bg-surface-container-high/50 transition-colors active:scale-95 duration-200 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-headline font-semibold text-primary dark:text-primary-fixed tracking-tight text-[24px]">Network Change Audit</h1>
+<button class="text-on-surface-variant dark:text-on-surface-variant/70 hover:bg-surface-container-high/50 transition-colors active:scale-95 duration-200 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-[1200px] mt-24 px-6 md:px-8 space-y-8">
+<!-- Governance Summary Hero -->
+<section class="bg-surface-container-lowest rounded-[24px] p-6 shadow-[0_4px_24px_rgba(0,0,0,0.02)] border border-outline-variant/20 flex flex-col space-y-6">
+<div class="flex justify-between items-start">
+<div>
+<h2 class="font-headline text-[32px] font-medium leading-tight text-primary">Organizational Changes</h2>
+<p class="font-body text-[16px] text-on-surface-variant mt-1">High-stakes network governance overview.</p>
+</div>
+<div class="flex items-center gap-2 bg-[#E6F4EA] text-[#137333] px-3 py-1.5 rounded-full border border-[#137333]/20">
+<span class="material-symbols-outlined fill text-[16px]">verified</span>
+<span class="font-label text-[12px] uppercase tracking-wider font-semibold">Healthy</span>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="bg-surface-container-low rounded-xl p-4 flex flex-col justify-center">
+<span class="font-label text-[12px] uppercase tracking-wider text-on-surface-variant mb-1">Total Events</span>
+<span class="font-headline text-[24px] text-primary">3</span>
+</div>
+<div class="bg-surface-container-low rounded-xl p-4 flex flex-col justify-center">
+<span class="font-label text-[12px] uppercase tracking-wider text-on-surface-variant mb-1">This Month</span>
+<span class="font-headline text-[24px] text-primary">0</span>
+</div>
+<div class="bg-surface-container-low rounded-xl p-4 flex flex-col justify-center">
+<span class="font-label text-[12px] uppercase tracking-wider text-on-surface-variant mb-1">Reassigned</span>
+<span class="font-headline text-[24px] text-primary">7</span>
+</div>
+<div class="bg-surface-container-low rounded-xl p-4 flex flex-col justify-center">
+<span class="font-label text-[12px] uppercase tracking-wider text-on-surface-variant mb-1">Audited</span>
+<span class="font-headline text-[24px] text-primary">100%</span>
+</div>
+</div>
+</section>
+<!-- AI Audit Insight -->
+<section class="bg-primary-container rounded-[24px] p-6 shadow-sm border border-outline-variant/10 relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+<!-- Subtle gradient background -->
+<div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none"></div>
+<div class="flex items-start gap-4 z-10 relative max-w-2xl">
+<div class="bg-surface-container-lowest/20 p-3 rounded-full shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined fill text-on-primary-container text-[24px]">electric_bolt</span>
+</div>
+<div>
+<h3 class="font-label text-[14px] uppercase tracking-wider font-semibold text-primary-fixed-dim mb-2">AI Insight</h3>
+<p class="font-body text-[16px] text-inverse-on-surface leading-relaxed">No unusual termination activity detected in the last 90 days. All restructuring actions followed company policy.</p>
+</div>
+</div>
+<button class="shrink-0 font-label text-[14px] font-semibold tracking-wider text-primary bg-primary-fixed hover:bg-white transition-colors px-6 py-3 rounded-full z-10 relative border border-primary-fixed-dim">
+                View Governance Report
+            </button>
+</section>
+<!-- Smart Filters -->
+<section class="w-full overflow-x-auto no-scrollbar pb-2">
+<div class="flex gap-3 min-w-max">
+<button class="px-5 py-2 rounded-full bg-primary text-on-primary font-label text-[14px] font-semibold tracking-wide shadow-sm hover:opacity-90 transition-opacity">
+                    All Events
+                </button>
+<button class="px-5 py-2 rounded-full bg-surface-container-lowest border border-outline-variant/40 text-on-surface-variant font-label text-[14px] font-medium tracking-wide hover:bg-surface-container-low transition-colors">
+                    Terminations
+                </button>
+<button class="px-5 py-2 rounded-full bg-surface-container-lowest border border-outline-variant/40 text-on-surface-variant font-label text-[14px] font-medium tracking-wide hover:bg-surface-container-low transition-colors">
+                    Restructures
+                </button>
+<button class="px-5 py-2 rounded-full bg-surface-container-lowest border border-outline-variant/40 text-on-surface-variant font-label text-[14px] font-medium tracking-wide hover:bg-surface-container-low transition-colors">
+                    Compliance
+                </button>
+</div>
+</section>
+<!-- Timeline Log -->
+<section class="space-y-6">
+<h3 class="font-label text-[14px] uppercase tracking-wider font-semibold text-on-surface-variant border-b border-outline-variant/20 pb-2">June 2026 (2 Events)</h3>
+<!-- Audit Log Card: Termination -->
+<article class="bg-surface-container-lowest rounded-[20px] p-6 shadow-sm border border-outline-variant/30 flex flex-col gap-6 relative overflow-hidden">
+<!-- Header: Timestamp & Badge -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+<time class="font-mono text-[14px] text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+                        Jun 08, 2026 10:42 AM
+                    </time>
+<div class="flex items-center gap-1.5 bg-[#E0F2F1] text-[#00695C] px-3 py-1 rounded-full border border-[#00695C]/20">
+<span class="material-symbols-outlined text-[14px]">person_off</span>
+<span class="font-label text-[12px] uppercase tracking-wider font-bold">Auto Termination</span>
+</div>
+</div>
+<!-- Member Snapshot -->
+<div class="flex items-center gap-4 border-l-4 border-[#00695C] pl-4">
+<img alt="Avatar of Rajesh Kumar" class="w-12 h-12 rounded-full object-cover border border-outline-variant/30" data-alt="A professional headshot of an adult male in an office setting. The lighting is soft and natural, emphasizing a serene modernist aesthetic. He wears a dark business casual shirt against a clean, light surface-bright background. The mood is serious but calm, fitting an enterprise context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPwqLFd_kkB4arwlQNYZJgvnON9wxq9c0cIQcebNUZr3DyqPAOlkU9wFKGndcpLZdNxauGy4r-IJQLDcVkhtolWpYzv7FN2Al9dqu37ffb2zhyCMLEjWyrhjx4Au0k9Fg5j2rZIv_GNgFtyFXJn0mDDb1KIkgg3Zht1hSBwPX44o50p3oP6Elgl8yYDaCQPFmnUCq45q9IwZkCSBGDNFCTr-2IkU6jYhyuL2yp5k_WTaqZ6P2YBWO-d-KaKa5pu1iu3nZDUDk5AggV"/>
+<div>
+<h4 class="font-headline text-[20px] font-medium text-primary">Rajesh Kumar</h4>
+<p class="font-body text-[14px] text-on-surface-variant">Senior Associate <span class="mx-1">•</span> ID 44728</p>
+</div>
+</div>
+<!-- Termination Reason Box -->
+<div class="bg-surface-container-low rounded-xl p-4 border border-outline-variant/20">
+<p class="font-body text-[14px] text-on-surface-variant italic leading-relaxed">
+                        "Failed compliance requirements for 2 consecutive review cycles."
+                    </p>
+</div>
+<!-- Network Impact Preview -->
+<div class="bg-surface-container rounded-xl p-4 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between border border-outline-variant/10">
+<div class="flex items-center gap-4">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full bg-surface-variant border-2 border-surface-container-lowest flex items-center justify-center z-20">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">person</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-variant border-2 border-surface-container-lowest flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">person</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-variant border-2 border-surface-container-lowest flex items-center justify-center z-0">
+<span class="text-[10px] font-bold text-on-surface-variant">+1</span>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-label text-[12px] uppercase tracking-wider text-on-surface-variant">Network Impact</span>
+<span class="font-body text-[14px] text-primary">Affected Members: 3</span>
+</div>
+</div>
+<div class="flex items-center gap-3 text-[14px] font-body text-on-surface-variant">
+<span>Parent: Vignesh</span>
+<span class="material-symbols-outlined text-[16px]">arrow_right_alt</span>
+<span class="font-medium text-primary">Arun</span>
+</div>
+<span class="font-label text-[10px] uppercase tracking-widest bg-secondary-container text-on-secondary-container px-2 py-1 rounded-sm border border-secondary-container/50">Team Reassigned</span>
+</div>
+<!-- Governance Tags -->
+<div class="flex gap-2 flex-wrap pt-2">
+<span class="font-label text-[12px] bg-surface border border-outline-variant/30 text-outline px-3 py-1 rounded-full">#Compliance Failure</span>
+<span class="font-label text-[12px] bg-surface border border-outline-variant/30 text-outline px-3 py-1 rounded-full">#Audit Trail Created</span>
+</div>
+</article>
+<!-- Audit Log Card: Tree Restructure -->
+<article class="bg-surface-container-lowest rounded-[20px] p-6 shadow-sm border border-outline-variant/30 flex flex-col gap-6 relative overflow-hidden">
+<!-- Header: Timestamp & Badge -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+<time class="font-mono text-[14px] text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+                        Jun 02, 2026 09:15 AM
+                    </time>
+<div class="flex items-center gap-1.5 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full border border-secondary/20">
+<span class="material-symbols-outlined text-[14px]">account_tree</span>
+<span class="font-label text-[12px] uppercase tracking-wider font-bold">Tree Restructure</span>
+</div>
+</div>
+<!-- Action Snapshot -->
+<div class="flex flex-col gap-1 border-l-4 border-secondary pl-4">
+<h4 class="font-headline text-[20px] font-medium text-primary">Regional Realignment</h4>
+<p class="font-body text-[14px] text-on-surface-variant">Initiated by: System Administrator</p>
+</div>
+<!-- Details Box -->
+<div class="bg-surface-container-low rounded-xl p-4 border border-outline-variant/20">
+<p class="font-body text-[14px] text-on-surface-variant leading-relaxed">
+                        Moved 4 members from <span class="font-medium text-primary">Global Operations</span> node to <span class="font-medium text-primary">APAC Compliance</span> node to satisfy regional regulatory requirements.
+                    </p>
+</div>
+<!-- Governance Tags -->
+<div class="flex gap-2 flex-wrap pt-2">
+<span class="font-label text-[12px] bg-surface border border-outline-variant/30 text-outline px-3 py-1 rounded-full">#Regulatory Realignment</span>
+<span class="font-label text-[12px] bg-surface border border-outline-variant/30 text-outline px-3 py-1 rounded-full">#Audit Trail Created</span>
+</div>
+</article>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center pt-2 pb-6 px-4 bg-surface/90 dark:bg-surface-container-lowest/90 backdrop-blur-lg border-t border-outline-variant/20 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] z-50 rounded-t-xl">
+<button class="flex flex-col items-center justify-center text-on-surface-variant/60 dark:text-on-surface-variant px-4 py-1 hover:text-primary dark:hover:text-primary-fixed transition-all active:scale-90 duration-300">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label text-[12px] uppercase tracking-wider mt-1">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/60 dark:text-on-surface-variant px-4 py-1 hover:text-primary dark:hover:text-primary-fixed transition-all active:scale-90 duration-300">
+<span class="material-symbols-outlined">account_tree</span>
+<span class="font-label text-[12px] uppercase tracking-wider mt-1">Tree</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/60 dark:text-on-surface-variant px-4 py-1 hover:text-primary dark:hover:text-primary-fixed transition-all active:scale-90 duration-300">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label text-[12px] uppercase tracking-wider mt-1">Meetings</span>
+</button>
+<!-- Active Tab: Compliance -->
+<button class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed bg-secondary-container/50 dark:bg-primary-container rounded-full px-4 py-1 hover:text-primary dark:hover:text-primary-fixed transition-all active:scale-90 duration-300">
+<span class="material-symbols-outlined fill">gavel</span>
+<span class="font-label text-[12px] uppercase tracking-wider mt-1">Compliance</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/60 dark:text-on-surface-variant px-4 py-1 hover:text-primary dark:hover:text-primary-fixed transition-all active:scale-90 duration-300">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label text-[12px] uppercase tracking-wider mt-1">Profile</span>
+</button>
+</nav>
+</body></html>

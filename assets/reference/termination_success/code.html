@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Member Terminated - Success</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&amp;family=Newsreader:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface": "#fcf9f7",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e5e2e0",
+                        "on-secondary-fixed": "#111e16",
+                        "on-secondary-container": "#59685d",
+                        "on-surface-variant": "#444844",
+                        "on-tertiary-container": "#a69697",
+                        "primary-fixed-dim": "#c2c8c1",
+                        "primary-fixed": "#dee4dd",
+                        "surface-tint": "#5a605a",
+                        "surface-container": "#f0edec",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#f1dedf",
+                        "tertiary-container": "#3a2f30",
+                        "on-surface": "#1c1c1b",
+                        "on-primary-container": "#959b94",
+                        "secondary-fixed-dim": "#bacbbe",
+                        "secondary": "#536257",
+                        "error": "#ba1a1a",
+                        "primary": "#181e1a",
+                        "surface-container-highest": "#e5e2e0",
+                        "on-tertiary-fixed": "#23191a",
+                        "outline-variant": "#c4c7c2",
+                        "surface-container-low": "#f6f3f1",
+                        "on-tertiary-fixed-variant": "#504445",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#d6e7d9",
+                        "tertiary-fixed-dim": "#d4c2c3",
+                        "surface-dim": "#dcd9d8",
+                        "tertiary": "#241a1b",
+                        "outline": "#747873",
+                        "surface-bright": "#fcf9f7",
+                        "primary-container": "#2d332e",
+                        "on-primary-fixed-variant": "#424843",
+                        "on-background": "#1c1c1b",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#171d18",
+                        "inverse-surface": "#313030",
+                        "inverse-primary": "#c2c8c1",
+                        "secondary-container": "#d6e7d9",
+                        "inverse-on-surface": "#f3f0ef",
+                        "surface-container-high": "#ebe7e6",
+                        "on-secondary-fixed-variant": "#3b4a40",
+                        "on-error": "#ffffff",
+                        "background": "#fcf9f7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "sm": "0.25rem",
+                        "md": "0.75rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Newsreader", "serif"],
+                        "display-lg-mobile": ["Newsreader", "serif"],
+                        "headline-md": ["Newsreader", "serif"],
+                        "headline-sm": ["Newsreader", "serif"],
+                        "body-lg": ["Hanken Grotesk", "sans-serif"],
+                        "body-md": ["Hanken Grotesk", "sans-serif"],
+                        "label-md": ["Hanken Grotesk", "sans-serif"],
+                        "label-sm": ["Hanken Grotesk", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Custom typography utilities based on DS */
+        .text-display-lg { font-family: 'Newsreader', serif; font-size: 48px; font-weight: 600; line-height: 56px; letter-spacing: -0.02em; }
+        .text-display-lg-mobile { font-family: 'Newsreader', serif; font-size: 36px; font-weight: 600; line-height: 44px; letter-spacing: -0.01em; }
+        .text-headline-md { font-family: 'Newsreader', serif; font-size: 32px; font-weight: 500; line-height: 40px; }
+        .text-headline-sm { font-family: 'Newsreader', serif; font-size: 24px; font-weight: 500; line-height: 32px; }
+        .text-body-lg { font-family: 'Hanken Grotesk', sans-serif; font-size: 18px; font-weight: 400; line-height: 28px; }
+        .text-body-md { font-family: 'Hanken Grotesk', sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; }
+        .text-label-md { font-family: 'Hanken Grotesk', sans-serif; font-size: 14px; font-weight: 600; line-height: 20px; letter-spacing: 0.05em; }
+        .text-label-sm { font-family: 'Hanken Grotesk', sans-serif; font-size: 12px; font-weight: 500; line-height: 16px; }
+
+        /* Animations */
+        @keyframes drawCheck {
+            0% { stroke-dashoffset: 100; opacity: 0; }
+            10% { opacity: 1; }
+            100% { stroke-dashoffset: 0; opacity: 1; }
+        }
+        @keyframes scaleIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes slideUpFade {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        .animate-check {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: drawCheck 0.8s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+            animation-delay: 0.3s;
+        }
+        .animate-scale-in {
+            animation: scaleIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .animate-slide-up-1 { animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: 0.5s; opacity: 0; }
+        .animate-slide-up-2 { animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: 0.7s; opacity: 0; }
+        .animate-slide-up-3 { animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: 0.9s; opacity: 0; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body antialiased selection:bg-secondary-container selection:text-on-secondary-container overflow-x-hidden">
+<!-- TopAppBar Semantic Shell (Transactional Page - Suppressed Navigation, showing only Close/Skip context if required, but user instructions say "Skip" in trailing action for this specific JSON, though it's a success screen. Adhering to JSON strict content.) -->
+<header class="docked full-width top-0 bg-transparent flex justify-between items-center w-full px-6 py-4 flat no shadows z-50 absolute">
+<button aria-label="Close" class="text-primary dark:text-primary-fixed hover:opacity-70 transition-opacity active:scale-95 transition-transform flex items-center justify-center p-2 rounded-full">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">close</span>
+</button>
+<span class="hidden"></span> <!-- Brand Logo Hidden -->
+<button class="text-primary dark:text-primary-fixed font-body text-body-md hover:opacity-70 transition-opacity active:scale-95 transition-transform">
+            Skip
+        </button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center px-6 py-20 md:py-32 w-full max-w-container-max mx-auto relative z-10">
+<!-- Decorative Background Elements -->
+<div class="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center -z-10">
+<div class="w-[800px] h-[800px] rounded-full bg-secondary-fixed/30 blur-3xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-40"></div>
+</div>
+<div class="w-full max-w-2xl flex flex-col items-center text-center space-y-stack-lg">
+<!-- Hero Animation -->
+<div class="animate-scale-in relative flex items-center justify-center w-32 h-32 md:w-40 md:h-40 rounded-full bg-secondary-container shadow-sm border border-secondary-fixed-dim/50">
+<svg class="w-16 h-16 md:w-20 md:h-20 text-on-secondary-container" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24">
+<path class="animate-check opacity-0" d="M5 13l4 4L19 7"></path>
+</svg>
+<!-- Subtle glow pulse -->
+<div class="absolute inset-0 rounded-full bg-secondary-container/50 animate-ping" style="animation-duration: 3s; opacity: 0.2;"></div>
+</div>
+<!-- Header -->
+<div class="space-y-stack-sm animate-slide-up-1">
+<h1 class="text-display-lg-mobile md:text-display-lg text-on-surface">Member Terminated</h1>
+<p class="text-body-lg text-on-surface-variant max-w-lg mx-auto">
+                    The termination process has completed successfully. Below is a summary of the automated actions performed.
+                </p>
+</div>
+<!-- Bento-style Summary Grid -->
+<div class="w-full grid grid-cols-1 md:grid-cols-2 gap-base md:gap-4 animate-slide-up-2">
+<!-- Summary Card 1: Removal -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-6 flex flex-col items-start text-left shadow-sm hover:shadow-md transition-shadow duration-300">
+<div class="w-10 h-10 rounded-full bg-error-container/50 flex items-center justify-center mb-4 text-on-error-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person_remove</span>
+</div>
+<h3 class="text-label-md text-on-surface mb-1">Member Removed</h3>
+<p class="text-body-md text-on-surface-variant">Rajesh has been permanently removed from the active roster.</p>
+</div>
+<!-- Summary Card 2: Reassignment -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-6 flex flex-col items-start text-left shadow-sm hover:shadow-md transition-shadow duration-300">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center mb-4 text-on-secondary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_tree</span>
+</div>
+<h3 class="text-label-md text-on-surface mb-1">Downline Reassigned</h3>
+<p class="text-body-md text-on-surface-variant">3 dependent members have been successfully reassigned.</p>
+</div>
+<!-- Summary Card 3: Analytics -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-6 flex flex-col items-start text-left shadow-sm hover:shadow-md transition-shadow duration-300">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center mb-4 text-on-tertiary-fixed">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">monitoring</span>
+</div>
+<h3 class="text-label-md text-on-surface mb-1">Analytics Updated</h3>
+<p class="text-body-md text-on-surface-variant">Global performance metrics have been recalculated.</p>
+</div>
+<!-- Summary Card 4: Audit -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-6 flex flex-col items-start text-left shadow-sm hover:shadow-md transition-shadow duration-300">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center mb-4 text-on-primary-fixed">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">history_edu</span>
+</div>
+<h3 class="text-label-md text-on-surface mb-1">Audit Log Created</h3>
+<p class="text-body-md text-on-surface-variant">A permanent compliance record has been generated.</p>
+</div>
+</div>
+<!-- Actions Cluster -->
+<div class="w-full flex flex-col md:flex-row items-center justify-center gap-4 pt-6 animate-slide-up-3">
+<button class="w-full md:w-auto px-8 py-3 bg-primary text-on-primary rounded-full text-label-md hover:bg-primary-container hover:text-on-primary-container transition-colors duration-200 flex items-center justify-center gap-2 active:scale-95 shadow-sm">
+<span class="material-symbols-outlined text-sm">history</span>
+                    View Member Log
+                </button>
+<button class="w-full md:w-auto px-8 py-3 bg-surface-container-low text-on-surface border border-outline-variant rounded-full text-label-md hover:bg-surface-container-high transition-colors duration-200 flex items-center justify-center gap-2 active:scale-95">
+<span class="material-symbols-outlined text-sm">account_tree</span>
+                    View Updated Tree
+                </button>
+<button class="w-full md:w-auto px-8 py-3 bg-transparent text-primary rounded-full text-label-md hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors duration-200 flex items-center justify-center gap-2 active:scale-95">
+                    Return To Network
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar suppressed due to linear/transactional completion context -->
+</body></html>

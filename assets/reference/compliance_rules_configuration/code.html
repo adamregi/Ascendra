@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Compliance Rules Setup | Ascendra Leadership Glass</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-fixed": "#dee4dd",
+                        "on-tertiary-container": "#a69697",
+                        "outline-variant": "#c4c7c2",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#3b4a40",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#ebe7e6",
+                        "surface": "#fcf9f7",
+                        "surface-container": "#f0edec",
+                        "surface-bright": "#fcf9f7",
+                        "surface-variant": "#e5e2e0",
+                        "secondary-fixed-dim": "#bacbbe",
+                        "on-tertiary-fixed": "#23191a",
+                        "inverse-primary": "#c2c8c1",
+                        "on-primary-fixed-variant": "#424843",
+                        "on-tertiary-fixed-variant": "#504445",
+                        "tertiary-fixed-dim": "#d4c2c3",
+                        "on-surface": "#1c1c1b",
+                        "tertiary-fixed": "#f1dedf",
+                        "on-surface-variant": "#444844",
+                        "secondary-fixed": "#d6e7d9",
+                        "secondary-container": "#d6e7d9",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-container": "#59685d",
+                        "surface-tint": "#5a605a",
+                        "surface-container-highest": "#e5e2e0",
+                        "outline": "#747873",
+                        "on-primary-container": "#959b94",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#f3f0ef",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#3a2f30",
+                        "surface-container-low": "#f6f3f1",
+                        "tertiary": "#241a1b",
+                        "secondary": "#536257",
+                        "background": "#fcf9f7",
+                        "surface-dim": "#dcd9d8",
+                        "on-primary-fixed": "#171d18",
+                        "primary": "#181e1a",
+                        "primary-fixed-dim": "#c2c8c1",
+                        "on-background": "#1c1c1b",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#313030",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#2d332e",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#111e16"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "xxl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        "headline": ["Newsreader", "serif"],
+                        "display": ["Newsreader", "serif"],
+                        "body": ["Hanken Grotesk", "sans-serif"],
+                        "label": ["Hanken Grotesk", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; background-color: #fcf9f7; }
+        .font-headline { font-family: 'Newsreader', serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            background: #181E1A;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface antialiased pb-32">
+<!-- Top App Bar -->
+<header class="sticky top-0 bg-surface/80 backdrop-blur-md z-40 flex justify-between items-center px-4 h-16 w-full">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-on-surface">arrow_back</span>
+</button>
+<h1 class="font-headline font-bold text-xl text-primary">Compliance Rules</h1>
+<button class="px-4 py-2 text-outline-variant font-semibold cursor-not-allowed" disabled="">
+            Save
+        </button>
+</header>
+<main class="max-w-md mx-auto px-4 py-6 space-y-6">
+<!-- Info Banner -->
+<div class="bg-surface-container-lowest border-l-4 border-primary p-4 rounded-xl shadow-sm flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5">info</span>
+<p class="text-body-md text-on-surface-variant leading-relaxed">These rules apply to all members in your team.</p>
+</div>
+<!-- Current Policy Summary -->
+<section class="bg-surface-container-low p-5 rounded-3xl space-y-4">
+<h2 class="font-headline text-headline-sm text-primary">Current Team Policy</h2>
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-surface-container-lowest p-3 rounded-2xl border border-outline-variant/30">
+<p class="text-xs text-on-surface-variant font-medium uppercase tracking-wider mb-1">Frequency</p>
+<p class="font-mono text-sm font-semibold">2 Meetings / Month</p>
+</div>
+<div class="bg-surface-container-lowest p-3 rounded-2xl border border-outline-variant/30">
+<p class="text-xs text-on-surface-variant font-medium uppercase tracking-wider mb-1">Duration</p>
+<p class="font-mono text-sm font-semibold">30 Minute Minimum</p>
+</div>
+<div class="bg-surface-container-lowest p-3 rounded-2xl border border-outline-variant/30">
+<p class="text-xs text-on-surface-variant font-medium uppercase tracking-wider mb-1">Grace Period</p>
+<p class="font-mono text-sm font-semibold">7 Day Grace</p>
+</div>
+<div class="bg-surface-container-lowest p-3 rounded-2xl border border-outline-variant/30">
+<p class="text-xs text-on-surface-variant font-medium uppercase tracking-wider mb-1">Termination</p>
+<p class="font-mono text-sm font-semibold">Auto-Disabled</p>
+</div>
+</div>
+</section>
+<!-- Attendance Requirements -->
+<section class="bg-surface-container-lowest p-6 rounded-3xl border border-surface-container-high shadow-sm space-y-8">
+<h2 class="font-headline text-headline-sm text-primary">Attendance Requirements</h2>
+<!-- Rule 1: Stepper -->
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<label class="font-semibold text-on-surface">Meetings Required Per Month</label>
+<div class="flex items-center gap-4 bg-surface-container rounded-full p-1 border border-outline-variant/20">
+<button class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center hover:bg-white active:scale-90 transition-all">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<span class="font-mono font-bold text-lg w-4 text-center">2</span>
+<button class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white hover:bg-primary-container active:scale-90 transition-all">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</div>
+<p class="text-sm text-on-surface-variant italic">Members must attend at least this many meetings each month.</p>
+</div>
+<!-- Rule 2: Slider -->
+<div class="space-y-3">
+<div class="flex justify-between items-end mb-2">
+<label class="font-semibold text-on-surface">Minimum Meeting Duration</label>
+<span class="font-mono font-bold text-primary text-xl">45 min</span>
+</div>
+<input class="w-full h-1.5 bg-surface-container rounded-lg appearance-none cursor-pointer custom-slider accent-primary" max="90" min="15" step="5" type="range" value="45"/>
+<div class="flex justify-between text-xs font-mono text-outline font-medium px-1">
+<span>15 min</span>
+<span>90 min</span>
+</div>
+<p class="text-sm text-on-surface-variant italic">Attendance counts only after this duration.</p>
+</div>
+</section>
+<!-- Grace Period -->
+<section class="bg-surface-container-lowest p-6 rounded-3xl border border-surface-container-high shadow-sm space-y-4">
+<div class="flex justify-between items-center">
+<h2 class="font-headline text-headline-sm text-primary">Grace Period</h2>
+<div class="flex items-center gap-4 bg-surface-container rounded-full p-1 border border-outline-variant/20">
+<button class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center hover:bg-white transition-all">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<span class="font-mono font-bold text-lg text-center">7 Days</span>
+<button class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white hover:bg-primary-container transition-all">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</div>
+<p class="text-sm text-on-surface-variant italic">Members have this many days after month-end before warnings are generated.</p>
+</section>
+<!-- Auto Termination Card -->
+<section class="bg-[#FFDAD6]/20 p-6 rounded-3xl border border-error-container/50 space-y-4">
+<div class="flex justify-between items-start">
+<div class="space-y-1">
+<h2 class="font-headline text-headline-sm text-on-error-container">Auto-Terminate Members</h2>
+<p class="text-sm text-on-surface-variant leading-snug">Automatically remove members who remain below the compliance threshold for two consecutive months.</p>
+</div>
+<!-- Toggle Switch -->
+<button aria-checked="false" class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-outline-variant/50 transition-colors duration-200 focus:outline-none" role="switch">
+<span aria-hidden="true" class="pointer-events-none inline-block h-5 w-5 translate-x-0 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+</button>
+</div>
+</section>
+<!-- Impact Analysis -->
+<section class="bg-surface-container-lowest p-6 rounded-3xl border border-surface-container-high shadow-sm space-y-6">
+<div class="flex items-center justify-between">
+<h2 class="font-headline text-headline-sm text-primary">Impact Analysis</h2>
+<span class="bg-secondary-container/50 text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold tracking-wide">PREVIEW</span>
+</div>
+<div class="grid grid-cols-2 gap-8 relative">
+<!-- Vertical Divider -->
+<div class="absolute left-1/2 top-0 bottom-0 w-px bg-outline-variant/20"></div>
+<div class="space-y-3">
+<p class="text-xs font-bold text-outline uppercase tracking-tighter">Current Rules</p>
+<div class="space-y-2">
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Compliant</span>
+<span class="font-mono font-semibold">18</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Warned</span>
+<span class="font-mono font-semibold">4</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">At Risk</span>
+<span class="font-mono font-semibold">1</span>
+</div>
+</div>
+</div>
+<div class="space-y-3">
+<p class="text-xs font-bold text-primary uppercase tracking-tighter">After Changes</p>
+<div class="space-y-2">
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Compliant</span>
+<span class="font-mono font-semibold text-error font-bold">16</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Warned</span>
+<span class="font-mono font-semibold text-error font-bold">5</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">At Risk</span>
+<span class="font-mono font-semibold text-error font-bold">2</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-2xl p-4 flex gap-4">
+<div class="flex-1 flex flex-col items-center border-r border-outline-variant/30">
+<span class="text-error font-bold text-sm">+1 Warning</span>
+</div>
+<div class="flex-1 flex flex-col items-center">
+<span class="text-on-error-container font-bold text-sm">+1 At Risk</span>
+</div>
+</div>
+</section>
+<!-- Affected Members -->
+<section class="space-y-4 pb-8">
+<h3 class="font-headline text-lg text-primary px-2">Affected Members</h3>
+<div class="space-y-3">
+<div class="bg-white p-4 rounded-2xl flex items-center gap-4 shadow-sm">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-primary-fixed">
+<img alt="Priya Kumar" class="w-full h-full object-cover" data-alt="Close up portrait of a professional woman with a warm expression, wearing modern business attire. The background is soft and minimalist with neutral studio lighting, fitting a premium corporate dashboard aesthetic. High clarity, professional photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPjYZ3jFcOQTC3mVEuNrohaBgdewIrSun7PXKrzc3pyPWZFADsVXQhh8CMTHWXpewpEPmTWFu4jxnfjYC1_hSsQR2S7qy5qDlBX9T8Nwm9WQYxTVEvQ6pmbelfG-0_mQp17vn0kl2KP595h96CCOEMr4obo96le8Y6De7NpZK69I2BXOmxNC9fcPOSJrxCiymNCXfPYXZA-cXrv9I0dCE8gwQlPWib6weqAb9ZaDca7G4ohrZWQSEX3CB5x5czWwSIpU_Y4QcwfLGM"/>
+</div>
+<div class="flex-1">
+<p class="font-semibold text-on-surface">Priya Kumar</p>
+<p class="text-sm text-error font-medium">Will move to Warning</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+<div class="bg-white p-4 rounded-2xl flex items-center gap-4 shadow-sm">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-secondary-fixed">
+<img alt="Rahul Singh" class="w-full h-full object-cover" data-alt="Portrait of a young professional man with a confident look, wearing a sleek modern jacket. The lighting is clean and cinematic, with a soft blur in the background. The style is consistent with a high-end leadership application, using a serene and focused color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfyetvgRBBRC474YLOGAy921VnIDYpxD_2rbdQ-A0UBMKLUDrreh4PUi1yxUSOgHubCgv4OkBsh68DcYMAxXy5gr-xlIS-m7_hv2rnAUoHmqfAEC2LiAHnaaohPPZnOsyPx4dAztWWNrubsirOooggesxPzSHWbaoIXcFY41BUdcCO0s5JDYeFSJGDG38fPWUhY-pgzTe5cztEo4YuugWVwakQSW1N4dEh-o1lTBnfSKOLIddTNHnU4Lc3UjrwtR3bu-8R7rYBpO_R"/>
+</div>
+<div class="flex-1">
+<p class="font-semibold text-on-surface">Rahul Singh</p>
+<p class="text-sm text-on-error-container font-medium">Will become At Risk</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+</div>
+<button class="w-full py-3 text-primary font-bold text-sm flex items-center justify-center gap-2 hover:bg-primary/5 rounded-xl transition-colors">
+                View All Affected <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</section>
+</main>
+<!-- Sticky Bottom Save Bar -->
+<div class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-surface-container-high px-6 py-5 flex items-center justify-between z-50">
+<div class="space-y-0.5">
+<p class="text-primary font-bold font-mono">3 Changes Pending</p>
+<p class="text-xs text-on-surface-variant">Affects 2 team members</p>
+</div>
+<button class="bg-primary text-white px-8 py-3.5 rounded-full font-bold shadow-lg hover:bg-primary/90 active:scale-95 transition-all">
+            Save Changes
+        </button>
+</div>
+<!-- Bottom Nav (Hidden for focused journey) -->
+<!-- The shared component BottomNavBar is suppressed here per the "Destination Rule" since this is a focused task/configuration screen -->
+<script>
+        // Micro-interactions for the range slider
+        const slider = document.querySelector('.custom-slider');
+        const durationDisplay = document.querySelector('.font-mono.text-xl');
+        
+        if(slider) {
+            slider.addEventListener('input', (e) => {
+                durationDisplay.textContent = `${e.target.value} min`;
+                
+                // Visual feedback for changes
+                const saveBtn = document.querySelector('header button:last-child');
+                saveBtn.classList.remove('text-outline-variant', 'cursor-not-allowed');
+                saveBtn.classList.add('text-primary');
+                saveBtn.removeAttribute('disabled');
+            });
+        }
+
+        // Toggle interaction
+        const toggle = document.querySelector('[role="switch"]');
+        if(toggle) {
+            toggle.addEventListener('click', () => {
+                const checked = toggle.getAttribute('aria-checked') === 'true';
+                toggle.setAttribute('aria-checked', !checked);
+                toggle.querySelector('span').classList.toggle('translate-x-5');
+                toggle.classList.toggle('bg-primary');
+                toggle.classList.toggle('bg-outline-variant/50');
+            });
+        }
+    </script>
+</body></html>

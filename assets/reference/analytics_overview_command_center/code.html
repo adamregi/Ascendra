@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ascendra - Analytics Dashboard</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts for Design System -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&amp;family=Newsreader:opsz,wght@6..72,400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Design System Configuration -->
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"surface-container": "#f0edec", "on-error": "#ffffff", "surface-container-lowest": "#ffffff", "on-surface-variant": "#444844", background: "#fcf9f7", "surface-bright": "#fcf9f7", "tertiary-container": "#3a2f30", "surface-tint": "#5a605a", "on-surface": "#1c1c1b", "on-tertiary": "#ffffff", "on-tertiary-fixed-variant": "#504445", "surface-variant": "#e5e2e0", "surface-container-high": "#ebe7e6", surface: "#fcf9f7", "surface-container-highest": "#e5e2e0", "tertiary-fixed": "#f1dedf", "primary-fixed": "#dee4dd", "on-tertiary-container": "#a69697", "primary-container": "#2d332e", "on-tertiary-fixed": "#23191a", "inverse-surface": "#313030", "outline-variant": "#c4c7c2", "inverse-primary": "#c2c8c1", outline: "#747873", "secondary-fixed-dim": "#bacbbe", "secondary-fixed": "#d6e7d9", "on-secondary": "#ffffff", "surface-container-low": "#f6f3f1", error: "#ba1a1a", "primary-fixed-dim": "#c2c8c1", tertiary: "#241a1b", "on-primary-container": "#959b94", "on-error-container": "#93000a", "on-secondary-fixed": "#111e16", "tertiary-fixed-dim": "#d4c2c3", "error-container": "#ffdad6", "surface-base": "#FBFBF9", "surface-muted": "#F2F2ED", "on-secondary-container": "#59685d", "on-primary-fixed": "#171d18", "border-subtle": "#E5E5E0", "on-background": "#1c1c1b", "inverse-on-surface": "#f3f0ef", "on-primary-fixed-variant": "#424843", secondary: "#536257", "secondary-container": "#d6e7d9", "accent-warm": "#D4AF37", "surface-dim": "#dcd9d8", primary: "#181e1a", "on-secondary-fixed-variant": "#3b4a40", "on-primary": "#ffffff"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, spacing: {"stack-md": "16px", "container-max": "1200px", base: "4px", "margin-desktop": "64px", "stack-lg": "32px", "margin-mobile": "20px", gutter: "24px", "stack-sm": "8px"}, fontFamily: {"headline-sm": ["Newsreader", "serif"], "body-md": ["Hanken Grotesk", "sans-serif"], "label-sm": ["Hanken Grotesk", "sans-serif"], "headline-md": ["Newsreader", "serif"], "display-lg-mobile": ["Newsreader", "serif"], "body-lg": ["Hanken Grotesk", "sans-serif"], "label-md": ["Hanken Grotesk", "sans-serif"], "display-lg": ["Newsreader", "serif"], headline: ["Newsreader"], display: ["Newsreader"], body: ["Hanken Grotesk"], label: ["Hanken Grotesk"]}, fontSize: {"headline-sm": ["24px", {lineHeight: "32px", fontWeight: "500"}], "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}], "label-sm": ["12px", {lineHeight: "16px", fontWeight: "500"}], "headline-md": ["32px", {lineHeight: "40px", fontWeight: "500"}], "display-lg-mobile": ["36px", {lineHeight: "44px", letterSpacing: "-0.01em", fontWeight: "600"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "label-md": ["14px", {lineHeight: "20px", letterSpacing: "0.05em", fontWeight: "600"}], "display-lg": ["48px", {lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "600"}]}}}};</script>
+<style>
+        /* Hide scrollbar for horizontal scrolling areas but keep functionality */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-low text-on-surface antialiased pb-[100px]">
+<!-- Custom Analytics Top Header (Adhering to minimal glassmorphism style) -->
+<header class="fixed top-0 left-0 w-full z-40 bg-surface/80 backdrop-blur-md border-b border-white/20 shadow-sm shadow-primary/5 px-margin-mobile h-[72px] flex items-center justify-between">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-variant/30 transition-colors">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm text-primary absolute left-1/2 -translate-x-1/2">Analytics</h1>
+<div class="px-3 py-1.5 rounded-full bg-surface-muted border border-border-subtle flex items-center gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Jun 2026</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-[96px] px-margin-mobile flex flex-col gap-stack-lg max-w-container-max mx-auto">
+<!-- KPI Summary Row (Horizontal Scroll) -->
+<section class="-mx-margin-mobile px-margin-mobile">
+<div class="flex overflow-x-auto gap-4 hide-scrollbar snap-x snap-mandatory">
+<!-- KPI Card 1 -->
+<div class="snap-start min-w-[160px] flex-shrink-0 bg-surface-container-lowest/80 backdrop-blur-xl border border-border-subtle rounded-xl p-4 shadow-[0_4px_40px_rgb(0,0,0,0.02)]">
+<h3 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-2">Total Members</h3>
+<div class="font-display-lg-mobile text-display-lg-mobile text-primary">728</div>
+<div class="flex items-center gap-1 mt-2 text-secondary">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'wght' 600;">trending_up</span>
+<span class="font-label-sm text-label-sm font-semibold">+18 this month</span>
+</div>
+</div>
+<!-- KPI Card 2 -->
+<div class="snap-start min-w-[160px] flex-shrink-0 bg-surface-container-lowest/80 backdrop-blur-xl border border-border-subtle rounded-xl p-4 shadow-[0_4px_40px_rgb(0,0,0,0.02)]">
+<h3 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-2">Attendance Rate</h3>
+<div class="font-display-lg-mobile text-display-lg-mobile text-primary">92%</div>
+<div class="flex items-center gap-1 mt-2 text-secondary">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'wght' 600;">trending_up</span>
+<span class="font-label-sm text-label-sm font-semibold">+12% vs last</span>
+</div>
+</div>
+<!-- KPI Card 3 -->
+<div class="snap-start min-w-[160px] flex-shrink-0 bg-surface-container-lowest/80 backdrop-blur-xl border border-border-subtle rounded-xl p-4 shadow-[0_4px_40px_rgb(0,0,0,0.02)]">
+<h3 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-2">Active Members</h3>
+<div class="font-display-lg-mobile text-display-lg-mobile text-primary">641</div>
+<div class="flex items-center gap-1 mt-2 text-secondary">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'wght' 600;">trending_up</span>
+<span class="font-label-sm text-label-sm font-semibold">+8% vs last</span>
+</div>
+</div>
+<!-- KPI Card 4 -->
+<div class="snap-start min-w-[160px] flex-shrink-0 bg-surface-container-lowest/80 backdrop-blur-xl border border-border-subtle rounded-xl p-4 shadow-[0_4px_40px_rgb(0,0,0,0.02)]">
+<h3 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-2">Risk Members</h3>
+<div class="font-display-lg-mobile text-display-lg-mobile text-primary">18</div>
+<div class="flex items-center gap-1 mt-2 text-accent-warm">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'wght' 600;">trending_down</span>
+<span class="font-label-sm text-label-sm font-semibold">-5% vs last</span>
+</div>
+</div>
+</div>
+</section>
+<!-- AI Leadership Insight Banner -->
+<section class="bg-primary rounded-xl p-5 relative overflow-hidden shadow-[0_8px_40px_rgb(24,30,26,0.15)]">
+<!-- Decorative minimal glow -->
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-secondary blur-[50px] opacity-20 rounded-full"></div>
+<div class="flex items-start gap-4 relative z-10">
+<div class="w-10 h-10 rounded-full bg-surface/10 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">psychology</span>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-body-md text-on-primary/90 leading-relaxed">
+                        Attendance increased <strong class="text-on-primary font-semibold">12%</strong> compared to last month. Top Performing Branch: <strong class="text-on-primary font-semibold">Chennai North</strong>
+</p>
+<button class="mt-4 px-4 py-2 bg-on-primary text-primary font-label-md text-label-md rounded-lg flex items-center gap-2 hover:bg-surface-variant transition-colors">
+                        View Branch Data
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Charts Grid (Mobile Single Column) -->
+<div class="flex flex-col gap-stack-lg">
+<!-- Monthly Attendance Line Chart (Abstracted representation) -->
+<section class="bg-surface-container-lowest/80 backdrop-blur-xl border border-border-subtle rounded-xl p-5 shadow-[0_4px_40px_rgb(0,0,0,0.02)]">
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline-sm text-headline-sm text-primary">Monthly Attendance</h2>
+<span class="material-symbols-outlined text-on-surface-variant">more_horiz</span>
+</div>
+<!-- Conceptual Minimalist Line Chart using CSS shapes -->
+<div class="h-40 relative w-full border-b border-border-subtle flex items-end">
+<!-- Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+<div class="w-full h-[1px] bg-border-subtle/50"></div>
+<div class="w-full h-[1px] bg-border-subtle/50"></div>
+<div class="w-full h-[1px] bg-border-subtle/50"></div>
+<div class="w-full h-[1px] bg-transparent"></div> <!-- Bottom border covers this -->
+</div>
+<!-- SVG Chart Line Path (Placeholder for aesthetic) -->
+<svg class="absolute inset-0 w-full h-full" preserveaspectratio="none" viewbox="0 0 100 100">
+<defs>
+<lineargradient id="chartGlow" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#181e1a" stop-opacity="0.1"></stop>
+<stop offset="100%" stop-color="#181e1a" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0 80 Q 20 70, 40 50 T 80 30 T 100 20 L 100 100 L 0 100 Z" fill="url(#chartGlow)"></path>
+<path d="M0 80 Q 20 70, 40 50 T 80 30 T 100 20" fill="none" stroke="#181e1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<!-- X Axis Labels -->
+<div class="flex justify-between mt-3 font-label-sm text-label-sm text-on-surface-variant px-1">
+<span>W1</span>
+<span>W2</span>
+<span>W3</span>
+<span>W4</span>
+</div>
+</section>
+<!-- Compliance Trend Chart (Stacked Bar abstract) -->
+<section class="bg-surface-container-lowest/80 backdrop-blur-xl border border-border-subtle rounded-xl p-5 shadow-[0_4px_40px_rgb(0,0,0,0.02)]">
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline-sm text-headline-sm text-primary">Compliance Status</h2>
+<span class="material-symbols-outlined text-on-surface-variant">filter_list</span>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Week Row 1 -->
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm text-on-surface-variant w-8">W4</span>
+<div class="flex-1 h-3 flex rounded-full overflow-hidden">
+<div class="bg-secondary w-[85%] h-full"></div>
+<div class="bg-accent-warm w-[10%] h-full border-l border-white/20"></div>
+<div class="bg-error w-[5%] h-full border-l border-white/20"></div>
+</div>
+</div>
+<!-- Week Row 2 -->
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm text-on-surface-variant w-8">W3</span>
+<div class="flex-1 h-3 flex rounded-full overflow-hidden">
+<div class="bg-secondary w-[70%] h-full"></div>
+<div class="bg-accent-warm w-[20%] h-full border-l border-white/20"></div>
+<div class="bg-error w-[10%] h-full border-l border-white/20"></div>
+</div>
+</div>
+<!-- Week Row 3 -->
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm text-on-surface-variant w-8">W2</span>
+<div class="flex-1 h-3 flex rounded-full overflow-hidden">
+<div class="bg-secondary w-[90%] h-full"></div>
+<div class="bg-accent-warm w-[8%] h-full border-l border-white/20"></div>
+<div class="bg-error w-[2%] h-full border-l border-white/20"></div>
+</div>
+</div>
+</div>
+<!-- Legend -->
+<div class="flex justify-start gap-4 mt-6">
+<div class="flex items-center gap-1.5">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Compliant</span>
+</div>
+<div class="flex items-center gap-1.5">
+<div class="w-2 h-2 rounded-full bg-accent-warm"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Warned</span>
+</div>
+<div class="flex items-center gap-1.5">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Risk</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Leaderboard & Lists Section -->
+<div class="grid grid-cols-1 gap-stack-lg">
+<!-- Branch Performance -->
+<section>
+<h2 class="font-headline-sm text-headline-sm text-primary mb-4">Top Branches</h2>
+<div class="bg-surface-container-lowest/80 backdrop-blur-xl border border-border-subtle rounded-xl shadow-[0_4px_40px_rgb(0,0,0,0.02)] overflow-hidden">
+<div class="flex flex-col">
+<!-- Rank 1 -->
+<div class="flex items-center gap-4 p-4 border-b border-border-subtle hover:bg-surface-variant/30 transition-colors">
+<div class="font-headline-sm text-headline-sm text-on-surface-variant w-6 text-center">1</div>
+<div class="flex-1">
+<h4 class="font-label-md text-label-md text-primary">Chennai North</h4>
+<div class="w-full h-1.5 bg-surface-muted rounded-full mt-2 overflow-hidden">
+<div class="bg-secondary h-full w-[98%]"></div>
+</div>
+</div>
+<div class="font-label-md text-label-md text-primary">98%</div>
+</div>
+<!-- Rank 2 -->
+<div class="flex items-center gap-4 p-4 border-b border-border-subtle hover:bg-surface-variant/30 transition-colors">
+<div class="font-headline-sm text-headline-sm text-on-surface-variant w-6 text-center">2</div>
+<div class="flex-1">
+<h4 class="font-label-md text-label-md text-primary">Madurai Elite</h4>
+<div class="w-full h-1.5 bg-surface-muted rounded-full mt-2 overflow-hidden">
+<div class="bg-secondary h-full w-[95%]"></div>
+</div>
+</div>
+<div class="font-label-md text-label-md text-primary">95%</div>
+</div>
+<!-- Rank 3 -->
+<div class="flex items-center gap-4 p-4 hover:bg-surface-variant/30 transition-colors">
+<div class="font-headline-sm text-headline-sm text-on-surface-variant w-6 text-center">3</div>
+<div class="flex-1">
+<h4 class="font-label-md text-label-md text-primary">Coimbatore Growth</h4>
+<div class="w-full h-1.5 bg-surface-muted rounded-full mt-2 overflow-hidden">
+<div class="bg-secondary h-full w-[94%]"></div>
+</div>
+</div>
+<div class="font-label-md text-label-md text-primary">94%</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Most Active Members -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-headline-sm text-headline-sm text-primary">Active Members</h2>
+<a class="font-label-md text-label-md text-secondary hover:underline" href="#">View All</a>
+</div>
+<div class="bg-surface-container-lowest/80 backdrop-blur-xl border border-border-subtle rounded-xl shadow-[0_4px_40px_rgb(0,0,0,0.02)] p-2">
+<ul class="flex flex-col gap-1">
+<li class="flex items-center gap-4 p-2 rounded-lg hover:bg-surface-variant/40 transition-colors">
+<img class="w-10 h-10 rounded-full object-cover border border-border-subtle" data-alt="A professional headshot of a confident South Asian woman with dark hair pulled back, wearing a minimalist white blouse. The lighting is soft, natural, and bright, fitting a light-mode corporate aesthetic. The background is a clean, out-of-focus light gray office setting, conveying a sense of leadership and editorial sophistication." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaqXpMXA4IrAXs3RoM3fvaeyuUE_GncpJSi0NFB3h7v3hVdiPHtWnnWAG9r3yW8XhQdU-Gqa2N130DRi7DXiib4KEXWUkK_qqSLIJNYi7AV3_IxUBgKKwrF0MJo91-6RPovsXhHDzpXJv_-DPMbyZvCN6AUUozdUh2uZlrfNLwg-Q1GE1UQTtFrD7xii1ybxpGky3dwXznQJXvlDbCVzl-tGDy9Jk5DFNWM3qIa5YJfC0o4QFuIakyxqo3rM8_Mq1b9PeX1GmZPgjy"/>
+<div class="flex-1">
+<div class="font-body-md text-body-md text-primary font-medium">Priya Sharma</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Chennai North</div>
+</div>
+<div class="font-label-md text-label-md text-secondary">100%</div>
+</li>
+<li class="flex items-center gap-4 p-2 rounded-lg hover:bg-surface-variant/40 transition-colors">
+<img class="w-10 h-10 rounded-full object-cover border border-border-subtle" data-alt="A clean, modern portrait of a South Asian man in his thirties with short hair and a neat beard. He is wearing a simple, dark tailored shirt. The image has a bright, high-key lighting setup with a soft white background, perfectly matching a minimalist, premium application UI. The mood is approachable yet professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIrB52RKNBkx5LsF3L8In0-4uCxRiBm32oAqvpoafsx-6s2Y5ocxN_KdEu5s88klhclI4vwXidiS_wFA0Kd5LriSL5cU2cp0IVaBnGYbF2gTZdRW1aU_xWYICatbNMumB2LzBe2fsoCZxSYng7pJoI8ioXqKlKEDHQjd7229pcI4eqAO6Arn6_knMFmf5P_mvJL4lms-Ssgv7z6dnCUcrBwoNNSTmqfeLVtHOP2Xh_Ykgxw-jSEwChUh3Lwy0U5wR_DwvG0KBU1CRZ"/>
+<div class="flex-1">
+<div class="font-body-md text-body-md text-primary font-medium">Arjun Desai</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Madurai Elite</div>
+</div>
+<div class="font-label-md text-label-md text-secondary">98%</div>
+</li>
+</ul>
+</div>
+</section>
+</div>
+<!-- Recommended Actions (Priority Cards) -->
+<section class="mb-8">
+<h2 class="font-headline-sm text-headline-sm text-primary mb-4">Action Required</h2>
+<div class="flex flex-col gap-3">
+<!-- Action 1 -->
+<div class="flex items-center gap-4 p-4 rounded-xl border border-border-subtle bg-surface-container-lowest hover:border-accent-warm transition-colors cursor-pointer group">
+<div class="w-10 h-10 rounded-full bg-accent-warm/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent-warm/20 transition-colors">
+<span class="material-symbols-outlined text-accent-warm">warning</span>
+</div>
+<div class="flex-1">
+<div class="font-body-md text-body-md text-primary font-medium">18 Members Missing Meetings</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Consecutive absence across 3 branches</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+<!-- Action 2 -->
+<div class="flex items-center gap-4 p-4 rounded-xl border border-border-subtle bg-surface-container-lowest hover:border-error transition-colors cursor-pointer group">
+<div class="w-10 h-10 rounded-full bg-error/10 flex items-center justify-center flex-shrink-0 group-hover:bg-error/20 transition-colors">
+<span class="material-symbols-outlined text-error">trending_down</span>
+</div>
+<div class="flex-1">
+<div class="font-body-md text-body-md text-primary font-medium">7 Members At Risk</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Performance below critical threshold</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Shared Component: BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-surface-container/90 backdrop-blur-lg border-t border-border-subtle px-4 pb-4 pt-2 shadow-[0_-8px_30px_rgb(0,0,0,0.04)] md:hidden">
+<!-- Active Item: Home (Analytics implies dashboard/home for this persona) -->
+<button class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-xl px-4 py-1.5 transition-all duration-300 active:scale-90 group w-16">
+<span class="material-symbols-outlined text-[24px] mb-1" style="font-variation-settings: 'FILL' 1;">home_app_logo</span>
+<span class="font-label-sm text-label-sm text-[10px] leading-none">Home</span>
+</button>
+<!-- Inactive Items -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant/80 px-2 py-1.5 hover:text-primary transition-all active:scale-90 w-16">
+<span class="material-symbols-outlined text-[24px] mb-1">account_tree</span>
+<span class="font-label-sm text-label-sm text-[10px] leading-none">Tree</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant/80 px-2 py-1.5 hover:text-primary transition-all active:scale-90 w-16">
+<span class="material-symbols-outlined text-[24px] mb-1">groups</span>
+<span class="font-label-sm text-label-sm text-[10px] leading-none">Meetings</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant/80 px-2 py-1.5 hover:text-primary transition-all active:scale-90 w-16">
+<span class="material-symbols-outlined text-[24px] mb-1">psychology</span>
+<span class="font-label-sm text-label-sm text-[10px] leading-none">AI</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant/80 px-2 py-1.5 hover:text-primary transition-all active:scale-90 w-16">
+<span class="material-symbols-outlined text-[24px] mb-1">person</span>
+<span class="font-label-sm text-label-sm text-[10px] leading-none">Profile</span>
+</button>
+</nav>
+</body></html>

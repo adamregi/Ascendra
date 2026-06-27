@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MLM Genealogy Tree</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&amp;family=Newsreader:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config from Design System -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#959b94",
+                    "secondary-fixed-dim": "#bacbbe",
+                    "inverse-surface": "#313030",
+                    "primary-fixed-dim": "#c2c8c1",
+                    "secondary-fixed": "#d6e7d9",
+                    "inverse-on-surface": "#f3f0ef",
+                    "on-error-container": "#93000a",
+                    "secondary": "#536257",
+                    "on-tertiary": "#ffffff",
+                    "outline-variant": "#c4c7c2",
+                    "surface-dim": "#dcd9d8",
+                    "tertiary-container": "#3a2f30",
+                    "surface-tint": "#5a605a",
+                    "surface-container-high": "#ebe7e6",
+                    "on-secondary-container": "#59685d",
+                    "background": "#fcf9f7",
+                    "on-surface": "#1c1c1b",
+                    "secondary-container": "#d6e7d9",
+                    "on-surface-variant": "#444844",
+                    "surface": "#fcf9f7",
+                    "primary-container": "#2d332e",
+                    "on-secondary-fixed-variant": "#3b4a40",
+                    "tertiary": "#241a1b",
+                    "on-tertiary-fixed": "#23191a",
+                    "on-error": "#ffffff",
+                    "on-secondary-fixed": "#111e16",
+                    "surface-variant": "#e5e2e0",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#e5e2e0",
+                    "surface-container-low": "#f6f3f1",
+                    "error": "#ba1a1a",
+                    "on-tertiary-container": "#a69697",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#f1dedf",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#747873",
+                    "on-tertiary-fixed-variant": "#504445",
+                    "on-background": "#1c1c1b",
+                    "inverse-primary": "#c2c8c1",
+                    "surface-bright": "#fcf9f7",
+                    "on-primary-fixed-variant": "#424843",
+                    "surface-container": "#f0edec",
+                    "primary-fixed": "#dee4dd",
+                    "primary": "#181e1a",
+                    "on-primary-fixed": "#171d18",
+                    "tertiary-fixed-dim": "#d4c2c3"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Newsreader"],
+                    "display": ["Newsreader"],
+                    "body": ["Hanken Grotesk"],
+                    "label": ["Hanken Grotesk"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #dcd9d8;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #c4c7c2;
+        }
+        
+        /* Tree Path SVG Lines */
+        .tree-line {
+            fill: none;
+            stroke: #c4c7c2;
+            stroke-width: 1.5;
+            opacity: 0.6;
+        }
+        
+        /* Node Card Base */
+        .node-card {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03), 0 1px 4px rgba(0,0,0,0.02);
+            transition: all 0.2s ease;
+        }
+        .node-card:active {
+            transform: scale(0.98);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body antialiased min-h-screen overflow-hidden flex flex-col relative">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl shadow-sm">
+<div class="flex justify-between items-center px-6 py-4 w-full max-w-[1200px] mx-auto">
+<div class="flex items-center gap-3">
+<img alt="Leader Profile" class="w-8 h-8 rounded-full object-cover shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvuv-ZNG9F4tZIs8ruE9prk7iodD63qRbs4g8Yt4CFxHcPzy6YJshuP450ptE9IcgGxB7bA73qmzoWdxPusms4oYZMsmKwS5pF-hA1IDhvzEc2Q6Y1Bp0PRuUL3CKotsC6W7CFPArrehXDmthC7pMwZFbNbLwqWE80N0GKDEtlZorF8myF686WXIHZxBAuP14N9qUqLrGR3KmsirRvZ8Pgf9g1LztDWcdajcruTmtsBo-90PgAvKzvhexf4sqCiWnK6ki5Gn6iAjK-"/>
+<h1 class="font-headline text-headline-sm font-semibold tracking-tighter text-primary dark:text-primary-fixed">Ascendra</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-secondary-container/50 dark:hover:bg-secondary-container/20 transition-colors text-primary dark:text-primary-fixed">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas (Tree View) -->
+<main class="flex-1 w-full max-w-[1200px] mx-auto pt-24 pb-28 relative overflow-auto touch-pan-x touch-pan-y" id="tree-container">
+<!-- Floating Overlay (Search & Metrics) -->
+<div class="absolute top-24 left-4 right-4 z-40 md:left-6 md:right-6 max-w-md mx-auto pointer-events-none">
+<div class="bg-surface-container-lowest/90 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-outline-variant/20 pointer-events-auto space-y-4">
+<!-- Search -->
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/70 text-[20px]">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-2.5 pl-10 pr-4 text-[14px] focus:ring-1 focus:ring-outline-variant placeholder-on-surface-variant/50 transition-shadow" placeholder="Search members..." type="text"/>
+</div>
+<!-- Metrics Snapshot -->
+<div class="flex justify-between items-center divide-x divide-outline-variant/20">
+<div class="px-2 flex-1 text-center">
+<p class="font-label text-[10px] uppercase tracking-wider text-on-surface-variant/70 mb-0.5">Network</p>
+<p class="font-headline text-[18px] font-semibold text-primary">1,248</p>
+</div>
+<div class="px-2 flex-1 text-center">
+<p class="font-label text-[10px] uppercase tracking-wider text-on-surface-variant/70 mb-0.5">Depth</p>
+<p class="font-headline text-[18px] font-semibold text-primary">Level 6</p>
+</div>
+<div class="px-2 flex-1 text-center">
+<p class="font-label text-[10px] uppercase tracking-wider text-on-surface-variant/70 mb-0.5">Health</p>
+<p class="font-headline text-[18px] font-semibold text-secondary">94%</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Tree Canvas Container (pannable/zoomable area) -->
+<div class="min-w-[800px] min-h-[800px] relative pt-40 pb-20 flex flex-col items-center select-none" id="tree-canvas">
+<!-- SVG Paths for connections -->
+<svg class="absolute top-0 left-0 w-full h-full pointer-events-none z-0" id="connection-lines">
+<!-- Lines drawn via JS -->
+</svg>
+<!-- Level 0 (Root) -->
+<div class="relative z-10 mb-16" id="node-root">
+<div class="node-card bg-surface-container-lowest border border-primary/10 rounded-2xl p-4 w-48 flex flex-col items-center relative overflow-hidden">
+<!-- Status Indicator Line -->
+<div class="absolute top-0 left-0 w-full h-1 bg-secondary"></div>
+<div class="relative mb-3 mt-1">
+<img alt="Profile" class="w-14 h-14 rounded-full object-cover shadow-sm ring-2 ring-surface-container-lowest" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDo1C7BkQdENBvjLYrrfDHVFJPovSlu-9awgwJBtrCgWv37VN5XgopUKMfEgPHeZ4SEJquFlXJSDLQl94bohKJf4CLsMx5MGhnz-un-T2ASktbWWp2PyqVFJ9Z9GnSFlS6cjLjc4TI8MRTGjWVe80XHz1mbHEzxCDeR0wb-oxeoQW-r0-xv84m_J9fKV7xbvJL1QLiyBAFlrAo0zEijcnOYC8F6pINoPMzp93oAMBjZEz2uuwxVY2V8b4HFgSVUJDd5qU0Ex0ZTQHiW"/>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-secondary rounded-full border-2 border-surface-container-lowest flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px] text-on-secondary font-bold">check</span>
+</div>
+</div>
+<h3 class="font-headline text-[16px] font-medium text-primary text-center leading-tight mb-1">Eleanor Vance</h3>
+<p class="font-body text-[12px] text-on-surface-variant text-center mb-3">Diamond Director</p>
+<div class="bg-surface-container-low rounded-lg py-1.5 px-3 w-full flex justify-between items-center">
+<span class="font-label text-[10px] text-on-surface-variant uppercase tracking-wider">Legs</span>
+<span class="font-headline text-[14px] font-medium text-primary">3</span>
+</div>
+</div>
+</div>
+<!-- Level 1 Container -->
+<div class="flex justify-center gap-12 relative z-10 mb-16" id="level-1">
+<!-- Node 1.1 -->
+<div class="relative flex flex-col items-center" id="node-1-1">
+<div class="node-card bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-3 w-40 flex flex-col items-center relative overflow-hidden mb-6">
+<div class="absolute top-0 left-0 w-full h-1 bg-secondary"></div>
+<img alt="Profile" class="w-10 h-10 rounded-full object-cover mb-2 ring-2 ring-surface-container-lowest mt-1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxJmRbwfKQm5riIm2_fT63HECAakrwdNc2CcrZBCTVdzn3F1kz30xwEZ30CfwmXkksCGjjeAb61oVDklkrMvCmPZtPHXfW6zM5GcRxeNvriE9CgvUbPegEpkfahrqpjSkkAz9cdDmLhkYbaV6J6xyjUSdiGIwHQ3fYN2AYDSLfdhF0y4f1tdSmX6BPM8CUwx5xuynj-vbzkEhW9F_ZREskYByJp-zwV_db-lyt20LAq3q0Wj068nGOVPPX6LDHDkBgtFPlG7-SmRoX"/>
+<h4 class="font-headline text-[14px] font-medium text-primary text-center truncate w-full">Marcus Chen</h4>
+<p class="font-body text-[11px] text-on-surface-variant text-center mb-2">Ruby Executive</p>
+<div class="w-full flex justify-between items-center text-[10px]">
+<span class="text-on-surface-variant/70">Vol: 45k</span>
+<span class="font-medium text-primary">280 mbrs</span>
+</div>
+</div>
+<!-- Level 2 container for Node 1.1 -->
+<div class="flex justify-center gap-4" id="level-2-1">
+<div class="node-card bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-2 w-32 flex flex-col items-center relative overflow-hidden" id="node-2-1-1">
+<div class="absolute top-0 left-0 w-full h-1 bg-[#D4AF37]"></div> <!-- Warning status -->
+<img alt="Profile" class="w-8 h-8 rounded-full object-cover mb-1 mt-1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0SWMNXG82V_glwWmDeIQwphoHiEbjuCueQAKAXwwVnedLp5MZwud8FahES9q33b9VS_54aUTFCvRvGq-oqdO2K0bLdMayiJQ1EtzMyRNM36423MSM1rfmNzwjA31ZAbrJ2YOUIhFlx3Pqtl23T4pkVyTFVAXSgSyzndxAyFbTVV8HsdiEgN5JUGUXHYy6pXsf21phfnf3CpcWRyXArZTcjdB_5N1rEK7DFU_fPSfh_R0Bd2_VZ1Hd7iE0AIqV62iRED6W1aXM0OsW"/>
+<h5 class="font-headline text-[12px] font-medium text-primary text-center truncate w-full">Sarah Jen</h5>
+<div class="mt-2 w-6 h-6 rounded-full bg-surface-container flex items-center justify-center cursor-pointer hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant">add</span>
+</div>
+</div>
+<div class="node-card bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-2 w-32 flex flex-col items-center relative overflow-hidden" id="node-2-1-2">
+<div class="absolute top-0 left-0 w-full h-1 bg-secondary"></div>
+<img alt="Profile" class="w-8 h-8 rounded-full object-cover mb-1 mt-1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWFK_IGKSRddyDeNxaOdqIkvAt-pfv1ytkwHTxVrTzdm3iAtvQvos6ougnKAzCgU7v7dnuwByDBOS60ZilDsoeD8VrHs7xBXtfn1CSbFKhksduYdoNdhm3ODHgdDcoNX8MQgc-TyQb616FRK7M_1TFGmGKkqGEGEG12IJlmXF5hcdV6dACq1mflu4nJqlPbFLxiEHXTQdYh5QoXwyDyjzUg_jGue7S_eijqvf91IVJpvexpXqBZztV1rOHkI5yoP0eGMMHZpQrqNps"/>
+<h5 class="font-headline text-[12px] font-medium text-primary text-center truncate w-full">Tom Baker</h5>
+<div class="mt-2 w-6 h-6 rounded-full bg-surface-container flex items-center justify-center cursor-pointer hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant">add</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Node 1.2 -->
+<div class="relative flex flex-col items-center" id="node-1-2">
+<div class="node-card bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-3 w-40 flex flex-col items-center relative overflow-hidden mb-6">
+<div class="absolute top-0 left-0 w-full h-1 bg-error"></div> <!-- At Risk status -->
+<img alt="Profile" class="w-10 h-10 rounded-full object-cover mb-2 ring-2 ring-surface-container-lowest mt-1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3t586yN4x-eTKW__Pl8yBCS3wsG1oi2WMtXdZhOYYyW2YHf2F2c3nuzd7kkuRDVQRDULf9H49TxTGU3TcxlwMnczW2GpS3EI1jDJKlBMvB87y3xvcR9gExlZCB1At9NSZ687stXi9qTtSFYFQwaf4cUBYOm2ceLs_J8cM7InJmsI2o-SSHH4IM91yO5mlMqvYCqJqHOUEAyXPOVjMUtf2zgjolKJuRvm_C_ULjes--VuLcVnmiNTgsiJcqP12P7Pl0KV30ObRgVvm"/>
+<h4 class="font-headline text-[14px] font-medium text-primary text-center truncate w-full">David Kim</h4>
+<p class="font-body text-[11px] text-on-surface-variant text-center mb-2">Emerald Exec</p>
+<div class="w-full flex justify-between items-center text-[10px]">
+<span class="text-on-surface-variant/70">Vol: 12k</span>
+<span class="font-medium text-primary">128 mbrs</span>
+</div>
+</div>
+<!-- Level 2 container for Node 1.2 -->
+<div class="flex justify-center gap-4" id="level-2-2">
+<div class="node-card bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-2 w-32 flex flex-col items-center relative overflow-hidden" id="node-2-2-1">
+<div class="absolute top-0 left-0 w-full h-1 bg-secondary"></div>
+<img alt="Profile" class="w-8 h-8 rounded-full object-cover mb-1 mt-1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADUsFoZgE7D2GDmyd4t7pFuUWqsGy7L-MdVo-tLh0GL1478RR-N-yYFWKhlSLNjn4HM6OBUhr9eCThOOQ5pRHkBPhzq7wqbyCniiXXF7ETF41ZEXzdOeHgKd8nA2UaWvQCunJYgst0IglpZIZP1c8oT5FBAfvennMOVP5yUY-ihGmZeM7PgcjxI5zZHmTVdFDL9j3pNUMc7SuT0hrwJg3oGg6q1w-fj-jtH_CwzCdwcuwz7EdScu9iroueqCMQLEQ1Yk3KfjPYMdyO"/>
+<h5 class="font-headline text-[12px] font-medium text-primary text-center truncate w-full">Aria Stark</h5>
+<div class="mt-2 w-6 h-6 rounded-full bg-surface-container flex items-center justify-center cursor-pointer hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant">add</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Node 1.3 -->
+<div class="relative flex flex-col items-center" id="node-1-3">
+<div class="node-card bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-3 w-40 flex flex-col items-center relative overflow-hidden mb-6">
+<div class="absolute top-0 left-0 w-full h-1 bg-secondary"></div>
+<img alt="Profile" class="w-10 h-10 rounded-full object-cover mb-2 ring-2 ring-surface-container-lowest mt-1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDb40gmX7B8OneIJdAHAdvTxwJy2kYnBYaNR3BbxpXh1Pr-ZLv_vzuAfPW9Dv4s_t-7c5NFX-o0Mwz16wqAUx-_4aKpI8ard8uSO7z_TGTZ12rH-5NPxmGcdXxQ0xxu5NX_wa3pdOZRYShmcjp8i98nzTzXF0VMb8h1LLH_jiyZxBIIT28QrPgsIijprrx87J1raeWQKatmGSPjc2B1HRjgGkH-UOo9NpifI8ralmCPHSv6Z_CqGg6i6GcpusjPIKGyrinBHzPHBUw6"/>
+<h4 class="font-headline text-[14px] font-medium text-primary text-center truncate w-full">Elena Rostova</h4>
+<p class="font-body text-[11px] text-on-surface-variant text-center mb-2">Sapphire</p>
+<div class="w-full flex justify-between items-center text-[10px]">
+<span class="text-on-surface-variant/70">Vol: 89k</span>
+<span class="font-medium text-primary">540 mbrs</span>
+</div>
+</div>
+<!-- Level 2 container for Node 1.3 -->
+<div class="flex justify-center gap-4" id="level-2-3">
+<div class="node-card bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-2 w-32 flex flex-col items-center relative overflow-hidden" id="node-2-3-1">
+<div class="absolute top-0 left-0 w-full h-1 bg-secondary"></div>
+<img alt="Profile" class="w-8 h-8 rounded-full object-cover mb-1 mt-1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUclcpdPDV0NcZ2ewdFPDBxr56c_4snLDbQXhsZHlqyUC__VObCuoFPT4Hi5sUeNnBKDxxfS-CiR_wVTD4cxxjqHtyn88Szr-30Z7nAS9gkKmJk7c7OzZAKIP3wLdzEBgYgz0uKiXS0ziGLqVQGAYLXcgPUhlk9IHBiEzoraTtn2UYRyW5WZZlb4C1yi_JoKjOHivZ2Lv6bryNi8i3OQKxOEbIXOKdlwSRCQJN6xTJFYlEpIK-MbFDg0VJQoXkOvAfLGcQ8TgWJGr9"/>
+<h5 class="font-headline text-[12px] font-medium text-primary text-center truncate w-full">John Doe</h5>
+<div class="mt-2 w-6 h-6 rounded-full bg-surface-container flex items-center justify-center cursor-pointer hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant">add</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-3 bg-surface/90 dark:bg-surface-container-low/90 backdrop-blur-md rounded-t-xl border-t border-outline-variant/30 dark:border-outline-variant/10 shadow-xl md:hidden">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-secondary-fixed-variant opacity-60 hover:opacity-100 transition-all">
+<span class="material-symbols-outlined mb-1 text-[24px]">home</span>
+<span class="font-label text-label-sm font-medium uppercase tracking-widest text-[10px]">Home</span>
+</button>
+<!-- Active State: Tree -->
+<button class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary-container text-on-secondary-container dark:text-on-secondary-container rounded-full px-5 py-1.5 hover:opacity-100 transition-all scale-95 duration-150">
+<span class="material-symbols-outlined mb-1 text-[24px]" style="font-variation-settings: 'FILL' 1;">account_tree</span>
+<span class="font-label text-label-sm font-medium uppercase tracking-widest text-[10px] font-bold">Tree</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-secondary-fixed-variant opacity-60 hover:opacity-100 transition-all">
+<span class="material-symbols-outlined mb-1 text-[24px]">groups</span>
+<span class="font-label text-label-sm font-medium uppercase tracking-widest text-[10px]">Meetings</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-secondary-fixed-variant opacity-60 hover:opacity-100 transition-all">
+<span class="material-symbols-outlined mb-1 text-[24px]">psychology</span>
+<span class="font-label text-label-sm font-medium uppercase tracking-widest text-[10px]">AI</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-secondary-fixed-variant opacity-60 hover:opacity-100 transition-all">
+<span class="material-symbols-outlined mb-1 text-[24px]">person</span>
+<span class="font-label text-label-sm font-medium uppercase tracking-widest text-[10px]">Profile</span>
+</button>
+</nav>
+<!-- Script to draw SVG curves connecting nodes -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const svg = document.getElementById('connection-lines');
+            const treeContainer = document.getElementById('tree-canvas');
+            
+            function drawConnections() {
+                // Clear existing paths
+                svg.innerHTML = '';
+                
+                const root = document.getElementById('node-root').firstElementChild;
+                const level1Nodes = [
+                    document.getElementById('node-1-1').firstElementChild,
+                    document.getElementById('node-1-2').firstElementChild,
+                    document.getElementById('node-1-3').firstElementChild
+                ];
+                
+                const level2Groups = [
+                    [document.getElementById('node-2-1-1'), document.getElementById('node-2-1-2')],
+                    [document.getElementById('node-2-2-1')],
+                    [document.getElementById('node-2-3-1')]
+                ];
+
+                const containerRect = treeContainer.getBoundingClientRect();
+
+                function getPoint(element, position) {
+                    const rect = element.getBoundingClientRect();
+                    // Calculate relative to the tree canvas container
+                    const x = rect.left - containerRect.left + (rect.width / 2);
+                    let y;
+                    if (position === 'bottom') {
+                        y = rect.bottom - containerRect.top;
+                    } else if (position === 'top') {
+                        y = rect.top - containerRect.top;
+                    }
+                    return { x, y };
+                }
+
+                function drawCurve(start, end) {
+                    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    // Cubic bezier curve for smooth S-shape
+                    const curveOffset = Math.abs(end.y - start.y) * 0.5;
+                    const d = `M ${start.x} ${start.y} C ${start.x} ${start.y + curveOffset}, ${end.x} ${end.y - curveOffset}, ${end.x} ${end.y}`;
+                    
+                    path.setAttribute('d', d);
+                    path.setAttribute('class', 'tree-line');
+                    svg.appendChild(path);
+                }
+
+                // Connect Root to Level 1
+                const rootBottom = getPoint(root, 'bottom');
+                level1Nodes.forEach(node => {
+                    if(!node) return;
+                    const nodeTop = getPoint(node, 'top');
+                    drawCurve(rootBottom, nodeTop);
+                });
+
+                // Connect Level 1 to Level 2
+                level1Nodes.forEach((parentNode, index) => {
+                    if(!parentNode) return;
+                    const parentBottom = getPoint(parentNode, 'bottom');
+                    const children = level2Groups[index];
+                    children.forEach(childNode => {
+                        if(!childNode) return;
+                        const childTop = getPoint(childNode, 'top');
+                        drawCurve(parentBottom, childTop);
+                    });
+                });
+            }
+
+            // Initial draw
+            setTimeout(drawConnections, 100);
+
+            // Redraw on window resize
+            window.addEventListener('resize', () => {
+                requestAnimationFrame(drawConnections);
+            });
+            
+            // Basic drag to pan functionality for the canvas (desktop)
+            let isDown = false;
+            let startX;
+            let startY;
+            let scrollLeft;
+            let scrollTop;
+            const scrollContainer = document.getElementById('tree-container');
+
+            scrollContainer.addEventListener('mousedown', (e) => {
+                isDown = true;
+                scrollContainer.style.cursor = 'grabbing';
+                startX = e.pageX - scrollContainer.offsetLeft;
+                startY = e.pageY - scrollContainer.offsetTop;
+                scrollLeft = scrollContainer.scrollLeft;
+                scrollTop = scrollContainer.scrollTop;
+            });
+
+            scrollContainer.addEventListener('mouseleave', () => {
+                isDown = false;
+                scrollContainer.style.cursor = 'auto';
+            });
+
+            scrollContainer.addEventListener('mouseup', () => {
+                isDown = false;
+                scrollContainer.style.cursor = 'auto';
+            });
+
+            scrollContainer.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - scrollContainer.offsetLeft;
+                const y = e.pageY - scrollContainer.offsetTop;
+                const walkX = (x - startX) * 1.5; // Scroll speed
+                const walkY = (y - startY) * 1.5;
+                scrollContainer.scrollLeft = scrollLeft - walkX;
+                scrollContainer.scrollTop = scrollTop - walkY;
+            });
+            
+            // Center the root node initially
+            setTimeout(() => {
+                scrollContainer.scrollLeft = (treeContainer.offsetWidth - scrollContainer.offsetWidth) / 2;
+            }, 150);
+        });
+    </script>
+</body></html>

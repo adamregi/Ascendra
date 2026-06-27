@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>AI Knowledge Ingestion Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed": "#171d18",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#959b94",
+                        "surface-container": "#f0edec",
+                        "primary-fixed-dim": "#c2c8c1",
+                        "secondary": "#536257",
+                        "on-secondary-fixed-variant": "#3b4a40",
+                        "surface": "#fcf9f7",
+                        "primary": "#181e1a",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-primary-fixed-variant": "#424843",
+                        "tertiary-fixed": "#f1dedf",
+                        "on-tertiary-fixed": "#23191a",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#1c1c1b",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#a69697",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#444844",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#fcf9f7",
+                        "inverse-primary": "#c2c8c1",
+                        "background": "#fcf9f7",
+                        "on-tertiary-fixed-variant": "#504445",
+                        "tertiary-fixed-dim": "#d4c2c3",
+                        "on-secondary-container": "#59685d",
+                        "surface-dim": "#dcd9d8",
+                        "secondary-fixed": "#d6e7d9",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#dee4dd",
+                        "inverse-surface": "#313030",
+                        "outline": "#747873",
+                        "on-secondary-fixed": "#111e16",
+                        "surface-container-highest": "#e5e2e0",
+                        "tertiary-container": "#3a2f30",
+                        "surface-container-high": "#ebe7e6",
+                        "surface-container-low": "#f6f3f1",
+                        "primary-container": "#2d332e",
+                        "on-surface": "#1c1c1b",
+                        "tertiary": "#241a1b",
+                        "surface-tint": "#5a605a",
+                        "outline-variant": "#c4c7c2",
+                        "secondary-fixed-dim": "#bacbbe",
+                        "secondary-container": "#d6e7d9",
+                        "surface-variant": "#e5e2e0",
+                        "accent-warm": "#D4AF37",
+                        "growth": "#10B981",
+                        "warning": "#F59E0B"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "sm": "0.25rem",
+                        "md": "0.75rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader", "serif"],
+                        "display": ["Newsreader", "serif"],
+                        "body": ["Hanken Grotesk", "sans-serif"],
+                        "label": ["Hanken Grotesk", "sans-serif"]
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.4s ease-out forwards',
+                        'shimmer': 'shimmer 2s linear infinite'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-5px)' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        shimmer: {
+                            from: { backgroundPosition: '200% 0' },
+                            to: { backgroundPosition: '-200% 0' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            -webkit-tap-highlight-color: transparent;
+            background-color: theme('colors.surface');
+            color: theme('colors.on-surface');
+        }
+        
+        /* Hide scrollbar for clean UI */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(90deg, theme('colors.primary'), theme('colors.secondary'));
+        }
+
+        .dashed-border-anim {
+            background-image: repeating-linear-gradient(0deg, theme('colors.outline-variant'), theme('colors.outline-variant') 10px, transparent 10px, transparent 20px, theme('colors.outline-variant') 20px), repeating-linear-gradient(90deg, theme('colors.outline-variant'), theme('colors.outline-variant') 10px, transparent 10px, transparent 20px, theme('colors.outline-variant') 20px), repeating-linear-gradient(180deg, theme('colors.outline-variant'), theme('colors.outline-variant') 10px, transparent 10px, transparent 20px, theme('colors.outline-variant') 20px), repeating-linear-gradient(270deg, theme('colors.outline-variant'), theme('colors.outline-variant') 10px, transparent 10px, transparent 20px, theme('colors.outline-variant') 20px);
+            background-size: 2px 100%, 100% 2px, 2px 100%, 100% 2px;
+            background-position: 0 0, 0 0, 100% 0, 0 100%;
+            background-repeat: no-repeat;
+        }
+        
+        .shimmer-bg {
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 2.5s infinite linear;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="antialiased pb-32">
+<!-- 1. Header -->
+<header class="sticky top-0 z-50 bg-surface/80 backdrop-blur-md border-b border-surface-variant flex justify-between items-center px-4 py-4">
+<button class="p-2 -ml-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined text-[24px]">close</span>
+</button>
+<h1 class="font-headline text-[22px] font-medium text-primary tracking-tight">Add Knowledge Resource</h1>
+<button class="font-label text-[14px] font-semibold text-primary hover:text-secondary transition-colors">Save Draft</button>
+</header>
+<main class="px-4 py-6 space-y-8 max-w-lg mx-auto">
+<!-- 2. Knowledge Impact Card -->
+<section class="animate-slide-up" style="animation-delay: 0.1s;">
+<div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-surface-container to-surface-container-low p-5 shadow-sm border border-surface-variant">
+<div class="absolute inset-0 shimmer-bg opacity-30"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-secondary text-[20px]">psychology</span>
+<h2 class="font-label text-[12px] font-semibold tracking-wider uppercase text-on-surface-variant">Organization AI Knowledge Base</h2>
+</div>
+<div class="grid grid-cols-3 gap-4">
+<div class="flex flex-col">
+<span class="font-headline text-[24px] font-medium text-primary">84</span>
+<span class="font-body text-[12px] text-outline">Resources</span>
+</div>
+<div class="flex flex-col border-l border-outline-variant/30 pl-4">
+<span class="font-headline text-[24px] font-medium text-primary">12.4k</span>
+<span class="font-body text-[12px] text-outline">AI Searches</span>
+</div>
+<div class="flex flex-col border-l border-outline-variant/30 pl-4">
+<span class="font-headline text-[24px] font-medium text-growth">91%</span>
+<span class="font-body text-[12px] text-outline">Coverage</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. File Ingestion Zone -->
+<section class="animate-slide-up" id="drop-zone-container" style="animation-delay: 0.2s;">
+<div class="dashed-border-anim rounded-xl bg-surface-container-lowest h-[180px] flex flex-col items-center justify-center cursor-pointer hover:bg-surface-container-low transition-colors group relative overflow-hidden">
+<div class="absolute inset-0 bg-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-[32px] text-secondary">cloud_upload</span>
+</div>
+<h3 class="font-headline text-[18px] font-medium text-primary mb-1">Drop Knowledge Here</h3>
+<p class="font-body text-[14px] text-outline mb-4">or tap to browse files</p>
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-1 text-outline-variant text-[12px] font-label">
+<span class="material-symbols-outlined text-[16px]">picture_as_pdf</span> PDF
+                    </div>
+<div class="flex items-center gap-1 text-outline-variant text-[12px] font-label">
+<span class="material-symbols-outlined text-[16px]">videocam</span> Video
+                    </div>
+<div class="flex items-center gap-1 text-outline-variant text-[12px] font-label">
+<span class="material-symbols-outlined text-[16px]">description</span> Docx
+                    </div>
+</div>
+</div>
+</section>
+<!-- 4. AI Readability Analysis (File Selected State - Mocked as initially visible for demo) -->
+<section class="animate-slide-up hidden" id="selected-file-state" style="animation-delay: 0.3s;">
+<div class="glass-card rounded-xl p-4 shadow-sm relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 bg-growth h-full"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-error-container flex items-center justify-center text-on-error-container">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</div>
+<div>
+<h3 class="font-body text-[16px] font-medium text-primary line-clamp-1">Prospecting Masterclass.pdf</h3>
+<p class="font-body text-[12px] text-outline">2.4 MB • Uploaded just now</p>
+</div>
+</div>
+<button class="text-outline hover:text-error transition-colors p-1" onclick="document.getElementById('selected-file-state').classList.add('hidden'); document.getElementById('drop-zone-container').classList.remove('hidden');">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+<div class="bg-surface-container-low rounded-lg p-3 flex justify-between items-center">
+<div class="flex flex-col">
+<span class="font-label text-[10px] uppercase tracking-wider text-outline">Pages</span>
+<span class="font-headline text-[18px] font-medium text-primary">84</span>
+</div>
+<div class="w-px h-8 bg-outline-variant/30"></div>
+<div class="flex flex-col">
+<span class="font-label text-[10px] uppercase tracking-wider text-outline">Chunks</span>
+<span class="font-headline text-[18px] font-medium text-primary">238</span>
+</div>
+<div class="w-px h-8 bg-outline-variant/30"></div>
+<div class="flex flex-col items-end">
+<span class="font-label text-[10px] uppercase tracking-wider text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px] text-growth">check_circle</span>
+                            Readability
+                        </span>
+<span class="font-headline text-[18px] font-medium text-growth">96%</span>
+</div>
+</div>
+</div>
+</section>
+<script>
+            // Simple interaction to toggle states for demo purposes
+            document.getElementById('drop-zone-container').addEventListener('click', function() {
+                this.classList.add('hidden');
+                document.getElementById('selected-file-state').classList.remove('hidden');
+            });
+        </script>
+<hr class="border-surface-variant"/>
+<!-- 5. Resource Details -->
+<section class="animate-slide-up space-y-6" style="animation-delay: 0.4s;">
+<div>
+<input class="w-full bg-transparent border-0 border-b border-surface-variant focus:border-primary focus:ring-0 px-0 py-2 font-headline text-[24px] text-primary placeholder-outline placeholder:font-body transition-colors" placeholder="Knowledge Resource Title" type="text" value="Prospecting Masterclass 2024"/>
+</div>
+<div class="space-y-3">
+<label class="font-label text-[12px] font-semibold tracking-wider uppercase text-on-surface-variant">Taxonomy Category</label>
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-1.5 rounded-full border border-primary bg-primary text-on-primary font-body text-[14px] transition-colors">Training</button>
+<button class="px-4 py-1.5 rounded-full border border-outline-variant text-on-surface hover:bg-surface-container font-body text-[14px] transition-colors">Product</button>
+<button class="px-4 py-1.5 rounded-full border border-outline-variant text-on-surface hover:bg-surface-container font-body text-[14px] transition-colors">Recruiting</button>
+<button class="px-4 py-1.5 rounded-full border border-outline-variant text-on-surface hover:bg-surface-container font-body text-[14px] transition-colors">Leadership</button>
+</div>
+</div>
+<!-- 6. Target Audience -->
+<div class="space-y-3">
+<label class="font-label text-[12px] font-semibold tracking-wider uppercase text-on-surface-variant">Target Audience</label>
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-1.5 rounded-lg border border-outline-variant text-on-surface hover:bg-surface-container font-body text-[14px] transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">group</span> All Members
+                    </button>
+<button class="px-4 py-1.5 rounded-lg border border-primary bg-primary-container text-on-primary-container font-body text-[14px] transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">fiber_new</span> New Members
+                    </button>
+<button class="px-4 py-1.5 rounded-lg border border-outline-variant text-on-surface hover:bg-surface-container font-body text-[14px] transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">military_tech</span> Leaders
+                    </button>
+</div>
+</div>
+</section>
+<!-- 7. AI Processing Preview -->
+<section class="animate-slide-up bg-surface-container-lowest rounded-xl p-5 shadow-sm border border-surface-variant" style="animation-delay: 0.5s;">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-label text-[12px] font-semibold tracking-wider uppercase text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary">memory</span>
+                    How AI Will Use This
+                </h3>
+</div>
+<div class="relative">
+<!-- Connecting Line -->
+<div class="absolute top-4 left-4 right-4 h-0.5 bg-surface-variant -z-10"></div>
+<div class="absolute top-4 left-4 w-1/2 h-0.5 bg-secondary -z-10 animate-pulse"></div>
+<div class="flex justify-between items-start">
+<div class="flex flex-col items-center gap-2 group">
+<div class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center text-[14px] shadow-sm z-10">
+<span class="material-symbols-outlined text-[16px]">plagiarism</span>
+</div>
+<span class="font-label text-[10px] text-center text-primary">Extract</span>
+</div>
+<div class="flex flex-col items-center gap-2 group">
+<div class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center text-[14px] shadow-sm z-10">
+<span class="material-symbols-outlined text-[16px]">view_comfy_alt</span>
+</div>
+<span class="font-label text-[10px] text-center text-primary">Chunk</span>
+</div>
+<div class="flex flex-col items-center gap-2 group">
+<div class="w-8 h-8 rounded-full bg-surface-container border-2 border-secondary text-secondary flex items-center justify-center text-[14px] z-10 relative">
+<div class="absolute inset-0 rounded-full border-2 border-secondary animate-ping opacity-20"></div>
+<span class="material-symbols-outlined text-[16px]">data_object</span>
+</div>
+<span class="font-label text-[10px] text-center text-secondary font-semibold">Embed</span>
+</div>
+<div class="flex flex-col items-center gap-2 group">
+<div class="w-8 h-8 rounded-full bg-surface-container border border-outline-variant text-outline flex items-center justify-center text-[14px] z-10">
+<span class="material-symbols-outlined text-[16px]">format_list_numbered</span>
+</div>
+<span class="font-label text-[10px] text-center text-outline">Index</span>
+</div>
+<div class="flex flex-col items-center gap-2 group">
+<div class="w-8 h-8 rounded-full bg-surface-container border border-outline-variant text-outline flex items-center justify-center text-[14px] z-10">
+<span class="material-symbols-outlined text-[16px]">model_training</span>
+</div>
+<span class="font-label text-[10px] text-center text-outline">Train</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 8. AI Insights/Metadata & 9. Knowledge Quality Meter -->
+<section class="animate-slide-up grid grid-cols-1 md:grid-cols-2 gap-4" style="animation-delay: 0.6s;">
+<!-- Quality Meter -->
+<div class="glass-card rounded-xl p-5 border border-surface-variant flex flex-col justify-between">
+<div>
+<h3 class="font-label text-[12px] font-semibold tracking-wider uppercase text-on-surface-variant mb-4">Searchability Score</h3>
+<div class="flex items-end gap-2 mb-2">
+<span class="font-headline text-[32px] font-medium text-growth leading-none">92</span>
+<span class="font-body text-[14px] text-outline mb-1">/100</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-1.5 mb-4 overflow-hidden">
+<div class="bg-growth h-1.5 rounded-full" style="width: 92%"></div>
+</div>
+</div>
+<div class="flex items-start gap-2 bg-surface-container-low p-3 rounded-lg">
+<span class="material-symbols-outlined text-[16px] text-accent-warm mt-0.5">lightbulb</span>
+<p class="font-body text-[12px] text-on-surface-variant">Excellent structure. To hit 100, consider adding clearer H2 headings in section 3.</p>
+</div>
+</div>
+<!-- AI Summary Preview -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm border border-surface-variant">
+<h3 class="font-label text-[12px] font-semibold tracking-wider uppercase text-on-surface-variant mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-primary">auto_awesome</span>
+                    AI Summary Preview
+                </h3>
+<p class="font-body text-[14px] text-on-surface-variant leading-relaxed mb-4 line-clamp-3">
+                    A comprehensive guide for new members on outbound lead generation strategies, focusing on cold-calling techniques, email cadences, and objection handling in the Q3 market environment.
+                </p>
+<div class="flex flex-wrap gap-1.5">
+<span class="inline-flex items-center px-2 py-1 rounded bg-secondary-container text-on-secondary-container font-label text-[10px] uppercase">Prospecting</span>
+<span class="inline-flex items-center px-2 py-1 rounded bg-secondary-container text-on-secondary-container font-label text-[10px] uppercase">Lead Generation</span>
+<span class="inline-flex items-center px-2 py-1 rounded bg-secondary-container text-on-secondary-container font-label text-[10px] uppercase">Q3 Strategy</span>
+</div>
+</div>
+</section>
+</main>
+<!-- 10. Sticky Primary CTA -->
+<div class="fixed bottom-0 left-0 w-full bg-surface/90 backdrop-blur-xl border-t border-surface-variant px-4 py-4 pb-safe shadow-[0_-4px_24px_rgba(0,0,0,0.04)] z-50">
+<button class="w-full h-[72px] bg-primary text-on-primary rounded-xl font-headline text-[20px] font-medium flex items-center justify-center gap-3 hover:bg-primary-container transition-colors active:scale-[0.98] duration-200">
+<span class="material-symbols-outlined">upload_file</span>
+            Upload &amp; Train AI
+        </button>
+</div>
+</body></html>

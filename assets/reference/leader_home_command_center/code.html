@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Ascendra Command Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&amp;family=Newsreader:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {secondary: "#536257", "secondary-container": "#d6e7d9", "on-secondary": "#ffffff", "on-tertiary": "#ffffff", "surface-dim": "#dcd9d8", tertiary: "#241a1b", background: "#fcf9f7", outline: "#747873", "on-secondary-fixed-variant": "#3b4a40", "on-tertiary-fixed": "#23191a", "on-primary-container": "#959b94", "on-error-container": "#93000a", "surface-container-highest": "#e5e2e0", "tertiary-fixed": "#f1dedf", error: "#ba1a1a", "inverse-on-surface": "#f3f0ef", "on-surface-variant": "#444844", "on-error": "#ffffff", "surface-container-low": "#f6f3f1", "surface-bright": "#fcf9f7", "on-tertiary-container": "#a69697", "surface-base": "#FBFBF9", "on-primary-fixed-variant": "#424843", "error-container": "#ffdad6", "on-background": "#1c1c1b", "secondary-fixed": "#d6e7d9", "primary-container": "#2d332e", "secondary-fixed-dim": "#bacbbe", "on-secondary-fixed": "#111e16", "surface-variant": "#e5e2e0", "on-primary-fixed": "#171d18", "surface-container": "#f0edec", "on-tertiary-fixed-variant": "#504445", "outline-variant": "#c4c7c2", "primary-fixed": "#dee4dd", "on-secondary-container": "#59685d", "surface-tint": "#5a605a", surface: "#fcf9f7", "surface-muted": "#F2F2ED", "on-surface": "#1c1c1b", "inverse-surface": "#313030", "accent-warm": "#D4AF37", "on-primary": "#ffffff", "tertiary-fixed-dim": "#d4c2c3", primary: "#181e1a", "inverse-primary": "#c2c8c1", "border-subtle": "#E5E5E0", "surface-container-lowest": "#ffffff", "tertiary-container": "#3a2f30", "surface-container-high": "#ebe7e6", "primary-fixed-dim": "#c2c8c1"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, spacing: {"stack-sm": "8px", "stack-md": "16px", base: "4px", "stack-lg": "32px", "margin-mobile": "20px", gutter: "24px", "margin-desktop": "64px", "container-max": "1200px"}, fontFamily: {"headline-sm": ["Newsreader"], "label-sm": ["Hanken Grotesk"], "body-lg": ["Hanken Grotesk"], "headline-md": ["Newsreader"], "display-lg": ["Newsreader"], "body-md": ["Hanken Grotesk"], "label-md": ["Hanken Grotesk"], "display-lg-mobile": ["Newsreader"], headline: ["Newsreader"], display: ["Newsreader"], body: ["Hanken Grotesk"], label: ["Hanken Grotesk"]}, fontSize: {"headline-sm": ["24px", {lineHeight: "32px", fontWeight: "500"}], "label-sm": ["12px", {lineHeight: "16px", fontWeight: "500"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "headline-md": ["32px", {lineHeight: "40px", fontWeight: "500"}], "display-lg": ["48px", {lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "600"}], "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}], "label-md": ["14px", {lineHeight: "20px", letterSpacing: "0.05em", fontWeight: "600"}], "display-lg-mobile": ["36px", {lineHeight: "44px", letterSpacing: "-0.01em", fontWeight: "600"}]}}}};</script>
+<style>
+        body {
+            background-color: #fcf9f7; /* background */
+            color: #1c1c1b; /* on-background */
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(229, 229, 224, 0.5); /* border-subtle with opacity */
+            box-shadow: 0 4px 24px -4px rgba(24, 30, 26, 0.04); /* Ambient shadow */
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="antialiased pb-24 font-body-md text-body-md">
+<!-- TopAppBar -->
+<header class="docked full-width top-0 bg-surface dark:bg-surface flex justify-between items-center w-full px-margin-mobile py-4 sticky z-40 flat no shadows">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-muted border border-border-subtle overflow-hidden flex-shrink-0">
+<img alt="Leader Profile" class="w-full h-full object-cover" data-alt="A professional portrait of an executive leader, clean white background, confident expression, high quality corporate headshot photography, bright even lighting, minimalist aesthetic suitable for a high-end application avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzykml9Fi3ZMpq0TsAhDbmj-ykPfjLLVfYwJ5cXBfFsl-dhbSKWeVOpDV-UAE3uL1GXuZmy8JTJGxx0VdxKtQnqX76ZnMIq7HW-mekkQg_pwvvVBZcPr9KWH4JgKeMr-J1X1T0ffoiTw5N6yMucJUjQpaXahVXcyMVzdgFdq4KNDwfESMEU_KqUFt_hljZukvRi-m1etgNMF6GYt-Syx21sV3Xw5GMaU1TsOVIZGusPPkSO2h86sokwsy8VTjN0Gnp_rpluwEwBYzd"/>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-sm text-primary dark:text-primary-fixed">Good morning, Vignesh</h1>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-accent-warm" style="font-size: 14px; font-variation-settings: 'FILL' 1;">diamond</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Global Branch Alpha</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-primary dark:text-primary-fixed hover:opacity-80 transition-opacity active:scale-95 transition-transform rounded-full">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="p-2 text-primary dark:text-primary-fixed hover:opacity-80 transition-opacity active:scale-95 transition-transform rounded-full relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+</div>
+</header>
+<main class="px-margin-mobile flex flex-col gap-stack-lg mt-4">
+<!-- Hero KPIs -->
+<section class="grid grid-cols-2 gap-3">
+<div class="glass-card rounded-lg p-3 flex flex-col justify-between h-24">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Team Growth</span>
+<div class="flex items-end justify-between">
+<span class="font-headline-md text-headline-sm text-primary">+12%</span>
+<span class="material-symbols-outlined text-[18px] text-[#536257]">trending_up</span>
+</div>
+</div>
+<div class="glass-card rounded-lg p-3 flex flex-col justify-between h-24">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Attendance</span>
+<div class="flex items-end justify-between">
+<span class="font-headline-md text-headline-sm text-primary">94%</span>
+<span class="material-symbols-outlined text-[18px] text-[#536257]">check_circle</span>
+</div>
+</div>
+<div class="glass-card rounded-lg p-3 flex flex-col justify-between h-24">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Tasks</span>
+<div class="flex items-end justify-between">
+<span class="font-headline-md text-headline-sm text-primary">88%</span>
+<span class="material-symbols-outlined text-[18px] text-[#536257]">task_alt</span>
+</div>
+</div>
+<div class="glass-card rounded-lg p-3 flex flex-col justify-between h-24 bg-error-container/20 border-error/20">
+<span class="font-label-sm text-label-sm text-error uppercase tracking-wider">Risk Level</span>
+<div class="flex items-end justify-between">
+<span class="font-headline-md text-headline-sm text-error">3</span>
+<span class="material-symbols-outlined text-[18px] text-error">warning</span>
+</div>
+</div>
+</section>
+<!-- Today's Priority -->
+<section class="glass-card rounded-xl p-5 border-l-4 border-l-error">
+<div class="flex justify-between items-start mb-3">
+<h2 class="font-label-sm text-label-sm text-error uppercase tracking-widest font-semibold">Today's Priority</h2>
+<span class="material-symbols-outlined text-error">priority_high</span>
+</div>
+<p class="font-headline-md text-headline-sm text-primary mb-4">7 Members missed training proof</p>
+<button class="w-full bg-primary text-on-primary py-3 rounded-lg font-label-md text-label-md transition-transform active:scale-95 flex items-center justify-center gap-2">
+                Review Now
+                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</section>
+<!-- Quick Actions -->
+<section class="-mx-margin-mobile px-margin-mobile overflow-x-auto hide-scrollbar flex gap-3 pb-2">
+<button class="flex-shrink-0 flex items-center gap-2 bg-surface-muted text-primary px-4 py-2.5 rounded-xl border border-border-subtle active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[20px]">event</span>
+<span class="font-label-sm text-label-sm">Create Meeting</span>
+</button>
+<button class="flex-shrink-0 flex items-center gap-2 bg-surface-muted text-primary px-4 py-2.5 rounded-xl border border-border-subtle active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[20px]">add_task</span>
+<span class="font-label-sm text-label-sm">Create Task</span>
+</button>
+<button class="flex-shrink-0 flex items-center gap-2 bg-surface-muted text-primary px-4 py-2.5 rounded-xl border border-border-subtle active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+<span class="font-label-sm text-label-sm">Add Member</span>
+</button>
+<button class="flex-shrink-0 flex items-center gap-2 bg-surface-muted text-primary px-4 py-2.5 rounded-xl border border-border-subtle active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[20px]">account_tree</span>
+<span class="font-label-sm text-label-sm">View Tree</span>
+</button>
+<button class="flex-shrink-0 flex items-center gap-2 bg-surface-muted text-primary px-4 py-2.5 rounded-xl border border-border-subtle active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[20px]">forum</span>
+<span class="font-label-sm text-label-sm">Message Branch</span>
+</button>
+<button class="flex-shrink-0 flex items-center gap-2 bg-surface-muted text-primary px-4 py-2.5 rounded-xl border border-border-subtle active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[20px]">psychology</span>
+<span class="font-label-sm text-label-sm">Ask AI</span>
+</button>
+</section>
+<!-- Next Meeting -->
+<section>
+<h3 class="font-headline-sm text-[20px] text-primary mb-3">Next Meeting</h3>
+<div class="glass-card rounded-lg p-4 border border-border-subtle flex flex-col gap-3">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-body-lg text-body-lg font-medium text-primary">Branch Strategy</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Starts in 15m • Target: 50</p>
+</div>
+<span class="bg-error-container text-error px-2 py-1 rounded-md font-label-sm text-[10px] uppercase font-bold tracking-wide">Urgent</span>
+</div>
+<div class="flex gap-2 mt-1">
+<button class="flex-1 bg-primary text-on-primary py-2 rounded-lg font-label-md text-label-md">Join Now</button>
+<button class="flex-1 bg-transparent border border-border-subtle text-primary py-2 rounded-lg font-label-md text-label-md">Edit</button>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 bg-surface dark:bg-surface border-t-0 shadow-[0_-1px_3px_rgba(0,0,0,0.05)]">
+<button class="flex flex-col items-center justify-center bg-secondary-container dark:bg-primary-container text-on-secondary-container dark:text-on-primary-container rounded-xl px-3 py-1 hover:text-primary transition-colors active:scale-90 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-sm text-label-sm mt-1">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-3 py-1 hover:text-primary transition-colors active:scale-90 transition-transform">
+<span class="material-symbols-outlined">account_tree</span>
+<span class="font-label-sm text-label-sm mt-1">Tree</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-3 py-1 hover:text-primary transition-colors active:scale-90 transition-transform">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-sm text-label-sm mt-1">Meetings</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-3 py-1 hover:text-primary transition-colors active:scale-90 transition-transform">
+<span class="material-symbols-outlined">psychology</span>
+<span class="font-label-sm text-label-sm mt-1">AI</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-3 py-1 hover:text-primary transition-colors active:scale-90 transition-transform">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm mt-1">Profile</span>
+</button>
+</nav>
+</body></html>

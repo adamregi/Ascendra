@@ -1,0 +1,165 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Reset Password</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts: Space Grotesk and DM Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "outline-variant": "#c4c7c2",
+                    "on-primary-container": "#959b94",
+                    "surface-container": "#f0edec",
+                    "on-primary-fixed": "#171d18",
+                    "surface-container-highest": "#e5e2e0",
+                    "on-surface": "#1c1c1b",
+                    "surface-bright": "#fcf9f7",
+                    "tertiary-fixed-dim": "#d4c2c3",
+                    "tertiary": "#241a1b",
+                    "surface": "#fcf9f7",
+                    "outline": "#747873",
+                    "inverse-primary": "#c2c8c1",
+                    "surface-tint": "#5a605a",
+                    "surface-dim": "#dcd9d8",
+                    "on-surface-variant": "#444844",
+                    "on-primary": "#ffffff",
+                    "on-primary-fixed-variant": "#424843",
+                    "inverse-on-surface": "#f3f0ef",
+                    "background": "#fcf9f7",
+                    "on-error": "#ffffff",
+                    "secondary": "#536257",
+                    "primary-fixed": "#dee4dd",
+                    "on-secondary-fixed-variant": "#3b4a40",
+                    "on-background": "#1c1c1b",
+                    "surface-container-high": "#ebe7e6",
+                    "secondary-fixed": "#d6e7d9",
+                    "primary": "#181e1a",
+                    "on-tertiary-container": "#a69697",
+                    "secondary-fixed-dim": "#bacbbe",
+                    "secondary-container": "#d6e7d9",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#2d332e",
+                    "on-tertiary-fixed": "#23191a",
+                    "on-secondary-fixed": "#111e16",
+                    "inverse-surface": "#313030",
+                    "error-container": "#ffdad6",
+                    "surface-variant": "#e5e2e0",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#59685d",
+                    "tertiary-fixed": "#f1dedf",
+                    "tertiary-container": "#3a2f30",
+                    "primary-fixed-dim": "#c2c8c1",
+                    "on-tertiary-fixed-variant": "#504445",
+                    "surface-container-low": "#f6f3f1",
+                    "power-indigo": "#4f46e5" /* Added for specific request */
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px",
+                    "btn": "16px",
+                    "input": "10px"
+            },
+            "spacing": {},
+            "fontFamily": {
+                    "headline": ["Space Grotesk", "sans-serif"],
+                    "display": ["Space Grotesk", "sans-serif"],
+                    "body": ["DM Sans", "sans-serif"],
+                    "label": ["DM Sans", "sans-serif"]
+            },
+            "fontSize": {}
+    },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #fcf9f7; /* surface */
+            color: #1c1c1b; /* on-surface */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        h1, h2, h3, h4, h5, h6, .font-headline {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center bg-surface relative sm:bg-surface-container-low">
+<!-- Mobile Container Wrapper -->
+<main class="w-full max-w-[400px] min-h-screen sm:min-h-[800px] sm:h-auto bg-surface sm:rounded-2xl sm:shadow-lg sm:border border-border-subtle relative flex flex-col overflow-hidden">
+<!-- TopAppBar (Transactional - Hidden Nav Shell, Custom Header) -->
+<header class="flex items-center justify-between px-5 pt-12 pb-4 w-full bg-surface sticky top-0 z-10">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-variant/50 transition-colors active:scale-95 text-on-surface">
+<span class="material-symbols-outlined" style="font-size: 24px;">arrow_back_ios_new</span>
+</button>
+<div class="flex flex-col items-center justify-center">
+<h1 class="font-headline font-bold text-[18px] text-on-surface">Reset Password</h1>
+<!-- Step Indicator -->
+<div class="flex gap-1.5 mt-1.5">
+<div class="w-2 h-2 rounded-full bg-power-indigo"></div>
+<div class="w-2 h-2 rounded-full bg-surface-variant"></div>
+</div>
+</div>
+<div class="w-10 h-10"></div> <!-- Spacer for center alignment -->
+</header>
+<!-- Content Area -->
+<section class="flex-1 px-6 pt-8 pb-10 flex flex-col" style="opacity: 1; transform: translateY(0px); transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);">
+<div class="mb-10">
+<h2 class="font-headline font-bold text-[22px] text-on-surface mb-2 tracking-tight">Enter your email</h2>
+<p class="font-body text-[14px] text-on-surface-variant leading-relaxed">
+                    We'll send a reset code to your email.
+                </p>
+</div>
+<!-- Input Form -->
+<form class="flex-1 flex flex-col" onsubmit="event.preventDefault();">
+<div class="mb-auto">
+<label class="sr-only" for="email">Email address</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-on-surface-variant">
+<span class="material-symbols-outlined" style="font-size: 20px;">mail</span>
+</div>
+<input class="block w-full h-[52px] pl-11 pr-4 bg-slate-100 border border-slate-300 rounded-input text-[16px] text-on-surface placeholder-on-surface-variant/60 focus:ring-2 focus:ring-power-indigo focus:border-power-indigo transition-shadow outline-none" id="email" name="email" placeholder="name@example.com" required="" type="email">
+</div>
+</div>
+<!-- CTA -->
+<div class="mt-8 pt-4">
+<button class="w-full h-[56px] hover:bg-power-indigo/90 active:scale-[0.98] transition-all duration-200 text-white font-label font-medium text-[16px] rounded-btn shadow-md shadow-power-indigo/20 flex items-center justify-center gap-2 bg-primary" type="submit">
+<span class="">Send Code</span>
+<span class="material-symbols-outlined" style="font-size: 20px;">arrow_forward</span>
+</button>
+</div>
+</form>
+</section>
+</main>
+<script>
+        // Optional subtle entry animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const formContainer = document.querySelector('section');
+            formContainer.style.opacity = '0';
+            formContainer.style.transform = 'translateY(10px)';
+            
+            setTimeout(() => {
+                formContainer.style.transition = 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+                formContainer.style.opacity = '1';
+                formContainer.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
+
+
+</body></html>

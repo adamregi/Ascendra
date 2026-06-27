@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Impact Analysis - Terminate Member</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;600&amp;family=Hanken+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface": "#fcf9f7",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e5e2e0",
+                        "on-secondary-fixed": "#111e16",
+                        "on-secondary-container": "#59685d",
+                        "on-surface-variant": "#444844",
+                        "on-tertiary-container": "#a69697",
+                        "primary-fixed-dim": "#c2c8c1",
+                        "primary-fixed": "#dee4dd",
+                        "surface-tint": "#5a605a",
+                        "surface-container": "#f0edec",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#f1dedf",
+                        "tertiary-container": "#3a2f30",
+                        "on-surface": "#1c1c1b",
+                        "on-primary-container": "#959b94",
+                        "secondary-fixed-dim": "#bacbbe",
+                        "secondary": "#536257",
+                        "error": "#ba1a1a",
+                        "primary": "#181e1a",
+                        "surface-container-highest": "#e5e2e0",
+                        "on-tertiary-fixed": "#23191a",
+                        "outline-variant": "#c4c7c2",
+                        "surface-container-low": "#f6f3f1",
+                        "on-tertiary-fixed-variant": "#504445",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#d6e7d9",
+                        "tertiary-fixed-dim": "#d4c2c3",
+                        "surface-dim": "#dcd9d8",
+                        "tertiary": "#241a1b",
+                        "outline": "#747873",
+                        "surface-bright": "#fcf9f7",
+                        "primary-container": "#2d332e",
+                        "on-primary-fixed-variant": "#424843",
+                        "on-background": "#1c1c1b",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#171d18",
+                        "inverse-surface": "#313030",
+                        "inverse-primary": "#c2c8c1",
+                        "secondary-container": "#d6e7d9",
+                        "inverse-on-surface": "#f3f0ef",
+                        "surface-container-high": "#ebe7e6",
+                        "on-secondary-fixed-variant": "#3b4a40",
+                        "on-error": "#ffffff",
+                        "background": "#fcf9f7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader", "serif"],
+                        "display": ["Newsreader", "serif"],
+                        "body": ["Hanken Grotesk", "sans-serif"],
+                        "label": ["Hanken Grotesk", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-headline, .font-display { font-family: 'Newsreader', serif; }
+        
+        .glass-error {
+            background: rgba(255, 218, 214, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 218, 214, 0.8);
+        }
+        
+        .pulse-error {
+            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(186, 26, 26, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(186, 26, 26, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(186, 26, 26, 0); }
+        }
+        
+        .progress-line {
+            background: linear-gradient(to right, var(--color-primary) 33%, var(--color-surface-variant) 33%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-6 py-4 bg-transparent font-body text-body-md docked full-width top-0 sticky z-10 backdrop-blur-sm">
+<button class="text-on-surface-variant hover:opacity-70 transition-opacity">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_back_ios</span>
+</button>
+<div class="flex flex-col items-center">
+<span class="font-headline font-semibold text-lg text-primary dark:text-primary-fixed">Impact Analysis</span>
+<div class="flex items-center gap-1 mt-1">
+<div class="h-1 w-8 rounded-full bg-primary"></div>
+<div class="h-1 w-8 rounded-full bg-surface-variant"></div>
+<div class="h-1 w-8 rounded-full bg-surface-variant"></div>
+</div>
+</div>
+<button class="text-on-surface-variant hover:opacity-70 transition-opacity text-sm font-semibold invisible">Skip</button>
+</header>
+<main class="px-6 max-w-container-max mx-auto space-y-6 mt-4">
+<!-- Hero Warning -->
+<section class="glass-error rounded-xl p-6 relative overflow-hidden">
+<div class="absolute -right-8 -top-8 text-error opacity-10">
+<span class="material-symbols-outlined text-9xl">shield</span>
+</div>
+<div class="relative z-10 flex gap-4 items-start">
+<div class="bg-error text-on-error rounded-full p-2 flex-shrink-0 mt-1">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<div>
+<h1 class="font-headline text-2xl font-semibold text-on-error-container mb-2">Terminating Rajesh Kumar</h1>
+<p class="text-sm text-on-error-container/80 leading-relaxed">
+                        This action will immediately revoke all access. Rajesh will be removed from all upcoming Meetings, current Tasks will be orphaned, and overall team visibility will be affected.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Member Snapshot -->
+<section class="bg-surface-container-lowest rounded-xl p-5 shadow-sm border border-surface-variant flex items-center gap-4">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-surface-variant bg-surface-container flex-shrink-0 relative">
+<img alt="Portrait of a professional man." class="w-full h-full object-cover" data-alt="A professional headshot of a South Asian man in his 30s. He is wearing a crisp light blue dress shirt and has a neat, modern haircut. The background is a soft, light-mode neutral gray to match a clean, serene modernist UI aesthetic. Lighting is bright, soft, and flattering." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1NAoHp8e73mm76XhNBg5-vSiiSMu1MxP880RKA9XDCK_03BGe3E8YOXU8uD64FtA1BLWyQVYb7ZWd2-ISvQlhoh6HGifyirifNtPf7fENXduznycyjNvsUGqf2U0_rdw7vjSuH6cXICyq2JZFXb93LEJetKQJrlcNmjYo6L1KuXCUQSUa7gJ7H19IMxoPz8X_876hH890oOCxtKGDGrCBxolc0UPKNGJjomq8ttVjwBiLwYOs2za9aVNh-zx9tuCXBf5vW0vIPBfy"/>
+<div class="absolute bottom-0 right-0 w-4 h-4 bg-error rounded-full border-2 border-white"></div>
+</div>
+<div class="flex-grow">
+<h2 class="font-headline text-xl font-medium">Rajesh Kumar</h2>
+<div class="flex flex-wrap gap-x-4 gap-y-1 mt-1 text-sm text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">badge</span> ID: EMP-8294</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">calendar_today</span> Joined: Jan 2022</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">military_tech</span> Senior Analyst</span>
+</div>
+</div>
+</section>
+<!-- Impact Metrics Grid -->
+<section>
+<h3 class="font-label text-sm text-on-surface-variant mb-3 uppercase tracking-wider">Direct Impact</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low rounded-lg p-4 border border-surface-variant">
+<span class="material-symbols-outlined text-outline mb-2">groups</span>
+<div class="font-headline text-3xl font-semibold text-primary">3</div>
+<div class="text-xs text-on-surface-variant mt-1">Affected Members</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-4 border border-surface-variant">
+<span class="material-symbols-outlined text-outline mb-2">event_available</span>
+<div class="font-headline text-3xl font-semibold text-primary">4</div>
+<div class="text-xs text-on-surface-variant mt-1">Meetings Assigned</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-4 border border-surface-variant">
+<span class="material-symbols-outlined text-outline mb-2">task</span>
+<div class="font-headline text-3xl font-semibold text-primary">7</div>
+<div class="text-xs text-on-surface-variant mt-1">Open Tasks</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-4 border border-surface-variant">
+<span class="material-symbols-outlined text-outline mb-2">history</span>
+<div class="font-headline text-3xl font-semibold text-primary">18</div>
+<div class="text-xs text-on-surface-variant mt-1">Months Active</div>
+</div>
+</div>
+</section>
+<!-- Downline Visualization -->
+<section class="bg-surface-container-lowest rounded-xl p-5 shadow-sm border border-surface-variant overflow-hidden">
+<h3 class="font-label text-sm text-on-surface-variant mb-4 uppercase tracking-wider">Network Downline</h3>
+<div class="flex justify-center items-start pt-2 pb-6">
+<div class="flex flex-col items-center">
+<!-- Manager -->
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center mb-2 z-10 border-2 border-white">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">person</span>
+</div>
+<div class="w-px h-6 bg-outline-variant -mt-2"></div>
+<!-- Rajesh -->
+<div class="relative z-10 mt-2">
+<div class="w-12 h-12 rounded-full bg-error text-on-error flex items-center justify-center pulse-error">
+<span class="material-symbols-outlined">person_off</span>
+</div>
+</div>
+<!-- Branches -->
+<div class="flex w-32 justify-between mt-2">
+<div class="w-1/2 h-px bg-error"></div>
+<div class="w-1/2 h-px bg-error"></div>
+</div>
+<div class="flex gap-8 mt-2">
+<div class="flex flex-col items-center">
+<div class="w-px h-4 bg-error -mt-2 mb-2"></div>
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-xs text-on-surface-variant">person</span>
+</div>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-px h-4 bg-error -mt-2 mb-2"></div>
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-xs text-on-surface-variant">person</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Compliance Timeline -->
+<section class="bg-surface-container-lowest rounded-xl p-5 shadow-sm border border-surface-variant">
+<h3 class="font-label text-sm text-on-surface-variant mb-4 uppercase tracking-wider">90-Day Performance Trend</h3>
+<div class="relative h-24 w-full flex items-end justify-between px-2 pb-4">
+<!-- Bar 1 -->
+<div class="flex flex-col items-center gap-2">
+<span class="text-xs font-semibold text-primary">82%</span>
+<div class="w-8 bg-surface-variant rounded-t-sm" style="height: 82px;"></div>
+<span class="text-[10px] text-on-surface-variant">Month 1</span>
+</div>
+<!-- Bar 2 -->
+<div class="flex flex-col items-center gap-2">
+<span class="text-xs font-semibold text-error">31%</span>
+<div class="w-8 bg-error/50 rounded-t-sm" style="height: 31px;"></div>
+<span class="text-[10px] text-on-surface-variant">Month 2</span>
+</div>
+<!-- Bar 3 -->
+<div class="flex flex-col items-center gap-2">
+<span class="text-xs font-semibold text-error">24%</span>
+<div class="w-8 bg-error rounded-t-sm" style="height: 24px;"></div>
+<span class="text-[10px] text-on-surface-variant">Current</span>
+</div>
+<!-- Trend line fake -->
+<svg class="absolute top-0 left-0 w-full h-full pointer-events-none" preserveaspectratio="none" viewbox="0 0 100 100">
+<path d="M 10,20 L 50,70 L 90,80" fill="none" stroke="rgba(186,26,26,0.3)" stroke-dasharray="4" stroke-width="2"></path>
+</svg>
+</div>
+</section>
+<!-- AI Recommendation -->
+<section class="bg-secondary-container text-on-secondary-container rounded-xl p-5 border border-secondary-fixed-dim">
+<div class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-secondary mt-1">smart_toy</span>
+<div>
+<h4 class="font-headline font-semibold text-lg mb-1">System Recommendation</h4>
+<p class="text-sm opacity-90">Termination is aligned with compliance protocols. Associate has sustained 37 days of critical low progress below the acceptable 40% threshold.</p>
+</div>
+</div>
+</section>
+<!-- Confirmation Checkboxes -->
+<section class="bg-surface-container-lowest rounded-xl p-5 border border-surface-variant space-y-4">
+<h3 class="font-headline text-lg font-medium border-b border-surface-variant pb-2">Final Acknowledgement</h3>
+<label class="flex items-start gap-3 cursor-pointer group">
+<div class="relative flex items-start mt-1">
+<input class="peer h-5 w-5 cursor-pointer appearance-none rounded-sm border-2 border-outline checked:border-primary checked:bg-primary transition-all" id="check-permanence" type="checkbox"/>
+<span class="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none material-symbols-outlined text-[16px] font-bold">check</span>
+</div>
+<div class="text-sm text-on-surface group-hover:text-primary transition-colors">
+                    I understand this action is <span class="font-bold text-error">permanent</span> and cannot be easily reversed.
+                </div>
+</label>
+<label class="flex items-start gap-3 cursor-pointer group">
+<div class="relative flex items-start mt-1">
+<input class="peer h-5 w-5 cursor-pointer appearance-none rounded-sm border-2 border-outline checked:border-primary checked:bg-primary transition-all" id="check-impact" type="checkbox"/>
+<span class="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none material-symbols-outlined text-[16px] font-bold">check</span>
+</div>
+<div class="text-sm text-on-surface group-hover:text-primary transition-colors">
+                    I have reviewed the structural impact and will handle reassignment in the next step.
+                </div>
+</label>
+</section>
+</main>
+<!-- Fixed Bottom Action -->
+<div class="fixed bottom-0 left-0 w-full bg-surface/90 backdrop-blur-md border-t border-surface-variant p-4 z-50 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+<div class="max-w-container-max mx-auto">
+<button class="w-full py-4 rounded-full font-label text-label-md bg-surface-variant text-on-surface-variant transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed" disabled="" id="btn-continue">
+                Continue to Reassignment
+                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkPerm = document.getElementById('check-permanence');
+            const checkImpact = document.getElementById('check-impact');
+            const btnContinue = document.getElementById('btn-continue');
+
+            function updateButtonState() {
+                if (checkPerm.checked && checkImpact.checked) {
+                    btnContinue.disabled = false;
+                    btnContinue.classList.remove('bg-surface-variant', 'text-on-surface-variant');
+                    btnContinue.classList.add('bg-primary', 'text-on-primary', 'hover:bg-primary-container');
+                } else {
+                    btnContinue.disabled = true;
+                    btnContinue.classList.add('bg-surface-variant', 'text-on-surface-variant');
+                    btnContinue.classList.remove('bg-primary', 'text-on-primary', 'hover:bg-primary-container');
+                }
+            }
+
+            checkPerm.addEventListener('change', updateButtonState);
+            checkImpact.addEventListener('change', updateButtonState);
+        });
+    </script>
+</body></html>

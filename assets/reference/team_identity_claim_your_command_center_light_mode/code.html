@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Team Identity - Serene Modernist</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400..600&amp;family=Hanken+Grotesk:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-fixed-dim": "#bacbbe",
+                        "secondary-container": "#d6e7d9",
+                        "tertiary": "#241a1b",
+                        "surface-tint": "#5a605a",
+                        "outline-variant": "#c4c7c2",
+                        "surface-variant": "#e5e2e0",
+                        "surface-container-low": "#f6f3f1",
+                        "primary-container": "#2d332e",
+                        "on-surface": "#1c1c1b",
+                        "tertiary-container": "#3a2f30",
+                        "surface-container-high": "#ebe7e6",
+                        "outline": "#747873",
+                        "on-secondary-fixed": "#111e16",
+                        "surface-container-highest": "#e5e2e0",
+                        "surface-dim": "#dcd9d8",
+                        "secondary-fixed": "#d6e7d9",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#dee4dd",
+                        "inverse-surface": "#313030",
+                        "tertiary-fixed-dim": "#d4c2c3",
+                        "on-secondary-container": "#59685d",
+                        "inverse-primary": "#c2c8c1",
+                        "background": "#fcf9f7",
+                        "on-tertiary-fixed-variant": "#504445",
+                        "surface-bright": "#fcf9f7",
+                        "on-tertiary-container": "#a69697",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#444844",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#23191a",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#1c1c1b",
+                        "on-primary-fixed-variant": "#424843",
+                        "tertiary-fixed": "#f1dedf",
+                        "surface": "#fcf9f7",
+                        "primary": "#181e1a",
+                        "inverse-on-surface": "#f3f0ef",
+                        "secondary": "#536257",
+                        "on-secondary-fixed-variant": "#3b4a40",
+                        "surface-container": "#f0edec",
+                        "primary-fixed-dim": "#c2c8c1",
+                        "on-primary-fixed": "#171d18",
+                        "on-primary-container": "#959b94",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                        "2xl": "1rem"
+                    },
+                    fontFamily: {
+                        "headline": ["Newsreader", "serif"],
+                        "display": ["Newsreader", "serif"],
+                        "body": ["Hanken Grotesk", "sans-serif"],
+                        "label": ["Hanken Grotesk", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.surface');
+            color: theme('colors.on-surface');
+            font-family: theme('fontFamily.body');
+        }
+        
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .color-tile {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .color-tile.selected {
+            transform: scale(1.02);
+            ring: 2px solid white;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: theme('colors.primary-container');
+            border-radius: 4px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col items-center">
+<div class="w-full max-w-md bg-surface min-h-screen flex flex-col relative pb-32">
+<!-- TopAppBar (Transactional/Close - no BottomNav later) -->
+<header class="flex justify-between items-center w-full px-6 py-4 bg-transparent top-0 z-50">
+<button aria-label="Close" class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+<h1 class="font-label text-[17px] font-semibold text-primary tracking-wide">Your Team</h1>
+<button class="font-body text-[13px] font-medium text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1">
+                Skip <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</header>
+<main class="flex-1 px-6 pt-6 flex flex-col gap-10">
+<!-- Hero Section -->
+<section class="flex flex-col gap-2">
+<h2 class="font-headline text-3xl font-medium text-primary tracking-tight">Make it yours.</h2>
+<p class="font-body text-on-surface text-base leading-relaxed">Members see this the moment they accept your invite.</p>
+</section>
+<!-- Team Name Input -->
+<section class="flex flex-col gap-3">
+<label class="font-label text-xs font-semibold text-on-surface-variant tracking-widest uppercase" for="team-name">TEAM NAME</label>
+<div class="relative">
+<input class="w-full h-14 bg-surface-container-low border border-outline-variant rounded-lg px-4 text-on-surface font-body text-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all shadow-sm" id="team-name" type="text" value="Vignesh's Team"/>
+<span class="absolute right-4 top-1/2 -translate-y-1/2 font-mono text-sm text-on-surface-variant">14 / 30</span>
+</div>
+</section>
+<!-- Avatar Zone -->
+<section class="flex items-center gap-6 p-4 rounded-2xl bg-surface-container-low border border-outline-variant">
+<div class="relative flex-shrink-0 group cursor-pointer">
+<div class="w-24 h-24 rounded-full border-2 border-dashed border-outline-variant flex items-center justify-center bg-surface-container group-hover:bg-surface-container-high transition-colors overflow-hidden">
+<span class="font-headline text-4xl text-indigo-600 font-medium">V</span>
+</div>
+<div class="absolute bottom-0 right-0 w-8 h-8 bg-surface-container-high border-2 border-surface-container-low rounded-full flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-[16px] text-primary">add_a_photo</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-body font-semibold text-primary text-base">Add a photo</h3>
+<p class="font-body text-on-surface-variant text-sm">Or we'll use your initial.</p>
+</div>
+</section>
+<!-- Color Selector -->
+<section class="flex flex-col gap-4">
+<div class="flex justify-between items-end">
+<label class="font-label text-xs font-semibold text-on-surface-variant tracking-widest uppercase">TEAM COLOR</label>
+<button class="font-body text-sm text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1">
+                        More colors <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Tile 1 (Selected - Power Indigo) -->
+<button class="color-tile selected h-20 rounded-xl bg-indigo-50 border-2 border-indigo-600 flex flex-col p-3 justify-center relative overflow-hidden group">
+<div class="absolute top-2 right-2 text-indigo-600">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex items-center gap-2 z-10">
+<div class="w-6 h-6 rounded-full bg-indigo-600 flex items-center justify-center flex-shrink-0">
+<span class="text-[10px] text-white font-headline">V</span>
+</div>
+<div class="flex flex-col items-start gap-1">
+<div class="w-12 h-1.5 bg-indigo-200 rounded-full"></div>
+<div class="w-8 h-1 bg-indigo-100 rounded-full"></div>
+</div>
+</div>
+</button>
+<!-- Tile 2 (Emerald) -->
+<button class="color-tile h-20 rounded-xl bg-surface-container-low border border-outline-variant hover:border-outline flex flex-col p-3 justify-center relative overflow-hidden group">
+<div class="flex items-center gap-2 z-10 opacity-70 group-hover:opacity-100 transition-opacity">
+<div class="w-6 h-6 rounded-full bg-emerald-600 flex items-center justify-center flex-shrink-0">
+<span class="text-[10px] text-white font-headline">V</span>
+</div>
+<div class="flex flex-col items-start gap-1">
+<div class="w-12 h-1.5 bg-outline-variant rounded-full"></div>
+<div class="w-8 h-1 bg-surface-dim rounded-full"></div>
+</div>
+</div>
+</button>
+<!-- Tile 3 (Rose) -->
+<button class="color-tile h-20 rounded-xl bg-surface-container-low border border-outline-variant hover:border-outline flex flex-col p-3 justify-center relative overflow-hidden group">
+<div class="flex items-center gap-2 z-10 opacity-70 group-hover:opacity-100 transition-opacity">
+<div class="w-6 h-6 rounded-full bg-rose-600 flex items-center justify-center flex-shrink-0">
+<span class="text-[10px] text-white font-headline">V</span>
+</div>
+<div class="flex flex-col items-start gap-1">
+<div class="w-12 h-1.5 bg-outline-variant rounded-full"></div>
+<div class="w-8 h-1 bg-surface-dim rounded-full"></div>
+</div>
+</div>
+</button>
+<!-- Tile 4 (Amber) -->
+<button class="color-tile h-20 rounded-xl bg-surface-container-low border border-outline-variant hover:border-outline flex flex-col p-3 justify-center relative overflow-hidden group">
+<div class="flex items-center gap-2 z-10 opacity-70 group-hover:opacity-100 transition-opacity">
+<div class="w-6 h-6 rounded-full bg-amber-600 flex items-center justify-center flex-shrink-0">
+<span class="text-[10px] text-white font-headline">V</span>
+</div>
+<div class="flex flex-col items-start gap-1">
+<div class="w-12 h-1.5 bg-outline-variant rounded-full"></div>
+<div class="w-8 h-1 bg-surface-dim rounded-full"></div>
+</div>
+</div>
+</button>
+</div>
+</section>
+<!-- Live Preview Card -->
+<section class="flex flex-col gap-3 mt-4">
+<label class="font-label text-[10px] font-semibold text-on-surface-variant tracking-widest uppercase">PREVIEW — WHAT MEMBERS SEE WHEN THEY JOIN</label>
+<div class="bg-surface-container rounded-xl overflow-hidden relative border border-outline-variant shadow-sm">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-indigo-600"></div>
+<div class="p-5 pl-6 flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center flex-shrink-0 shadow-sm">
+<span class="text-white font-headline text-lg">V</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body text-on-surface-variant text-sm">You're joining</span>
+<span class="font-headline text-primary text-xl font-medium">Vignesh's Team</span>
+</div>
+</div>
+<button class="w-full h-10 rounded-lg bg-indigo-50 text-indigo-700 font-body text-sm font-semibold border border-indigo-200 hover:bg-indigo-100 transition-colors">
+                            Join Vignesh's Team
+                        </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Actions (Sticky) -->
+<div class="fixed bottom-0 w-full max-w-md bg-surface/90 backdrop-blur-md border-t border-outline-variant/50 p-6 flex flex-col gap-4 z-50">
+<button class="w-full h-14 bg-primary text-on-primary font-label font-semibold text-base rounded-xl flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors shadow-lg active:scale-[0.98]">
+                Claim My Team <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<button class="w-full text-center font-body text-on-surface-variant text-sm hover:text-primary transition-colors">
+                I'll set this up later
+            </button>
+</div>
+</div>
+<script>
+        // Simple micro-interaction for color selection
+        document.querySelectorAll('.color-tile').forEach(tile => {
+            tile.addEventListener('click', function() {
+                document.querySelectorAll('.color-tile').forEach(t => {
+                    t.classList.remove('selected', 'border-2', 'border-indigo-600', 'bg-indigo-50');
+                    t.classList.add('border', 'border-outline-variant', 'bg-surface-container-low');
+                    const check = t.querySelector('.material-symbols-outlined.check_circle');
+                    if(check) check.remove();
+                });
+                
+                this.classList.remove('border', 'border-outline-variant', 'bg-surface-container-low');
+                this.classList.add('selected', 'border-2', 'border-indigo-600', 'bg-indigo-50');
+                
+                // Add checkmark to newly selected
+                if(!this.querySelector('.material-symbols-outlined')) {
+                    const checkDiv = document.createElement('div');
+                    checkDiv.className = 'absolute top-2 right-2 text-indigo-600';
+                    checkDiv.innerHTML = `<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>`;
+                    this.appendChild(checkDiv);
+                }
+            });
+        });
+    </script>
+</body></html>

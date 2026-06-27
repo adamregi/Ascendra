@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Team Members List</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&amp;family=Newsreader:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-fixed-dim": "#bacbbe",
+                        "secondary-container": "#d6e7d9",
+                        "tertiary": "#241a1b",
+                        "surface-tint": "#5a605a",
+                        "outline-variant": "#c4c7c2",
+                        "surface-variant": "#e5e2e0",
+                        "surface-container-low": "#f6f3f1",
+                        "primary-container": "#2d332e",
+                        "on-surface": "#1c1c1b",
+                        "tertiary-container": "#3a2f30",
+                        "surface-container-high": "#ebe7e6",
+                        "outline": "#747873",
+                        "on-secondary-fixed": "#111e16",
+                        "surface-container-highest": "#e5e2e0",
+                        "surface-dim": "#dcd9d8",
+                        "secondary-fixed": "#d6e7d9",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#dee4dd",
+                        "inverse-surface": "#313030",
+                        "tertiary-fixed-dim": "#d4c2c3",
+                        "on-secondary-container": "#59685d",
+                        "inverse-primary": "#c2c8c1",
+                        "background": "#fcf9f7",
+                        "on-tertiary-fixed-variant": "#504445",
+                        "surface-bright": "#fcf9f7",
+                        "on-tertiary-container": "#a69697",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#444844",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#23191a",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#1c1c1b",
+                        "on-primary-fixed-variant": "#424843",
+                        "tertiary-fixed": "#f1dedf",
+                        "surface": "#fcf9f7",
+                        "primary": "#181e1a",
+                        "inverse-on-surface": "#f3f0ef",
+                        "secondary": "#536257",
+                        "on-secondary-fixed-variant": "#3b4a40",
+                        "surface-container": "#f0edec",
+                        "primary-fixed-dim": "#c2c8c1",
+                        "on-primary-fixed": "#171d18",
+                        "on-primary-container": "#959b94",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        // Custom Brand Colors
+                        "accent-warm": "#D4AF37",
+                        "status-healthy": "#536257"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        "headline": ["Newsreader", "serif"],
+                        "display": ["Newsreader", "serif"],
+                        "body": ["Hanken Grotesk", "sans-serif"],
+                        "label": ["Hanken Grotesk", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeUp 0.5s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .circular-chart {
+            display: block;
+            margin: 0 auto;
+            max-width: 80%;
+            max-height: 250px;
+        }
+        .circle-bg {
+            fill: none;
+            stroke: #e5e2e0; /* outline-variant */
+            stroke-width: 3.8;
+        }
+        .circle {
+            fill: none;
+            stroke-width: 3.8;
+            stroke-linecap: round;
+            animation: progress 1s ease-out forwards;
+        }
+        @keyframes progress {
+            0% {
+                stroke-dasharray: 0 100;
+            }
+        }
+        
+        .swipe-hint {
+            animation: peek 2s ease-in-out 1s;
+        }
+        @keyframes peek {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-10px); }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body antialiased selection:bg-secondary-container selection:text-on-secondary-container h-screen flex flex-col md:max-w-md md:mx-auto md:border-x md:border-surface-container-highest md:shadow-2xl">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface shadow-sm flex items-center justify-between px-6 py-4 md:max-w-md md:left-1/2 md:-translate-x-1/2 transition-colors">
+<button aria-label="Menu" class="text-primary active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+<h1 class="font-headline text-headline-md font-semibold text-primary">Team</h1>
+<button class="text-primary active:scale-95 transition-transform font-label text-label-md hover:bg-surface-container-high px-3 py-1 rounded-full transition-colors">
+            Invite
+        </button>
+</header>
+<!-- Main Scrollable Area -->
+<main class="flex-1 overflow-y-auto pt-[72px] pb-[88px] px-4 space-y-6">
+<!-- Team Health Summary Card -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container p-4 mt-2">
+<div class="flex justify-between items-end mb-3">
+<h2 class="font-headline font-medium text-[20px] text-on-surface">Overview</h2>
+<span class="font-label text-label-sm text-on-surface-variant">23 Members</span>
+</div>
+<!-- Stacked Bar -->
+<div class="h-2 w-full flex rounded-full overflow-hidden mb-3 gap-0.5">
+<div aria-label="18 Healthy" class="h-full bg-status-healthy" style="width: 78%;"></div>
+<div aria-label="4 Warned" class="h-full bg-accent-warm" style="width: 18%;"></div>
+<div aria-label="1 At Risk" class="h-full bg-error" style="width: 4%;"></div>
+</div>
+<div class="flex justify-between text-xs font-label">
+<div class="flex items-center gap-1.5">
+<div class="w-2 h-2 rounded-full bg-status-healthy"></div>
+<span class="text-on-surface">18 Healthy</span>
+</div>
+<div class="flex items-center gap-1.5">
+<div class="w-2 h-2 rounded-full bg-accent-warm"></div>
+<span class="text-on-surface">4 Warned</span>
+</div>
+<div class="flex items-center gap-1.5">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<span class="text-on-surface">1 At Risk</span>
+</div>
+</div>
+</section>
+<!-- Search & Filters -->
+<section class="sticky top-[72px] z-40 bg-background/95 backdrop-blur-sm py-2 -mx-4 px-4 space-y-3">
+<!-- Search Bar -->
+<div class="relative w-full">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-3 border-none rounded-full bg-surface-container-low text-on-surface placeholder:text-outline focus:ring-1 focus:ring-primary font-body text-body-md transition-shadow" placeholder="Search member, ID, phone..." type="text"/>
+</div>
+<!-- Filter Chips -->
+<div class="flex gap-2 overflow-x-auto hide-scrollbar pb-1">
+<button class="shrink-0 px-4 py-1.5 rounded-full font-label text-label-sm border bg-primary text-on-primary border-primary">All</button>
+<button class="shrink-0 px-4 py-1.5 rounded-full font-label text-label-sm border border-outline-variant text-on-surface bg-surface-container-lowest hover:bg-surface-container-low transition-colors">Active</button>
+<button class="shrink-0 px-4 py-1.5 rounded-full font-label text-label-sm border border-outline-variant text-on-surface bg-surface-container-lowest hover:bg-surface-container-low transition-colors">Warned</button>
+<button class="shrink-0 px-4 py-1.5 rounded-full font-label text-label-sm border border-outline-variant text-on-surface bg-surface-container-lowest hover:bg-surface-container-low transition-colors">At Risk</button>
+<button class="shrink-0 px-4 py-1.5 rounded-full font-label text-label-sm border border-outline-variant text-on-surface bg-surface-container-lowest hover:bg-surface-container-low transition-colors">Recently Joined</button>
+</div>
+</section>
+<!-- Members List -->
+<section class="space-y-2 pb-6">
+<!-- Member Row: Healthy -->
+<div class="stagger-item group relative bg-surface-container-lowest rounded-lg border border-surface-container overflow-hidden h-[72px] flex items-center shadow-sm hover:bg-surface-container-low transition-colors swipe-hint" style="animation-delay: 0.1s;">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-status-healthy"></div>
+<div class="flex-1 flex items-center pl-4 pr-3 py-2">
+<img alt="Avatar of Elena Rodriguez" class="w-10 h-10 rounded-full object-cover border border-surface-container bg-surface-variant" data-alt="A professional headshot of a confident businesswoman with dark hair tied back, wearing a neat tailored white blouse against a soft, bright minimalist studio background. The lighting is high-key and flattering, reflecting a serene modernist, corporate aesthetic with a polished, clean finish. The mood is approachable yet highly professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUgIMIyMpOaODcZxLgxPuJcFajkcHhCZzUO-lpe4kz2A6qV7hTATuXt9wb4wPkoMvz81S56P_YaYJjEobvfEV15BrY8mQcnjpdG73oPniGjxdlswUQlPU3mQPjqVCJ4AsK8WCc0nAtvEYfN6lg2dVPEpr94RPF2cl7Ah-lyhO9NJ_BelXcgQ2urd8EzrkF_HBMi_ZJBH6b2xuIONgAp7pvLVO2rvXRkjaCdXqoYmSefy1jVGfEECjl_GCZlQsmDRpY1R83Nq-npf_l"/>
+<div class="ml-3 flex-1 overflow-hidden">
+<h3 class="font-body font-semibold text-body-md text-on-surface truncate">Elena Rodriguez</h3>
+<p class="font-body text-label-sm text-outline truncate">2/2 Meetings • 100% Attendance</p>
+</div>
+<div class="ml-2 flex items-center gap-3">
+<!-- Compliance Ring -->
+<div class="relative w-10 h-10 flex items-center justify-center">
+<svg class="circular-chart w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+<path class="circle stroke-status-healthy" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" stroke-dasharray="98, 100"></path>
+</svg>
+<span class="absolute font-mono text-[10px] font-medium text-on-surface">98</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-xl">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Member Row: Warned -->
+<div class="stagger-item relative bg-surface-container-lowest rounded-lg border border-surface-container overflow-hidden h-[72px] flex items-center shadow-sm hover:bg-surface-container-low transition-colors" style="animation-delay: 0.2s;">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-accent-warm"></div>
+<div class="flex-1 flex items-center pl-4 pr-3 py-2">
+<img alt="Avatar of Marcus Chen" class="w-10 h-10 rounded-full object-cover border border-surface-container bg-surface-variant" data-alt="A portrait of a thoughtful young businessman with short black hair and glasses, wearing a sharp grey button-down shirt. The setting is a bright, sunlit minimalist office space featuring subtle off-white tones. The lighting highlights his features softly, conveying a calm, modernist corporate vibe. The color palette emphasizes serene neutrals and pristine clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQoQedQRQSYkzC2R1HlxaleIqV3m5QyjP8ohpuMWC_ssk61IEnucYK0t7oQmOIcMZJe3ykMu2xB2E7UfyaOepQBHxD0ebamnXvmY0c_egeykOsLBadhJ7lfPJQo0m3662AeJOOTHLl8HtW8neHRHqQ53mrQCsD-Zl4bH8ESsdCKYWefPKy1dLBRO29FZQbBRUOs9L3jVMgX1p7VyipzOrWvUyQRUSj_Y7SAN9HLcZ7_OFIVSp0YVu_gbOwGqnLwn03XUZ_46Fe0v2V"/>
+<div class="ml-3 flex-1 overflow-hidden">
+<h3 class="font-body font-semibold text-body-md text-on-surface truncate">Marcus Chen</h3>
+<p class="font-body text-label-sm text-outline truncate">1/2 Meetings • 3 Days Remaining</p>
+</div>
+<div class="ml-2 flex items-center gap-3">
+<div class="relative w-10 h-10 flex items-center justify-center">
+<svg class="circular-chart w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+<path class="circle stroke-accent-warm" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" stroke-dasharray="64, 100"></path>
+</svg>
+<span class="absolute font-mono text-[10px] font-medium text-on-surface">64</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-xl">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Member Row: At Risk -->
+<div class="stagger-item relative bg-surface-container-lowest rounded-lg border border-surface-container overflow-hidden h-[72px] flex items-center shadow-sm hover:bg-surface-container-low transition-colors" style="animation-delay: 0.3s;">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-error"></div>
+<div class="flex-1 flex items-center pl-4 pr-3 py-2">
+<img alt="Avatar of Sarah Jenkins" class="w-10 h-10 rounded-full object-cover border border-surface-container bg-surface-variant" data-alt="A portrait of an experienced female executive with short blonde hair, looking directly at the camera with a serious yet empathetic expression. She wears a structured dark blazer over a light blouse. The background is pure white with a hint of warm grey shadow, creating a high-contrast, premium modernist portrait. The aesthetic is extremely polished and focused." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4C6tRf1nfseIfUL-q5Cxau6ns34wz3G4AY-D7QzoXhcXoS8WBGhiE_ZwWGx4711rUCnXRl6xZSJaTOtqe_6tJGNRZQJ8uusJHu2BPpZHrjJF_3KdeoU1aeZ5MIOJ5U6q4NLzWeD8l56mpftF7mJt6CZMUJh71fCPu8HrxRKFPNZyNYS5rFonLgbhCaNo4_E7JbfDc9B6YZpKqKGs59WXHrOBGFy3T5enyZrNxHVgRAZRCiepDZrtyEIqU69UnWBfKW5mCyvwPOwy2"/>
+<div class="ml-3 flex-1 overflow-hidden">
+<h3 class="font-body font-semibold text-body-md text-on-surface truncate">Sarah Jenkins</h3>
+<p class="font-body text-label-sm text-outline truncate">0/2 Meetings • Action Required</p>
+</div>
+<div class="ml-2 flex items-center gap-3">
+<div class="relative w-10 h-10 flex items-center justify-center">
+<svg class="circular-chart w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+<path class="circle stroke-error" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" stroke-dasharray="24, 100"></path>
+</svg>
+<span class="absolute font-mono text-[10px] font-medium text-error">24</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-xl">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Member Row: Healthy -->
+<div class="stagger-item relative bg-surface-container-lowest rounded-lg border border-surface-container overflow-hidden h-[72px] flex items-center shadow-sm hover:bg-surface-container-low transition-colors" style="animation-delay: 0.4s;">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-status-healthy"></div>
+<div class="flex-1 flex items-center pl-4 pr-3 py-2">
+<img alt="Avatar of David Kim" class="w-10 h-10 rounded-full object-cover border border-surface-container bg-surface-variant" data-alt="A portrait of a friendly young professional man smiling warmly. He has short hair and a neat beard, wearing a casual yet sharp light grey sweater. The background is a stark, clean off-white that perfectly aligns with a serene modernist design language. The lighting is bright and evenly distributed, resulting in a crisp, high-quality image." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLxHFr4RvwDOUqqsao7bLhZbT6UidP5hVNep_7cyf1TObIgGrr8D9NqXCvf6xtv-TfqKxxo4n3y82Cvh1Z-MzUl9D-NdFetJ7In6SGtYzJSy94-SaKNx475rG-cCdkcmrMXkeZixmA8SD7oE1c0TKFgUgkwvEme4gR0Ye5ESolxNWz2GKd0p1w5kVYTAb2_dLCUnQGpgQh1ScTQxidrAjrutUa14SiFHYy_XOGaK4q63cE_efdkQhZfnm4a8MtLqKWP5UqfKC73Pmn"/>
+<div class="ml-3 flex-1 overflow-hidden">
+<h3 class="font-body font-semibold text-body-md text-on-surface truncate">David Kim</h3>
+<p class="font-body text-label-sm text-outline truncate">3/3 Meetings • 100% Attendance</p>
+</div>
+<div class="ml-2 flex items-center gap-3">
+<div class="relative w-10 h-10 flex items-center justify-center">
+<svg class="circular-chart w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+<path class="circle stroke-status-healthy" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" stroke-dasharray="100, 100"></path>
+</svg>
+<span class="absolute font-mono text-[10px] font-medium text-on-surface">100</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-xl">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Member Row: Warned -->
+<div class="stagger-item relative bg-surface-container-lowest rounded-lg border border-surface-container overflow-hidden h-[72px] flex items-center shadow-sm hover:bg-surface-container-low transition-colors" style="animation-delay: 0.5s;">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-accent-warm"></div>
+<div class="flex-1 flex items-center pl-4 pr-3 py-2">
+<img alt="Avatar of Olivia Martinez" class="w-10 h-10 rounded-full object-cover border border-surface-container bg-surface-variant" data-alt="A portrait of a confident woman with long dark wavy hair, wearing a sleek black turtleneck sweater. She is looking slightly off-camera with a composed expression. The backdrop is a very subtle, light grey textured wall, lit perfectly to create a soft, minimalist, and serene corporate atmosphere. The overall tone is refined and high-end." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRYqcyVGFxmPqkOK25h2ZjIdTw4uqir1UuVoL3me0bJ_T-Kofx1JHT_giryVET9UAro83nEZ329HmEd_XKB0c06qHRVVD3slX6Dz0kdWny3sqpq2UVffrisQSzx0uspdwcKEAxj63TfNDIjFs475-9H9LiQp1HyLWJEHg70gRQlRIICszyhIrk2EzFZLuRFHL7UGSenuzRAoLKvhxnGLrNs9YcLpcFCXrJNNdzeuuDRDW-r7VgyokkgU1eRTWdkgSM8SWjyYA_qWSy"/>
+<div class="ml-3 flex-1 overflow-hidden">
+<h3 class="font-body font-semibold text-body-md text-on-surface truncate">Olivia Martinez</h3>
+<p class="font-body text-label-sm text-outline truncate">1/2 Meetings • 5 Days Remaining</p>
+</div>
+<div class="ml-2 flex items-center gap-3">
+<div class="relative w-10 h-10 flex items-center justify-center">
+<svg class="circular-chart w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+<path class="circle stroke-accent-warm" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" stroke-dasharray="50, 100"></path>
+</svg>
+<span class="absolute font-mono text-[10px] font-medium text-on-surface">50</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-xl">chevron_right</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 bg-surface-container border-t border-outline-variant md:max-w-md md:left-1/2 md:-translate-x-1/2 md:rounded-b-none rounded-t-xl shadow-lg">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1.5 hover:bg-surface-variant transition-colors active:scale-90 rounded-full" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<span class="font-label text-label-sm mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-5 py-1.5 hover:bg-surface-variant transition-colors active:scale-90" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_tree</span>
+<span class="font-label text-label-sm mt-1">Network</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1.5 hover:bg-surface-variant transition-colors active:scale-90 rounded-full" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">videocam</span>
+<span class="font-label text-label-sm mt-1">Meetings</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1.5 hover:bg-surface-variant transition-colors active:scale-90 rounded-full" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">gavel</span>
+<span class="font-label text-label-sm mt-1">Compliance</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1.5 hover:bg-surface-variant transition-colors active:scale-90 rounded-full" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">person</span>
+<span class="font-label text-label-sm mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Leadership Intelligence Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&amp;family=Newsreader:opsz,wght@6..72,500;6..72,600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#fcf9f7",
+                        "error": "#ba1a1a",
+                        "tertiary": "#241a1b",
+                        "secondary-fixed": "#d6e7d9",
+                        "on-tertiary-fixed-variant": "#504445",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-surface": "#1c1c1b",
+                        "surface": "#fcf9f7",
+                        "primary": "#181e1a",
+                        "secondary-container": "#d6e7d9",
+                        "surface-container-highest": "#e5e2e0",
+                        "surface-dim": "#dcd9d8",
+                        "outline": "#747873",
+                        "inverse-primary": "#c2c8c1",
+                        "surface-bright": "#fcf9f7",
+                        "on-surface-variant": "#444844",
+                        "on-tertiary-container": "#a69697",
+                        "on-primary-fixed": "#171d18",
+                        "on-primary-container": "#959b94",
+                        "primary-fixed-dim": "#c2c8c1",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#bacbbe",
+                        "tertiary-container": "#3a2f30",
+                        "surface-tint": "#5a605a",
+                        "secondary": "#536257",
+                        "on-background": "#1c1c1b",
+                        "surface-container-low": "#f6f3f1",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#23191a",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#d4c2c3",
+                        "surface-container": "#f0edec",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#e5e2e0",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#dee4dd",
+                        "on-secondary-fixed": "#111e16",
+                        "tertiary-fixed": "#f1dedf",
+                        "on-secondary-container": "#59685d",
+                        "on-primary-fixed-variant": "#424843",
+                        "outline-variant": "#c4c7c2",
+                        "surface-container-high": "#ebe7e6",
+                        "primary-container": "#2d332e",
+                        "on-secondary-fixed-variant": "#3b4a40",
+                        "inverse-surface": "#313030",
+                        "on-error-container": "#93000a",
+                        "teal": "#14B8A6",
+                        "indigo": "#4F46E5",
+                        "amber": "#F59E0B"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader", "serif"],
+                        "display": ["Newsreader", "serif"],
+                        "body": ["Hanken Grotesk", "sans-serif"],
+                        "label": ["Hanken Grotesk", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .stagger-1 { animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both; }
+        .stagger-2 { animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both; }
+        .stagger-3 { animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both; }
+        .stagger-4 { animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both; }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .glass-card {
+            background: rgba(252, 249, 247, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body antialiased min-h-screen flex flex-col pb-24 md:pb-0">
+<!-- TopAppBar -->
+<header class="bg-background font-headline text-[32px] leading-[40px] font-medium docked full-width top-0 sticky z-50 border-b border-outline-variant flat no shadows hover:bg-surface-container-high transition-colors active:scale-95 duration-150 flex justify-between items-center w-full px-6 py-4">
+<div class="flex items-center gap-3">
+<span aria-hidden="true" class="material-symbols-outlined text-primary text-2xl">insights</span>
+<h1 class="text-primary font-semibold text-[24px]">Intelligence Center</h1>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity">
+<img alt="Leader Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAl3vJMgTaVQ_T_BJg4_KWiGDDrEhyiDsMrJC9BBcZz3J0tWtjYMGT_NFeQS9NRZoUKTpiOIoUQsLb7Ui-825xQo0OE6mVKx5dqF2WAyqj1RukGVxWAXrrWM9tm3Vn7QlQabhTf-9FgVvY634_ZXktcWo3dWwWirunn_zOm5sV4-UQyqsYXCLRRQ_FOVN8KST_u6GglG7pgGMzGNZMOH7gSGBXuCwzmrHM7EfFsgG5KZZP4zURXKnzyoakCpTY4WGlv3H4LsM40MQag"/>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 w-full max-w-[1200px] mx-auto px-4 md:px-8 py-6 space-y-8">
+<!-- Hero Overview Card -->
+<section class="glass-card rounded-3xl p-6 md:p-8 stagger-1 relative overflow-hidden">
+<div class="absolute -right-12 -top-12 w-48 h-48 bg-primary/5 rounded-full blur-3xl"></div>
+<h2 class="font-headline text-[24px] font-medium text-primary mb-6 relative z-10">Intelligence Overview</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 relative z-10">
+<div class="bg-surface-container-lowest rounded-2xl p-4 border border-outline-variant/30 flex flex-col justify-between">
+<span class="text-on-surface-variant font-label text-sm uppercase tracking-wider mb-2">Total</span>
+<span class="font-headline text-[32px] text-primary">17</span>
+</div>
+<div class="bg-error/10 rounded-2xl p-4 border border-error/20 flex flex-col justify-between">
+<span class="text-error font-label text-sm uppercase tracking-wider mb-2">Need Action</span>
+<span class="font-headline text-[32px] text-error">4</span>
+</div>
+<div class="bg-amber/10 rounded-2xl p-4 border border-amber/20 flex flex-col justify-between">
+<span class="text-amber font-label text-sm uppercase tracking-wider mb-2">Priority</span>
+<span class="font-headline text-[32px] text-amber">2</span>
+</div>
+<div class="bg-indigo/10 rounded-2xl p-4 border border-indigo/20 flex flex-col justify-between">
+<span class="text-indigo font-label text-sm uppercase tracking-wider mb-2">Info</span>
+<span class="font-headline text-[32px] text-indigo">11</span>
+</div>
+</div>
+</section>
+<!-- AI Daily Briefing -->
+<section class="bg-indigo/10 rounded-3xl p-6 border border-indigo/20 stagger-2 flex items-start gap-4">
+<div class="w-12 h-12 rounded-full bg-indigo/20 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-indigo" style="font-variation-settings: 'FILL' 1;">psychology</span>
+</div>
+<div>
+<h3 class="font-headline text-[24px] font-medium text-primary mb-2">Today's Leadership Brief</h3>
+<p class="text-on-surface-variant leading-relaxed">
+                    Your team requires attention in two areas today: <br/>
+<span class="font-medium text-on-surface mt-1 block">• 3 overdue tasks</span>
+<span class="font-medium text-on-surface block">• 2 compliance risks</span>
+</p>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Requires Action Section -->
+<section class="stagger-3 space-y-4">
+<div class="flex items-center gap-2 mb-2">
+<div class="w-2.5 h-2.5 rounded-full bg-error"></div>
+<h2 class="font-headline text-[24px] font-medium text-primary">Requires Action</h2>
+</div>
+<!-- Card 1 -->
+<div class="glass-card rounded-2xl p-5 hover:border-error/30 transition-colors group relative overflow-hidden">
+<div class="absolute right-0 top-0 h-full w-12 bg-gradient-to-l from-surface-container-highest to-transparent opacity-0 group-hover:opacity-100 flex items-center justify-end pr-2 transition-opacity pointer-events-none">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">chevron_left</span>
+</div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-label text-sm font-semibold uppercase tracking-wider text-error">Compliance Risk</h3>
+<span class="text-xs text-on-surface-variant">2h ago</span>
+</div>
+<p class="text-primary font-medium mb-1">Priya Kumar has missed 2 consecutive meetings.</p>
+<p class="text-sm text-on-surface-variant mb-4 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+                        Chennai North Branch
+                    </p>
+<div class="flex gap-3">
+<button class="bg-primary text-on-primary font-label text-sm px-4 py-2 rounded-full hover:bg-primary/90 transition-colors">Message</button>
+<button class="bg-surface-container-high text-primary font-label text-sm px-4 py-2 rounded-full hover:bg-surface-container-highest transition-colors">Coaching Call</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="glass-card rounded-2xl p-5 hover:border-error/30 transition-colors group relative overflow-hidden">
+<div class="absolute right-0 top-0 h-full w-12 bg-gradient-to-l from-surface-container-highest to-transparent opacity-0 group-hover:opacity-100 flex items-center justify-end pr-2 transition-opacity pointer-events-none">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">chevron_left</span>
+</div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-label text-sm font-semibold uppercase tracking-wider text-amber">Overdue Approval</h3>
+<span class="text-xs text-on-surface-variant">4h ago</span>
+</div>
+<p class="text-primary font-medium mb-4">New Proof of Work submitted for 'Recruitment Mission'.</p>
+<button class="bg-primary text-on-primary font-label text-sm px-4 py-2 rounded-full hover:bg-primary/90 transition-colors">Review Now</button>
+</div>
+</section>
+<div class="space-y-8">
+<!-- Team Activity Section -->
+<section class="stagger-4 space-y-4">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-indigo">groups</span>
+<h2 class="font-headline text-[24px] font-medium text-primary">Team Activity</h2>
+</div>
+<!-- Card 1 -->
+<div class="glass-card rounded-2xl p-5 hover:border-indigo/30 transition-colors">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-label text-sm font-semibold uppercase tracking-wider text-indigo">Task Completed</h3>
+<span class="text-xs text-on-surface-variant">1h ago</span>
+</div>
+<p class="text-primary font-medium mb-4">Arjun Desai finished 'Prospecting Masterclass'.</p>
+<button class="bg-surface-container-high text-primary font-label text-sm px-4 py-2 rounded-full hover:bg-surface-container-highest transition-colors">Recognize</button>
+</div>
+<!-- Card 2 -->
+<div class="glass-card rounded-2xl p-5 hover:border-indigo/30 transition-colors">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-label text-sm font-semibold uppercase tracking-wider text-indigo">New Member Joined</h3>
+<span class="text-xs text-on-surface-variant">Yesterday</span>
+</div>
+<p class="text-primary font-medium mb-4">Sarah Chen added a new associate.</p>
+<button class="bg-surface-container-high text-primary font-label text-sm px-4 py-2 rounded-full hover:bg-surface-container-highest transition-colors">Welcome</button>
+</div>
+</section>
+<!-- Learning & Training Section -->
+<section class="stagger-4 space-y-4">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-teal">school</span>
+<h2 class="font-headline text-[24px] font-medium text-primary">Learning &amp; Training</h2>
+</div>
+<!-- Card 1 -->
+<div class="glass-card rounded-2xl p-5 hover:border-teal/30 transition-colors">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-label text-sm font-semibold uppercase tracking-wider text-teal">Certification Earned</h3>
+</div>
+<p class="text-primary font-medium mb-4">12 members completed 'Compliance 101'.</p>
+<button class="bg-surface-container-high text-primary font-label text-sm px-4 py-2 rounded-full hover:bg-surface-container-highest transition-colors">View Report</button>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden bg-surface-container-lowest font-label text-label-sm font-medium fixed bottom-0 w-full z-50 rounded-t-xl shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] shadow-lg flex justify-around items-center h-16 px-4">
+<button class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-5 py-1 active:scale-90 duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span>Overview</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:text-primary transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined">groups</span>
+<span>Activity</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:text-primary transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined">school</span>
+<span>Training</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:text-primary transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined">person</span>
+<span>Profile</span>
+</button>
+</nav>
+<script>
+        // Simple touch simulation for swipe-to-action visual on cards (desktop mostly hover, this adds slight interactivity)
+        document.querySelectorAll('.glass-card.group').forEach(card => {
+            let startX;
+            card.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+            });
+            card.addEventListener('touchmove', (e) => {
+                if(!startX) return;
+                let diff = startX - e.touches[0].clientX;
+                if(diff > 20) {
+                    card.style.transform = `translateX(-10px)`;
+                } else {
+                    card.style.transform = `translateX(0)`;
+                }
+            });
+            card.addEventListener('touchend', () => {
+                card.style.transform = `translateX(0)`;
+                startX = null;
+            });
+        });
+    </script>
+</body></html>

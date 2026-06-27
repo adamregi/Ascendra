@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Meeting Replay - Ascendra Leadership Glass</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&amp;family=Newsreader:wght@500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#e5e2e0",
+                        "primary-fixed": "#dee4dd",
+                        "primary": "#181e1a",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#d6e7d9",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#f1dedf",
+                        "error": "#ba1a1a",
+                        "surface": "#fcf9f7",
+                        "inverse-surface": "#313030",
+                        "on-secondary-fixed": "#111e16",
+                        "surface-variant": "#e5e2e0",
+                        "surface-tint": "#5a605a",
+                        "surface-container": "#f0edec",
+                        "on-primary-container": "#959b94",
+                        "secondary-fixed-dim": "#bacbbe",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "background": "#fcf9f7",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#dcd9d8",
+                        "on-primary-fixed": "#171d18",
+                        "surface-container-high": "#ebe7e6",
+                        "tertiary": "#241a1b",
+                        "primary-fixed-dim": "#c2c8c1",
+                        "on-primary-fixed-variant": "#424843",
+                        "inverse-primary": "#c2c8c1",
+                        "on-surface-variant": "#444844",
+                        "on-background": "#1c1c1b",
+                        "secondary": "#536257",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#a69697",
+                        "secondary-container": "#d6e7d9",
+                        "surface-container-low": "#f6f3f1",
+                        "outline": "#747873",
+                        "surface-bright": "#fcf9f7",
+                        "tertiary-container": "#3a2f30",
+                        "primary-container": "#2d332e",
+                        "on-tertiary-fixed": "#23191a",
+                        "tertiary-fixed-dim": "#d4c2c3",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#59685d",
+                        "on-surface": "#1c1c1b",
+                        "on-tertiary-fixed-variant": "#504445",
+                        "on-secondary-fixed-variant": "#3b4a40",
+                        "inverse-on-surface": "#f3f0ef",
+                        "outline-variant": "#c4c7c2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "sm": "0.25rem",
+                        "md": "0.75rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader", "serif"],
+                        "display": ["Newsreader", "serif"],
+                        "body": ["Hanken Grotesk", "sans-serif"],
+                        "label": ["Hanken Grotesk", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; background-color: #fcf9f7; color: #1c1c1b; }
+        .font-headline { font-family: 'Newsreader', serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .fill-icon { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        
+        /* Hide scrollbar for a cleaner look */
+        ::-webkit-scrollbar { width: 0px; background: transparent; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col antialiased">
+<!-- Top App Bar -->
+<header class="bg-surface/80 backdrop-blur-md fixed top-0 w-full z-50 flex justify-between items-center px-4 h-16 max-w-md mx-auto sm:hidden border-b border-surface-container">
+<button class="w-10 h-10 flex items-center justify-center text-primary active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+</button>
+<h1 class="font-headline text-lg font-medium text-primary">Branch Strategy: Q3 Planning</h1>
+<div class="w-10 h-10"></div> <!-- Spacer for center alignment -->
+</header>
+<!-- Desktop Header Fallback (Since it's a mobile screen, keeping it minimal) -->
+<div class="hidden sm:flex justify-between items-center px-6 h-16 w-full max-w-7xl mx-auto bg-surface/80 backdrop-blur-md fixed top-0 z-50 border-b border-surface-container">
+<div class="flex items-center gap-4">
+<button class="text-primary hover:bg-surface-container p-2 rounded-full transition-colors"><span class="material-symbols-outlined">arrow_back</span></button>
+<h1 class="font-headline text-xl font-medium text-primary">Branch Strategy: Q3 Planning</h1>
+</div>
+</div>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto pt-16 pb-24 max-w-md mx-auto w-full sm:pt-20 sm:max-w-2xl lg:max-w-4xl px-0 sm:px-6">
+<!-- Video Player Hero -->
+<section class="w-full aspect-video bg-black relative group cursor-pointer sm:rounded-xl overflow-hidden shadow-sm">
+<img alt="Corporate meeting room with professionals discussing strategy around a glass table" class="w-full h-full object-cover opacity-80 transition-opacity duration-300 group-hover:opacity-70" data-alt="A cinematic, high-fidelity view of a modern corporate boardroom during a strategic presentation. The lighting is bright and professional, adhering to a light-mode aesthetic with clean lines and a serene, minimalist atmosphere. Several focused executives in business attire are visible, reviewing projected data. The overall mood is serious, productive, and high-trust, utilizing a palette of crisp whites, soft grays, and subtle warm accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGiK5m7mFX8wg6hNVi-iasUaq0ecOhZrVczKvAuF9cVuzwQHT7FFwU-Hsg1cLNsyAjaHR5fy679QbgozNZZCmvpRh5E2BrLW3tqmXxF5sXFLpbtdUNVMbf1zwIQs3pbe7MLfxERhyKPQjvY1F6ejuT7NqnCceweq3MGXgJ36V5eZEr1m1LyzF8sIJ9RIbSjJqbnt3WC-IsqGVcm22wGgiKjURrkM2MsBzDtBbVBrUKi6TvoLANcH5oPdLOCG3d94FqrVTUFbgLNn2_"/>
+<!-- Center Play Button -->
+<div class="absolute inset-0 flex items-center justify-center">
+<button class="w-16 h-16 bg-surface/20 backdrop-blur-md border border-white/30 rounded-full flex items-center justify-center text-white shadow-lg active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-4xl fill-icon">play_arrow</span>
+</button>
+</div>
+<!-- Video Controls Overlay -->
+<div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+<div class="flex items-center gap-3">
+<button class="text-white hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined fill-icon text-xl">pause</span>
+</button>
+<div class="flex-1 h-1 bg-white/30 rounded-full relative overflow-hidden">
+<div class="absolute top-0 left-0 h-full bg-primary-fixed w-[20%] rounded-full"></div>
+</div>
+<div class="font-mono text-xs text-white tracking-wider">
+                        14:20 / 1:12:00
+                    </div>
+<button class="text-white hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-xl">fullscreen</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Info Row -->
+<section class="px-4 py-6 sm:px-0 flex justify-between items-start border-b border-surface-container-high">
+<div>
+<h2 class="font-headline text-headline-sm text-primary mb-1">Branch Strategy: Q3 Planning</h2>
+<div class="flex items-center gap-3 text-on-surface-variant font-body text-body-md">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">calendar_today</span> Oct 24, 2023</span>
+<span class="text-outline-variant">•</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">schedule</span> 1h 12m</span>
+</div>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-low text-primary hover:bg-surface-container transition-colors active:scale-95">
+<span class="material-symbols-outlined">share</span>
+</button>
+</section>
+<!-- Attendance Report -->
+<section class="px-4 py-6 sm:px-0">
+<div class="flex justify-between items-baseline mb-4">
+<h3 class="font-headline text-headline-sm text-primary">Attendance Report</h3>
+<span class="font-mono text-sm font-medium text-secondary bg-secondary-container px-2 py-1 rounded">14/18 compliant</span>
+</div>
+<!-- List Container -->
+<div class="flex flex-col gap-2">
+<!-- Row 1 (Compliant) -->
+<div class="flex items-center p-3 rounded-lg bg-surface-container-lowest border border-surface-container hover:bg-surface-container-low transition-colors h-[72px]">
+<img alt="Priya Sharma" class="w-10 h-10 rounded-full object-cover mr-4" data-alt="A professional headshot of a female executive with dark hair, looking confident and approachable. Minimalist background, high-key lighting, fitting a premium corporate UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1pJyFpQNgu0FPLUjY8-dpVJWmk3k1Dt-5EoCdniz7iLhKV8fckPyFKE4djBfTbkkWEjmP3G4iyOP7Gn8ojCeCIrtOVAO9uMALqm9cgIx_V18V97fA3OrRfnvxEIrgWnEw8n3TBeCXBd0kwiKkl4SWnnZqSa4Qw1o9ttQbzKZum4aHK7f8HNF-UY9j-wANWLGw-iskHo4Q_4vXL_dqTmwuPl3qPFLOUCNTWZ2cNNir-yiEqAoGbssyZRs85t7NNvQ3xZmndOa9IBlY"/>
+<div class="flex-1">
+<div class="font-body text-body-md font-medium text-primary">Priya Sharma</div>
+<div class="flex items-center gap-2 text-on-surface-variant text-label-sm font-mono">
+<span>Joined 10:02 AM</span>
+<span class="text-outline-variant">•</span>
+<span>1h 08m</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-[#059669] bg-[#ecfdf5] px-2.5 py-1 rounded-md text-label-sm font-medium">
+<span class="material-symbols-outlined text-[14px]">check</span> Compliant
+                    </div>
+</div>
+<!-- Row 2 (Partial) -->
+<div class="flex items-center p-3 rounded-lg bg-surface-container-lowest border border-surface-container hover:bg-surface-container-low transition-colors h-[72px]">
+<img alt="Marcus Chen" class="w-10 h-10 rounded-full object-cover mr-4" data-alt="A professional headshot of a male executive, slight smile, modern glasses. Minimalist background, high-key lighting, fitting a premium corporate UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQet9ATao1-MydAanY94hZQeCc47K2ZqrIInZXsPCzzXvxKoMAPZDIM60Aho9CtElKQVXuTjGEYbz85ETM_yL_K3wK8nsrU-5tvh1JK3MWQNqto6OTn37D1-vcmTKmsNqHx0mj5-CRrjoRWv7dRJUrTgHZWgYADJX5EJajkpatajUkO4Waz_ifK51X6SSmsKnVhvbRXVeV0QUL5uj1vDA-V3R4PIZxSlxTNdSws0OS2i_d6rwQcGyGti1u_9pe8FBO9SErgi_E8Jvz"/>
+<div class="flex-1">
+<div class="font-body text-body-md font-medium text-primary">Marcus Chen</div>
+<div class="flex items-center gap-2 text-on-surface-variant text-label-sm font-mono">
+<span>Joined 10:15 AM</span>
+<span class="text-outline-variant">•</span>
+<span>45m</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-[#d97706] bg-[#fef3c7] px-2.5 py-1 rounded-md text-label-sm font-medium">
+<span class="material-symbols-outlined text-[14px]">schedule</span> Partial
+                    </div>
+</div>
+<!-- Row 3 (Missed) -->
+<div class="flex items-center p-3 rounded-lg bg-surface-container-lowest border border-error-container hover:bg-surface-container-low transition-colors h-[72px]">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-outline font-headline font-bold text-lg mr-4 border border-outline-variant">
+                        SJ
+                    </div>
+<div class="flex-1">
+<div class="font-body text-body-md font-medium text-primary">Sarah Jenkins</div>
+<div class="flex items-center gap-2 text-on-surface-variant text-label-sm font-mono">
+<span>Did not join</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-error bg-error-container px-2.5 py-1 rounded-md text-label-sm font-medium">
+<span class="material-symbols-outlined text-[14px]">close</span> Missed
+                    </div>
+</div>
+<!-- Row 4 (Compliant) -->
+<div class="flex items-center p-3 rounded-lg bg-surface-container-lowest border border-surface-container hover:bg-surface-container-low transition-colors h-[72px]">
+<img alt="David Kim" class="w-10 h-10 rounded-full object-cover mr-4" data-alt="A professional headshot of a male executive, sharp suit. Minimalist background, high-key lighting, fitting a premium corporate UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCe8cYAv2dF8QSJsdkcML7AejpaJPKO_ydXVWRQQ3_MvRtAtVaCwHxdNstOHjTlO0tGgMPiuJYqyYi8mcxbzKbvOSM8tNEgqmCkFeIob3z3WfA64Ni7Afw_gnKSU6ltcFydE7oAxhs5F-rAf74LGled777jsGrs8V3ML15XxuUz7f_96UKAPqQh0a0hq8ovxuNV5xWxJKS9sJ100Oe2MJrruAqu_D5ke28QP7UKkENgE_AAHey3zl52Zy7YWoiGfGhQQNAznPODFSSJ"/>
+<div class="flex-1">
+<div class="font-body text-body-md font-medium text-primary">David Kim</div>
+<div class="flex items-center gap-2 text-on-surface-variant text-label-sm font-mono">
+<span>Joined 10:00 AM</span>
+<span class="text-outline-variant">•</span>
+<span>1h 12m</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-[#059669] bg-[#ecfdf5] px-2.5 py-1 rounded-md text-label-sm font-medium">
+<span class="material-symbols-outlined text-[14px]">check</span> Compliant
+                    </div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Action Button (Footer) -->
+<footer class="fixed bottom-0 w-full bg-surface/90 backdrop-blur-xl border-t border-surface-container-high p-4 sm:static sm:bg-transparent sm:border-none sm:p-6 sm:max-w-2xl lg:max-w-4xl sm:mx-auto">
+<button class="w-full flex items-center justify-center gap-2 py-3.5 rounded-lg border-2 border-outline hover:border-primary hover:bg-surface-container text-primary font-label text-label-md transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined text-[20px]">download</span>
+            Export Report
+        </button>
+</footer>
+</body></html>

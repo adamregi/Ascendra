@@ -1,0 +1,29 @@
+- [ ] **1. Project Scaffolding**
+  - Folder structure (`app`, `core`, `shared`, `features`).
+  - Create `lib/core/constants/` for Design Tokens (`AppColors`, `AppSpacing`, `AppRadius`, `AppTypography`).
+  - Create `lib/core/theme/` (Light and Dark themes).
+  - Create `lib/core/failures/` (Global Failure model).
+  - Create `lib/core/services/` (`LoggerService`, `BreakpointService`, `ConnectivityService`).
+- [ ] **2. Navigation & App Bootstrap**
+  - Create `lib/app/bootstrap/` for the startup initialization sequence.
+  - Setup modular `GoRouter` in `lib/app/router/`.
+  - Create `AuthShell` and `AppShell` with the 4 tabs (`Dashboard`, `Alerts`, `AI`, `Settings`).
+- [x] **1. Design System (Component Gallery)**
+  - `AppButton`
+  - `AppTextField`, `AppPasswordField`, `AppSearchField`
+  - `StatusBadge`, `RiskBadge`, `MetricChip`
+  - `SectionHeader`
+  - `LoadingCard`, `LoadingOverlay`, `ErrorCard`, `EmptyState`, `SkeletonLoader`
+  - `ConfirmationDialog`, `BottomSheet`
+  - `AppAvatar`, `InfoTile`, `StatCard`, `ListTileCard`
+  - Update `/dev/components` Gallery with all widgets.e reusable widgets in `lib/shared/widgets/`.
+  - Create `/dev/components` route for the Component Gallery (Storybook-style).
+- [x] **3. Base Page Template**
+  - `BasePage` (SafeArea, Loading overlay, Error banner, Keyboard dismissal).
+  - `LoginPage`.
+  - `PasswordResetPage`.
+- [x] **2. Responsive Framework**
+  - `ResponsiveBreakpoints` (360, 390, 414, 768, 1024, 1280+)
+  - `ResponsiveBuilder`, `ResponsivePadding`, `ResponsiveGrid`
+  - `AdaptiveNavigation` test for Auth flow.
+- [ ] **7. Update Walkthrough**

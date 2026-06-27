@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Smart Downline Reassignment</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;600&amp;family=Hanken+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "surface": "#fcf9f7",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#e5e2e0",
+                    "on-secondary-fixed": "#111e16",
+                    "on-secondary-container": "#59685d",
+                    "on-surface-variant": "#444844",
+                    "on-tertiary-container": "#a69697",
+                    "primary-fixed-dim": "#c2c8c1",
+                    "primary-fixed": "#dee4dd",
+                    "surface-tint": "#5a605a",
+                    "surface-container": "#f0edec",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed": "#f1dedf",
+                    "tertiary-container": "#3a2f30",
+                    "on-surface": "#1c1c1b",
+                    "on-primary-container": "#959b94",
+                    "secondary-fixed-dim": "#bacbbe",
+                    "secondary": "#536257",
+                    "error": "#ba1a1a",
+                    "primary": "#181e1a",
+                    "surface-container-highest": "#e5e2e0",
+                    "on-tertiary-fixed": "#23191a",
+                    "outline-variant": "#c4c7c2",
+                    "surface-container-low": "#f6f3f1",
+                    "on-tertiary-fixed-variant": "#504445",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#d6e7d9",
+                    "tertiary-fixed-dim": "#d4c2c3",
+                    "surface-dim": "#dcd9d8",
+                    "tertiary": "#241a1b",
+                    "outline": "#747873",
+                    "surface-bright": "#fcf9f7",
+                    "primary-container": "#2d332e",
+                    "on-primary-fixed-variant": "#424843",
+                    "on-background": "#1c1c1b",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed": "#171d18",
+                    "inverse-surface": "#313030",
+                    "inverse-primary": "#c2c8c1",
+                    "secondary-container": "#d6e7d9",
+                    "inverse-on-surface": "#f3f0ef",
+                    "surface-container-high": "#ebe7e6",
+                    "on-secondary-fixed-variant": "#3b4a40",
+                    "on-error": "#ffffff",
+                    "background": "#fcf9f7"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {},
+            "fontFamily": {
+                    "headline": ["Newsreader", "serif"],
+                    "display": ["Newsreader", "serif"],
+                    "body": ["Hanken Grotesk", "sans-serif"],
+                    "label": ["Hanken Grotesk", "sans-serif"]
+            },
+            "fontSize": {}
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+          font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Tree connector lines */
+        .tree-line::before {
+            content: '';
+            position: absolute;
+            left: -1.25rem;
+            top: 1.5rem;
+            bottom: -0.5rem;
+            width: 2px;
+            background-color: theme('colors.outline-variant');
+            z-index: 0;
+        }
+        .tree-line:last-child::before {
+            bottom: auto;
+            height: 1.5rem;
+        }
+        .tree-node::after {
+            content: '';
+            position: absolute;
+            left: -1.25rem;
+            top: 1.5rem;
+            width: 1rem;
+            height: 2px;
+            background-color: theme('colors.outline-variant');
+            z-index: 0;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body antialiased min-h-screen flex flex-col">
+<!-- TopAppBar (Transactional Mode) -->
+<header class="flex justify-between items-center w-full px-6 py-4 bg-transparent border-b border-surface-container-high sticky top-0 z-50 backdrop-blur-md">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">close</span>
+</button>
+<h1 class="font-headline text-lg font-semibold text-primary">Termination Process</h1>
+<button class="text-label-md font-semibold text-primary hover:opacity-70 transition-opacity">
+            Save Draft
+        </button>
+</header>
+<main class="flex-grow w-full max-w-4xl mx-auto px-4 sm:px-6 py-8 pb-32">
+<!-- Step Indicator -->
+<div class="mb-10 max-w-2xl mx-auto">
+<div class="flex items-center justify-between relative">
+<div class="absolute left-0 top-1/2 transform -translate-y-1/2 w-full h-[2px] bg-surface-container-highest -z-10"></div>
+<!-- Step 1: Completed -->
+<div class="flex flex-col items-center gap-2 bg-surface px-2">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-sm icon-fill">check</span>
+</div>
+<span class="text-label-sm text-on-surface-variant">Initiate</span>
+</div>
+<!-- Step 2: Active -->
+<div class="flex flex-col items-center gap-2 bg-surface px-2">
+<div class="w-8 h-8 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center shadow-md ring-4 ring-tertiary/10">
+<span class="text-label-sm">2</span>
+</div>
+<span class="text-label-sm font-semibold text-primary">Reassign</span>
+</div>
+<!-- Step 3: Pending -->
+<div class="flex flex-col items-center gap-2 bg-surface px-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center">
+<span class="text-label-sm">3</span>
+</div>
+<span class="text-label-sm text-on-surface-variant">Review</span>
+</div>
+</div>
+</div>
+<div class="space-y-8">
+<header class="text-center mb-8">
+<h2 class="font-headline text-3xl font-medium text-primary mb-2">Smart Downline Reassignment</h2>
+<p class="text-body-md text-on-surface-variant max-w-xl mx-auto">Determine the new organizational structure for Rajesh's active downline members before finalizing termination.</p>
+</header>
+<!-- Strategy Selector -->
+<section class="bg-surface-container-lowest p-2 rounded-xl shadow-sm border border-surface-container-highest flex flex-col sm:flex-row gap-2 max-w-3xl mx-auto">
+<button class="flex-1 py-3 px-4 rounded-lg text-label-md font-medium text-on-surface-variant hover:bg-surface-container transition-colors">
+                    Assign To Me
+                </button>
+<button class="flex-1 py-3 px-4 rounded-lg bg-surface-variant text-on-surface text-label-md font-semibold border border-outline-variant/30 flex items-center justify-center gap-2 shadow-sm relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+<span class="material-symbols-outlined text-sm">auto_awesome</span>
+                    Auto Optimize (AI)
+                </button>
+<button class="flex-1 py-3 px-4 rounded-lg text-label-md font-medium text-on-surface-variant hover:bg-surface-container transition-colors">
+                    Manual Select
+                </button>
+</section>
+<!-- AI Recommendation Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-8">
+<!-- Left Column: Context & AI Proposal -->
+<div class="lg:col-span-5 flex flex-col gap-6">
+<!-- Subject Profile -->
+<div class="bg-surface-container-lowest rounded-xl p-5 border border-surface-container-highest shadow-sm">
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider mb-4">Departing Member</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex-shrink-0 overflow-hidden border border-outline-variant relative">
+<div class="absolute inset-0 bg-error/10 flex items-center justify-center backdrop-blur-sm z-10">
+<span class="material-symbols-outlined text-error text-xl">person_remove</span>
+</div>
+<!-- Placeholder Image visually muted -->
+<img alt="Rajesh Profile" class="w-full h-full object-cover grayscale opacity-50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyX4YLAMS-UVIX0UFLwuOfNkz7A4AckxkDKTAZSb1tDE6vQExQNYRR--byAeFMsfPLSbmHbBE4PnvRxCcWRseWC2eD-GkrlBilhoxGY2MhmcfY0AE6WSaKdNhmv0WjUsYhk_6SMr2EJpcPTyr-opTJxJerRw9xvuxzGz12tCe1rpt_0neT6DH-Egu-LX483WvtQWcW3HfIy0C3V8gW7dXJSJzZu8pefGO8X9in2kYzerKQHZLsxNHlQpslbOc2YDW-lLso7R7_rNOw"/>
+</div>
+<div>
+<h3 class="font-headline text-lg font-medium text-primary">Rajesh Kumar</h3>
+<p class="text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">account_tree</span>
+                                    3 Direct Downlines
+                                </p>
+</div>
+</div>
+</div>
+<!-- AI Recommendation Card -->
+<div class="bg-secondary-fixed/30 border border-secondary-fixed-dim rounded-xl overflow-hidden relative shadow-sm">
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary-fixed rounded-full blur-3xl opacity-50 -translate-y-1/2 translate-x-1/2"></div>
+<div class="p-5 relative z-10 border-b border-secondary-fixed-dim/50">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary icon-fill mt-0.5">neurology</span>
+<div>
+<h4 class="font-headline text-md font-medium text-on-secondary-fixed">AI Optimization Active</h4>
+<p class="text-body-sm text-on-secondary-fixed-variant mt-1 leading-relaxed">Recommending transfer to Vignesh Kumar to maintain regional balance and match performance tiers.</p>
+</div>
+</div>
+</div>
+<!-- Candidate Card Inside -->
+<div class="p-5 bg-surface-container-lowest relative z-10">
+<div class="flex justify-between items-start mb-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container text-[11px] font-bold tracking-wide uppercase">
+<span class="material-symbols-outlined text-[12px]">verified</span>
+                                    Best Match
+                                </span>
+<span class="text-label-sm text-on-surface-variant font-medium">Score: 94/100</span>
+</div>
+<div class="flex items-center gap-4 mb-4">
+<img alt="A professional portrait of a man, warm lighting, modern corporate aesthetic" class="w-12 h-12 rounded-full object-cover border border-outline-variant shadow-sm" data-alt="A professional portrait of a man in his mid-30s, exuding confidence and reliability. He is wearing a modern, tailored business casual outfit. The lighting is warm and natural, creating a serene, approachable mood. The background is a slightly blurred, bright, minimalist modern office environment, aligning with a light-mode 'Serene Modernist' UI aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIIZkP71GuE7rYy5_CX-OMN-NmIEI6QOTSvRlLJPZnnOZWl2KM4-JC-q0QyJ4FEUEs53i9hCHr4ayjzRT9taMUFgjSfjZDHYPFN5IzqwI5rhE8pXvzUeVB6TMAeGMfRHgrVIwRmc5tdAGKEBsO9l5tH2CxpSl_sqezs7laqlc0gDZ4L4yJlpxKJS9RjZH-FRqIa7Ze9IyXDFNjP3IczudLJ5oPt7yHTJfm-No-hDCoWdxDJgYtA26dRV32LaXT2eCl4zDL41XHOGph"/>
+<div>
+<h4 class="font-headline text-lg font-medium text-primary leading-tight">Vignesh Kumar</h4>
+<p class="text-body-sm text-on-surface-variant">Regional Director, South</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-surface px-3 py-2 rounded-lg border border-surface-container-high">
+<p class="text-label-sm text-on-surface-variant mb-0.5">Network Size</p>
+<p class="font-semibold text-primary">42 Members</p>
+</div>
+<div class="bg-surface px-3 py-2 rounded-lg border border-surface-container-high">
+<p class="text-label-sm text-on-surface-variant mb-0.5">Compliance</p>
+<p class="font-semibold text-primary">92% Rating</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Split Tree Preview -->
+<div class="lg:col-span-7 bg-surface-container-lowest rounded-xl border border-surface-container-highest shadow-sm flex flex-col overflow-hidden">
+<div class="px-5 py-4 border-b border-surface-container-highest flex items-center justify-between bg-surface-container-lowest">
+<h3 class="font-headline text-lg font-medium text-primary">Hierarchy Projection</h3>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed/50 border border-secondary-fixed-dim text-on-secondary-fixed-variant text-label-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+                            Live Preview
+                        </span>
+</div>
+<div class="p-6 flex-grow flex flex-col relative overflow-hidden bg-surface/30">
+<!-- Subtle Background Pattern -->
+<div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(theme('colors.primary') 1px, transparent 1px); background-size: 24px 24px;"></div>
+<div class="relative z-10 w-full max-w-md mx-auto">
+<!-- New Parent Node -->
+<div class="flex items-center gap-4 bg-surface-container-lowest p-3 pr-6 rounded-xl border border-primary/20 shadow-sm relative z-20 transition-transform duration-500 hover:scale-[1.02]">
+<div class="w-10 h-10 rounded-full border-2 border-secondary-fixed bg-secondary-container flex items-center justify-center overflow-hidden flex-shrink-0">
+<img alt="Vignesh" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDy_UEWouGmATe3v2bo0UxUqFjsP1qA7Vw9wsYADRGz39CWE3m4dDp_3Mgbz0SuIyIcyn46PR3WGZydlIqHLHK7k0CJmIYPffnv2lEcNjF41LQEEJmTLHa8d3VN-sSkU_1D3PrjKBwfjwOewezTN2VQHHHZgqdKkAl0-AG6VHgCheUDH2BqA38-8Swqfz1sDhv21hp2oj_1iZEnMQOWtCMFEhfq9QAv8pyttjHtsx4ySdvEN1Khi0hI4IeKzMq2HM-_FAR8IEqzufVp"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-semibold text-primary text-sm">Vignesh Kumar</h4>
+<p class="text-[11px] text-secondary font-medium tracking-wide uppercase">New Sponsor</p>
+</div>
+<span class="material-symbols-outlined text-secondary">verified_user</span>
+</div>
+<!-- Connecting Line -->
+<div class="w-0.5 h-6 bg-secondary/30 ml-8 my-1 relative">
+<div class="absolute inset-0 bg-secondary origin-top animate-[pulse_2s_ease-in-out_infinite]"></div>
+</div>
+<!-- Downline Container -->
+<div class="ml-8 border-l-2 border-surface-container-highest pl-6 space-y-4 relative pb-2">
+<!-- Child 1 -->
+<div class="relative tree-node flex items-center gap-3 bg-surface p-2.5 rounded-lg border border-outline-variant/30 shadow-sm transition-all hover:bg-surface-container-lowest hover:border-outline-variant/60 group">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-on-surface font-semibold text-xs border border-surface-container-highest">
+                                        AR
+                                    </div>
+<div>
+<p class="text-sm font-medium text-primary">Arun Raj</p>
+<p class="text-xs text-on-surface-variant">Active • 12 mos</p>
+</div>
+</div>
+<!-- Child 2 -->
+<div class="relative tree-node flex items-center gap-3 bg-surface p-2.5 rounded-lg border border-outline-variant/30 shadow-sm transition-all hover:bg-surface-container-lowest hover:border-outline-variant/60 group">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-on-surface font-semibold text-xs border border-surface-container-highest">
+                                        PR
+                                    </div>
+<div>
+<p class="text-sm font-medium text-primary">Priya Sharma</p>
+<p class="text-xs text-on-surface-variant">Active • 8 mos</p>
+</div>
+</div>
+<!-- Child 3 -->
+<div class="relative tree-node flex items-center gap-3 bg-surface p-2.5 rounded-lg border border-outline-variant/30 shadow-sm transition-all hover:bg-surface-container-lowest hover:border-outline-variant/60 group">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-on-surface font-semibold text-xs border border-surface-container-highest">
+                                        SN
+                                    </div>
+<div>
+<p class="text-sm font-medium text-primary">Senthil Nathan</p>
+<p class="text-xs text-on-surface-variant">Warning • 24 mos</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Validation & Conflict Detection -->
+<div class="bg-secondary-fixed/20 border border-secondary/20 rounded-lg p-4 flex items-center gap-4">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed flex-shrink-0">
+<span class="material-symbols-outlined text-sm icon-fill">check_circle</span>
+</div>
+<div class="flex-grow">
+<p class="text-body-md font-medium text-primary">Hierarchy validation passed</p>
+<p class="text-body-sm text-on-surface-variant">No cyclical references or level conflicts detected in the proposed structure.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Fixed Bottom CTA Bar -->
+<div class="fixed bottom-0 left-0 w-full bg-surface/90 backdrop-blur-md border-t border-surface-container-high py-4 px-6 z-50">
+<div class="max-w-4xl mx-auto flex justify-between items-center">
+<button class="text-label-md font-semibold text-on-surface-variant hover:text-primary transition-colors px-4 py-2">
+                Back to Step 1
+            </button>
+<button class="bg-primary text-on-primary font-label text-label-md px-8 py-3 rounded-full hover:bg-primary-container hover:text-on-primary-container transition-all shadow-md flex items-center gap-2 transform active:scale-95">
+                Review Termination
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</body></html>

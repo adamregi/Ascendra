@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Company Operating System</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-primary-container": "#959b94", "secondary-fixed": "#d6e7d9", "error": "#ba1a1a", "tertiary-fixed-dim": "#d4c2c3", "on-tertiary-fixed-variant": "#504445", "on-secondary-container": "#59685d", "on-tertiary-fixed": "#23191a", "on-surface": "#1c1c1b", "on-error-container": "#93000a", "secondary": "#536257", "tertiary-fixed": "#f1dedf", "secondary-fixed-dim": "#bacbbe", "surface-container-lowest": "#ffffff", "surface-bright": "#fcf9f7", "secondary-container": "#d6e7d9", "on-primary-fixed-variant": "#424843", "on-background": "#1c1c1b", "on-error": "#ffffff", "primary-fixed": "#dee4dd", "error-container": "#ffdad6", "surface-container": "#f0edec", "on-secondary": "#ffffff", "outline-variant": "#c4c7c2", "on-secondary-fixed": "#111e16", "on-primary": "#ffffff", "tertiary": "#241a1b", "on-secondary-fixed-variant": "#3b4a40", "tertiary-container": "#3a2f30", "surface-variant": "#e5e2e0", "surface-container-highest": "#e5e2e0", "primary-fixed-dim": "#c2c8c1", "surface-dim": "#dcd9d8", "surface": "#fcf9f7", "inverse-on-surface": "#f3f0ef", "on-surface-variant": "#444844", "outline": "#747873", "on-primary-fixed": "#171d18", "inverse-primary": "#c2c8c1", "primary": "#181e1a", "primary-container": "#2d332e", "inverse-surface": "#313030", "background": "#fcf9f7", "surface-tint": "#5a605a", "surface-container-low": "#f6f3f1", "on-tertiary-container": "#a69697", "on-tertiary": "#ffffff", "surface-container-high": "#ebe7e6"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"
+                    },
+                    fontFamily: {
+                        "headline": ["Newsreader", "serif"], "display": ["Newsreader", "serif"], "body": ["Hanken Grotesk", "sans-serif"], "label": ["Hanken Grotesk", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .fill-icon { font-variation-settings: 'FILL' 1; }
+        
+        /* Hold to confirm animation */
+        @keyframes fillProgress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        .holding .progress-bar {
+            animation: fillProgress 2s linear forwards;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body antialiased min-h-screen pb-24 pt-16">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-primary-container fixed top-0 w-full z-50 bg-surface/80 dark:bg-primary-container/90 backdrop-blur-md shadow-sm dark:shadow-none">
+<div class="flex items-center justify-between px-6 h-16 w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<img alt="Executive Profile" class="w-8 h-8 rounded-full object-cover" data-alt="A professional headshot of an executive female wearing a tailored suit, looking confidently at the camera against a neutral background. The lighting is soft and flattering, emphasizing a corporate and authoritative yet approachable demeanor." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdIhK9oPlT7qFgRgWn--UrtZZR4wEusZfZuyZ-dDzvsB469rKgKRqetd5Va_-ARinozuUnarV70zu9B1M9AvsO7RjEwC6ufkEiP5MmUfRuD1kVGfGDjYgXUZKL4GHaEPt-71wXG2WXrb2WhsB5O1O6WEFUI_ym7cG-6z7oNhZISUki8lfMNs6ueLkgMWOm5bpANXsPxPLcXLv4kDfTgzdBhkg9a-7xysEePY_uDXfXZ0cY9vcMhXcqkwRSY6FlfaBTAP2HtETHYapo"/>
+</div>
+<h1 class="font-headline font-semibold text-headline-md text-primary dark:text-primary-fixed tracking-tight">Ascendra</h1>
+<button class="text-on-surface-variant dark:text-on-primary-container hover:bg-surface-container-low dark:hover:bg-primary transition-colors active:scale-95 duration-150 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">settings_suggest</span>
+</button>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+<!-- Company Health Banner -->
+<section class="bg-primary-container text-on-primary rounded-xl p-8 shadow-lg relative overflow-hidden">
+<div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
+<div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<h2 class="font-display text-display-lg-mobile md:text-display-lg text-primary-fixed leading-tight tracking-tight">Ascendra Network</h2>
+<span class="bg-accent-warm/20 text-accent-warm border border-accent-warm/30 font-label text-label-sm px-2 py-1 rounded">Pro Plan</span>
+</div>
+<p class="text-on-primary-container font-body text-body-lg">Operating System &amp; Governance Center</p>
+</div>
+<div class="flex gap-6 md:gap-12 bg-primary/40 p-4 rounded-lg backdrop-blur-sm border border-white/5">
+<div class="flex flex-col">
+<span class="font-label text-label-sm text-on-primary-container uppercase tracking-wider mb-1">Members</span>
+<span class="font-headline text-headline-sm text-white">142</span>
+</div>
+<div class="w-px bg-white/10"></div>
+<div class="flex flex-col">
+<span class="font-label text-label-sm text-on-primary-container uppercase tracking-wider mb-1">Compliance</span>
+<div class="flex items-center gap-2">
+<span class="font-headline text-headline-sm text-secondary-fixed">91%</span>
+<span class="material-symbols-outlined text-secondary-fixed text-sm fill-icon">check_circle</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid Configuration -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Brand Configuration -->
+<div class="bg-surface-container-lowest rounded-xl p-6 border border-surface-variant shadow-sm flex flex-col h-full hover:shadow-md transition-shadow">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-secondary p-2 bg-secondary-container rounded-lg">palette</span>
+<h3 class="font-headline text-headline-sm text-primary">Brand Configuration</h3>
+</div>
+<div class="space-y-4 flex-grow">
+<div>
+<label class="font-label text-label-sm text-on-surface-variant block mb-1">Company Name</label>
+<input class="w-full bg-surface-container-low border-none rounded p-3 text-body-md text-primary focus:ring-1 focus:ring-secondary" type="text" value="Ascendra Network"/>
+</div>
+<div>
+<label class="font-label text-label-sm text-on-surface-variant block mb-1">Primary Domain</label>
+<input class="w-full bg-surface-container-low border-none rounded p-3 text-body-md text-primary focus:ring-1 focus:ring-secondary" type="text" value="ascendra.network"/>
+</div>
+<div class="flex items-center justify-between pt-2">
+<span class="font-label text-label-sm text-on-surface-variant">Brand Color</span>
+<div class="flex items-center gap-2">
+<span class="font-body text-body-md">#181E1A</span>
+<div class="w-6 h-6 rounded-full bg-primary border border-surface-variant"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Configuration -->
+<div class="bg-surface-container-lowest rounded-xl p-6 border border-surface-variant shadow-sm flex flex-col h-full hover:shadow-md transition-shadow">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-secondary p-2 bg-secondary-container rounded-lg">psychology</span>
+<h3 class="font-headline text-headline-sm text-primary">AI Configuration</h3>
+</div>
+<div class="space-y-5 flex-grow">
+<div class="flex items-center justify-between">
+<div>
+<p class="font-body text-body-md text-primary font-medium">Knowledge Base Sync</p>
+<p class="font-label text-label-sm text-on-surface-variant">Auto-ingest connected docs</p>
+</div>
+<div class="relative inline-block w-10 h-6">
+<input checked="" class="peer sr-only" type="checkbox"/>
+<div class="w-10 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer-checked:bg-secondary transition-colors cursor-pointer"></div>
+<div class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform peer-checked:translate-x-4 pointer-events-none"></div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="font-body text-body-md text-primary font-medium">Coach Access</p>
+<p class="font-label text-label-sm text-on-surface-variant">Allow AI coaching prompts</p>
+</div>
+<div class="relative inline-block w-10 h-6">
+<input checked="" class="peer sr-only" type="checkbox"/>
+<div class="w-10 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer-checked:bg-secondary transition-colors cursor-pointer"></div>
+<div class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform peer-checked:translate-x-4 pointer-events-none"></div>
+</div>
+</div>
+<div>
+<label class="font-label text-label-sm text-on-surface-variant block mb-2">Monthly Search Limits</label>
+<input class="w-full accent-secondary" max="100" min="0" type="range" value="75"/>
+<div class="flex justify-between text-xs text-on-surface-variant mt-1">
+<span>10k</span>
+<span>100k</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Compliance Engine -->
+<div class="bg-surface-container-lowest rounded-xl p-6 border border-surface-variant shadow-sm flex flex-col h-full hover:shadow-md transition-shadow">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-secondary p-2 bg-secondary-container rounded-lg">gavel</span>
+<h3 class="font-headline text-headline-sm text-primary">Compliance Engine</h3>
+</div>
+<div class="space-y-4 flex-grow">
+<div class="bg-surface-container-low p-3 rounded border-l-2 border-accent-warm">
+<p class="font-label text-label-sm text-on-surface-variant uppercase mb-1">Warning Thresholds</p>
+<p class="font-body text-body-md text-primary">Alert manager at <span class="font-medium">3 missed modules</span></p>
+</div>
+<div class="bg-surface-container-low p-3 rounded border-l-2 border-error">
+<p class="font-label text-label-sm text-on-surface-variant uppercase mb-1">Termination Rules</p>
+<p class="font-body text-body-md text-primary">Auto-suspend at <span class="font-medium">&lt; 60% attendance</span> for 30 days</p>
+</div>
+<button class="w-full py-2 text-secondary font-label text-label-md border border-secondary/30 rounded hover:bg-secondary-container/50 transition-colors">Edit Rule Matrices</button>
+</div>
+</div>
+<!-- Automation Center -->
+<div class="bg-surface-container-lowest rounded-xl p-6 border border-surface-variant shadow-sm col-span-1 md:col-span-2 lg:col-span-1 flex flex-col">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-secondary p-2 bg-secondary-container rounded-lg">account_tree</span>
+<h3 class="font-headline text-headline-sm text-primary">Automation Center</h3>
+</div>
+<div class="grid grid-cols-1 gap-4 flex-grow">
+<div class="flex items-center justify-between p-3 border border-surface-variant rounded bg-surface">
+<span class="font-body text-body-md text-primary">Auto Warnings</span>
+<span class="material-symbols-outlined text-secondary-fixed-dim bg-secondary p-1 rounded-full text-sm">check</span>
+</div>
+<div class="flex items-center justify-between p-3 border border-surface-variant rounded bg-surface">
+<span class="font-body text-body-md text-primary">Auto Terminations</span>
+<span class="material-symbols-outlined text-surface-variant bg-surface-container-highest p-1 rounded-full text-sm">close</span>
+</div>
+<div class="flex items-center justify-between p-3 border border-surface-variant rounded bg-surface opacity-70">
+<span class="font-body text-body-md text-primary">Tree Restructuring</span>
+<span class="font-label text-label-sm text-on-surface-variant">Manual Only</span>
+</div>
+</div>
+</div>
+<!-- Operational & Billing (Combined for layout density) -->
+<div class="col-span-1 md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+<!-- Operational Settings -->
+<div class="bg-surface-container-lowest rounded-xl p-6 border border-surface-variant shadow-sm flex flex-col">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-secondary">tune</span>
+<h3 class="font-headline text-headline-sm text-primary">Operational Defaults</h3>
+</div>
+<ul class="space-y-3 font-body text-body-md text-on-surface-variant">
+<li class="flex items-center gap-2 hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-sm">arrow_right</span> Growth Settings
+                        </li>
+<li class="flex items-center gap-2 hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-sm">arrow_right</span> Training Requirements
+                        </li>
+<li class="flex items-center gap-2 hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-sm">arrow_right</span> Analytics Visibility
+                        </li>
+</ul>
+</div>
+<!-- Billing -->
+<div class="bg-surface-container-lowest rounded-xl p-6 border border-surface-variant shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-center mb-2">
+<h3 class="font-headline text-headline-sm text-primary">Billing &amp; Usage</h3>
+<span class="text-xs font-label bg-surface-container-high px-2 py-1 rounded">Invoice Due: Oct 1</span>
+</div>
+<div class="mt-4">
+<div class="flex justify-between text-label-sm font-label text-on-surface-variant mb-1">
+<span>API Usage</span>
+<span>82%</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-1.5">
+<div class="bg-primary h-1.5 rounded-full" style="width: 82%"></div>
+</div>
+</div>
+</div>
+<button class="mt-4 w-full py-2 bg-primary text-on-primary font-label text-label-md rounded hover:bg-primary-container transition-colors">Manage Subscription</button>
+</div>
+</div>
+</div>
+<!-- Danger Zone -->
+<section class="mt-12 border border-error-container bg-error-container/20 rounded-xl p-6 md:p-8 flex flex-col md:flex-row justify-between items-center gap-6">
+<div>
+<h3 class="font-headline text-headline-sm text-on-error-container mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-error">warning</span>
+                    Danger Zone
+                </h3>
+<p class="font-body text-body-md text-on-surface-variant max-w-xl">
+                    Permanently delete the <strong class="text-primary">Ascendra Network</strong> operating environment. This action cannot be undone and will purge all member data, compliance records, and structural trees.
+                </p>
+</div>
+<div class="w-full md:w-auto">
+<button class="relative overflow-hidden w-full md:w-64 py-4 border border-error text-error font-label text-label-md rounded group select-none flex items-center justify-center gap-2" id="deleteBtn">
+<span class="absolute left-0 top-0 bottom-0 bg-error/10 w-0 progress-bar pointer-events-none"></span>
+<span class="material-symbols-outlined text-sm">delete_forever</span>
+<span class="relative z-10">Hold to Delete Company</span>
+</button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Hidden on md and up based on JSON shell rules, but JSON says fixed bottom w-full. Following JSON explicitly for structure but making it hidden md:flex as per instructions) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full h-20 flex justify-around items-center px-4 pb-2 bg-surface-container-lowest dark:bg-primary-container shadow-[0_-2px_10px_rgba(0,0,0,0.05)] rounded-t-xl z-50">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-primary-container opacity-70 hover:text-primary dark:hover:text-primary-fixed-dim active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label text-label-sm font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-primary-container opacity-70 hover:text-primary dark:hover:text-primary-fixed-dim active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">account_tree</span>
+<span class="font-label text-label-sm font-medium">Tree</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-primary-container opacity-70 hover:text-primary dark:hover:text-primary-fixed-dim active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">event</span>
+<span class="font-label text-label-sm font-medium">Meetings</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-primary-container opacity-70 hover:text-primary dark:hover:text-primary-fixed-dim active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span class="font-label text-label-sm font-medium">AI</span>
+</a>
+<!-- Active Nav Item (Profile fits "Settings/Governance" best from the given options) -->
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full px-5 py-1.5 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined fill-icon">person</span>
+<span class="font-label text-label-sm font-medium">Profile</span>
+</a>
+</nav>
+<script>
+        // Hold to Confirm Interaction
+        const deleteBtn = document.getElementById('deleteBtn');
+        let holdTimer;
+        
+        const startHold = () => {
+            deleteBtn.classList.add('holding');
+            holdTimer = setTimeout(() => {
+                const password = prompt('Enter your administrator password to confirm deletion:');
+                if(password) {
+                    alert('Deletion process initiated. (Simulated)');
+                }
+                resetHold();
+            }, 2000); // 2 seconds hold
+        };
+
+        const resetHold = () => {
+            deleteBtn.classList.remove('holding');
+            clearTimeout(holdTimer);
+        };
+
+        deleteBtn.addEventListener('mousedown', startHold);
+        deleteBtn.addEventListener('mouseup', resetHold);
+        deleteBtn.addEventListener('mouseleave', resetHold);
+        
+        // Touch support for mobile
+        deleteBtn.addEventListener('touchstart', (e) => { e.preventDefault(); startHold(); });
+        deleteBtn.addEventListener('touchend', resetHold);
+        deleteBtn.addEventListener('touchcancel', resetHold);
+    </script>
+</body></html>

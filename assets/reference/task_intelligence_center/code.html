@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Task Intelligence Center</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&amp;family=Newsreader:opsz,wght@6..72,400;500;600&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#f1dedf",
+                    "outline-variant": "#c4c7c2",
+                    "on-primary-fixed": "#171d18",
+                    "tertiary": "#241a1b",
+                    "surface-tint": "#5a605a",
+                    "tertiary-fixed-dim": "#d4c2c3",
+                    "on-primary-fixed-variant": "#424843",
+                    "on-error-container": "#93000a",
+                    "surface-container-highest": "#e5e2e0",
+                    "surface-variant": "#e5e2e0",
+                    "secondary": "#536257",
+                    "on-surface": "#1c1c1b",
+                    "tertiary-container": "#3a2f30",
+                    "secondary-container": "#d6e7d9",
+                    "on-tertiary-fixed-variant": "#504445",
+                    "on-tertiary-container": "#a69697",
+                    "surface-dim": "#dcd9d8",
+                    "secondary-fixed": "#d6e7d9",
+                    "primary-fixed": "#dee4dd",
+                    "outline": "#747873",
+                    "surface-container": "#f0edec",
+                    "on-background": "#1c1c1b",
+                    "inverse-on-surface": "#f3f0ef",
+                    "surface": "#fcf9f7",
+                    "inverse-primary": "#c2c8c1",
+                    "background": "#fcf9f7",
+                    "surface-container-high": "#ebe7e6",
+                    "on-tertiary-fixed": "#23191a",
+                    "surface-bright": "#fcf9f7",
+                    "on-secondary-container": "#59685d",
+                    "surface-container-low": "#f6f3f1",
+                    "on-secondary-fixed": "#111e16",
+                    "surface-container-lowest": "#ffffff",
+                    "error": "#ba1a1a",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed-dim": "#bacbbe",
+                    "primary-fixed-dim": "#c2c8c1",
+                    "on-error": "#ffffff",
+                    "primary-container": "#2d332e",
+                    "on-primary-container": "#959b94",
+                    "inverse-surface": "#313030",
+                    "on-primary": "#ffffff",
+                    "primary": "#181e1a",
+                    "on-surface-variant": "#444844",
+                    "on-secondary-fixed-variant": "#3b4a40",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Newsreader", "serif"],
+                    "display": ["Newsreader", "serif"],
+                    "body": ["Hanken Grotesk", "sans-serif"],
+                    "label": ["Hanken Grotesk", "sans-serif"],
+                    "mono": ["JetBrains Mono", "monospace"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Custom scrollbar for horizontal lists */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Circular Progress Animation */
+        .progress-ring__circle {
+            transition: stroke-dashoffset 1s ease-in-out;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+
+        /* Timeline animation */
+        .timeline-item {
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeUp 0.5s ease forwards;
+        }
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Funnel step line */
+        .funnel-line {
+            width: 2px;
+            background: linear-gradient(to bottom, var(--tw-colors-primary-container) 0%, var(--tw-colors-outline-variant) 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body antialiased selection:bg-primary-container selection:text-on-primary-container pb-24">
+<!-- TopAppBar (Detail View Mode - Navigation Suppressed) -->
+<header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-md border-b border-outline-variant">
+<div class="flex items-center justify-between px-4 h-16 w-full max-w-screen-md mx-auto">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors active:scale-95 text-on-surface-variant">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="flex-1 min-w-0 px-3 text-center">
+<h1 class="font-headline font-semibold text-lg text-primary truncate">Speak To 5 Qualified Prospects</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors active:scale-95 text-on-surface-variant">
+<span class="material-symbols-outlined">edit</span>
+</button>
+</div>
+</header>
+<main class="pt-20 px-4 max-w-screen-md mx-auto space-y-6">
+<!-- 2. Task Hero Card -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-5 shadow-sm relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-[100px] -z-10"></div>
+<div class="flex justify-between items-start mb-6">
+<div class="space-y-2">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-secondary-container text-on-secondary-container font-label text-xs uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Active
+                        </span>
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-md border border-error-container text-error font-label text-xs uppercase tracking-wider">
+<span class="material-symbols-outlined text-[14px]">priority_high</span> High
+                        </span>
+</div>
+<h2 class="font-headline font-semibold text-2xl text-primary leading-tight pr-4">Speak To 5 Qualified Prospects</h2>
+<p class="text-on-surface-variant text-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span> Oct 12 - Oct 19
+                    </p>
+</div>
+<!-- Circular Progress -->
+<div class="relative w-16 h-16 flex-shrink-0">
+<svg class="w-full h-full" viewbox="0 0 100 100">
+<circle class="text-surface-container-high stroke-current" cx="50" cy="50" fill="transparent" r="40" stroke-width="8"></circle>
+<circle class="text-primary stroke-current progress-ring__circle" cx="50" cy="50" fill="transparent" r="40" stroke-dasharray="251.2" stroke-dashoffset="67.824" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-mono font-semibold text-lg text-primary counter" data-target="73">0</span><span class="text-[10px] font-label text-on-surface-variant -mt-1">%</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. Stats Row -->
+<section class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-surface-container-low rounded-lg p-4 border border-surface-variant flex flex-col items-center text-center">
+<span class="text-on-surface-variant font-label text-xs uppercase tracking-wider mb-1">Assigned</span>
+<span class="font-mono font-semibold text-2xl text-primary counter" data-target="42">0</span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-4 border border-surface-variant flex flex-col items-center text-center">
+<span class="text-on-surface-variant font-label text-xs uppercase tracking-wider mb-1">Completed</span>
+<span class="font-mono font-semibold text-2xl text-secondary counter" data-target="31">0</span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-4 border border-surface-variant flex flex-col items-center text-center">
+<span class="text-on-surface-variant font-label text-xs uppercase tracking-wider mb-1">In Progress</span>
+<span class="font-mono font-semibold text-2xl text-on-surface counter" data-target="7">0</span>
+</div>
+<div class="bg-error-container rounded-lg p-4 border border-error-container/50 flex flex-col items-center text-center">
+<span class="text-on-error-container font-label text-xs uppercase tracking-wider mb-1">Overdue</span>
+<span class="font-mono font-semibold text-2xl text-error counter" data-target="4">0</span>
+</div>
+</section>
+<!-- 4. Completion Funnel & 5. Branch Leaderboard (Bento Grid) -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Funnel -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-5">
+<h3 class="font-headline font-medium text-lg mb-4 text-primary">Conversion Funnel</h3>
+<div class="space-y-0 relative">
+<div class="absolute left-4 top-4 bottom-4 funnel-line w-px -z-10"></div>
+<div class="flex items-center gap-4 py-2 bg-surface-container-lowest">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant border-2 border-surface-container-lowest">
+<span class="material-symbols-outlined text-[16px]">group</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between text-sm">
+<span class="font-medium">Assigned</span>
+<span class="font-mono text-primary">42</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4 py-2 bg-surface-container-lowest">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant border-2 border-surface-container-lowest">
+<span class="material-symbols-outlined text-[16px]">play_arrow</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between text-sm">
+<span>Started</span>
+<span class="font-mono text-on-surface-variant">38</span>
+</div>
+<div class="h-1.5 w-full bg-surface-variant rounded-full mt-1 overflow-hidden"><div class="h-full bg-outline w-[90%]"></div></div>
+</div>
+</div>
+<div class="flex items-center gap-4 py-2 bg-surface-container-lowest">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant border-2 border-surface-container-lowest">
+<span class="material-symbols-outlined text-[16px]">upload_file</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between text-sm">
+<span>Proof Submitted</span>
+<span class="font-mono text-on-surface-variant">34</span>
+</div>
+<div class="h-1.5 w-full bg-surface-variant rounded-full mt-1 overflow-hidden"><div class="h-full bg-outline w-[80%]"></div></div>
+</div>
+</div>
+<div class="flex items-center gap-4 py-2 bg-surface-container-lowest">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container border-2 border-surface-container-lowest">
+<span class="material-symbols-outlined text-[16px] fill">check_circle</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between text-sm">
+<span class="font-medium text-secondary">Completed</span>
+<span class="font-mono text-secondary font-semibold">31</span>
+</div>
+<div class="h-1.5 w-full bg-surface-variant rounded-full mt-1 overflow-hidden"><div class="h-full bg-secondary w-[73%]"></div></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Leaderboard -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-5">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-headline font-medium text-lg text-primary">Branch Leaderboard</h3>
+<button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[20px]">more_horiz</span></button>
+</div>
+<div class="space-y-4">
+<div class="group">
+<div class="flex justify-between text-sm mb-1">
+<span class="font-medium text-primary">Branch Alpha</span>
+<span class="font-mono text-secondary font-semibold">95%</span>
+</div>
+<div class="h-2 w-full bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[95%] transition-all duration-1000"></div>
+</div>
+</div>
+<div class="group">
+<div class="flex justify-between text-sm mb-1">
+<span class="font-medium text-on-surface">Branch Beta</span>
+<span class="font-mono text-on-surface-variant">81%</span>
+</div>
+<div class="h-2 w-full bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[81%] transition-all duration-1000"></div>
+</div>
+</div>
+<div class="group">
+<div class="flex justify-between text-sm mb-1">
+<span class="font-medium text-on-surface">Branch Gamma</span>
+<span class="font-mono text-error">44%</span>
+</div>
+<div class="h-2 w-full bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-error w-[44%] transition-all duration-1000"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. Proof Review Center -->
+<section>
+<div class="flex items-center justify-between mb-3 px-1">
+<h3 class="font-headline font-medium text-lg text-primary flex items-center gap-2">
+                    Needs Review <span class="bg-primary text-on-primary font-mono text-xs py-0.5 px-2 rounded-full">3</span>
+</h3>
+</div>
+<div class="flex overflow-x-auto hide-scrollbar gap-4 pb-4 -mx-4 px-4">
+<!-- Card 1 -->
+<div class="min-w-[280px] bg-surface-container-lowest rounded-xl border border-outline-variant p-4 shadow-sm snap-center shrink-0">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed font-headline font-medium">JD</div>
+<div>
+<p class="font-medium text-sm text-primary">John Doe</p>
+<p class="text-xs text-on-surface-variant">2 hours ago</p>
+</div>
+</div>
+<div class="h-24 bg-surface-container rounded-lg mb-4 overflow-hidden relative group">
+<div class="absolute inset-0 bg-black/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">image</span>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 py-1.5 px-3 rounded-lg border border-outline-variant text-sm font-medium text-primary hover:bg-surface-container-low transition-colors">Reject</button>
+<button class="flex-1 py-1.5 px-3 rounded-lg bg-primary text-on-primary text-sm font-medium hover:bg-primary/90 transition-colors">Approve</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="min-w-[280px] bg-surface-container-lowest rounded-xl border border-outline-variant p-4 shadow-sm snap-center shrink-0">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed font-headline font-medium">SM</div>
+<div>
+<p class="font-medium text-sm text-primary">Sarah Miller</p>
+<p class="text-xs text-on-surface-variant">4 hours ago</p>
+</div>
+</div>
+<div class="h-24 bg-surface-container rounded-lg mb-4 overflow-hidden relative group">
+<div class="absolute inset-0 bg-black/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">description</span>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 py-1.5 px-3 rounded-lg border border-outline-variant text-sm font-medium text-primary hover:bg-surface-container-low transition-colors">Reject</button>
+<button class="flex-1 py-1.5 px-3 rounded-lg bg-primary text-on-primary text-sm font-medium hover:bg-primary/90 transition-colors">Approve</button>
+</div>
+</div>
+</div>
+</section>
+<!-- 9. AI Insights Card -->
+<section class="bg-primary-container text-on-primary-container rounded-xl p-5 shadow-sm relative overflow-hidden">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-white/5 rounded-full blur-xl"></div>
+<div class="flex items-start gap-3 relative z-10">
+<span class="material-symbols-outlined text-accent-warm fill mt-0.5">auto_awesome</span>
+<div>
+<h4 class="font-headline font-medium text-on-primary mb-1">Insight</h4>
+<p class="text-sm text-on-primary-container mb-4">Members who received a reminder within 24 hours completed this task 41% faster.</p>
+<button class="bg-on-primary text-primary py-2 px-4 rounded-lg text-sm font-medium hover:bg-surface-variant transition-colors active:scale-95">Send Reminder to Laggards</button>
+</div>
+</div>
+</section>
+<!-- 8. Activity Timeline -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-5">
+<h3 class="font-headline font-medium text-lg text-primary mb-4">Activity Timeline</h3>
+<div class="relative border-l-2 border-surface-variant ml-3 space-y-6 pb-2">
+<div class="relative pl-6 timeline-item" style="animation-delay: 0.1s;">
+<div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-secondary border-4 border-surface-container-lowest"></div>
+<p class="text-xs text-on-surface-variant font-mono mb-1">Today, 09:41 AM</p>
+<p class="text-sm text-primary font-medium">Task reached 70% completion</p>
+</div>
+<div class="relative pl-6 timeline-item" style="animation-delay: 0.2s;">
+<div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-outline-variant border-4 border-surface-container-lowest"></div>
+<p class="text-xs text-on-surface-variant font-mono mb-1">Yesterday, 14:20 PM</p>
+<p class="text-sm text-primary">Reminder sent to Branch Gamma</p>
+</div>
+<div class="relative pl-6 timeline-item" style="animation-delay: 0.3s;">
+<div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-outline-variant border-4 border-surface-container-lowest"></div>
+<p class="text-xs text-on-surface-variant font-mono mb-1">Oct 12, 08:00 AM</p>
+<p class="text-sm text-primary">Task Assigned to 42 members</p>
+<p class="text-xs text-on-surface-variant mt-1">Created by Alex Rivera</p>
+</div>
+</div>
+</section>
+<!-- 11. Danger Zone -->
+<section class="mt-8 pt-6 border-t border-outline-variant space-y-2">
+<button class="w-full text-left py-3 px-4 rounded-lg text-error hover:bg-error-container/30 transition-colors font-medium flex items-center justify-between">
+                Pause Task <span class="material-symbols-outlined text-[20px]">pause_circle</span>
+</button>
+<button class="w-full text-left py-3 px-4 rounded-lg text-on-surface hover:bg-surface-container-low transition-colors font-medium flex items-center justify-between">
+                Duplicate Task <span class="material-symbols-outlined text-[20px]">content_copy</span>
+</button>
+<button class="w-full text-left py-3 px-4 rounded-lg text-error hover:bg-error-container/30 transition-colors font-medium flex items-center justify-between">
+                Archive Task <span class="material-symbols-outlined text-[20px]">archive</span>
+</button>
+</section>
+</main>
+<script>
+        // Simple counter animation
+        document.addEventListener("DOMContentLoaded", () => {
+            const counters = document.querySelectorAll('.counter');
+            const speed = 200; // The lower the slower
+
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText;
+                    const inc = target / speed;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc);
+                        setTimeout(updateCount, 10);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            });
+        });
+    </script>
+</body></html>

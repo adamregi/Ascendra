@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ascendra - Onboarding Step 2</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&amp;family=Newsreader:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"tertiary-fixed": "#f1dedf", "on-tertiary-fixed-variant": "#504445", "on-primary-fixed-variant": "#424843", "surface-variant": "#e5e2e0", "surface-bright": "#fcf9f7", "secondary-fixed-dim": "#bacbbe", "on-tertiary-fixed": "#23191a", "inverse-primary": "#c2c8c1", "surface-container-high": "#ebe7e6", surface: "#fcf9f7", "surface-container": "#f0edec", "on-secondary-fixed-variant": "#3b4a40", "on-error": "#ffffff", "on-tertiary": "#ffffff", "border-subtle": "#E5E5E0", "primary-fixed": "#dee4dd", "on-tertiary-container": "#a69697", "on-secondary-fixed": "#111e16", "inverse-surface": "#313030", "surface-muted": "#F2F2ED", "surface-base": "#FBFBF9", "on-primary": "#ffffff", "surface-dim": "#dcd9d8", primary: "#181e1a", secondary: "#536257", background: "#fcf9f7", "surface-container-low": "#f6f3f1", outline: "#747873", "accent-warm": "#D4AF37", "surface-tint": "#5a605a", "surface-container-highest": "#e5e2e0", "on-primary-container": "#959b94", "on-error-container": "#93000a", "inverse-on-surface": "#f3f0ef", "on-secondary-container": "#59685d", "secondary-fixed": "#d6e7d9", "surface-container-lowest": "#ffffff", "secondary-container": "#d6e7d9", "on-surface": "#1c1c1b", "tertiary-fixed-dim": "#d4c2c3", "on-surface-variant": "#444844", "outline-variant": "#c4c7c2", "primary-container": "#2d332e", "error-container": "#ffdad6", "on-secondary": "#ffffff", "primary-fixed-dim": "#c2c8c1", "on-background": "#1c1c1b", "on-primary-fixed": "#171d18", tertiary: "#241a1b", "tertiary-container": "#3a2f30", error: "#ba1a1a"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, spacing: {gutter: "24px", "container-max": "1200px", "stack-lg": "32px", "margin-mobile": "20px", "margin-desktop": "64px", "stack-md": "16px", base: "4px", "stack-sm": "8px"}, fontFamily: {"display-lg-mobile": ["Newsreader"], "display-lg": ["Newsreader"], "body-md": ["Hanken Grotesk"], "label-sm": ["Hanken Grotesk"], "headline-md": ["Newsreader"], "body-lg": ["Hanken Grotesk"], "label-md": ["Hanken Grotesk"], "headline-sm": ["Newsreader"], headline: ["Newsreader"], display: ["Newsreader"], body: ["Hanken Grotesk"], label: ["Hanken Grotesk"]}, fontSize: {"display-lg-mobile": ["36px", {lineHeight: "44px", letterSpacing: "-0.01em", fontWeight: "600"}], "display-lg": ["48px", {lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "600"}], "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}], "label-sm": ["12px", {lineHeight: "16px", fontWeight: "500"}], "headline-md": ["32px", {lineHeight: "40px", fontWeight: "500"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "label-md": ["14px", {lineHeight: "20px", letterSpacing: "0.05em", fontWeight: "600"}], "headline-sm": ["24px", {lineHeight: "32px", fontWeight: "500"}]}}}};</script>
+<style>
+        /* Custom Animations */
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .animate-slide-in {
+            animation: slideInRight 400ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .animate-fade-badge {
+            opacity: 0;
+            animation: fadeInScale 500ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+
+        @keyframes drawRing {
+            to { stroke-dashoffset: 0; }
+        }
+
+        .ring-draw {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: drawRing 800ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        @keyframes subtlePulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+
+        .amber-pulse {
+            animation: subtlePulse 4s ease-in-out infinite;
+        }
+
+        .glass-badge {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background h-screen w-full overflow-hidden flex flex-col font-body-md animate-slide-in selection:bg-primary selection:text-on-primary">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between px-margin-mobile pt-8 pb-4 w-full z-20 shrink-0">
+<button class="h-10 w-10 flex items-center justify-center rounded-full hover:bg-surface-variant/50 transition-colors active:scale-95 text-on-surface">
+<span class="material-symbols-outlined text-2xl" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors uppercase tracking-wider">
+            Skip
+        </button>
+</header>
+<!-- Main Content Container -->
+<main class="flex-1 flex flex-col w-full max-w-md mx-auto relative h-full">
+<!-- Illustration Zone (Top 50%) -->
+<div class="flex-1 relative w-full flex items-center justify-start pl-margin-mobile pr-4 overflow-hidden min-h-[300px]">
+<!-- Soft Indigo Glow -->
+<div class="absolute -left-20 top-1/2 -translate-y-1/2 w-64 h-64 bg-indigo-500/10 rounded-full blur-[60px] pointer-events-none"></div>
+<!-- Calendar / Rings SVG Graphic -->
+<div class="relative w-full max-w-[280px] aspect-square"><!-- Leadership Command Center Visualization -->
+<div class="absolute inset-0 bg-white rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.03)] border border-border-subtle p-6 flex flex-col items-center justify-center overflow-visible">
+<svg class="w-full h-full overflow-visible" viewbox="0 0 100 100">
+<!-- Central Leader Node Glow -->
+<circle class="animate-pulse" cx="50" cy="50" fill="#10B981" opacity="0.1" r="12"></circle>
+<!-- Concentric Glass Rings -->
+<circle cx="50" cy="50" fill="none" r="42" stroke="#F2F2ED" stroke-width="0.5"></circle>
+<circle cx="50" cy="50" fill="none" r="30" stroke="#F2F2ED" stroke-width="0.5"></circle>
+<circle cx="50" cy="50" fill="none" r="18" stroke="#F2F2ED" stroke-width="0.5"></circle>
+<!-- Ring Segments (Status Indicators) -->
+<!-- Outer Ring: Compliance -->
+<path class="ring-draw" d="M 50 8 A 42 42 0 0 1 92 50" fill="none" stroke="#10B981" stroke-linecap="round" stroke-width="1.5"></path>
+<path class="ring-draw delay-300" d="M 92 50 A 42 42 0 0 1 50 92" fill="none" stroke="#F59E0B" stroke-linecap="round" stroke-width="1.5"></path>
+<!-- Middle Ring: Attendance -->
+<path class="ring-draw delay-500" d="M 50 20 A 30 30 0 1 1 20 50" fill="none" stroke="#10B981" stroke-linecap="round" stroke-width="1.5"></path>
+<!-- Inner Ring: Performance -->
+<path class="ring-draw delay-[700ms]" d="M 50 34 A 16 16 0 0 1 66 50" fill="none" stroke="#EF4444" stroke-linecap="round" stroke-width="1.5"></path>
+<!-- Member Nodes (Orbiting) -->
+<!-- Compliant Node -->
+<circle class="animate-fade-badge delay-300" cx="92" cy="50" fill="#10B981" r="2.5"></circle>
+<!-- At Risk Node -->
+<circle class="animate-fade-badge delay-500" cx="50" cy="92" fill="#F59E0B" r="2.5"></circle>
+<!-- High Risk Node -->
+<circle class="animate-fade-badge delay-[700ms]" cx="66" cy="50" fill="#EF4444" r="2.5"></circle>
+<!-- Central Leader Node -->
+<circle cx="50" cy="50" fill="#181e1a" r="4"></circle>
+<circle cx="50" cy="50" fill="none" opacity="0.3" r="6" stroke="#181e1a" stroke-width="0.5"></circle>
+</svg>
+</div>
+<!-- Floating Glass Badges (Repositioned for new visual) -->
+<div class="absolute -right-4 top-8 glass-badge px-3 py-2 rounded-xl flex items-center gap-2 animate-fade-badge delay-300 shadow-sm shadow-black/5 z-10">
+<div class="w-2 h-2 rounded-full bg-teal-500"></div>
+<span class="font-label-sm text-label-sm text-on-surface whitespace-nowrap">96% Attendance</span>
+</div>
+<div class="absolute -left-6 bottom-20 glass-badge px-3 py-2 rounded-xl flex items-center gap-2 animate-fade-badge delay-400 shadow-sm shadow-black/5 z-10">
+<div class="w-2 h-2 rounded-full bg-amber-500"></div>
+<span class="font-label-sm text-label-sm text-on-surface whitespace-nowrap">Needs Attention</span>
+</div>
+<div class="absolute right-0 bottom-4 glass-badge px-3 py-2 rounded-xl flex items-center gap-2 animate-fade-badge delay-500 shadow-sm shadow-black/5 z-10">
+<div class="w-2 h-2 rounded-full bg-red-500"></div>
+<span class="font-label-sm text-label-sm text-on-surface whitespace-nowrap">High Risk</span>
+</div></div>
+</div>
+<!-- Content Zone (Bottom 50%) -->
+<div class="px-margin-mobile flex flex-col justify-end pb-[120px] z-20 bg-gradient-to-t from-background via-background to-transparent pt-12">
+<div class="mb-stack-lg">
+<span class="block font-label-md text-[11px] leading-[16px] font-semibold text-teal-600 uppercase tracking-[0.15em] mb-3">
+                    COMPLIANCE
+                </span>
+<h1 class="font-headline-md text-headline-md text-on-surface mb-stack-md pr-8">
+                    Know who's compliant before it's too late.
+                </h1>
+<p class="font-body-md text-[15px] leading-[24px] text-on-surface-variant pr-4">
+                    Track attendance automatically, identify risk early, and help your team stay on course before progress drops.
+                </p>
+</div>
+<!-- Progress Dots -->
+<div class="flex items-center gap-2 mb-stack-lg">
+<div class="w-2 h-2 rounded-full bg-surface-dim transition-colors duration-300"></div>
+<div class="w-6 h-2 rounded-full bg-indigo-600 transition-all duration-300"></div>
+<div class="w-2 h-2 rounded-full bg-surface-dim transition-colors duration-300"></div>
+</div>
+</div>
+<!-- Fixed Bottom CTA -->
+<div class="fixed bottom-0 left-0 w-full px-[20px] pb-[40px] bg-gradient-to-t from-background via-background to-transparent z-50">
+<button class="w-full h-[56px] hover:bg-indigo-700 active:bg-indigo-800 rounded-[12px] font-label-md text-label-md flex items-center justify-center gap-2 transition-all duration-200 active:-translate-y-[1px] shadow-[0_4px_14px_0_rgba(79,70,229,0.39)] bg-primary text-on-primary">
+                Next <span class="material-symbols-outlined text-lg" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</main>
+</body></html>

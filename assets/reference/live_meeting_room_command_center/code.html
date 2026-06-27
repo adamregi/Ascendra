@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Ascendra - Live Meeting Room</title>
+<!-- Fonts: Newsreader (Headlines), Hanken Grotesk (Body/Labels), JetBrains Mono (Timer) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Newsreader:opsz,wght@6..72,400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration (Theme injected) -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#444844",
+                        "on-surface": "#1c1c1b",
+                        "tertiary-fixed": "#f1dedf",
+                        "surface-tint": "#5a605a",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#dcd9d8",
+                        "tertiary-container": "#3a2f30",
+                        "tertiary": "#241a1b",
+                        "primary-container": "#2d332e",
+                        "primary": "#181e1a",
+                        "inverse-surface": "#313030",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#d4c2c3",
+                        "primary-fixed-dim": "#c2c8c1",
+                        "secondary": "#536257",
+                        "surface-container": "#f0edec",
+                        "on-tertiary-fixed": "#23191a",
+                        "on-secondary-container": "#59685d",
+                        "on-background": "#1c1c1b",
+                        "surface-variant": "#e5e2e0",
+                        "primary-fixed": "#dee4dd",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-secondary-fixed": "#111e16",
+                        "on-primary-container": "#959b94",
+                        "on-tertiary-fixed-variant": "#504445",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#fcf9f7",
+                        "surface-container-low": "#f6f3f1",
+                        "surface-container-highest": "#e5e2e0",
+                        "secondary-fixed-dim": "#bacbbe",
+                        "surface-container-high": "#ebe7e6",
+                        "secondary-container": "#d6e7d9",
+                        "on-tertiary-container": "#a69697",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#c4c7c2",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed-variant": "#3b4a40",
+                        "inverse-primary": "#c2c8c1",
+                        "on-primary-fixed-variant": "#424843",
+                        "surface": "#fcf9f7",
+                        "background": "#fcf9f7",
+                        "secondary-fixed": "#d6e7d9",
+                        "outline": "#747873",
+                        "on-primary-fixed": "#171d18",
+                        "accent-warm": "#D4AF37"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader", "serif"],
+                        "body": ["Hanken Grotesk", "sans-serif"],
+                        "label": ["Hanken Grotesk", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Hide scrollbar for participant tray */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body overflow-hidden h-screen w-screen flex flex-col relative antialiased">
+<!-- Top Navigation Anchor (Hidden TopAppBar logic, but keeping the visual anchor) -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-5 py-4 bg-gradient-to-b from-surface/80 to-transparent backdrop-blur-sm shadow-none pointer-events-none">
+<!-- We use an empty header to fulfill the "TopAppBar" structure but keep it transparent to not block the video feed, mostly just a gradient -->
+</header>
+<!-- Main Content Area: Full Screen Video -->
+<main class="flex-grow relative w-full h-full bg-surface-container-low flex items-center justify-center">
+<!-- Main Speaker Video Placeholder -->
+<div class="absolute inset-0 w-full h-full object-cover z-0" data-alt="A sophisticated, high-end corporate meeting room with soft, warm lighting. A professional executive is speaking directly to the camera, captured in a shallow depth of field. The aesthetic is serene, modernist, and executive-grade, utilizing a color palette of off-whites, subtle warm grays, and deep blacks. The mood is quiet, immersive, and highly professional." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAoQLPhBc5x-JpryVR5hTprT5GCThVdvBrtwAqAPedpLj_CttbfrZSUdGm8F0rc5fFpRNBqr23zwQC9ayOXl0hvIvAMxhyqJ9ppMKZHp_8amS4KsP6Lgei5H79S3nUONA_X5PN23f2OOfFf2YW5FXUa6LiMyiX6BkFFLYqwRa1AbHGmHShXVv-uoFBng9m9lpPUDwr5a9cIc8CJnfkt4ztyW_00rFDudHrvi_ZbctCTaWpZkDOXTmQKnY8vZGvjuyQYX5uCAYfrkCL6'); background-position: center; background-size: cover;">
+<!-- Fallback overlay if camera is off (simulated here as mostly transparent) -->
+<div class="absolute inset-0 bg-surface/10 flex items-center justify-center">
+<!-- <div class="w-32 h-32 rounded-full bg-surface-variant flex items-center justify-center text-display-lg text-primary shadow-sm border border-surface-container-high">V</div> -->
+</div>
+</div>
+<!-- Overlays Layer -->
+<div class="absolute inset-0 z-10 pointer-events-none flex flex-col justify-between p-5">
+<!-- Top Overlays -->
+<div class="flex justify-between items-start w-full">
+<!-- LIVE Badge & Timer -->
+<div class="flex items-center gap-2 bg-surface/70 backdrop-blur-md rounded-full pl-2 pr-4 py-1.5 border border-surface-variant/50 shadow-sm pointer-events-auto">
+<div class="flex items-center justify-center w-6 h-6 rounded-full bg-error/10">
+<div class="w-2.5 h-2.5 rounded-full bg-error animate-pulse"></div>
+</div>
+<span class="font-mono text-[13px] font-medium text-primary tracking-wide">01:24:05</span>
+</div>
+<!-- Participant Count -->
+<div class="flex items-center gap-1.5 bg-surface/70 backdrop-blur-md rounded-full px-3 py-1.5 border border-surface-variant/50 shadow-sm pointer-events-auto">
+<span class="material-symbols-outlined text-[18px] text-secondary">group</span>
+<span class="font-label text-label-md text-primary">152</span>
+</div>
+</div>
+<!-- Bottom Area (Above Nav) -->
+<div class="w-full flex flex-col gap-4 pb-24 pointer-events-auto">
+<!-- PiP (Picture in Picture) - Self View -->
+<div class="self-end w-[80px] h-[100px] rounded-lg overflow-hidden shadow-md border border-surface-variant/30 mb-2 relative">
+<div class="absolute inset-0 bg-surface-container flex items-center justify-center" data-alt="A close-up portrait of a male executive in a well-lit, minimalist home office. The lighting is soft and flattering, casting gentle shadows. The overall aesthetic aligns with a serene modernist design, using muted earth tones and crisp whites." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBigkfbghBpyBGr3HSP0Xt1mql2Ct644eqPK7IG0JB3Nb79TPyKzslR1_oEhAJZYYoMGiibLCyMELLRn7FNgzYxx_f-VXPA8jA6htyJkCCe4hPQuS5lRP1qw6JkxLhBksgoRNgywSO-cXa1DU28rykt6DJJEt72nHmTMyL32x-tLtHqcpJC-Hl8lFUsnx2d4Gv0GWok5pXJFp2lSKBPtxP_UAQLm8ofGIVUVaq-866DooXzFWQQa-A5QnTOjjtoBoLBjqOGqnif9z_r'); background-position: center; background-size: cover;">
+</div>
+</div>
+<!-- Participant Tray -->
+<div class="w-full -mx-5 px-5">
+<div class="flex gap-3 overflow-x-auto no-scrollbar pb-2">
+<!-- Participant 1 (Muted) -->
+<div class="flex flex-col items-center gap-1 min-w-[52px]">
+<div class="relative w-[44px] h-[44px]">
+<div class="w-full h-full rounded-full overflow-hidden border border-surface-variant shadow-sm bg-surface-container" data-alt="Portrait of a female professional in a modern, well-lit environment. Serene modernist style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC1b6DOq4Xhf5_K2pQev3fzCup-3ROjDrO7KecGcTdPJkVpTi1zHwO_aJFW5LF8uL06uCv4GiDcYjF5WlmIdNVUHz42OBzDd4VYxs4kzdmECTXTkE2oqE1XsLqmtNA5kWnZpSI09vBiPdNQ1OmK61emVlFjqViqNNlWNf0QQwWTz1ohaLxch_Dii9gHJlElZbB1ztZIz3kK5SVIRywxRyqXA8bcDxEE5PykMPhlzDQstTyIZhgFa5rVUD1NwX-tysRr9-kcPuHv_G9j'); background-position: center; background-size: cover;"></div>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-surface flex items-center justify-center shadow-sm border border-surface-variant/50">
+<span class="material-symbols-outlined text-[12px] text-error fill">mic_off</span>
+</div>
+</div>
+<span class="font-label text-[11px] text-on-surface bg-surface/60 backdrop-blur-sm px-1.5 rounded truncate max-w-[50px]">Sarah</span>
+</div>
+<!-- Participant 2 -->
+<div class="flex flex-col items-center gap-1 min-w-[52px]">
+<div class="relative w-[44px] h-[44px]">
+<div class="w-full h-full rounded-full overflow-hidden border-2 border-accent-warm shadow-sm bg-surface-container" data-alt="Portrait of a male professional speaking. Serene modernist style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBvJWejebILYAvBkM8ONtNegtKendkOdRZgQNii0r24G_Vv8nyyB3eb9kqrkQgLzNk4u491TckU_lrZ7PseQO892Pgfub2DH5ORkK7XNQUSt5hmEZ-JMngVvrwUsUX25LaSFVgkA59uzzpPC26uARp01uUni77E0cDz3lzkj0QR88w1f0gL7O22ihwTMzqhUDME8SGfp3QNgnhFrpN_bYeb-uEhE9Plb2qFoajkd1sVBtnPo3a9EKD344Uahn4jAG6aFEb1anZtWFUK'); background-position: center; background-size: cover;"></div>
+</div>
+<span class="font-label text-[11px] text-on-surface bg-surface/60 backdrop-blur-sm px-1.5 rounded truncate max-w-[50px]">Michael</span>
+</div>
+<!-- Participant 3 (Muted) -->
+<div class="flex flex-col items-center gap-1 min-w-[52px]">
+<div class="relative w-[44px] h-[44px]">
+<div class="w-full h-full rounded-full overflow-hidden border border-surface-variant shadow-sm bg-surface-container flex items-center justify-center text-primary font-headline text-lg bg-surface-container-high">
+                                    E
+                                </div>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-surface flex items-center justify-center shadow-sm border border-surface-variant/50">
+<span class="material-symbols-outlined text-[12px] text-error fill">mic_off</span>
+</div>
+</div>
+<span class="font-label text-[11px] text-on-surface bg-surface/60 backdrop-blur-sm px-1.5 rounded truncate max-w-[50px]">Elena</span>
+</div>
+<!-- Participant 4 (Muted) -->
+<div class="flex flex-col items-center gap-1 min-w-[52px]">
+<div class="relative w-[44px] h-[44px]">
+<div class="w-full h-full rounded-full overflow-hidden border border-surface-variant shadow-sm bg-surface-container" data-alt="Portrait of a professional woman. Serene modernist style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC12N2Uiw-qS6Y7EHoUFfshKsVTcVKNtccsyLs6t20UgCNT1nkAY5ti3bLK2Xkm22NeA1-ggzr0HZyJUQ20Xd4bJsipCoZgVtn8CWe8yRW5ynXtETypyPcqRqUh35vhx82V5CBRkibNhqamdojCT17wNXsFGtczEluB9oSjbs8ejVr4WANJXQrSm6mZugCLDzVilCptIvgh2YvCkbH_VzNzbIPrKqtb53XNuHLOefjMmdX3RVHKXScibISuSRtfLHCwi3NHN5dJIeq6'); background-position: center; background-size: cover;"></div>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-surface flex items-center justify-center shadow-sm border border-surface-variant/50">
+<span class="material-symbols-outlined text-[12px] text-error fill">mic_off</span>
+</div>
+</div>
+<span class="font-label text-[11px] text-on-surface bg-surface/60 backdrop-blur-sm px-1.5 rounded truncate max-w-[50px]">Chloe</span>
+</div>
+<!-- Participant 5 (Muted) -->
+<div class="flex flex-col items-center gap-1 min-w-[52px]">
+<div class="relative w-[44px] h-[44px]">
+<div class="w-full h-full rounded-full overflow-hidden border border-surface-variant shadow-sm bg-surface-container" data-alt="Portrait of a professional man. Serene modernist style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAVCjspEk0-5QLqqxtaFU2CzhNJdpVBtgln9TnNhxkxd5eUw5uDv_7SRp-NYZvHuj8An4xTduS5eCtbMllWS622r9oR7C5bN0c4Jwum5_qmjAvehj8mISOYLdFSpVP9bdiZM0q7eAwG64GtlbCJIiBYG1kwYYkpDg7K11xI6WgnpgzF7SmPaV7tM-SglqP0diXMCpzqK4LSqIRLV47FglVBtCNdOD8xHDTk-boSkQd8qWhQYxW-TuxxDTZhMhQlCs3eQuc8b5eRV19W'); background-position: center; background-size: cover;"></div>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-surface flex items-center justify-center shadow-sm border border-surface-variant/50">
+<span class="material-symbols-outlined text-[12px] text-error fill">mic_off</span>
+</div>
+</div>
+<span class="font-label text-[11px] text-on-surface bg-surface/60 backdrop-blur-sm px-1.5 rounded truncate max-w-[50px]">David</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Control Bar) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-center items-center pb-safe px-4 mb-8">
+<div class="bg-surface-container/80 dark:bg-surface-dim/80 backdrop-blur-xl border border-outline-variant/30 shadow-lg rounded-full px-4 py-2 flex items-center justify-between w-full max-w-sm gap-2">
+<!-- Mic (Muted State - Crimson) -->
+<button class="w-12 h-12 flex flex-col items-center justify-center rounded-full bg-error/10 text-error hover:bg-error/20 transition-colors">
+<span class="material-symbols-outlined fill">mic_off</span>
+</button>
+<!-- Camera (Active) -->
+<button class="w-12 h-12 flex flex-col items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">videocam</span>
+</button>
+<!-- Screen Share -->
+<button class="w-12 h-12 flex flex-col items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">screen_share</span>
+</button>
+<!-- Participants -->
+<button class="w-12 h-12 flex flex-col items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">group</span>
+</button>
+<!-- End Call (Crimson, slightly larger visual weight handled by color/bg) -->
+<button class="w-14 h-14 flex flex-col items-center justify-center rounded-full bg-error text-on-error hover:bg-error/90 transition-colors shadow-sm ml-2">
+<span class="material-symbols-outlined">call_end</span>
+</button>
+</div>
+</nav>
+</body></html>

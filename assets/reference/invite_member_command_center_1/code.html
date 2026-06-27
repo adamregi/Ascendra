@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Invite Member - Ascendra</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;600&amp;family=Hanken+Grotesk:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary": "#536257",
+                        "secondary-fixed": "#d6e7d9",
+                        "tertiary": "#241a1b",
+                        "surface-dim": "#dcd9d8",
+                        "surface-container-low": "#f6f3f1",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#2d332e",
+                        "tertiary-container": "#3a2f30",
+                        "on-secondary-fixed-variant": "#3b4a40",
+                        "surface-variant": "#e5e2e0",
+                        "on-surface-variant": "#444844",
+                        "on-tertiary-container": "#a69697",
+                        "tertiary-fixed-dim": "#d4c2c3",
+                        "inverse-primary": "#c2c8c1",
+                        "primary-fixed-dim": "#c2c8c1",
+                        "on-secondary-container": "#59685d",
+                        "on-primary-container": "#959b94",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#424843",
+                        "tertiary-fixed": "#f1dedf",
+                        "secondary-container": "#d6e7d9",
+                        "primary-fixed": "#dee4dd",
+                        "on-secondary-fixed": "#111e16",
+                        "surface": "#fcf9f7",
+                        "inverse-on-surface": "#f3f0ef",
+                        "background": "#fcf9f7",
+                        "primary": "#181e1a",
+                        "outline-variant": "#c4c7c2",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#504445",
+                        "surface-container-high": "#ebe7e6",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#171d18",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "surface-container": "#f0edec",
+                        "on-tertiary-fixed": "#23191a",
+                        "on-background": "#1c1c1b",
+                        "surface-container-highest": "#e5e2e0",
+                        "on-surface": "#1c1c1b",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#5a605a",
+                        "secondary-fixed-dim": "#bacbbe",
+                        "outline": "#747873",
+                        "inverse-surface": "#313030",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#fcf9f7"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        "headline": ["Newsreader", "serif"],
+                        "body": ["Hanken Grotesk", "sans-serif"],
+                        "label": ["Hanken Grotesk", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    },
+                    keyframes: {
+                        scan: {
+                            '0%': { transform: 'translateY(-100%)' },
+                            '100%': { transform: 'translateY(100%)' },
+                        },
+                        slideUpFade: {
+                            '0%': { opacity: 0, transform: 'translateY(20px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' }
+                        },
+                        springScale: {
+                            '0%': { transform: 'scale(0.8)', opacity: 0 },
+                            '60%': { transform: 'scale(1.05)' },
+                            '100%': { transform: 'scale(1)', opacity: 1 }
+                        },
+                        pulseGentle: {
+                            '0%, 100%': { opacity: 1 },
+                            '50%': { opacity: 0.6 }
+                        }
+                    },
+                    animation: {
+                        'scan': 'scan 2s ease-in-out infinite',
+                        'slide-up-fade': 'slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'spring-scale': 'springScale 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+                        'pulse-gentle': 'pulseGentle 2s ease-in-out infinite'
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-headline { font-family: 'Newsreader', serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* Initial states for stagger animations */
+        .stagger-item { opacity: 0; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-[#FCF9F7] text-on-background antialiased min-h-screen flex flex-col relative overflow-x-hidden pb-24">
+<!-- TopAppBar -->
+<header class="bg-surface/80 backdrop-blur-md text-primary font-headline-md text-headline-md docked full-width top-0 sticky z-50 shadow-sm shadow-primary/5 border-b border-white/20">
+<div class="flex items-center justify-between px-5 py-4 w-full max-w-[1200px] mx-auto">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-variant/30 transition-colors duration-200 active:scale-95 text-on-surface-variant">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_back</span>
+</button>
+<h1 class="font-headline font-semibold text-xl tracking-tight text-primary absolute left-1/2 -translate-x-1/2">Invite Member</h1>
+<div class="w-10"></div> <!-- Spacer for centering -->
+</div>
+</header>
+<main class="flex-1 w-full max-w-md mx-auto px-5 py-6 space-y-8">
+<!-- Hero QR Card -->
+<section class="glass-panel rounded-3xl p-6 flex flex-col items-center justify-center space-y-4 shadow-sm shadow-primary/5 stagger-item" style="animation-delay: 0.1s;">
+<div class="text-center space-y-1 mb-2">
+<p class="font-label text-xs font-semibold text-on-surface-variant tracking-widest uppercase">Scan to Join</p>
+<h2 class="font-headline text-2xl font-medium text-primary">Vignesh's Global Branch</h2>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-2xl shadow-sm border border-border-subtle relative overflow-hidden group w-60 h-60 flex items-center justify-center qr-container opacity-0">
+<!-- Decorative scan line -->
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent h-full w-full opacity-0 group-hover:opacity-100 group-hover:animate-scan pointer-events-none"></div>
+<!-- Mock QR Code (using a detailed placeholder image to represent it professionally) -->
+<img alt="QR Code" class="w-full h-full object-cover rounded-xl" data-alt="A highly crisp, minimalist representation of a QR code generated with stark black squares on a pure white background. It is framed perfectly in a square aspect ratio. The lighting is bright and even, fitting a pristine modern user interface. Subtle gradients or branding elements might be faintly visible within the matrix, suggesting a high-tech, secure data transfer mechanism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8ynjMjfA2Sgme6fVL_DNpbejytZTRsWL-7nXVr4eRwhJRJHjFNmIJKL-kfjiyrKnFtBNe0nY1wydtkwXNZUjm6wSoAsRfiyD9wlEJ7nLGQNnWqe6ooemnzUywCrfu5UZpGSMD_gwwsD7HhYM10basieOu7QUJKUqVnDhuDN-cQEtx2yWVqcC--rPDv4FfG311txVRzhTmRDVxHJ6hLn9B3Deyg3b-W1l8jW6ejIyE1VNXApQxIWhPrPxgAwKPxS0fuolDczwUI5ri"/>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant mt-2 animate-pulse-gentle">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-body text-sm">Secure Ascendra Link</span>
+</div>
+</section>
+<!-- Invite Code Section -->
+<section class="space-y-3 stagger-item" style="animation-delay: 0.2s;">
+<label class="font-label text-sm font-semibold text-on-surface-variant pl-1">Direct Invite Code</label>
+<div class="glass-panel rounded-2xl flex items-center justify-between p-2 pl-5 shadow-sm">
+<span class="font-mono text-xl font-semibold tracking-wider text-primary">TEAM-X7K2M9</span>
+<button class="bg-primary text-on-primary font-label text-sm px-5 py-3 rounded-xl hover:bg-primary-container transition-all active:scale-95 flex items-center gap-2" id="copyCodeBtn">
+<span class="material-symbols-outlined text-sm" id="copyIcon" style="font-variation-settings: 'FILL' 0;">content_copy</span>
+<span id="copyText">Copy</span>
+</button>
+</div>
+</section>
+<!-- Share Actions -->
+<section class="grid grid-cols-4 gap-4 stagger-item" style="animation-delay: 0.3s;">
+<button class="flex flex-col items-center gap-2 group active:scale-95 transition-transform">
+<div class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary group-hover:text-on-primary transition-colors text-primary shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">chat</span>
+</div>
+<span class="font-label text-xs text-on-surface-variant font-medium">Message</span>
+</button>
+<button class="flex flex-col items-center gap-2 group active:scale-95 transition-transform">
+<div class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary group-hover:text-on-primary transition-colors text-primary shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">mail</span>
+</div>
+<span class="font-label text-xs text-on-surface-variant font-medium">Email</span>
+</button>
+<button class="flex flex-col items-center gap-2 group active:scale-95 transition-transform">
+<div class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary group-hover:text-on-primary transition-colors text-primary shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">link</span>
+</div>
+<span class="font-label text-xs text-on-surface-variant font-medium">Copy Link</span>
+</button>
+<button class="flex flex-col items-center gap-2 group active:scale-95 transition-transform">
+<div class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary group-hover:text-on-primary transition-colors text-primary shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">more_horiz</span>
+</div>
+<span class="font-label text-xs text-on-surface-variant font-medium">More</span>
+</button>
+</section>
+<hr class="border-border-subtle stagger-item" style="animation-delay: 0.4s;"/>
+<!-- Expiry Control -->
+<section class="space-y-3 stagger-item" style="animation-delay: 0.5s;">
+<div class="flex justify-between items-center pl-1">
+<label class="font-label text-sm font-semibold text-on-surface-variant">Link Expiry</label>
+<span class="font-body text-xs text-outline">For 'TEAM-X7K2M9'</span>
+</div>
+<div class="bg-surface-container-high p-1 rounded-xl flex relative" id="expiryControl">
+<div class="absolute inset-y-1 left-1 w-[calc(25%-0.5rem)] bg-surface-container-lowest rounded-lg shadow-sm transition-transform duration-300 ease-out translate-x-[200%]" id="expiryIndicator"></div>
+<button class="flex-1 py-2 font-label text-sm font-medium rounded-lg text-on-surface-variant hover:text-primary transition-colors relative z-10 expiry-btn" data-index="0">24h</button>
+<button class="flex-1 py-2 font-label text-sm font-medium rounded-lg text-on-surface-variant hover:text-primary transition-colors relative z-10 expiry-btn" data-index="1">7d</button>
+<button class="flex-1 py-2 font-label text-sm font-semibold rounded-lg text-primary transition-all relative z-10 expiry-btn active" data-index="2">30d</button>
+<button class="flex-1 py-2 font-label text-sm font-medium rounded-lg text-on-surface-variant hover:text-primary transition-colors relative z-10 expiry-btn" data-index="3">Never</button>
+</div>
+</section>
+<!-- Invite Activity (Added as per request) -->
+<section class="glass-panel rounded-3xl p-6 shadow-sm shadow-primary/5 space-y-4 stagger-item" style="animation-delay: 0.6s;">
+<h3 class="font-label text-sm font-semibold text-on-surface-variant tracking-widest uppercase">Invite Activity</h3>
+<div class="grid grid-cols-3 gap-4 text-center">
+<div>
+<div class="font-headline text-3xl text-primary counter" data-target="12">0</div>
+<div class="font-label text-xs text-on-surface-variant mt-1">Total Clicks</div>
+</div>
+<div>
+<div class="font-headline text-3xl text-primary counter" data-target="5">0</div>
+<div class="font-label text-xs text-on-surface-variant mt-1">Joined</div>
+</div>
+<div>
+<div class="font-headline text-3xl text-primary counter" data-target="2">0</div>
+<div class="font-label text-xs text-on-surface-variant mt-1">Pending</div>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-border-subtle">
+<h4 class="font-label text-xs font-semibold text-on-surface-variant tracking-widest uppercase mb-3">Recent</h4>
+<ul class="space-y-3" id="recentInvites">
+<li class="flex items-center gap-3 recent-item opacity-0 translate-y-2 transition-all duration-300">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-primary font-body text-xs font-semibold">SA</div>
+<div class="flex-1">
+<div class="font-label text-sm text-primary font-medium">Sarah Adams</div>
+<div class="font-body text-xs text-on-surface-variant">Joined 2h ago</div>
+</div>
+</li>
+<li class="flex items-center gap-3 recent-item opacity-0 translate-y-2 transition-all duration-300">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-primary font-body text-xs font-semibold">MR</div>
+<div class="flex-1">
+<div class="font-label text-sm text-primary font-medium">Michael Ross</div>
+<div class="font-body text-xs text-on-surface-variant">Pending</div>
+</div>
+</li>
+</ul>
+</div>
+</section>
+</main>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Apply stagger animations
+        if (!prefersReducedMotion) {
+            document.querySelectorAll('.stagger-item').forEach((el) => {
+                el.classList.add('animate-slide-up-fade');
+            });
+
+            // Spring scale for QR
+            const qrContainer = document.querySelector('.qr-container');
+            if(qrContainer) {
+                setTimeout(() => {
+                    qrContainer.classList.add('animate-spring-scale');
+                }, 150);
+            }
+
+            // Stagger recent invites
+            const recentItems = document.querySelectorAll('.recent-item');
+            recentItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, 700 + (index * 150));
+            });
+        } else {
+            document.querySelectorAll('.stagger-item').forEach(el => el.style.opacity = 1);
+            const qrContainer = document.querySelector('.qr-container');
+            if(qrContainer) qrContainer.style.opacity = 1;
+            document.querySelectorAll('.recent-item').forEach(el => {
+                el.style.opacity = 1;
+                el.style.transform = 'none';
+            });
+        }
+
+        // Copy Code Interaction
+        const copyBtn = document.getElementById('copyCodeBtn');
+        const copyIcon = document.getElementById('copyIcon');
+        const copyText = document.getElementById('copyText');
+        
+        if(copyBtn) {
+            copyBtn.addEventListener('click', function() {
+                // Haptic scale effect
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => this.style.transform = 'scale(1)', 150);
+
+                copyIcon.innerHTML = 'check';
+                copyIcon.style.fontVariationSettings = "'FILL' 1";
+                copyText.innerHTML = 'Copied';
+                this.classList.add('bg-secondary', 'text-on-secondary');
+                this.classList.remove('bg-primary', 'text-on-primary');
+                
+                setTimeout(() => {
+                    copyIcon.innerHTML = 'content_copy';
+                    copyIcon.style.fontVariationSettings = "'FILL' 0";
+                    copyText.innerHTML = 'Copy';
+                    this.classList.remove('bg-secondary', 'text-on-secondary');
+                    this.classList.add('bg-primary', 'text-on-primary');
+                }, 2000);
+            });
+        }
+
+        // Expiry Control Slider
+        const expiryBtns = document.querySelectorAll('.expiry-btn');
+        const indicator = document.getElementById('expiryIndicator');
+        
+        if (expiryBtns.length && indicator) {
+            expiryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Reset all
+                    expiryBtns.forEach(b => {
+                        b.classList.remove('font-semibold', 'active');
+                        b.classList.add('font-medium');
+                    });
+                    
+                    // Set active
+                    this.classList.add('font-semibold', 'active');
+                    this.classList.remove('font-medium');
+                    
+                    // Move indicator
+                    const index = parseInt(this.getAttribute('data-index'));
+                    // Using percentage based on 4 buttons. (25% per button)
+                    // The indicator width is 25% - padding, so translation is simple:
+                    indicator.style.transform = `translateX(${index * 100}%)`;
+                });
+            });
+        }
+
+        // Counter Animation
+        const counters = document.querySelectorAll('.counter');
+        const duration = 1000; // 1 second
+        
+        if (!prefersReducedMotion && counters.length > 0) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = parseInt(entry.target.getAttribute('data-target'));
+                        const startTime = performance.now();
+                        
+                        const updateCounter = (currentTime) => {
+                            const elapsed = currentTime - startTime;
+                            const progress = Math.min(elapsed / duration, 1);
+                            
+                            // Easing easeOutQuart
+                            const easeProgress = 1 - Math.pow(1 - progress, 4);
+                            const current = Math.floor(easeProgress * target);
+                            
+                            entry.target.innerText = current;
+                            
+                            if (progress < 1) {
+                                requestAnimationFrame(updateCounter);
+                            } else {
+                                entry.target.innerText = target;
+                            }
+                        };
+                        
+                        requestAnimationFrame(updateCounter);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            counters.forEach(counter => observer.observe(counter));
+        } else {
+             counters.forEach(counter => {
+                 counter.innerText = counter.getAttribute('data-target');
+             });
+        }
+    });
+</script>
+</body></html>

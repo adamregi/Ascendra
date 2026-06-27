@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Learning &amp; Knowledge Command Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;600&amp;family=Hanken+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-container": "#3a2f30",
+                      "on-primary": "#ffffff",
+                      "secondary-fixed-dim": "#bacbbe",
+                      "inverse-primary": "#c2c8c1",
+                      "on-error-container": "#93000a",
+                      "outline-variant": "#c4c7c2",
+                      "tertiary": "#241a1b",
+                      "surface-container-highest": "#e5e2e0",
+                      "surface-container": "#f0edec",
+                      "on-background": "#1c1c1b",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-fixed-variant": "#504445",
+                      "on-secondary-fixed": "#111e16",
+                      "on-secondary": "#ffffff",
+                      "inverse-on-surface": "#f3f0ef",
+                      "on-tertiary-fixed": "#23191a",
+                      "inverse-surface": "#313030",
+                      "primary": "#181e1a",
+                      "on-primary-container": "#959b94",
+                      "surface": "#fcf9f7",
+                      "outline": "#747873",
+                      "surface-container-low": "#f6f3f1",
+                      "error-container": "#ffdad6",
+                      "tertiary-fixed": "#f1dedf",
+                      "primary-container": "#2d332e",
+                      "surface-dim": "#dcd9d8",
+                      "on-surface-variant": "#444844",
+                      "secondary-container": "#d6e7d9",
+                      "surface-variant": "#e5e2e0",
+                      "background": "#fcf9f7",
+                      "secondary": "#536257",
+                      "surface-container-high": "#ebe7e6",
+                      "primary-fixed": "#dee4dd",
+                      "on-secondary-fixed-variant": "#3b4a40",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed-dim": "#d4c2c3",
+                      "primary-fixed-dim": "#c2c8c1",
+                      "on-tertiary": "#ffffff",
+                      "on-surface": "#1c1c1b",
+                      "on-primary-fixed": "#171d18",
+                      "secondary-fixed": "#d6e7d9",
+                      "on-tertiary-container": "#a69697",
+                      "on-primary-fixed-variant": "#424843",
+                      "surface-tint": "#5a605a",
+                      "surface-bright": "#fcf9f7",
+                      "on-secondary-container": "#59685d",
+                      "on-error": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.5rem",
+                      "sm": "0.25rem",
+                      "md": "0.75rem",
+                      "lg": "1rem",
+                      "xl": "1.5rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Newsreader"],
+                      "body": ["Hanken Grotesk"],
+                      "label": ["Hanken Grotesk"]
+              }
+            }
+          }
+        }
+      </script>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+      </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body antialiased selection:bg-primary selection:text-on-primary">
+<!-- Navigation Header (TopAppBar) -->
+<header class="fixed top-0 w-full z-50 bg-surface shadow-sm h-16 flex items-center justify-between px-5 md:px-16 lg:px-24">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-high border border-outline-variant shrink-0">
+<img alt="Leadership profile photo" class="w-full h-full object-cover" data-alt="A serene, well-lit professional headshot of a confident executive against a soft, bright background. The lighting is high-key white, matching a light-mode aesthetic. The color palette features warm skin tones against cool, neutral greys and whites, projecting leadership and clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlsHYl0UMaLbzkQBXQ80ZDhAlz0VoyhQH_O40pVOffclbel5WmUwECs7_oyoX75kJ5q2IpFBeKn8yVSfKKbd5-YKzDuv8XGhEaQ22dKaw1wjcI4qTvYks_DD4mn6jdbgQK2lEbHnGw8U5e-U0CYqBlBYiiwyCsw75p1zVejRndULgRbOPMZsKo-FDBBvNg5aRqVTmn0kD--GIeYvYtQ_RjORJwFTO1UKXB9yY8GPzziTbNTnZ9RS_5PGcQY1K99vmJes13pE24ivFe"/>
+</div>
+<div class="flex flex-col">
+<h1 class="font-headline text-[20px] font-semibold text-primary leading-tight">Learning Hub</h1>
+<p class="font-body text-[12px] text-on-surface-variant font-medium tracking-wide">Knowledge • Training • Growth</p>
+</div>
+</div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">search</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-32 px-5 md:px-16 lg:px-24 max-w-[1200px] mx-auto flex flex-col gap-8">
+<!-- Hero Learning Health Dashboard -->
+<section class="bg-surface-container-lowest rounded-[24px] p-6 md:p-8 shadow-sm border border-surface-variant">
+<div class="flex flex-col md:flex-row gap-8 items-center justify-between">
+<div class="flex-1 flex flex-col gap-2 w-full">
+<h2 class="font-headline text-2xl font-medium text-primary">Team Learning Health</h2>
+<p class="text-on-surface-variant text-sm font-body mb-4">AI Summary: <span class="font-medium text-primary">Learning engagement increased 18% this month.</span> Keep up the momentum.</p>
+<div class="grid grid-cols-2 gap-4 mt-2">
+<div class="flex flex-col bg-surface-container-low p-4 rounded-xl">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Active Members</span>
+<span class="font-headline text-2xl font-semibold text-primary">142</span>
+</div>
+<div class="flex flex-col bg-surface-container-low p-4 rounded-xl">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Courses Viewed</span>
+<span class="font-headline text-2xl font-semibold text-primary">73</span>
+</div>
+</div>
+</div>
+<div class="shrink-0 relative w-40 h-40 flex items-center justify-center">
+<!-- Progress Ring Animation (CSS only for simplicity) -->
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 100 100">
+<circle class="text-surface-variant" cx="50" cy="50" fill="none" r="45" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary" cx="50" cy="50" fill="none" r="45" stroke="currentColor" stroke-dasharray="282.7" stroke-dashoffset="36.7" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-mono text-4xl font-bold text-primary tracking-tighter">87<span class="text-xl">%</span></span>
+<span class="text-xs text-on-surface-variant font-medium mt-1">Overall Health</span>
+</div>
+</div>
+</div>
+</section>
+<!-- AI Insights Section -->
+<section class="bg-primary-container rounded-xl p-5 shadow-sm text-on-primary-container flex items-start gap-4">
+<span class="material-symbols-outlined text-inverse-primary" style="font-variation-settings: 'FILL' 1;">electric_bolt</span>
+<div class="flex-1 flex flex-col gap-2">
+<h3 class="font-headline text-lg font-medium text-white">Strategic Insight</h3>
+<p class="text-sm text-inverse-primary leading-relaxed">Leadership content has a 42% higher completion rate than product training. Consider creating more leadership-focused material to capitalize on current engagement trends.</p>
+<button class="self-start mt-2 text-sm font-medium text-white hover:text-inverse-primary transition-colors flex items-center gap-1 group">
+                    View Recommendations
+                    <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- Knowledge Gap Alerts -->
+<section class="bg-error-container border border-error rounded-xl p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-on-error-container mt-0.5">warning</span>
+<div class="flex flex-col">
+<h4 class="font-headline font-medium text-on-error-container">Attention Needed</h4>
+<p class="text-sm text-on-error-container/80 mt-1">18 members have not completed mandatory compliance training due yesterday.</p>
+</div>
+</div>
+<div class="flex gap-2 w-full sm:w-auto shrink-0 mt-2 sm:mt-0">
+<button class="flex-1 sm:flex-none px-4 py-2 rounded bg-surface-container-lowest text-on-error-container text-sm font-medium border border-error/20 hover:bg-surface transition-colors">Assign Again</button>
+<button class="flex-1 sm:flex-none px-4 py-2 rounded bg-error text-on-error text-sm font-medium hover:bg-error/90 transition-colors shadow-sm">Send Reminder</button>
+</div>
+</section>
+<!-- Bottom Navigation Bar (BottomNavBar) - Fixed at bottom for top-level destination -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface-container border-t border-outline-variant shadow-lg flex justify-around items-center pt-2 pb-safe px-4 rounded-t-xl hidden"> <!-- Hidden on this screen to match requirements 'suppress if subpage/dashboard canvas priority', but structure included as requested by Shared Components logic check -->
+</nav>
+</main>
+</body></html>

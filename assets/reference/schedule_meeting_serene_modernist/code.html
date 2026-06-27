@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>New Meeting</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap');
+    </style>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "secondary-fixed-dim": "#bacbbe",
+                "primary-fixed-dim": "#c2c8c1",
+                "on-error": "#ffffff",
+                "primary-container": "#2d332e",
+                "on-primary-container": "#959b94",
+                "inverse-surface": "#313030",
+                "on-primary": "#ffffff",
+                "primary": "#181e1a",
+                "on-surface-variant": "#444844",
+                "on-secondary-fixed-variant": "#3b4a40",
+                "on-secondary": "#ffffff",
+                "on-tertiary": "#ffffff",
+                "on-secondary-container": "#59685d",
+                "surface-container-low": "#f6f3f1",
+                "on-secondary-fixed": "#111e16",
+                "surface-container-lowest": "#ffffff",
+                "error": "#ba1a1a",
+                "error-container": "#ffdad6",
+                "secondary": "#536257",
+                "on-surface": "#1c1c1b",
+                "secondary-container": "#d6e7d9",
+                "on-tertiary-fixed-variant": "#504445",
+                "on-tertiary-container": "#a69697",
+                "tertiary-container": "#3a2f30",
+                "surface-container": "#f0edec",
+                "on-background": "#1c1c1b",
+                "surface-dim": "#dcd9d8",
+                "secondary-fixed": "#d6e7d9",
+                "primary-fixed": "#dee4dd",
+                "outline": "#747873",
+                "inverse-on-surface": "#f3f0ef",
+                "inverse-primary": "#c2c8c1",
+                "background": "#fcf9f7",
+                "surface": "#fcf9f7",
+                "surface-container-high": "#ebe7e6",
+                "on-tertiary-fixed": "#23191a",
+                "surface-bright": "#fcf9f7",
+                "outline-variant": "#c4c7c2",
+                "tertiary-fixed": "#f1dedf",
+                "tertiary": "#241a1b",
+                "on-primary-fixed": "#171d18",
+                "surface-tint": "#5a605a",
+                "tertiary-fixed-dim": "#d4c2c3",
+                "on-error-container": "#93000a",
+                "on-primary-fixed-variant": "#424843",
+                "surface-variant": "#e5e2e0",
+                "surface-container-highest": "#e5e2e0"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.5rem",
+                "lg": "0.5rem",
+                "xl": "0.5rem",
+                "full": "9999px"
+        },
+        "spacing": {
+            "stack-md": "16px",
+            "margin-desktop": "64px",
+            "gutter": "24px",
+            "container-max": "1200px",
+            "margin-mobile": "20px",
+            "base": "4px",
+            "stack-sm": "8px",
+            "stack-lg": "32px"
+        },
+        "fontFamily": {
+                "headline": [
+                        "Newsreader"
+                ],
+                "display": [
+                        "Newsreader"
+                ],
+                "body": [
+                        "Newsreader"
+                ],
+                "label": [
+                        "Newsreader"
+                ],
+                "space": ["Newsreader"],
+                "dm": ["Newsreader"],
+                "jet": ["Newsreader"]
+        },
+        "fontSize": {
+            "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-md": ["32px", { "lineHeight": "40px", "fontWeight": "500" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "headline-sm": ["24px", { "lineHeight": "32px", "fontWeight": "500" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .glass-card {
+            background: rgba(252, 249, 247, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(45, 51, 46, 0.1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+        
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Font Overrides as requested in prompt, overriding theme config for specific requested fonts */
+        .font-space { font-family: 'Newsreader', serif; }
+        .font-dm { font-family: 'Newsreader', serif; }
+        .font-jet { font-family: 'Newsreader', serif; }
+        
+        .custom-indigo { color: #2d332e; }
+        .bg-custom-indigo { background-color: #2d332e; }
+        .border-custom-indigo { border-color: #2d332e; }
+        
+        .custom-emerald { color: #2d332e; }
+        .bg-custom-emerald { background-color: #2d332e; }
+        
+        body { background-color: #fcf9f7; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-dm text-on-surface antialiased pb-24 md:hidden bg-background">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-surface-container-high flex items-center justify-between px-margin-mobile h-16 w-full">
+<button class="p-2 -ml-2 text-primary hover:bg-surface-container-high/50 transition-colors rounded-lg flex items-center justify-center opacity-70 transition-opacity">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</button>
+<h1 class="font-space text-headline-sm font-medium text-primary">New Meeting</h1>
+<button class="p-2 -mr-2 text-on-surface-variant hover:bg-surface-container-high/50 transition-colors rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">more_vert</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-20 px-margin-mobile flex flex-col gap-stack-lg">
+<!-- Hero Preview Card -->
+<section class="glass-card rounded-lg p-6 relative overflow-hidden group">
+<div class="absolute -right-10 -top-10 w-40 h-40 bg-surface-dim opacity-30 rounded-full blur-2xl"></div>
+<div class="relative z-10 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<span class="font-space text-xs font-bold uppercase tracking-wider text-primary-container bg-primary-container/10 px-3 py-1 rounded-lg">Live Preview</span>
+<span class="material-symbols-outlined text-primary-container">preview</span>
+</div>
+<div>
+<h2 class="font-space text-2xl font-semibold text-primary leading-tight">Weekly Team Training</h2>
+</div>
+<div class="flex items-center gap-4 mt-2 border-t border-surface-container-high pt-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-on-surface-variant">calendar_today</span>
+<span class="font-jet text-sm text-on-surface-variant font-medium">Jun 10</span>
+</div>
+<div class="w-1 h-1 rounded-full bg-outline-variant"></div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-on-surface-variant">schedule</span>
+<span class="font-jet text-sm text-on-surface-variant font-medium">7:00 PM</span>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<div class="flex -space-x-2">
+<img alt="Attendee" class="w-6 h-6 rounded-full border-2 border-surface-container-lowest object-cover" data-alt="A close-up portrait of a professional individual with a neutral expression. The image is brightly lit, favoring a clean, minimalist aesthetic with soft, high-key lighting. Colors are muted with a focus on whites, soft grays, and natural skin tones, aligning with a high-end corporate or editorial style. The background is completely abstract and out of focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc0MZHqvINibCnUkt_pUanF8kYqVm2Nfe79TGx7Elozu5HDfj2VG4I9kP7Xl3bHSD-MadIp9mKWr19Yx4zWn89WeQDMTUoQMby1vnKYD5PyZ7YLxqFIJwjc23GJfP0suT4kf0VZC-qfPjjGONPMiH1ECoDTRLWk_OytQvKS_LhTLLWaA0Mrsj-HoC3mQr6aC42JADjJ8WiKiSqZlYDsN5jnq8b2ru_ZX9OqHITgUToBSMs30f5mprti6bZU_7ncc8FH4c890R9fG9C"/>
+<img alt="Attendee" class="w-6 h-6 rounded-full border-2 border-surface-container-lowest object-cover" data-alt="A close-up portrait of a professional individual with a warm smile. The lighting is soft and even, highlighting a pristine, modern aesthetic. The color palette is understated, utilizing subtle tonal shifts and generous whitespace in the out-of-focus background. The overall mood is approachable yet highly sophisticated and polished." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBX42wl9SlEysSXoDfFRTIHQCW8dYC36dSPe3KWaDpOJN2tHQ8HqIXRxPngbHpcyo3acACbNSO_eduaEGIiQ9UR5FMmfeauIFgPUWxaX7YZqy5Az1WwdOEVLRFgw_TvNVfhxJCdX7xpqQbCqVlB8b0kwfEzzmYKlfoJobex1ukaQasfUFIpxA2AgEql-Scso2IA9ef0JuTIOUHR_Qta0kD5Yvp5Ev0SaYeTGc0joUGnP48y_LNyaNR8eiyg8fjJ_v_C1TiFdk-jwn64"/>
+<img alt="Attendee" class="w-6 h-6 rounded-full border-2 border-surface-container-lowest object-cover" data-alt="A close-up portrait of a professional individual looking slightly off-camera. The scene is illuminated by diffused, naturalistic light, creating a calm and intentional atmosphere. The visual style is minimalist and editorial, with a restrained color palette that prioritizes clarity and elegance over heavy contrast or saturation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxI8lj76HEgRXRikzLPYBiB6AnKxejdIfCxZhO9Kvuuf-eEg_W81YIjhXIDYdLwQlqMq9PwvaGVJvRLtbnetkiOcV-sYxA-QWZ6MIbv4RseO0xYzTom7Ege3sFR5Rt3rC6byOOPR27RWCRIPB3qBy-zmq3mMTuDw5bOCH_N9ZzIIfgMRZgtgSF2TjfwnTRMJcppJbZox_EAWyutPtV2F5scasgLH-TGgIttCfBG98zPnp-Of9AvLZve2ojZS0M7Tr-XvIhcszLFqR6"/>
+</div>
+<span class="font-jet text-xs text-on-surface-variant ml-1">+141 Invited</span>
+</div>
+</div>
+</section>
+<!-- Form Fields -->
+<section class="flex flex-col gap-6">
+<!-- Title -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface">Meeting Title</label>
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-4 py-3 font-dm text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary-container focus:border-primary-container transition-colors placeholder:text-on-surface-variant/50 shadow-sm" placeholder="Weekly Team Training" type="text"/>
+</div>
+<!-- Date & Time Row -->
+<div class="grid grid-cols-2 gap-4">
+<div class="glass-card rounded-lg p-3 flex flex-col gap-2 hover:border-primary-container/30 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">calendar_month</span>
+<span class="font-jet text-sm font-medium text-primary">Tue, Jun 10</span>
+</div>
+<div class="glass-card rounded-lg p-3 flex flex-col gap-2 hover:border-primary-container/30 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">schedule</span>
+<span class="font-jet text-sm font-medium text-primary">7:00 PM</span>
+</div>
+</div>
+<!-- Duration -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface">Duration</label>
+<div class="bg-surface-variant p-1 rounded-lg flex items-center justify-between">
+<button class="flex-1 py-2 text-center rounded-lg font-dm text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">30 Min</button>
+<button class="flex-1 py-2 text-center rounded-lg font-dm text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">45 Min</button>
+<button class="flex-1 py-2 text-center bg-surface border border-outline-variant rounded-lg font-dm text-sm font-semibold text-primary shadow-[0_2px_4px_rgba(0,0,0,0.02)] transition-colors">1 Hour</button>
+<button class="flex-1 py-2 text-center rounded-lg font-dm text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">Custom</button>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex flex-col bg-surface/90 backdrop-blur-lg border-t border-surface-container-high px-margin-mobile pb-8 pt-4 shadow-sm">
+<button class="flex flex-row items-center justify-center gap-2 bg-primary-container text-on-primary w-full py-4 rounded-lg font-label-md text-label-md hover:brightness-110 transition-all scale-[0.98] duration-100 shadow-[0_8px_20px_-6px_rgba(45,51,46,0.4)]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_add_on</span>
+<span>Schedule Meeting</span>
+</button>
+</nav>
+</body></html>

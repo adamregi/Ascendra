@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-width=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Ascendra - Join Team</title>
+<!-- Google Fonts: Newsreader (Headings), Hanken Grotesk (Body/Labels), JetBrains Mono (Code) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Newsreader:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config injected from prompt -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#5a605a",
+                        "surface-container": "#f0edec",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#f1dedf",
+                        "tertiary-container": "#3a2f30",
+                        "on-surface": "#1c1c1b",
+                        "on-primary-container": "#959b94",
+                        "secondary-fixed-dim": "#bacbbe",
+                        "secondary": "#536257",
+                        "error": "#ba1a1a",
+                        "primary": "#181e1a",
+                        "surface-container-highest": "#e5e2e0",
+                        "on-tertiary-fixed": "#23191a",
+                        "outline-variant": "#c4c7c2",
+                        "surface-container-low": "#f6f3f1",
+                        "on-tertiary-fixed-variant": "#504445",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#d6e7d9",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface": "#fcf9f7",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e5e2e0",
+                        "on-secondary-fixed": "#111e16",
+                        "on-secondary-container": "#59685d",
+                        "on-surface-variant": "#444844",
+                        "on-tertiary-container": "#a69697",
+                        "primary-fixed-dim": "#c2c8c1",
+                        "primary-fixed": "#dee4dd",
+                        "on-primary-fixed": "#171d18",
+                        "inverse-surface": "#313030",
+                        "inverse-primary": "#c2c8c1",
+                        "secondary-container": "#d6e7d9",
+                        "inverse-on-surface": "#f3f0ef",
+                        "surface-container-high": "#ebe7e6",
+                        "on-secondary-fixed-variant": "#3b4a40",
+                        "on-error": "#ffffff",
+                        "background": "#fcf9f7",
+                        "tertiary-fixed-dim": "#d4c2c3",
+                        "surface-dim": "#dcd9d8",
+                        "tertiary": "#241a1b",
+                        "outline": "#747873",
+                        "surface-bright": "#fcf9f7",
+                        "primary-container": "#2d332e",
+                        "on-primary-fixed-variant": "#424843",
+                        "on-background": "#1c1c1b",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "sm": "0.25rem",
+                        "md": "0.75rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader", "serif"],
+                        "display": ["Newsreader", "serif"],
+                        "body": ["Hanken Grotesk", "sans-serif"],
+                        "label": ["Hanken Grotesk", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #fcf9f7;
+            color: #1c1c1b;
+            font-family: "Hanken Grotesk", sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Input Code Box Animation */
+        .code-input:focus {
+            border-color: #2d332e;
+            box-shadow: 0 0 0 1px #2d332e;
+            outline: none;
+        }
+
+        /* Slide up animation for team card */
+        .slide-up-enter {
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .slide-up-enter-active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Floating Label Form Fields */
+        .floating-input {
+            position: relative;
+        }
+        .floating-input input {
+            padding: 1.25rem 1rem 0.25rem 1rem;
+            height: 52px;
+            width: 100%;
+            background-color: #f6f3f1; /* Slate-100 equivalent in theme */
+            border-radius: 0.5rem;
+            border: 1px solid transparent;
+            transition: border-color 0.2s ease;
+        }
+        .floating-input input:focus {
+            outline: none;
+            border-color: #2d332e;
+        }
+        .floating-input label {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #747873;
+            font-size: 14px;
+            pointer-events: none;
+            transition: all 0.2s ease;
+        }
+        .floating-input input:focus + label,
+        .floating-input input:not(:placeholder-shown) + label {
+            top: 0.35rem;
+            transform: translateY(0);
+            font-size: 10px;
+            color: #444844;
+        }
+
+        /* Hide scrollbar but keep functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex flex-col items-center bg-background text-on-background pb-safe">
+<!-- Mobile Container (Max width for desktop viewing to simulate mobile) -->
+<div class="w-full max-w-md bg-background flex flex-col min-h-screen shadow-sm relative overflow-hidden mx-auto">
+<!-- TopAppBar (from JSON) -->
+<header class="bg-background w-full top-0 sticky flex items-center justify-between px-[20px] h-16 w-full z-10">
+<button aria-label="Go Back" class="text-primary hover:opacity-80 transition-opacity active:scale-95 duration-200 w-10 h-10 flex items-center justify-start rounded-full focus:outline-none">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-headline text-headline-sm font-semibold text-primary absolute left-1/2 transform -translate-x-1/2">
+                Join Team
+            </h1>
+<!-- Empty div for flex spacing -->
+<div class="w-10"></div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow px-[20px] pt-4 pb-24 flex flex-col gap-8 overflow-y-auto no-scrollbar">
+<!-- 1. Invite Code Section -->
+<section class="flex flex-col gap-4">
+<label class="font-label text-label-md text-on-surface text-center block">Enter your invite code</label>
+<!-- 6 digit code container -->
+<div class="flex justify-between items-center gap-2 max-w-[320px] mx-auto w-full">
+<input class="code-input w-[44px] h-[52px] rounded-[10px] bg-surface-container-low border border-outline-variant text-center font-mono text-xl text-primary font-medium focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" inputmode="numeric" maxlength="1" type="text"/>
+<input class="code-input w-[44px] h-[52px] rounded-[10px] bg-surface-container-low border border-outline-variant text-center font-mono text-xl text-primary font-medium focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" inputmode="numeric" maxlength="1" type="text"/>
+<input class="code-input w-[44px] h-[52px] rounded-[10px] bg-surface-container-low border border-outline-variant text-center font-mono text-xl text-primary font-medium focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" inputmode="numeric" maxlength="1" type="text"/>
+<input class="code-input w-[44px] h-[52px] rounded-[10px] bg-surface-container-low border border-outline-variant text-center font-mono text-xl text-primary font-medium focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" inputmode="numeric" maxlength="1" type="text"/>
+<input class="code-input w-[44px] h-[52px] rounded-[10px] bg-surface-container-low border border-outline-variant text-center font-mono text-xl text-primary font-medium focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" inputmode="numeric" maxlength="1" type="text"/>
+<input class="code-input w-[44px] h-[52px] rounded-[10px] bg-surface-container-low border border-outline-variant text-center font-mono text-xl text-primary font-medium focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" inputmode="numeric" maxlength="1" type="text"/>
+</div>
+<!-- QR Scan Secondary Action -->
+<button class="flex items-center justify-center gap-2 mt-2 text-primary-container font-label text-label-md hover:opacity-80 transition-opacity mx-auto">
+<span class="material-symbols-outlined text-[18px]">qr_code_scanner</span>
+                    Scan QR code instead
+                </button>
+</section>
+<!-- 2. Team Preview Card (Mocking revealed state for visual completeness) -->
+<section class="slide-up-enter slide-up-enter-active bg-surface-container-low rounded-xl p-4 flex flex-col gap-3 relative overflow-hidden border border-border-subtle">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-variant overflow-hidden flex-shrink-0" data-alt="A professional headshot of a confident woman with short dark hair wearing a minimalist grey blazer against a plain light background, evoking trust and modern leadership." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD7zjwpKBahBfCGycnNoXtX4jNl3c7-aN4l97MqMUQiz1vTw6Fixz1bG0zNu-gqPYPTUcry5JGXTSTSh5FIZipuMyyVdZenpUp-TX3ftmUmc-AgT5BMj6VrgfMBvMUcCIPAM7UIzTyMNM91qQW0I_g2neZKWhqCzTsuU6qbU9nw5G_ekChi0TuvWGJTH7E1N8GTLCqbyFeIC_2lrMaKOWDN06bOM-l49EbS_mrrYru7aZma83dTFVpfck6dcuCOljxAKyTvqIwlJYFp'); background-size: cover; background-position: center;"></div>
+<div class="flex flex-col">
+<span class="font-body text-label-sm text-on-surface-variant">Joining</span>
+<span class="font-headline text-[18px] font-semibold text-primary leading-tight">Sarah Chen's Team</span>
+<span class="font-body text-[13px] text-on-surface-variant">Ascendra Glass</span>
+</div>
+</div>
+<!-- Trust Badge -->
+<div class="w-8 h-8 rounded bg-surface shadow-sm flex items-center justify-center flex-shrink-0">
+<img alt="Ascendra Trust Badge" class="w-5 h-5 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAm70Xdr336FSVxf_fcitNU1kHZYF4F2CoVSD_8IIp-txeLzSOYNMb04130UP9vyOeH8wAGqjgwvN4VewFLb6NjTlJzd3M-2BNjO30nJtVosyQ1BNyqdcb8c7JXyM7nYpl5p-rAglG9uAIz8pLrsZKBWbLCYixxYC5yhn59pkTwdV3V7Ql7kwaSo5_1H7mxi9J-o0WDq-kakZBiUn4fAUJJXDw31x5Ulw9WRod2VCDo-5VgIRCKwRiXnWVlx__1KRVyRRwYr-Sjb1Pt"/>
+</div>
+</div>
+</section>
+<!-- 3. Personal Info Form -->
+<section class="flex flex-col gap-4 mt-2">
+<div class="floating-input">
+<input class="text-primary font-body text-body-md" id="fullName" placeholder=" " type="text"/>
+<label class="font-body" for="fullName">Full Name</label>
+</div>
+<div class="floating-input">
+<input class="text-primary font-body text-body-md" id="phoneNumber" placeholder=" " type="tel"/>
+<label class="font-body" for="phoneNumber">Phone Number</label>
+</div>
+</section>
+</main>
+<!-- Bottom Fixed Section for CTA and Footer text -->
+<div class="fixed md:absolute bottom-0 left-0 w-full bg-gradient-to-t from-background via-background to-transparent pt-6 pb-[20px] px-[20px] flex flex-col gap-4 z-20">
+<!-- Join Team CTA -->
+<button class="w-full h-[56px] bg-primary-container text-on-primary rounded-lg font-label text-label-md flex items-center justify-center hover:opacity-90 active:scale-[0.98] transition-all shadow-sm">
+                Join Team
+            </button>
+<!-- Footer Text -->
+<div class="text-center font-body text-label-sm text-on-surface-variant">
+                Already have an account? 
+                <a class="text-primary-container font-semibold hover:underline decoration-1 underline-offset-2" href="#">Log In</a>
+</div>
+</div>
+</div>
+<script>
+        // Micro-interaction for OTP inputs
+        const inputs = document.querySelectorAll('.code-input');
+        
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if (e.target.value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && e.target.value === '' && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+            
+            // Allow pasting full codes
+            input.addEventListener('paste', (e) => {
+                e.preventDefault();
+                const pastedData = e.clipboardData.getData('text').slice(0, inputs.length).replace(/[^0-9]/g, '');
+                pastedData.split('').forEach((char, i) => {
+                    if(inputs[i]) {
+                        inputs[i].value = char;
+                        if(i < inputs.length - 1) {
+                            inputs[i+1].focus();
+                        }
+                    }
+                });
+            });
+        });
+        
+        // Auto focus first input on load
+        window.addEventListener('DOMContentLoaded', () => {
+             if(inputs.length > 0) {
+                 setTimeout(() => inputs[0].focus(), 500);
+             }
+        });
+    </script>
+</body></html>
