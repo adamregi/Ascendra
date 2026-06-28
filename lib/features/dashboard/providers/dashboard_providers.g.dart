@@ -6,7 +6,7 @@ part of 'dashboard_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$executiveOverviewHash() => r'7f280d8f77657654faac1b66bf2152815307b41a';
+String _$executiveOverviewHash() => r'01eafb48d8c1b0c31ae3a05358d1b5700ea34e84';
 
 /// See also [executiveOverview].
 @ProviderFor(executiveOverview)
@@ -27,7 +27,7 @@ final executiveOverviewProvider =
 typedef ExecutiveOverviewRef =
     AutoDisposeFutureProviderRef<ExecutiveOverviewModel>;
 String _$leadershipPipelineHash() =>
-    r'e8354b3dffd4d01ddfafb22e4bf5482bcab4023c';
+    r'903d9b9ba625eb00994e3fdf9b7e27c49c518b53';
 
 /// See also [leadershipPipeline].
 @ProviderFor(leadershipPipeline)
@@ -47,7 +47,7 @@ final leadershipPipelineProvider =
 // ignore: unused_element
 typedef LeadershipPipelineRef =
     AutoDisposeFutureProviderRef<LeadershipPipelineModel>;
-String _$alertPreviewHash() => r'aa863aeee5d2459d5c88637e9266bc30a766c769';
+String _$alertPreviewHash() => r'0c4cd8b2b0284f577e30a2840d49d7a13a919348';
 
 /// See also [alertPreview].
 @ProviderFor(alertPreview)
@@ -67,7 +67,7 @@ final alertPreviewProvider =
 // ignore: unused_element
 typedef AlertPreviewRef = AutoDisposeFutureProviderRef<AlertPreviewModel>;
 String _$recommendationPreviewHash() =>
-    r'3cab8d1fe130a64afafefcd0a46bbb6a76d7452f';
+    r'4997ade74f3c0a86ff6c1dd4b081f4d61730feb4';
 
 /// See also [recommendationPreview].
 @ProviderFor(recommendationPreview)

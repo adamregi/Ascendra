@@ -53,7 +53,7 @@ class AppTextField extends StatelessWidget {
                 Text(
                   label,
                   style: AppTypography.labelMd.copyWith(
-                    color: AppColors.onSurfaceVariant,
+                    color: AppColors.onSurface.withValues(alpha: 0.5),
                   ),
                 ),
               if (labelAction != null) labelAction!,
@@ -75,7 +75,7 @@ class AppTextField extends StatelessWidget {
           style: AppTypography.bodyLg.copyWith(color: AppColors.onSurface),
           decoration: InputDecoration(
             hintText: hint,
-            hintStyle: AppTypography.bodyLg.copyWith(color: AppColors.onSurfaceVariant.withOpacity(0.5)),
+            hintStyle: AppTypography.bodyLg.copyWith(color: AppColors.onSurfaceVariant.withValues(alpha: 0.5)),
             suffixIcon: suffixIcon,
             prefixIcon: prefixIcon,
             filled: true,

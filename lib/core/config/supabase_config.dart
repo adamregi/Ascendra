@@ -6,9 +6,9 @@ class SupabaseConfig {
   SupabaseConfig._(); // Prevent instantiation
 
   /// Project URL from Settings → API
-  static const String url = 'https://dxkplyzqrkcwgdkpjltb.supabase.co';
+  static const String url = 'http://192.168.0.4:54321';
 
   /// Anon / public key from Settings → API
   static const String anonKey =
-      'sb_publishable_KgHg_cMR909BtVMDD4_L5w_LCGg4Kt3';
+      'sb_publishable_ACJWlzQHlZjBrEguHvfOxg_3BJgxAaH';
 }

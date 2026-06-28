@@ -57,6 +57,11 @@ class AppShell extends StatelessWidget {
         label: 'Dashboard',
       ),
       NavigationDestination(
+        icon: Icon(Icons.event_seat_outlined),
+        selectedIcon: Icon(Icons.event_seat),
+        label: 'Meetings',
+      ),
+      NavigationDestination(
         icon: Icon(Icons.notifications_outlined),
         selectedIcon: Icon(Icons.notifications),
         label: 'Alerts',
@@ -82,6 +87,11 @@ class AppShell extends StatelessWidget {
         label: Text('Dashboard'),
       ),
       NavigationRailDestination(
+        icon: Icon(Icons.event_seat_outlined),
+        selectedIcon: Icon(Icons.event_seat),
+        label: Text('Meetings'),
+      ),
+      NavigationRailDestination(
         icon: Icon(Icons.notifications_outlined),
         selectedIcon: Icon(Icons.notifications),
         label: Text('Alerts'),
@@ -102,9 +112,10 @@ class AppShell extends StatelessWidget {
   static int _calculateSelectedIndex(BuildContext context) {
     final String location = GoRouterState.of(context).matchedLocation;
     if (location.startsWith('/dashboard')) return 0;
-    if (location.startsWith('/alerts')) return 1;
-    if (location.startsWith('/ai')) return 2;
-    if (location.startsWith('/settings')) return 3;
+    if (location.startsWith('/meetings')) return 1;
+    if (location.startsWith('/alerts')) return 2;
+    if (location.startsWith('/ai')) return 3;
+    if (location.startsWith('/settings')) return 4;
     return 0;
   }
 
@@ -114,12 +125,15 @@ class AppShell extends StatelessWidget {
         context.go('/dashboard');
         break;
       case 1:
-        context.go('/alerts');
+        context.go('/meetings');
         break;
       case 2:
-        context.go('/ai');
+        context.go('/alerts');
         break;
       case 3:
+        context.go('/ai');
+        break;
+      case 4:
         context.go('/settings');
         break;
     }

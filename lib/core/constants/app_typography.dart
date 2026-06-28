@@ -77,4 +77,11 @@ class AppTypography {
     fontWeight: FontWeight.w500,
     height: 16 / 12,
   );
+
+  static const TextStyle headlineSm = TextStyle(
+    fontFamily: 'Hanken Grotesk',
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 1.5,
+  );
 }

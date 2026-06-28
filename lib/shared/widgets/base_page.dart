@@ -8,6 +8,7 @@ class BasePage extends StatelessWidget {
   final String? error;
   final VoidCallback? onRetry;
   final Future<void> Function()? onRefresh;
+  final Widget? floatingActionButton;
 
   const BasePage({
     super.key,
@@ -17,6 +18,7 @@ class BasePage extends StatelessWidget {
     this.error,
     this.onRetry,
     this.onRefresh,
+    this.floatingActionButton,
   });
 
   @override
@@ -30,6 +32,7 @@ class BasePage extends StatelessWidget {
                 title: Text(title!),
               )
             : null,
+        floatingActionButton: floatingActionButton,
         body: SafeArea(
           child: Stack(
             children: [

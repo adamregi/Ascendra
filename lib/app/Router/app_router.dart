@@ -8,6 +8,11 @@ import '../../features/auth/presentation/pages/splash_page.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
 // Placeholders
 import '../../features/dashboard/presentation/pages/dashboard_page.dart';
+import '../../features/meetings/presentation/pages/meetings_page.dart';
+import '../../features/meetings/presentation/pages/meeting_detail_page.dart';
+import '../../features/meetings/presentation/pages/schedule_meeting_page.dart';
+import '../../features/meetings/presentation/pages/live_meeting_page.dart';
+import '../../features/meetings/presentation/pages/meeting_replay_page.dart';
 import '../../features/alerts/presentation/pages/alerts_page.dart';
 import '../../features/ai/presentation/pages/ai_page.dart';
 import '../../features/settings/presentation/pages/settings_page.dart';
@@ -66,6 +71,10 @@ GoRouter appRouter(Ref ref) {
             builder: (context, state) => const DashboardPage(),
           ),
           GoRoute(
+            path: '/meetings',
+            builder: (context, state) => const MeetingsPage(),
+          ),
+          GoRoute(
             path: '/alerts',
             builder: (context, state) => const AlertsPage(),
           ),
@@ -82,6 +91,31 @@ GoRouter appRouter(Ref ref) {
       GoRoute(
         path: '/dev/components',
         builder: (context, state) => const ComponentGalleryPage(),
+      ),
+      GoRoute(
+        path: '/meetings/schedule',
+        builder: (context, state) => const ScheduleMeetingPage(),
+      ),
+      GoRoute(
+        path: '/meetings/:id',
+        builder: (context, state) {
+          final id = state.pathParameters['id']!;
+          return MeetingDetailPage(meetingId: id);
+        },
+      ),
+      GoRoute(
+        path: '/meetings/live/:id',
+        builder: (context, state) {
+          final id = state.pathParameters['id']!;
+          return LiveMeetingPage(meetingId: id);
+        },
+      ),
+      GoRoute(
+        path: '/meetings/replay/:id',
+        builder: (context, state) {
+          final id = state.pathParameters['id']!;
+          return MeetingReplayPage(meetingId: id);
+        },
       ),
     ],
   );

@@ -47,5 +47,13 @@
 		<true/>
 		<key>UIStatusBarHidden</key>
 		<false/>
+		<key>NSCameraUsageDescription</key>
+		<string>Ascendra requires access to the camera for video meetings.</string>
+		<key>NSMicrophoneUsageDescription</key>
+		<string>Ascendra requires access to the microphone for audio calls in meetings.</string>
+		<key>NSBluetoothAlwaysUsageDescription</key>
+		<string>Ascendra requires bluetooth access to connect with wireless headsets during calls.</string>
+		<key>NSBluetoothPeripheralUsageDescription</key>
+		<string>Ascendra requires bluetooth access to connect with wireless headsets during calls.</string>
 	</dict>
 </plist>

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-extension AutoDisposeRefExtension on AutoDisposeRef {
+extension RefExtension on Ref {
   /// Keeps the provider alive for [duration] after the last listener is removed.
   /// Once the duration expires, the provider is disposed and will be re-evaluated
   /// the next time it's read or listened to.
