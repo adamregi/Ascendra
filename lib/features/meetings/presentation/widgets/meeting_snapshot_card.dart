@@ -21,7 +21,12 @@ class MeetingSnapshotCard extends StatelessWidget {
     return Semantics(
       label: 'Meeting leadership snapshot',
       child: Container(
-        padding: const EdgeInsets.only(top: 20, bottom: 24, left: 24, right: 24),
+        padding: const EdgeInsets.only(
+          top: 20,
+          bottom: 24,
+          left: 24,
+          right: 24,
+        ),
         decoration: BoxDecoration(
           color: AppColors.surfaceContainerLowest,
           borderRadius: BorderRadius.circular(AppRadius.xxl),
@@ -61,18 +66,30 @@ class MeetingSnapshotCard extends StatelessWidget {
                   value: '${summary.liveCount}',
                 ),
                 MetricCardData(
-                  indicator: Icon(Icons.calendar_today, size: 16, color: AppColors.onSurfaceVariant),
+                  indicator: Icon(
+                    Icons.calendar_today,
+                    size: 16,
+                    color: AppColors.onSurfaceVariant,
+                  ),
                   label: 'Upcoming',
                   value: '${summary.upcomingCount}',
                 ),
                 MetricCardData(
-                  indicator: Icon(Icons.group, size: 16, color: AppColors.onSurfaceVariant),
+                  indicator: Icon(
+                    Icons.group,
+                    size: 16,
+                    color: AppColors.onSurfaceVariant,
+                  ),
                   label: 'Attendance',
                   value: '${summary.averageAttendancePercent.round()}',
                   suffix: '%',
                 ),
                 MetricCardData(
-                  indicator: Icon(Icons.check_circle, size: 16, color: _emerald),
+                  indicator: Icon(
+                    Icons.check_circle,
+                    size: 16,
+                    color: _emerald,
+                  ),
                   label: 'Completion',
                   value: '${summary.completionPercent.round()}',
                   suffix: '%',
@@ -85,4 +102,3 @@ class MeetingSnapshotCard extends StatelessWidget {
     );
   }
 }
-

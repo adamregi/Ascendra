@@ -12,7 +12,7 @@ abstract class ExecutiveOverviewModel with _$ExecutiveOverviewModel {
     @JsonKey(name: 'pipeline') OverviewPipeline? pipeline,
     @JsonKey(name: 'pending_actions') OverviewActions? pendingActions,
     @JsonKey(name: 'generated_at') DateTime? generatedAt,
-    
+
     // Fallback fields when data is empty
     @JsonKey(name: 'team_health_score') double? fallbackHealthScore,
     @JsonKey(name: 'team_size') int? fallbackTeamSize,

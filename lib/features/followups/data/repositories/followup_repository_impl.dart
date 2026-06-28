@@ -6,7 +6,8 @@ import '../../domain/entities/followup_reason_type.dart';
 import '../../domain/repositories/followup_repository.dart';
 import '../models/followup_model.dart';
 
-class FollowUpRepositoryImpl extends BaseRepository implements FollowUpRepository {
+class FollowUpRepositoryImpl extends BaseRepository
+    implements FollowUpRepository {
   final supabase.SupabaseClient _client;
 
   FollowUpRepositoryImpl(this._client);
@@ -22,15 +23,18 @@ class FollowUpRepositoryImpl extends BaseRepository implements FollowUpRepositor
     DateTime? dueDate,
   }) async {
     try {
-      final response = await _client.rpc('create_followup', params: {
-        'p_company_id': companyId,
-        'p_leader_id': leaderId,
-        'p_member_id': memberId,
-        'p_reason_type': reasonType.toJson(),
-        'p_reason': reason,
-        'p_notes': notes,
-        'p_due_date': dueDate?.toIso8601String(),
-      });
+      final response = await _client.rpc(
+        'create_followup',
+        params: {
+          'p_company_id': companyId,
+          'p_leader_id': leaderId,
+          'p_member_id': memberId,
+          'p_reason_type': reasonType.toJson(),
+          'p_reason': reason,
+          'p_notes': notes,
+          'p_due_date': dueDate?.toIso8601String(),
+        },
+      );
       return FollowUpModel.fromJson(response as Map<String, dynamic>);
     } catch (e, stack) {
       handleException(e, stack);
@@ -45,12 +49,15 @@ class FollowUpRepositoryImpl extends BaseRepository implements FollowUpRepositor
     String? notes,
   }) async {
     try {
-      final response = await _client.rpc('update_followup', params: {
-        'p_followup_id': followupId,
-        'p_leader_id': leaderId,
-        'p_status': status.toJson(),
-        'p_notes': notes,
-      });
+      final response = await _client.rpc(
+        'update_followup',
+        params: {
+          'p_followup_id': followupId,
+          'p_leader_id': leaderId,
+          'p_status': status.toJson(),
+          'p_notes': notes,
+        },
+      );
       return FollowUpModel.fromJson(response as Map<String, dynamic>);
     } catch (e, stack) {
       handleException(e, stack);
@@ -78,7 +85,9 @@ class FollowUpRepositoryImpl extends BaseRepository implements FollowUpRepositor
           .from('followups')
           .select()
           .eq('company_id', companyId);
-      return response.map((e) => FollowUpModel.fromJson(e as Map<String, dynamic>)).toList();
+      return response
+          .map((e) => FollowUpModel.fromJson(e as Map<String, dynamic>))
+          .toList();
     } catch (e, stack) {
       handleException(e, stack);
     }

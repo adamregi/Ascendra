@@ -49,12 +49,24 @@ class MeetingParticipantsSection extends StatelessWidget {
             style: AppTypography.headlineSm.copyWith(color: AppColors.primary),
           ),
           const SizedBox(height: AppSpacing.md),
-          _buildChecklistItem('Invites Sent', Icons.check_circle, AppColors.secondary),
+          _buildChecklistItem(
+            'Invites Sent',
+            Icons.check_circle,
+            AppColors.secondary,
+          ),
           const SizedBox(height: AppSpacing.sm),
-          _buildChecklistItem('Reminder Scheduled', Icons.check_circle, AppColors.secondary),
+          _buildChecklistItem(
+            'Reminder Scheduled',
+            Icons.check_circle,
+            AppColors.secondary,
+          ),
           const SizedBox(height: AppSpacing.sm),
-          _buildChecklistItem('Recording Enabled', Icons.warning_rounded, AppColors.warning),
-          
+          _buildChecklistItem(
+            'Recording Enabled',
+            Icons.warning_rounded,
+            AppColors.warning,
+          ),
+
           if (totalInvites - confirmed > 0) ...[
             const SizedBox(height: AppSpacing.sm),
             Container(
@@ -77,7 +89,7 @@ class MeetingParticipantsSection extends StatelessWidget {
                 ],
               ),
             ),
-          ]
+          ],
         ],
       ),
     );
@@ -93,7 +105,10 @@ class MeetingParticipantsSection extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(label, style: AppTypography.bodyMd.copyWith(color: AppColors.onSurface)),
+          Text(
+            label,
+            style: AppTypography.bodyMd.copyWith(color: AppColors.onSurface),
+          ),
           Icon(icon, color: iconColor, size: 20),
         ],
       ),
@@ -123,7 +138,9 @@ class MeetingParticipantsSection extends StatelessWidget {
             children: [
               Text(
                 'Guest List',
-                style: AppTypography.headlineSm.copyWith(color: AppColors.primary),
+                style: AppTypography.headlineSm.copyWith(
+                  color: AppColors.primary,
+                ),
               ),
               TextButton(
                 onPressed: () {},
@@ -173,7 +190,9 @@ class MeetingParticipantsSection extends StatelessWidget {
               Expanded(
                 child: Text(
                   '+ $confirmed others confirmed',
-                  style: AppTypography.body2.copyWith(color: AppColors.onSurfaceVariant),
+                  style: AppTypography.body2.copyWith(
+                    color: AppColors.onSurfaceVariant,
+                  ),
                 ),
               ),
             ],
@@ -189,9 +208,16 @@ class MeetingParticipantsSection extends StatelessWidget {
       decoration: BoxDecoration(
         color: isSelected ? AppColors.surface : Colors.transparent,
         borderRadius: BorderRadius.circular(AppRadius.sm),
-        boxShadow: isSelected
-            ? const [BoxShadow(color: Color(0x0A000000), blurRadius: 2, offset: Offset(0, 1))]
-            : null,
+        boxShadow:
+            isSelected
+                ? const [
+                  BoxShadow(
+                    color: Color(0x0A000000),
+                    blurRadius: 2,
+                    offset: Offset(0, 1),
+                  ),
+                ]
+                : null,
       ),
       alignment: Alignment.center,
       child: Text(

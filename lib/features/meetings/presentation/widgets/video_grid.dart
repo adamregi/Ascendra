@@ -14,15 +14,10 @@ class VideoGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final allPeers = [
-      if (localPeer != null) localPeer!,
-      ...remotePeers,
-    ];
+    final allPeers = [if (localPeer != null) localPeer!, ...remotePeers];
 
     if (allPeers.isEmpty) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
+      return const Center(child: CircularProgressIndicator());
     }
 
     final count = allPeers.length;
@@ -36,19 +31,19 @@ class VideoGrid extends StatelessWidget {
         } else if (count == 2) {
           return isLandscape
               ? Row(
-                  children: [
-                    Expanded(child: ParticipantTile(peer: allPeers[0])),
-                    const SizedBox(width: 8),
-                    Expanded(child: ParticipantTile(peer: allPeers[1])),
-                  ],
-                )
+                children: [
+                  Expanded(child: ParticipantTile(peer: allPeers[0])),
+                  const SizedBox(width: 8),
+                  Expanded(child: ParticipantTile(peer: allPeers[1])),
+                ],
+              )
               : Column(
-                  children: [
-                    Expanded(child: ParticipantTile(peer: allPeers[0])),
-                    const SizedBox(height: 8),
-                    Expanded(child: ParticipantTile(peer: allPeers[1])),
-                  ],
-                );
+                children: [
+                  Expanded(child: ParticipantTile(peer: allPeers[0])),
+                  const SizedBox(height: 8),
+                  Expanded(child: ParticipantTile(peer: allPeers[1])),
+                ],
+              );
         } else if (count == 3 || count == 4) {
           return GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

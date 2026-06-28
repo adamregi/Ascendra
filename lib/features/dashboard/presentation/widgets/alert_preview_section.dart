@@ -11,11 +11,7 @@ class AlertPreviewSection extends StatelessWidget {
   final AsyncValue<AlertPreviewModel> data;
   final VoidCallback? onRetry;
 
-  const AlertPreviewSection({
-    super.key,
-    required this.data,
-    this.onRetry,
-  });
+  const AlertPreviewSection({super.key, required this.data, this.onRetry});
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +23,9 @@ class AlertPreviewSection extends StatelessWidget {
         return _buildSuccessState(context, alertData.topAlerts);
       },
       loading: () => const _AlertSkeleton(),
-      error: (err, stack) => ErrorCard(
-        message: 'Failed to load alerts',
-        onRetry: onRetry,
-      ),
+      error:
+          (err, stack) =>
+              ErrorCard(message: 'Failed to load alerts', onRetry: onRetry),
     );
   }
 
@@ -41,14 +36,18 @@ class AlertPreviewSection extends StatelessWidget {
         padding: const EdgeInsets.all(AppSpacing.lg),
         child: Column(
           children: [
-            const Icon(Icons.check_circle_outline, size: 48, color: AppColors.secondary),
+            const Icon(
+              Icons.check_circle_outline,
+              size: 48,
+              color: AppColors.secondary,
+            ),
             const SizedBox(height: AppSpacing.md),
             Text(
               'No pending alerts! You are all caught up.',
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppColors.onSurfaceVariant,
-                  ),
+                color: AppColors.onSurfaceVariant,
+              ),
             ),
           ],
         ),
@@ -66,72 +65,87 @@ class AlertPreviewSection extends StatelessWidget {
             Text(
               'ACTION REQUIRED',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: AppColors.primary,
-                    fontWeight: FontWeight.bold,
-                  ),
+                color: AppColors.primary,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            TextButton(
-              onPressed: () {},
-              child: const Text('View All'),
-            ),
+            TextButton(onPressed: () {}, child: const Text('View All')),
           ],
         ),
         const SizedBox(height: AppSpacing.sm),
         Column(
-          children: alerts.map((alert) {
-            final isCritical = alert.severity.toLowerCase() == 'critical';
-            final isHigh = alert.severity.toLowerCase() == 'high';
-            final isWarning = isCritical || isHigh;
-            
-            final iconColor = isCritical ? AppColors.error : (isHigh ? AppColors.error : AppColors.accentWarm);
-            final bgColor = isCritical ? AppColors.errorContainer : (isHigh ? AppColors.errorContainer : AppColors.secondaryContainer);
+          children:
+              alerts.map((alert) {
+                final isCritical = alert.severity.toLowerCase() == 'critical';
+                final isHigh = alert.severity.toLowerCase() == 'high';
+                final isWarning = isCritical || isHigh;
 
-            return Padding(
-              padding: const EdgeInsets.only(bottom: AppSpacing.sm),
-              child: AppCard(
-                padding: const EdgeInsets.all(AppSpacing.md),
-                child: Row(
-                  children: [
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: bgColor.withValues(alpha: 0.3),
-                        shape: BoxShape.circle,
-                      ),
-                      child: Icon(
-                        isWarning ? Icons.warning_amber_rounded : Icons.info_outline,
-                        color: iconColor,
-                      ),
-                    ),
-                    const SizedBox(width: AppSpacing.md),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            alert.title,
-                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                final iconColor =
+                    isCritical
+                        ? AppColors.error
+                        : (isHigh ? AppColors.error : AppColors.accentWarm);
+                final bgColor =
+                    isCritical
+                        ? AppColors.errorContainer
+                        : (isHigh
+                            ? AppColors.errorContainer
+                            : AppColors.secondaryContainer);
+
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: AppSpacing.sm),
+                  child: AppCard(
+                    padding: const EdgeInsets.all(AppSpacing.md),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            color: bgColor.withValues(alpha: 0.3),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(
+                            isWarning
+                                ? Icons.warning_amber_rounded
+                                : Icons.info_outline,
+                            color: iconColor,
+                          ),
+                        ),
+                        const SizedBox(width: AppSpacing.md),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                alert.title,
+                                style: Theme.of(
+                                  context,
+                                ).textTheme.bodyMedium?.copyWith(
                                   fontWeight: FontWeight.w600,
                                   color: AppColors.primary,
                                 ),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            '${alert.type} • ${alert.severity}',
-                            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                '${alert.type} • ${alert.severity}',
+                                style: Theme.of(
+                                  context,
+                                ).textTheme.labelSmall?.copyWith(
                                   color: AppColors.onSurfaceVariant,
                                 ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                        const Icon(
+                          Icons.chevron_right,
+                          color: AppColors.onSurfaceVariant,
+                        ),
+                      ],
                     ),
-                    const Icon(Icons.chevron_right, color: AppColors.onSurfaceVariant),
-                  ],
-                ),
-              ),
-            );
-          }).toList(),
+                  ),
+                );
+              }).toList(),
         ),
       ],
     );

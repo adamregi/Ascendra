@@ -6,7 +6,7 @@ part 'session_repository.g.dart';
 
 class SessionRepository {
   final FlutterSecureStorage _storage;
-  
+
   static const _sessionKey = 'supabase_session';
 
   SessionRepository(this._storage);

@@ -37,7 +37,9 @@ class AttendanceSummaryCard extends StatelessWidget {
           const SizedBox(height: AppSpacing.lg),
           Row(
             children: [
-              Expanded(child: _buildMetric('Registered', registered.toString())),
+              Expanded(
+                child: _buildMetric('Registered', registered.toString()),
+              ),
               Container(width: 1, height: 40, color: AppColors.borderSubtle),
               Expanded(child: _buildMetric('Joined', joined.toString())),
               Container(width: 1, height: 40, color: AppColors.borderSubtle),
@@ -45,7 +47,7 @@ class AttendanceSummaryCard extends StatelessWidget {
               Container(width: 1, height: 40, color: AppColors.borderSubtle),
               Expanded(
                 child: _buildMetric(
-                  'Rate', 
+                  'Rate',
                   '${attendancePercentage.toStringAsFixed(0)}%',
                   valueColor: AppColors.secondary,
                 ),
@@ -57,14 +59,15 @@ class AttendanceSummaryCard extends StatelessWidget {
     );
   }
 
-  Widget _buildMetric(String label, String value, {Color valueColor = AppColors.primary}) {
+  Widget _buildMetric(
+    String label,
+    String value, {
+    Color valueColor = AppColors.primary,
+  }) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          value,
-          style: AppTypography.h2.copyWith(color: valueColor),
-        ),
+        Text(value, style: AppTypography.h2.copyWith(color: valueColor)),
         const SizedBox(height: AppSpacing.xs),
         Text(
           label.toUpperCase(),

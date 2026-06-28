@@ -27,9 +27,6 @@ class VerifyOtpUseCase {
       throw ArgumentError('OTP code cannot be empty');
     }
 
-    return _repository.verifyOtp(
-      phone: phone.trim(),
-      code: code.trim(),
-    );
+    return _repository.verifyOtp(phone: phone.trim(), code: code.trim());
   }
 }

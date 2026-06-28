@@ -25,9 +25,14 @@ class LiveMeetingCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final timeFormat = DateFormat.jm();
     final startTime = timeFormat.format(meeting.scheduledAt.toLocal());
-    final endTime = meeting.durationMinutes != null
-        ? timeFormat.format(meeting.scheduledAt.add(Duration(minutes: meeting.durationMinutes!)).toLocal())
-        : null;
+    final endTime =
+        meeting.durationMinutes != null
+            ? timeFormat.format(
+              meeting.scheduledAt
+                  .add(Duration(minutes: meeting.durationMinutes!))
+                  .toLocal(),
+            )
+            : null;
 
     return Semantics(
       label: 'Live meeting: ${meeting.title}',
@@ -53,7 +58,10 @@ class LiveMeetingCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
                   decoration: BoxDecoration(
                     color: _teal.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(AppRadius.full),
@@ -78,9 +86,15 @@ class LiveMeetingCard extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  icon: const Icon(Icons.more_horiz, color: AppColors.onSurfaceVariant),
+                  icon: const Icon(
+                    Icons.more_horiz,
+                    color: AppColors.onSurfaceVariant,
+                  ),
                   onPressed: () {},
-                  constraints: const BoxConstraints(minHeight: 48, minWidth: 48),
+                  constraints: const BoxConstraints(
+                    minHeight: 48,
+                    minWidth: 48,
+                  ),
                 ),
               ],
             ),
@@ -104,11 +118,17 @@ class LiveMeetingCard extends StatelessWidget {
             // Time
             Row(
               children: [
-                const Icon(Icons.schedule, size: 18, color: AppColors.onSurfaceVariant),
+                const Icon(
+                  Icons.schedule,
+                  size: 18,
+                  color: AppColors.onSurfaceVariant,
+                ),
                 const SizedBox(width: 8),
                 Text(
                   endTime != null ? '$startTime – $endTime' : startTime,
-                  style: AppTypography.bodyMd.copyWith(color: AppColors.onSurfaceVariant),
+                  style: AppTypography.bodyMd.copyWith(
+                    color: AppColors.onSurfaceVariant,
+                  ),
                 ),
               ],
             ),

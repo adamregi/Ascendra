@@ -25,6 +25,27 @@ final meetingRepositoryProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef MeetingRepositoryRef = AutoDisposeProviderRef<MeetingRepository>;
+String _$meetingReplayRepositoryHash() =>
+    r'3b28782889ea8726797644d10ea3a16ca7cb4bb8';
+
+/// See also [meetingReplayRepository].
+@ProviderFor(meetingReplayRepository)
+final meetingReplayRepositoryProvider =
+    AutoDisposeProvider<MeetingReplayRepository>.internal(
+      meetingReplayRepository,
+      name: r'meetingReplayRepositoryProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$meetingReplayRepositoryHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef MeetingReplayRepositoryRef =
+    AutoDisposeProviderRef<MeetingReplayRepository>;
 String _$upcomingMeetingsHash() => r'dfbec2c0162f0e6ef3673ebf9696e2b5e4e7fc36';
 
 /// See also [upcomingMeetings].

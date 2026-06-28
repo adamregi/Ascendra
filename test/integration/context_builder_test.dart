@@ -9,10 +9,13 @@ void main() {
       expect(true, isTrue);
     });
 
-    test('caches context on first call and returns cache_hit=true on second', () async {
-      // TODO: Invoke edge function twice and check cache_hit metadata
-      expect(true, isTrue);
-    });
+    test(
+      'caches context on first call and returns cache_hit=true on second',
+      () async {
+        // TODO: Invoke edge function twice and check cache_hit metadata
+        expect(true, isTrue);
+      },
+    );
 
     test('returns needs_clarification when name is ambiguous', () async {
       // TODO: Mock database state with multiple "Johns" and verify resolution fallback

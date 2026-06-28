@@ -33,8 +33,6 @@ class CanInviteMemberUseCase {
       throw ArgumentError('Leader ID cannot be empty');
     }
 
-    return _repository.canInviteMember(
-      leaderId: leaderId.trim(),
-    );
+    return _repository.canInviteMember(leaderId: leaderId.trim());
   }
 }

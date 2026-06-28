@@ -25,7 +25,7 @@ class MeetingDetailPage extends ConsumerWidget {
     final meetingDetailAsync = ref.watch(meetingDetailProvider(meetingId));
 
     return Scaffold(
-      backgroundColor: AppColors.surface,
+      backgroundColor: AppColors.background,
       appBar: AppBar(
         backgroundColor: AppColors.surface.withValues(alpha: 0.8),
         elevation: 0,
@@ -51,7 +51,7 @@ class MeetingDetailPage extends ConsumerWidget {
       body: meetingDetailAsync.when(
         data: (viewModel) {
           final meeting = viewModel.meeting;
-          
+
           return Stack(
             children: [
               // Scrollable Content
@@ -69,45 +69,87 @@ class MeetingDetailPage extends ConsumerWidget {
                         // Hero header
                         MeetingHeaderCard(
                           meeting: meeting,
-                          expectedAttendees: meeting.maxParticipants ?? viewModel.attendances.length,
+                          expectedAttendees:
+                              meeting.maxParticipants ??
+                              viewModel.attendances.length,
                         ),
-                        
+
                         const SizedBox(height: AppSpacing.xl),
-                        
+
                         // Logistics (Date, Time, Timezone) - Could be extracted to its own section widget too
                         _buildLogisticsSection(meeting),
-                        
+
                         const SizedBox(height: AppSpacing.xl),
-                        
+
                         // Participants (Readiness + Guest list)
                         MeetingParticipantsSection(
-                          totalInvites: meeting.maxParticipants ?? viewModel.attendances.length,
-                          confirmed: viewModel.attendances.length, // Simplified logic for demo
+                          totalInvites:
+                              meeting.maxParticipants ??
+                              viewModel.attendances.length,
+                          confirmed:
+                              viewModel
+                                  .attendances
+                                  .length, // Simplified logic for demo
                         ),
-                        
+
                         const SizedBox(height: AppSpacing.xl),
-                        
+
                         // Attendance Summary (Only if started/completed)
                         if (meeting.startedAt != null) ...[
                           AttendanceSummaryCard(
                             registered: viewModel.attendances.length,
-                            joined: viewModel.attendances.where((a) => a.attendanceStatus == AttendanceStatus.attended || a.attendanceStatus == AttendanceStatus.partial).length,
-                            absent: viewModel.attendances.where((a) => a.attendanceStatus == AttendanceStatus.absent).length,
-                            attendancePercentage: viewModel.attendances.isEmpty ? 0 : 
-                                (viewModel.attendances.where((a) => a.attendanceStatus == AttendanceStatus.attended || a.attendanceStatus == AttendanceStatus.partial).length / viewModel.attendances.length) * 100,
+                            joined:
+                                viewModel.attendances
+                                    .where(
+                                      (a) =>
+                                          a.attendanceStatus ==
+                                              AttendanceStatus.attended ||
+                                          a.attendanceStatus ==
+                                              AttendanceStatus.partial,
+                                    )
+                                    .length,
+                            absent:
+                                viewModel.attendances
+                                    .where(
+                                      (a) =>
+                                          a.attendanceStatus ==
+                                          AttendanceStatus.absent,
+                                    )
+                                    .length,
+                            attendancePercentage:
+                                viewModel.attendances.isEmpty
+                                    ? 0
+                                    : (viewModel.attendances
+                                                .where(
+                                                  (a) =>
+                                                      a.attendanceStatus ==
+                                                          AttendanceStatus
+                                                              .attended ||
+                                                      a.attendanceStatus ==
+                                                          AttendanceStatus
+                                                              .partial,
+                                                )
+                                                .length /
+                                            viewModel.attendances.length) *
+                                        100,
                           ),
                           const SizedBox(height: AppSpacing.xl),
                         ],
 
                         // Recording Status
                         RecordingStatusCard(
-                          status: meeting.recordingUrl != null ? RecordingStatus.ready : 
-                                 (meeting.recordingEnabled ? RecordingStatus.processing : RecordingStatus.none),
-                          onViewRecording: () => context.push('/meetings/replay/$meetingId'),
+                          status:
+                              meeting.recordingUrl != null
+                                  ? RecordingStatus.ready
+                                  : (meeting.recordingEnabled
+                                      ? RecordingStatus.processing
+                                      : RecordingStatus.none),
+                          onViewRecording:
+                              () => context.push('/meetings/replay/$meetingId'),
                         ),
 
                         const SizedBox(height: AppSpacing.xl),
-                        
+
                         // Agenda
                         MeetingAgendaSection(agenda: meeting.agenda),
                       ]),
@@ -115,7 +157,7 @@ class MeetingDetailPage extends ConsumerWidget {
                   ),
                 ],
               ),
-              
+
               // Sticky Action Bar
               Positioned(
                 bottom: 0,
@@ -123,7 +165,10 @@ class MeetingDetailPage extends ConsumerWidget {
                 right: 0,
                 child: MeetingActionBar(
                   status: meeting.meetingStatus,
-                  permissions: const MeetingPermissions(isLeader: true, canEdit: true), // Mock permissions for now
+                  permissions: const MeetingPermissions(
+                    isLeader: true,
+                    canEdit: true,
+                  ), // Mock permissions for now
                   onShare: () {},
                   onEdit: () {},
                   onJoin: () => context.push('/meetings/live/$meetingId'),
@@ -132,26 +177,36 @@ class MeetingDetailPage extends ConsumerWidget {
             ],
           );
         },
-        loading: () => const Center(child: CircularProgressIndicator(color: AppColors.primary)),
-        error: (err, stack) => Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Icons.error_outline, color: AppColors.error, size: 48),
-              const SizedBox(height: AppSpacing.md),
-              Text(
-                'Failed to load meeting details',
-                style: AppTypography.headlineSm,
+        loading:
+            () => const Center(
+              child: CircularProgressIndicator(color: AppColors.primary),
+            ),
+        error:
+            (err, stack) => Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(
+                    Icons.error_outline,
+                    color: AppColors.error,
+                    size: 48,
+                  ),
+                  const SizedBox(height: AppSpacing.md),
+                  Text(
+                    'Failed to load meeting details',
+                    style: AppTypography.headlineSm,
+                  ),
+                  const SizedBox(height: AppSpacing.sm),
+                  Text(
+                    err.toString(),
+                    style: AppTypography.body2.copyWith(
+                      color: AppColors.onSurfaceVariant,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
-              const SizedBox(height: AppSpacing.sm),
-              Text(
-                err.toString(),
-                style: AppTypography.body2.copyWith(color: AppColors.onSurfaceVariant),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
-        ),
+            ),
       ),
     );
   }
@@ -171,9 +226,17 @@ class MeetingDetailPage extends ConsumerWidget {
             style: AppTypography.headlineSm.copyWith(color: AppColors.primary),
           ),
           const Divider(color: AppColors.borderSubtle, height: AppSpacing.xl),
-          _buildLogisticItem(Icons.event_outlined, 'Date', '${meeting.scheduledAt.day}/${meeting.scheduledAt.month}/${meeting.scheduledAt.year}'),
+          _buildLogisticItem(
+            Icons.event_outlined,
+            'Date',
+            '${meeting.scheduledAt.day}/${meeting.scheduledAt.month}/${meeting.scheduledAt.year}',
+          ),
           const SizedBox(height: AppSpacing.md),
-          _buildLogisticItem(Icons.schedule_outlined, 'Time', '${meeting.scheduledAt.hour}:${meeting.scheduledAt.minute.toString().padLeft(2, '0')}'),
+          _buildLogisticItem(
+            Icons.schedule_outlined,
+            'Time',
+            '${meeting.scheduledAt.hour}:${meeting.scheduledAt.minute.toString().padLeft(2, '0')}',
+          ),
           const SizedBox(height: AppSpacing.md),
           _buildLogisticItem(Icons.public_outlined, 'Timezone', 'Local Time'),
         ],

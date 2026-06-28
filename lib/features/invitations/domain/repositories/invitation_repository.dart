@@ -56,14 +56,10 @@ abstract class InvitationRepository {
   ///
   /// Used on the leader's "Invited Members" screen.
   /// Returns invitations in all statuses (pending, accepted, cancelled, expired).
-  Future<List<Invitation>> getInvitationsByInviter({
-    required String inviterId,
-  });
+  Future<List<Invitation>> getInvitationsByInviter({required String inviterId});
 
   /// Get all pending invitations for a specific company.
   ///
   /// Used for admin dashboards and plan limit calculations.
-  Future<List<Invitation>> getPendingInvitations({
-    required String companyId,
-  });
+  Future<List<Invitation>> getPendingInvitations({required String companyId});
 }

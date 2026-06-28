@@ -4,7 +4,9 @@ import 'package:distributor_os/features/meetings/presentation/widgets/participan
 import '../../meetings_test_mocks.dart';
 
 void main() {
-  testWidgets('ParticipantTile displays name, host badge, and mic status', (WidgetTester tester) async {
+  testWidgets('ParticipantTile displays name, host badge, and mic status', (
+    WidgetTester tester,
+  ) async {
     final hostRole = MockHMSRole(name: 'host');
     final peer = MockHMSRemotePeer(
       name: 'Michael Scott',
@@ -14,12 +16,7 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
-        home: Scaffold(
-          body: ParticipantTile(
-            peer: peer,
-            isSpeaking: true,
-          ),
-        ),
+        home: Scaffold(body: ParticipantTile(peer: peer, isSpeaking: true)),
       ),
     );
 

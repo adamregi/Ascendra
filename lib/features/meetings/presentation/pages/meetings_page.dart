@@ -24,7 +24,8 @@ class MeetingsPage extends ConsumerStatefulWidget {
   ConsumerState<MeetingsPage> createState() => _MeetingsPageState();
 }
 
-class _MeetingsPageState extends ConsumerState<MeetingsPage> with WidgetsBindingObserver {
+class _MeetingsPageState extends ConsumerState<MeetingsPage>
+    with WidgetsBindingObserver {
   DateTime? _lastRefresh;
   Timer? _searchDebounce;
 
@@ -75,20 +76,22 @@ class _MeetingsPageState extends ConsumerState<MeetingsPage> with WidgetsBinding
     final meetingsAsync = ref.watch(searchedMeetingsProvider);
     final permissionsAsync = ref.watch(permissionsProvider);
 
-    final canSchedule = permissionsAsync.value == 'leader' || permissionsAsync.value == 'admin';
+    final canSchedule =
+        permissionsAsync.value == 'leader' || permissionsAsync.value == 'admin';
 
     return BasePage(
       title: 'Meetings',
-      floatingActionButton: canSchedule
-          ? FloatingActionButton(
-              onPressed: () {
-                // Navigate to schedule form (M3.2)
-              },
-              backgroundColor: AppColors.primary,
-              foregroundColor: AppColors.onPrimary,
-              child: const Icon(Icons.add),
-            )
-          : null,
+      floatingActionButton:
+          canSchedule
+              ? FloatingActionButton(
+                onPressed: () {
+                  // Navigate to schedule form (M3.2)
+                },
+                backgroundColor: AppColors.primary,
+                foregroundColor: AppColors.onPrimary,
+                child: const Icon(Icons.add),
+              )
+              : null,
       body: RefreshIndicator(
         onRefresh: () async {
           _lastRefresh = DateTime.now();
@@ -112,7 +115,10 @@ class _MeetingsPageState extends ConsumerState<MeetingsPage> with WidgetsBinding
                         borderRadius: BorderRadius.circular(100),
                         borderSide: BorderSide.none,
                       ),
-                      contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
+                      contentPadding: const EdgeInsets.symmetric(
+                        vertical: 0,
+                        horizontal: 20,
+                      ),
                     ),
                   ),
                 ),
@@ -121,21 +127,24 @@ class _MeetingsPageState extends ConsumerState<MeetingsPage> with WidgetsBinding
               // Snapshot Card
               SliverToBoxAdapter(
                 child: summaryAsync.when(
-                  data: (summary) => Padding(
-                    padding: const EdgeInsets.only(bottom: AppSpacing.xl),
-                    child: MeetingSnapshotCard(summary: summary),
-                  ),
-                  loading: () => const Padding(
-                    padding: EdgeInsets.only(bottom: AppSpacing.xl),
-                    child: Center(child: CircularProgressIndicator()),
-                  ),
-                  error: (e, st) => Padding(
-                    padding: const EdgeInsets.only(bottom: AppSpacing.xl),
-                    child: ErrorCard(
-                      message: 'Failed to load summary',
-                      onRetry: _invalidateAll,
-                    ),
-                  ),
+                  data:
+                      (summary) => Padding(
+                        padding: const EdgeInsets.only(bottom: AppSpacing.xl),
+                        child: MeetingSnapshotCard(summary: summary),
+                      ),
+                  loading:
+                      () => const Padding(
+                        padding: EdgeInsets.only(bottom: AppSpacing.xl),
+                        child: Center(child: CircularProgressIndicator()),
+                      ),
+                  error:
+                      (e, st) => Padding(
+                        padding: const EdgeInsets.only(bottom: AppSpacing.xl),
+                        child: ErrorCard(
+                          message: 'Failed to load summary',
+                          onRetry: _invalidateAll,
+                        ),
+                      ),
                 ),
               ),
 
@@ -146,7 +155,9 @@ class _MeetingsPageState extends ConsumerState<MeetingsPage> with WidgetsBinding
                   child: MeetingStatusFilterBar(
                     selected: filter,
                     onSelected: (newFilter) {
-                      ref.read(selectedMeetingFilterProvider.notifier).select(newFilter);
+                      ref
+                          .read(selectedMeetingFilterProvider.notifier)
+                          .select(newFilter);
                     },
                   ),
                 ),
@@ -163,27 +174,26 @@ class _MeetingsPageState extends ConsumerState<MeetingsPage> with WidgetsBinding
                   }
 
                   return SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (context, index) {
-                        final meeting = meetings[index];
-                        return Padding(
-                          padding: const EdgeInsets.only(bottom: AppSpacing.md),
-                          child: _buildMeetingCard(context, meeting),
-                        );
-                      },
-                      childCount: meetings.length,
-                    ),
+                    delegate: SliverChildBuilderDelegate((context, index) {
+                      final meeting = meetings[index];
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: AppSpacing.md),
+                        child: _buildMeetingCard(context, meeting),
+                      );
+                    }, childCount: meetings.length),
                   );
                 },
-                loading: () => const SliverFillRemaining(
-                  child: Center(child: CircularProgressIndicator()),
-                ),
-                error: (e, st) => SliverFillRemaining(
-                  child: ErrorCard(
-                    message: 'Failed to load meetings',
-                    onRetry: _invalidateAll,
-                  ),
-                ),
+                loading:
+                    () => const SliverFillRemaining(
+                      child: Center(child: CircularProgressIndicator()),
+                    ),
+                error:
+                    (e, st) => SliverFillRemaining(
+                      child: ErrorCard(
+                        message: 'Failed to load meetings',
+                        onRetry: _invalidateAll,
+                      ),
+                    ),
               ),
 
               const SliverToBoxAdapter(

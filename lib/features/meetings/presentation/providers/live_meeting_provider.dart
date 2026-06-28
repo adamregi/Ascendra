@@ -59,7 +59,8 @@ class LiveMeetingState {
       isSpeakerPhoneOn: isSpeakerPhoneOn ?? this.isSpeakerPhoneOn,
       errorMessage: errorMessage ?? this.errorMessage,
       activeAudioDevice: activeAudioDevice ?? this.activeAudioDevice,
-      availableAudioDevices: availableAudioDevices ?? this.availableAudioDevices,
+      availableAudioDevices:
+          availableAudioDevices ?? this.availableAudioDevices,
     );
   }
 }
@@ -70,7 +71,8 @@ LiveMeetingRepository liveMeetingRepository(Ref ref) {
 }
 
 @riverpod
-class LiveMeetingController extends _$LiveMeetingController implements HMSUpdateListener {
+class LiveMeetingController extends _$LiveMeetingController
+    implements HMSUpdateListener {
   late final LiveMeetingRepository _repository;
 
   @override
@@ -86,7 +88,10 @@ class LiveMeetingController extends _$LiveMeetingController implements HMSUpdate
   }
 
   Future<void> joinMeeting(String meetingId, String userName) async {
-    state = state.copyWith(status: LiveMeetingStatus.joining, errorMessage: null);
+    state = state.copyWith(
+      status: LiveMeetingStatus.joining,
+      errorMessage: null,
+    );
     try {
       await _repository.joinMeeting(meetingId: meetingId, userName: userName);
       final devices = await _repository.getAudioDevices();

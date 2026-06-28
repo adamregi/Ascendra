@@ -12,9 +12,15 @@ class AuthRepository {
 
   Future<String> _resolveEmail(String distributorId) async {
     try {
-      final response = await _supabase.rpc('resolve_distributor_login', params: {'p_distributor_id': distributorId});
+      final response = await _supabase.rpc(
+        'resolve_distributor_login',
+        params: {'p_distributor_id': distributorId},
+      );
       if (response == null || response.toString().isEmpty) {
-        throw const AuthFailure(message: 'Distributor ID not found', code: 'not_found');
+        throw const AuthFailure(
+          message: 'Distributor ID not found',
+          code: 'not_found',
+        );
       }
       return response.toString();
     } catch (e) {
@@ -23,7 +29,10 @@ class AuthRepository {
     }
   }
 
-  Future<AuthResponse> signInWithPasswordMode(String distributorId, String password) async {
+  Future<AuthResponse> signInWithPasswordMode(
+    String distributorId,
+    String password,
+  ) async {
     try {
       final email = await _resolveEmail(distributorId);
       final response = await _supabase.auth.signInWithPassword(
@@ -79,7 +88,7 @@ class AuthRepository {
   }
 
   User? get currentUser => _supabase.auth.currentUser;
-  
+
   Stream<AuthState> get authStateChanges => _supabase.auth.onAuthStateChange;
 }
 

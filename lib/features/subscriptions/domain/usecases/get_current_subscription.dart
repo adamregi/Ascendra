@@ -20,8 +20,6 @@ class GetCurrentSubscriptionUseCase {
       throw ArgumentError('Leader ID cannot be empty');
     }
 
-    return _repository.getCurrentSubscription(
-      leaderId: leaderId.trim(),
-    );
+    return _repository.getCurrentSubscription(leaderId: leaderId.trim());
   }
 }

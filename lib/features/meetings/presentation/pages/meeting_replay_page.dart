@@ -10,6 +10,7 @@ import '../../../../core/constants/app_typography.dart';
 import '../../../../core/constants/app_spacing.dart';
 import '../../../../core/constants/app_radius.dart';
 import '../../domain/entities/attendance_status.dart';
+import '../../domain/entities/replay_view_model.dart';
 import '../providers/meeting_replay_provider.dart';
 
 class MeetingReplayPage extends ConsumerStatefulWidget {
@@ -36,11 +37,15 @@ class _MeetingReplayPageState extends ConsumerState<MeetingReplayPage> {
 
   void _initVideo() async {
     // Retrieve replay data first to get the recording URL
-    final replayData = await ref.read(meetingReplayProvider(widget.meetingId).future);
+    final replayData = await ref.read(
+      meetingReplayProvider(widget.meetingId).future,
+    );
     final recordingUrl = replayData.meeting.recordingUrl;
 
     if (recordingUrl != null && recordingUrl.isNotEmpty) {
-      _videoController = VideoPlayerController.networkUrl(Uri.parse(recordingUrl))
+      _videoController = VideoPlayerController.networkUrl(
+          Uri.parse(recordingUrl),
+        )
         ..initialize().then((_) {
           if (mounted) {
             setState(() {
@@ -101,119 +106,158 @@ class _MeetingReplayPageState extends ConsumerState<MeetingReplayPage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new, color: AppColors.primary, size: 20),
+          icon: const Icon(
+            Icons.arrow_back_ios_new,
+            color: AppColors.primary,
+            size: 20,
+          ),
           onPressed: () => context.pop(),
         ),
         title: replayAsync.when(
-          data: (data) => Text(
-            data.meeting.title,
-            style: AppTypography.headlineSm.copyWith(color: AppColors.primary),
-          ),
+          data:
+              (data) => Text(
+                data.meeting.title,
+                style: AppTypography.headlineSm.copyWith(
+                  color: AppColors.primary,
+                ),
+              ),
           loading: () => const Text('Loading...'),
           error: (_, __) => const Text('Error'),
         ),
         centerTitle: true,
       ),
       body: replayAsync.when(
-        data: (data) => Column(
-          children: [
-            // 1. Video Player View (Hero aspect video ratio)
-            Expanded(
-              child: ListView(
-                padding: EdgeInsets.zero,
-                children: [
-                  _buildVideoHero(data.meeting.title),
-                  
-                  // 2. Info details section
-                  Padding(
-                    padding: const EdgeInsets.all(AppSpacing.lg),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                data.meeting.title,
-                                style: AppTypography.headlineSm.copyWith(
-                                  color: AppColors.primary,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const SizedBox(height: AppSpacing.xs),
-                              Row(
+        data:
+            (data) => Column(
+              children: [
+                // 1. Video Player View (Hero aspect video ratio)
+                Expanded(
+                  child: ListView(
+                    padding: EdgeInsets.zero,
+                    children: [
+                      _buildVideoHero(data.meeting.title),
+
+                      // 2. Info details section
+                      Padding(
+                        padding: const EdgeInsets.all(AppSpacing.lg),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Icon(Icons.calendar_today, size: 14, color: AppColors.onSurfaceVariant),
-                                  const SizedBox(width: 4),
                                   Text(
-                                    DateFormat('MMM dd, yyyy').format(data.meeting.scheduledAt),
-                                    style: AppTypography.body2.copyWith(color: AppColors.onSurfaceVariant),
+                                    data.meeting.title,
+                                    style: AppTypography.headlineSm.copyWith(
+                                      color: AppColors.primary,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                  const SizedBox(width: AppSpacing.md),
-                                  const Icon(Icons.schedule, size: 14, color: AppColors.onSurfaceVariant),
-                                  const SizedBox(width: 4),
-                                  Text(
-                                    '${data.meeting.durationMinutes ?? 0}m',
-                                    style: AppTypography.body2.copyWith(color: AppColors.onSurfaceVariant),
+                                  const SizedBox(height: AppSpacing.xs),
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.calendar_today,
+                                        size: 14,
+                                        color: AppColors.onSurfaceVariant,
+                                      ),
+                                      const SizedBox(width: 4),
+                                      Text(
+                                        DateFormat(
+                                          'MMM dd, yyyy',
+                                        ).format(data.meeting.scheduledAt),
+                                        style: AppTypography.body2.copyWith(
+                                          color: AppColors.onSurfaceVariant,
+                                        ),
+                                      ),
+                                      const SizedBox(width: AppSpacing.md),
+                                      const Icon(
+                                        Icons.schedule,
+                                        size: 14,
+                                        color: AppColors.onSurfaceVariant,
+                                      ),
+                                      const SizedBox(width: 4),
+                                      Text(
+                                        '${data.meeting.durationMinutes ?? 0}m',
+                                        style: AppTypography.body2.copyWith(
+                                          color: AppColors.onSurfaceVariant,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
-                            ],
-                          ),
+                            ),
+                            IconButton(
+                              icon: const Icon(
+                                Icons.share,
+                                color: AppColors.primary,
+                              ),
+                              onPressed: () {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                      'Meeting replay link copied to clipboard!',
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ],
                         ),
-                        IconButton(
-                          icon: const Icon(Icons.share, color: AppColors.primary),
-                          onPressed: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Meeting replay link copied to clipboard!')),
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  const Divider(color: AppColors.borderSubtle, height: 1),
-
-                  // 3. Attendance report list
-                  Padding(
-                    padding: const EdgeInsets.all(AppSpacing.lg),
-                    child: _buildAttendanceReport(data.attendances),
-                  ),
-                ],
-              ),
-            ),
-
-            // 4. Footer Export Action Button
-            SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.all(AppSpacing.lg),
-                child: SizedBox(
-                  width: double.infinity,
-                  height: 48,
-                  child: OutlinedButton.icon(
-                    style: OutlinedButton.styleFrom(
-                      side: const BorderSide(color: AppColors.borderSubtle, width: 2),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(AppRadius.md),
                       ),
-                      foregroundColor: AppColors.primary,
-                    ),
-                    icon: const Icon(Icons.download, size: 20),
-                    label: const Text('EXPORT REPORT'),
-                    onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Attendance report exported successfully!')),
-                      );
-                    },
+
+                      const Divider(color: AppColors.borderSubtle, height: 1),
+
+                      // 3. Attendance report list
+                      Padding(
+                        padding: const EdgeInsets.all(AppSpacing.lg),
+                        child: _buildAttendanceReport(data.attendances),
+                      ),
+                    ],
                   ),
                 ),
-              ),
+
+                // 4. Footer Export Action Button
+                SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.all(AppSpacing.lg),
+                    child: SizedBox(
+                      width: double.infinity,
+                      height: 48,
+                      child: OutlinedButton.icon(
+                        style: OutlinedButton.styleFrom(
+                          side: const BorderSide(
+                            color: AppColors.borderSubtle,
+                            width: 2,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(AppRadius.md),
+                          ),
+                          foregroundColor: AppColors.primary,
+                        ),
+                        icon: const Icon(Icons.download, size: 20),
+                        label: const Text('EXPORT REPORT'),
+                        onPressed: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                'Attendance report exported successfully!',
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-        loading: () => const Center(child: CircularProgressIndicator(color: AppColors.primary)),
+        loading:
+            () => const Center(
+              child: CircularProgressIndicator(color: AppColors.primary),
+            ),
         error: (err, _) => Center(child: Text('Error loading replay: $err')),
       ),
     );
@@ -246,7 +290,9 @@ class _MeetingReplayPageState extends ConsumerState<MeetingReplayPage> {
               ),
 
             // 2. Play/Pause Glassmorphic Overlay
-            if (!_isPlayerInitialized || !_videoController!.value.isPlaying || _showControls)
+            if (!_isPlayerInitialized ||
+                !_videoController!.value.isPlaying ||
+                _showControls)
               Center(
                 child: ClipOval(
                   child: BackdropFilter(
@@ -257,7 +303,9 @@ class _MeetingReplayPageState extends ConsumerState<MeetingReplayPage> {
                       decoration: BoxDecoration(
                         color: Colors.white.withValues(alpha: 0.2),
                         shape: BoxShape.circle,
-                        border: Border.all(color: Colors.white.withValues(alpha: 0.3)),
+                        border: Border.all(
+                          color: Colors.white.withValues(alpha: 0.3),
+                        ),
                       ),
                       child: IconButton(
                         icon: Icon(
@@ -279,7 +327,10 @@ class _MeetingReplayPageState extends ConsumerState<MeetingReplayPage> {
                 left: 0,
                 right: 0,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
                       begin: Alignment.bottomCenter,
@@ -319,7 +370,11 @@ class _MeetingReplayPageState extends ConsumerState<MeetingReplayPage> {
                       ),
                       const SizedBox(width: AppSpacing.sm),
                       IconButton(
-                        icon: const Icon(Icons.fullscreen, color: Colors.white, size: 20),
+                        icon: const Icon(
+                          Icons.fullscreen,
+                          color: Colors.white,
+                          size: 20,
+                        ),
                         onPressed: () {},
                       ),
                     ],
@@ -333,7 +388,12 @@ class _MeetingReplayPageState extends ConsumerState<MeetingReplayPage> {
   }
 
   Widget _buildAttendanceReport(List<AttendanceWithProfile> attendances) {
-    final compliantCount = attendances.where((a) => a.attendance.attendanceStatus == AttendanceStatus.attended).length;
+    final compliantCount =
+        attendances
+            .where(
+              (a) => a.attendance.attendanceStatus == AttendanceStatus.attended,
+            )
+            .length;
     final totalCount = attendances.length;
 
     return Column(
@@ -344,7 +404,9 @@ class _MeetingReplayPageState extends ConsumerState<MeetingReplayPage> {
           children: [
             Text(
               'Attendance Report',
-              style: AppTypography.headlineSm.copyWith(color: AppColors.primary),
+              style: AppTypography.headlineSm.copyWith(
+                color: AppColors.primary,
+              ),
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -381,9 +443,16 @@ class _MeetingReplayPageState extends ConsumerState<MeetingReplayPage> {
 
   Widget _buildAttendeeRow(AttendanceWithProfile item) {
     final status = item.attendance.attendanceStatus;
-    final initials = item.fullName.trim().isNotEmpty
-        ? item.fullName.trim().split(' ').map((e) => e[0]).take(2).join().toUpperCase()
-        : '?';
+    final initials =
+        item.fullName.trim().isNotEmpty
+            ? item.fullName
+                .trim()
+                .split(' ')
+                .map((e) => e[0])
+                .take(2)
+                .join()
+                .toUpperCase()
+            : '?';
 
     // Status mapping widgets
     Widget statusBadge;
@@ -467,8 +536,11 @@ class _MeetingReplayPageState extends ConsumerState<MeetingReplayPage> {
     // Time text calculation
     String durationText = 'Did not join';
     if (item.attendance.firstJoinedAt != null) {
-      final joinedTime = DateFormat('hh:mm a').format(item.attendance.firstJoinedAt!.toLocal());
-      durationText = 'Joined $joinedTime • ${item.attendance.totalDurationMinutes}m';
+      final joinedTime = DateFormat(
+        'hh:mm a',
+      ).format(item.attendance.firstJoinedAt!.toLocal());
+      durationText =
+          'Joined $joinedTime • ${item.attendance.totalDurationMinutes}m';
     }
 
     return Container(

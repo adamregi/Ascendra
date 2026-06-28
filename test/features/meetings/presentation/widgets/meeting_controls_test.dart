@@ -3,7 +3,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:distributor_os/features/meetings/presentation/widgets/meeting_controls.dart';
 
 void main() {
-  testWidgets('MeetingControls renders correct icons based on state', (WidgetTester tester) async {
+  testWidgets('MeetingControls renders correct icons based on state', (
+    WidgetTester tester,
+  ) async {
     bool micToggled = false;
     bool cameraToggled = false;
     bool speakerToggled = false;

@@ -46,11 +46,7 @@ class MeetingEmptyState extends StatelessWidget {
               shape: BoxShape.circle,
               border: Border.all(color: AppColors.borderSubtle),
             ),
-            child: Icon(
-              icon,
-              size: 48,
-              color: AppColors.onSurfaceVariant,
-            ),
+            child: Icon(icon, size: 48, color: AppColors.onSurfaceVariant),
           ),
           const SizedBox(height: 24),
           Text(
@@ -61,7 +57,9 @@ class MeetingEmptyState extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             message,
-            style: AppTypography.bodyMd.copyWith(color: AppColors.onSurfaceVariant),
+            style: AppTypography.bodyMd.copyWith(
+              color: AppColors.onSurfaceVariant,
+            ),
             textAlign: TextAlign.center,
           ),
         ],

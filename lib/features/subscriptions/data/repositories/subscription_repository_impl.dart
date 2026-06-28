@@ -8,20 +8,24 @@ import '../models/plan_usage_model.dart';
 import '../models/subscription_model.dart';
 import '../models/subscription_plan_model.dart';
 
-class SubscriptionRepositoryImpl extends BaseRepository implements SubscriptionRepository {
+class SubscriptionRepositoryImpl extends BaseRepository
+    implements SubscriptionRepository {
   final supabase.SupabaseClient _client;
 
   SubscriptionRepositoryImpl(this._client);
 
   @override
-  Future<Subscription?> getCurrentSubscription({required String leaderId}) async {
+  Future<Subscription?> getCurrentSubscription({
+    required String leaderId,
+  }) async {
     try {
-      final data = await _client
-          .from('subscriptions')
-          .select('*, plan:subscription_plans(*)')
-          .eq('leader_id', leaderId)
-          .eq('status', 'active')
-          .maybeSingle();
+      final data =
+          await _client
+              .from('subscriptions')
+              .select('*, plan:subscription_plans(*)')
+              .eq('leader_id', leaderId)
+              .eq('status', 'active')
+              .maybeSingle();
 
       if (data == null) return null;
       return SubscriptionModel.fromJson(data);
@@ -38,7 +42,9 @@ class SubscriptionRepositoryImpl extends BaseRepository implements SubscriptionR
           .select()
           .eq('is_active', true);
 
-      return data.map((e) => SubscriptionPlanModel.fromJson(e as Map<String, dynamic>)).toList();
+      return data
+          .map((e) => SubscriptionPlanModel.fromJson(e as Map<String, dynamic>))
+          .toList();
     } catch (e, stack) {
       handleException(e, stack);
     }
@@ -51,33 +57,38 @@ class SubscriptionRepositoryImpl extends BaseRepository implements SubscriptionR
   }) async {
     try {
       // 1. Fetch current subscription
-      final subData = await _client
-          .from('subscriptions')
-          .select('*, plan:subscription_plans(*)')
-          .eq('id', subscriptionId)
-          .single();
+      final subData =
+          await _client
+              .from('subscriptions')
+              .select('*, plan:subscription_plans(*)')
+              .eq('id', subscriptionId)
+              .single();
       final currentSub = SubscriptionModel.fromJson(subData);
 
       // 2. Fetch new plan
-      final planData = await _client
-          .from('subscription_plans')
-          .select()
-          .eq('id', newPlanId)
-          .single();
+      final planData =
+          await _client
+              .from('subscription_plans')
+              .select()
+              .eq('id', newPlanId)
+              .single();
       final newPlan = SubscriptionPlanModel.fromJson(planData);
 
       // 3. Validation: reject downgrades
       if (newPlan.memberLimit < currentSub.plan.memberLimit) {
-        throw ArgumentError('Downgrades are not allowed. New plan has lower member limit.');
+        throw ArgumentError(
+          'Downgrades are not allowed. New plan has lower member limit.',
+        );
       }
 
       // 4. Update the plan
-      final updatedData = await _client
-          .from('subscriptions')
-          .update({'plan_id': newPlanId})
-          .eq('id', subscriptionId)
-          .select('*, plan:subscription_plans(*)')
-          .single();
+      final updatedData =
+          await _client
+              .from('subscriptions')
+              .update({'plan_id': newPlanId})
+              .eq('id', subscriptionId)
+              .select('*, plan:subscription_plans(*)')
+              .single();
 
       return SubscriptionModel.fromJson(updatedData);
     } catch (e, stack) {

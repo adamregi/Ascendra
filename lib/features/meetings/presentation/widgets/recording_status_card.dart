@@ -50,7 +50,9 @@ class RecordingStatusCard extends StatelessWidget {
             children: [
               Text(
                 'Recording Status',
-                style: AppTypography.headlineSm.copyWith(color: AppColors.primary),
+                style: AppTypography.headlineSm.copyWith(
+                  color: AppColors.primary,
+                ),
               ),
               _buildStatusBadge(),
             ],
@@ -63,8 +65,12 @@ class RecordingStatusCard extends StatelessWidget {
                 const SizedBox(width: AppSpacing.lg),
                 _buildInfoItem(Icons.sd_storage_outlined, fileSize ?? '-- MB'),
                 const SizedBox(width: AppSpacing.lg),
-                _buildInfoItem(Icons.calendar_today_outlined, 
-                  createdDate != null ? '${createdDate!.day}/${createdDate!.month}/${createdDate!.year}' : '--/--/----'),
+                _buildInfoItem(
+                  Icons.calendar_today_outlined,
+                  createdDate != null
+                      ? '${createdDate!.day}/${createdDate!.month}/${createdDate!.year}'
+                      : '--/--/----',
+                ),
               ],
             ),
             const SizedBox(height: AppSpacing.lg),
@@ -93,9 +99,11 @@ class RecordingStatusCard extends StatelessWidget {
             const SizedBox(height: AppSpacing.sm),
             Text(
               'Your recording is being processed and will be available shortly.',
-              style: AppTypography.body2.copyWith(color: AppColors.onSurfaceVariant),
+              style: AppTypography.body2.copyWith(
+                color: AppColors.onSurfaceVariant,
+              ),
             ),
-          ]
+          ],
         ],
       ),
     );
@@ -106,7 +114,10 @@ class RecordingStatusCard extends StatelessWidget {
       children: [
         Icon(icon, size: 16, color: AppColors.onSurfaceVariant),
         const SizedBox(width: AppSpacing.xs),
-        Text(text, style: AppTypography.bodyMd.copyWith(color: AppColors.onSurface)),
+        Text(
+          text,
+          style: AppTypography.bodyMd.copyWith(color: AppColors.onSurface),
+        ),
       ],
     );
   }

@@ -42,9 +42,9 @@ class AppTheme {
         seedColor: AppColors.primary,
         brightness: Brightness.dark,
       ),
-      scaffoldBackgroundColor: const Color(0xFF111827),
+      scaffoldBackgroundColor: AppColors.primary,
       appBarTheme: const AppBarTheme(
-        backgroundColor: Color(0xFF1F2937),
+        backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
         elevation: 0,
         centerTitle: false,

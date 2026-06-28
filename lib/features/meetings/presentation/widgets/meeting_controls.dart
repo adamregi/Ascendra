@@ -88,11 +88,7 @@ class MeetingControls extends StatelessWidget {
                   ),
                 ],
               ),
-              child: const Icon(
-                Icons.call_end,
-                color: Colors.white,
-                size: 28,
-              ),
+              child: const Icon(Icons.call_end, color: Colors.white, size: 28),
             ),
           ),
         ],
@@ -132,17 +128,14 @@ class MeetingControls extends StatelessWidget {
           color: getBgColor(),
           shape: BoxShape.circle,
           border: Border.all(
-            color: isDestructive 
-                ? AppColors.error.withValues(alpha: 0.2) 
-                : AppColors.borderSubtle.withValues(alpha: 0.3),
+            color:
+                isDestructive
+                    ? AppColors.error.withValues(alpha: 0.2)
+                    : AppColors.borderSubtle.withValues(alpha: 0.3),
             width: 1.0,
           ),
         ),
-        child: Icon(
-          icon,
-          color: getIconColor(),
-          size: 24,
-        ),
+        child: Icon(icon, color: getIconColor(), size: 24),
       ),
     );
   }

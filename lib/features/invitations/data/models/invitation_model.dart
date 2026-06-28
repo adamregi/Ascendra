@@ -25,8 +25,14 @@ class InvitationModel extends Invitation {
       companyId: json['company_id'] as String,
       status: InvitationStatus.fromString(json['status'] as String),
       invitedAt: DateTime.parse(json['invited_at'] as String),
-      acceptedAt: json['accepted_at'] != null ? DateTime.parse(json['accepted_at'] as String) : null,
-      expiresAt: json['expires_at'] != null ? DateTime.parse(json['expires_at'] as String) : null,
+      acceptedAt:
+          json['accepted_at'] != null
+              ? DateTime.parse(json['accepted_at'] as String)
+              : null,
+      expiresAt:
+          json['expires_at'] != null
+              ? DateTime.parse(json['expires_at'] as String)
+              : null,
     );
   }
 }

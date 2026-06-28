@@ -75,15 +75,22 @@ class AppTextField extends StatelessWidget {
           style: AppTypography.bodyLg.copyWith(color: AppColors.onSurface),
           decoration: InputDecoration(
             hintText: hint,
-            hintStyle: AppTypography.bodyLg.copyWith(color: AppColors.onSurfaceVariant.withValues(alpha: 0.5)),
+            hintStyle: AppTypography.bodyLg.copyWith(
+              color: AppColors.onSurfaceVariant.withValues(alpha: 0.5),
+            ),
             suffixIcon: suffixIcon,
             prefixIcon: prefixIcon,
             filled: true,
             fillColor: AppColors.surfaceContainerLowest,
-            contentPadding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: 16),
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: AppSpacing.md,
+              vertical: 16,
+            ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppRadius.lg),
-              borderSide: const BorderSide(color: AppColors.surfaceVariant), // Outline Variant equivalent
+              borderSide: const BorderSide(
+                color: AppColors.surfaceVariant,
+              ), // Outline Variant equivalent
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppRadius.lg),
@@ -179,9 +186,10 @@ class AppSearchField extends StatelessWidget {
         hintText: hint,
         prefixIcon: const Icon(Icons.search, color: AppColors.textHint),
         filled: true,
-        fillColor: Theme.of(context).brightness == Brightness.dark 
-            ? const Color(0xFF1F2937) 
-            : AppColors.surface,
+        fillColor:
+            Theme.of(context).brightness == Brightness.dark
+                ? const Color(0xFF1F2937)
+                : AppColors.surface,
       ),
     );
   }

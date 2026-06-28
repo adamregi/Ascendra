@@ -42,7 +42,7 @@ class MeetingHeaderCard extends StatelessWidget {
             height: 4,
             child: Container(color: AppColors.primary),
           ),
-          
+
           Padding(
             padding: const EdgeInsets.all(AppSpacing.xl),
             child: Column(
@@ -51,7 +51,9 @@ class MeetingHeaderCard extends StatelessWidget {
                 if (meeting.scheduledAt.isAfter(DateTime.now()))
                   Padding(
                     padding: const EdgeInsets.only(bottom: AppSpacing.xl),
-                    child: MeetingCountdownWidget(startTime: meeting.scheduledAt),
+                    child: MeetingCountdownWidget(
+                      startTime: meeting.scheduledAt,
+                    ),
                   ),
 
                 // Bento Grid Stats
@@ -64,16 +66,17 @@ class MeetingHeaderCard extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      Expanded(
-                        child: _buildStatItem('Goal', '95%'),
-                      ),
+                      Expanded(child: _buildStatItem('Goal', '95%')),
                       Container(
                         width: 1,
                         height: 48,
                         color: AppColors.borderSubtle,
                       ),
                       Expanded(
-                        child: _buildStatItem('Expected', expectedAttendees.toString()),
+                        child: _buildStatItem(
+                          'Expected',
+                          expectedAttendees.toString(),
+                        ),
                       ),
                       Container(
                         width: 1,
@@ -82,7 +85,7 @@ class MeetingHeaderCard extends StatelessWidget {
                       ),
                       Expanded(
                         child: _buildStatItem(
-                          'Duration', 
+                          'Duration',
                           '${meeting.durationMinutes ?? 0}m',
                         ),
                       ),
@@ -109,12 +112,7 @@ class MeetingHeaderCard extends StatelessWidget {
           ),
         ),
         const SizedBox(height: AppSpacing.xs),
-        Text(
-          value,
-          style: AppTypography.h2.copyWith(
-            color: AppColors.primary,
-          ),
-        ),
+        Text(value, style: AppTypography.h2.copyWith(color: AppColors.primary)),
       ],
     );
   }

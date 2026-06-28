@@ -6,7 +6,7 @@ part of 'meeting_replay_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$meetingReplayHash() => r'8a81b22f50893cd8a0d822610db7f71f409543e0';
+String _$meetingReplayHash() => r'8b508df4b157075186db4c4b10dddaacf896bc7f';
 
 /// Copied from Dart SDK
 class _SystemHash {

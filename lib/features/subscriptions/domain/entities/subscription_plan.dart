@@ -50,8 +50,7 @@ class SubscriptionPlan {
   /// Whether this plan supports a higher member limit than [other].
   ///
   /// Used to determine if an upgrade is possible.
-  bool isUpgradeFrom(SubscriptionPlan other) =>
-      memberLimit > other.memberLimit;
+  bool isUpgradeFrom(SubscriptionPlan other) => memberLimit > other.memberLimit;
 
   /// Whether moving to this plan from [current] would be a downgrade.
   ///

@@ -18,7 +18,8 @@ class DashboardPage extends ConsumerStatefulWidget {
   ConsumerState<DashboardPage> createState() => _DashboardPageState();
 }
 
-class _DashboardPageState extends ConsumerState<DashboardPage> with WidgetsBindingObserver {
+class _DashboardPageState extends ConsumerState<DashboardPage>
+    with WidgetsBindingObserver {
   DateTime? _lastRefresh;
 
   @override

@@ -26,8 +26,14 @@ class ProfileModel extends Profile {
       companyId: json['company_id'] as String,
       role: UserRole.fromString(json['role'] as String),
       status: ProfileStatus.fromString(json['status'] as String),
-      warnedAt: json['warned_at'] != null ? DateTime.parse(json['warned_at'] as String) : null,
-      terminatedAt: json['terminated_at'] != null ? DateTime.parse(json['terminated_at'] as String) : null,
+      warnedAt:
+          json['warned_at'] != null
+              ? DateTime.parse(json['warned_at'] as String)
+              : null,
+      terminatedAt:
+          json['terminated_at'] != null
+              ? DateTime.parse(json['terminated_at'] as String)
+              : null,
       createdAt: DateTime.parse(json['created_at'] as String),
       updatedAt: DateTime.parse(json['updated_at'] as String),
     );

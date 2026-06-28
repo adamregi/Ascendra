@@ -27,9 +27,12 @@ class ParticipantTile extends StatelessWidget {
         color: AppColors.surfaceContainer,
         borderRadius: BorderRadius.circular(AppRadius.lg),
         border: Border.all(
-          color: isSpeaking 
-              ? AppColors.primary 
-              : (isHost ? AppColors.secondary.withValues(alpha: 0.3) : Colors.transparent),
+          color:
+              isSpeaking
+                  ? AppColors.primary
+                  : (isHost
+                      ? AppColors.secondary.withValues(alpha: 0.3)
+                      : Colors.transparent),
           width: isSpeaking ? 2.0 : 1.0,
         ),
         boxShadow: [
@@ -45,12 +48,13 @@ class ParticipantTile extends StatelessWidget {
         children: [
           // 1. Video View or Avatar Placeholder
           Positioned.fill(
-            child: (videoTrack != null && !isVideoMuted)
-                ? HMSVideoView(
-                    track: videoTrack,
-                    scaleType: ScaleType.SCALE_ASPECT_FILL,
-                  )
-                : _buildAvatarPlaceholder(),
+            child:
+                (videoTrack != null && !isVideoMuted)
+                    ? HMSVideoView(
+                      track: videoTrack,
+                      scaleType: ScaleType.SCALE_ASPECT_FILL,
+                    )
+                    : _buildAvatarPlaceholder(),
           ),
 
           // 2. Gradient Overlay for metadata legibility
@@ -93,7 +97,10 @@ class ParticipantTile extends StatelessWidget {
                 if (isHost)
                   Container(
                     margin: const EdgeInsets.only(left: AppSpacing.xs),
-                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 6,
+                      vertical: 2,
+                    ),
                     decoration: BoxDecoration(
                       color: AppColors.secondary,
                       borderRadius: BorderRadius.circular(AppRadius.sm),
@@ -118,9 +125,10 @@ class ParticipantTile extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(4),
               decoration: BoxDecoration(
-                color: isMicMuted 
-                    ? AppColors.error.withValues(alpha: 0.9) 
-                    : Colors.black.withValues(alpha: 0.5),
+                color:
+                    isMicMuted
+                        ? AppColors.error.withValues(alpha: 0.9)
+                        : Colors.black.withValues(alpha: 0.5),
                 shape: BoxShape.circle,
               ),
               child: Icon(
@@ -164,9 +172,16 @@ class ParticipantTile extends StatelessWidget {
   }
 
   Widget _buildAvatarPlaceholder() {
-    final initials = peer.name.trim().isNotEmpty
-        ? peer.name.trim().split(' ').map((e) => e[0]).take(2).join().toUpperCase()
-        : '?';
+    final initials =
+        peer.name.trim().isNotEmpty
+            ? peer.name
+                .trim()
+                .split(' ')
+                .map((e) => e[0])
+                .take(2)
+                .join()
+                .toUpperCase()
+            : '?';
 
     return Container(
       color: AppColors.surfaceContainerLow,

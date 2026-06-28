@@ -8,11 +8,7 @@ class ErrorCard extends StatelessWidget {
   final String message;
   final VoidCallback? onRetry;
 
-  const ErrorCard({
-    super.key,
-    required this.message,
-    this.onRetry,
-  });
+  const ErrorCard({super.key, required this.message, this.onRetry});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +20,11 @@ class ErrorCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const ExcludeSemantics(
-              child: Icon(Icons.error_outline, size: 48, color: AppColors.error),
+              child: Icon(
+                Icons.error_outline,
+                size: 48,
+                color: AppColors.error,
+              ),
             ),
             const SizedBox(height: AppSpacing.md),
             Text(

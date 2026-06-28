@@ -64,13 +64,25 @@ class ScheduleMeetingNotifier extends _$ScheduleMeetingNotifier {
 
   void updateDate(DateTime date) {
     final current = state.scheduledAt ?? DateTime.now();
-    final newDate = DateTime(date.year, date.month, date.day, current.hour, current.minute);
+    final newDate = DateTime(
+      date.year,
+      date.month,
+      date.day,
+      current.hour,
+      current.minute,
+    );
     state = state.copyWith(scheduledAt: newDate);
   }
 
   void updateTime(int hour, int minute) {
     final current = state.scheduledAt ?? DateTime.now();
-    final newDate = DateTime(current.year, current.month, current.day, hour, minute);
+    final newDate = DateTime(
+      current.year,
+      current.month,
+      current.day,
+      hour,
+      minute,
+    );
     state = state.copyWith(scheduledAt: newDate);
   }
 
@@ -82,11 +94,11 @@ class ScheduleMeetingNotifier extends _$ScheduleMeetingNotifier {
     if (state.title.isEmpty || state.scheduledAt == null) {
       throw Exception('Title and date/time are required.');
     }
-    
+
     final repo = ref.read(meetingRepositoryProvider);
     final profile = ref.read(profileProvider).value;
     if (profile == null) throw Exception('Profile not loaded');
-    
+
     await repo.scheduleMeeting(
       companyId: profile.companyId,
       leaderId: profile.id,

@@ -25,9 +25,10 @@ class ComplianceViolationModel extends ComplianceViolation {
       status: ComplianceViolationStatus.fromJson(json['status'] as String),
       details: json['details'] as String?,
       createdAt: DateTime.parse(json['created_at'] as String),
-      resolvedAt: json['resolved_at'] != null
-          ? DateTime.parse(json['resolved_at'] as String)
-          : null,
+      resolvedAt:
+          json['resolved_at'] != null
+              ? DateTime.parse(json['resolved_at'] as String)
+              : null,
     );
   }
 

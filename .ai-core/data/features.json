@@ -1,0 +1,52 @@
+{
+  "features": [
+    {
+      "id": "auth",
+      "name": "Authentication",
+      "status": "completed",
+      "owner": "Platform Security Team",
+      "path": "lib/features/auth",
+      "depends_on": []
+    },
+    {
+      "id": "dashboard",
+      "name": "Dashboard",
+      "status": "completed",
+      "owner": "Leadership Experience Team",
+      "path": "lib/features/dashboard",
+      "depends_on": ["tasks", "meetings", "profiles"]
+    },
+    {
+      "id": "meetings",
+      "name": "Meetings",
+      "status": "completed",
+      "owner": "Core Product Team",
+      "path": "lib/features/meetings",
+      "depends_on": ["auth"]
+    },
+    {
+      "id": "tasks",
+      "name": "Tasks",
+      "status": "completed",
+      "owner": "Core Product Team",
+      "path": "lib/features/tasks",
+      "depends_on": []
+    },
+    {
+      "id": "members",
+      "name": "Members",
+      "status": "completed",
+      "owner": "Leadership Experience Team",
+      "path": "lib/features/members",
+      "depends_on": ["tasks", "meetings", "compliance"]
+    },
+    {
+      "id": "ai",
+      "name": "AI Assistant",
+      "status": "completed",
+      "owner": "AI Integration Team",
+      "path": "lib/features/ai",
+      "depends_on": []
+    }
+  ]
+}

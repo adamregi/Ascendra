@@ -8,7 +8,8 @@ import '../models/meeting_model.dart';
 import '../models/meeting_attendance_model.dart';
 import '../models/meeting_session_model.dart';
 
-class MeetingRepositoryImpl extends BaseRepository implements MeetingRepository {
+class MeetingRepositoryImpl extends BaseRepository
+    implements MeetingRepository {
   final supabase.SupabaseClient _client;
 
   MeetingRepositoryImpl(this._client);
@@ -50,7 +51,8 @@ class MeetingRepositoryImpl extends BaseRepository implements MeetingRepository 
         insertData['meeting_code'] = meetingCode;
       }
 
-      final response = await _client.from('meetings').insert(insertData).select().single();
+      final response =
+          await _client.from('meetings').insert(insertData).select().single();
 
       return MeetingModel.fromJson(response);
     } catch (e, stack) {
@@ -64,10 +66,10 @@ class MeetingRepositoryImpl extends BaseRepository implements MeetingRepository 
     required String leaderId,
   }) async {
     try {
-      final data = await _client.rpc('start_meeting', params: {
-        'p_meeting_id': meetingId,
-        'p_leader_id': leaderId,
-      });
+      final data = await _client.rpc(
+        'start_meeting',
+        params: {'p_meeting_id': meetingId, 'p_leader_id': leaderId},
+      );
       return MeetingModel.fromJson(data as Map<String, dynamic>);
     } catch (e, stack) {
       handleException(e, stack);
@@ -80,10 +82,10 @@ class MeetingRepositoryImpl extends BaseRepository implements MeetingRepository 
     required String leaderId,
   }) async {
     try {
-      final data = await _client.rpc('end_meeting', params: {
-        'p_meeting_id': meetingId,
-        'p_leader_id': leaderId,
-      });
+      final data = await _client.rpc(
+        'end_meeting',
+        params: {'p_meeting_id': meetingId, 'p_leader_id': leaderId},
+      );
       return MeetingModel.fromJson(data as Map<String, dynamic>);
     } catch (e, stack) {
       handleException(e, stack);
@@ -97,11 +99,14 @@ class MeetingRepositoryImpl extends BaseRepository implements MeetingRepository 
     String joinSource = 'mobile',
   }) async {
     try {
-      final data = await _client.rpc('join_meeting_session', params: {
-        'p_meeting_id': meetingId,
-        'p_profile_id': profileId,
-        'p_join_source': joinSource,
-      });
+      final data = await _client.rpc(
+        'join_meeting_session',
+        params: {
+          'p_meeting_id': meetingId,
+          'p_profile_id': profileId,
+          'p_join_source': joinSource,
+        },
+      );
       return MeetingSessionModel.fromJson(data as Map<String, dynamic>);
     } catch (e, stack) {
       handleException(e, stack);
@@ -114,10 +119,10 @@ class MeetingRepositoryImpl extends BaseRepository implements MeetingRepository 
     required String profileId,
   }) async {
     try {
-      await _client.rpc('leave_meeting_session', params: {
-        'p_meeting_id': meetingId,
-        'p_profile_id': profileId,
-      });
+      await _client.rpc(
+        'leave_meeting_session',
+        params: {'p_meeting_id': meetingId, 'p_profile_id': profileId},
+      );
     } catch (e, stack) {
       handleException(e, stack);
     }
@@ -136,7 +141,8 @@ class MeetingRepositoryImpl extends BaseRepository implements MeetingRepository 
 
       // Check capacity
       if (meeting.maxParticipants != null) {
-        final List<dynamic> activeRes = await _client.from('meeting_sessions')
+        final List<dynamic> activeRes = await _client
+            .from('meeting_sessions')
             .select('id, meeting_attendances!inner(meeting_id)')
             .eq('meeting_attendances.meeting_id', meetingId)
             .isFilter('left_at', null);
@@ -148,10 +154,14 @@ class MeetingRepositoryImpl extends BaseRepository implements MeetingRepository 
       }
 
       // Check late join
-      final attendance = await getMeetingAttendance(meetingId: meetingId, profileId: profileId);
+      final attendance = await getMeetingAttendance(
+        meetingId: meetingId,
+        profileId: profileId,
+      );
       bool hasSessions = false;
       if (attendance != null) {
-        final List<dynamic> sessionsCount = await _client.from('meeting_sessions')
+        final List<dynamic> sessionsCount = await _client
+            .from('meeting_sessions')
             .select('id')
             .eq('attendance_id', attendance.id);
 
@@ -160,7 +170,8 @@ class MeetingRepositoryImpl extends BaseRepository implements MeetingRepository 
 
       if (!hasSessions && !meeting.lateJoinAllowed) {
         if (meeting.startedAt != null) {
-          final difference = DateTime.now().difference(meeting.startedAt!).inMinutes;
+          final difference =
+              DateTime.now().difference(meeting.startedAt!).inMinutes;
           if (difference > (meeting.lateJoinCutoffMinutes ?? 0)) {
             return false;
           }
@@ -176,11 +187,12 @@ class MeetingRepositoryImpl extends BaseRepository implements MeetingRepository 
   @override
   Future<Meeting?> getMeeting({required String meetingId}) async {
     try {
-      final data = await _client
-          .from('meetings')
-          .select()
-          .eq('id', meetingId)
-          .maybeSingle();
+      final data =
+          await _client
+              .from('meetings')
+              .select()
+              .eq('id', meetingId)
+              .maybeSingle();
 
       if (data == null) return null;
       return MeetingModel.fromJson(data);
@@ -192,11 +204,12 @@ class MeetingRepositoryImpl extends BaseRepository implements MeetingRepository 
   @override
   Future<Meeting?> getMeetingByCode({required String meetingCode}) async {
     try {
-      final data = await _client
-          .from('meetings')
-          .select()
-          .eq('meeting_code', meetingCode)
-          .maybeSingle();
+      final data =
+          await _client
+              .from('meetings')
+              .select()
+              .eq('meeting_code', meetingCode)
+              .maybeSingle();
 
       if (data == null) return null;
       return MeetingModel.fromJson(data);
@@ -215,7 +228,9 @@ class MeetingRepositoryImpl extends BaseRepository implements MeetingRepository 
           .inFilter('meeting_status', ['scheduled', 'live'])
           .order('scheduled_at', ascending: true);
 
-      return data.map((e) => MeetingModel.fromJson(e as Map<String, dynamic>)).toList();
+      return data
+          .map((e) => MeetingModel.fromJson(e as Map<String, dynamic>))
+          .toList();
     } catch (e, stack) {
       handleException(e, stack);
     }
@@ -231,7 +246,9 @@ class MeetingRepositoryImpl extends BaseRepository implements MeetingRepository 
           .inFilter('meeting_status', ['completed', 'cancelled'])
           .order('scheduled_at', ascending: false);
 
-      return data.map((e) => MeetingModel.fromJson(e as Map<String, dynamic>)).toList();
+      return data
+          .map((e) => MeetingModel.fromJson(e as Map<String, dynamic>))
+          .toList();
     } catch (e, stack) {
       handleException(e, stack);
     }
@@ -243,12 +260,13 @@ class MeetingRepositoryImpl extends BaseRepository implements MeetingRepository 
     required String profileId,
   }) async {
     try {
-      final data = await _client
-          .from('meeting_attendances')
-          .select()
-          .eq('meeting_id', meetingId)
-          .eq('profile_id', profileId)
-          .maybeSingle();
+      final data =
+          await _client
+              .from('meeting_attendances')
+              .select()
+              .eq('meeting_id', meetingId)
+              .eq('profile_id', profileId)
+              .maybeSingle();
 
       if (data == null) return null;
       return MeetingAttendanceModel.fromJson(data);
@@ -267,7 +285,11 @@ class MeetingRepositoryImpl extends BaseRepository implements MeetingRepository 
           .select()
           .eq('meeting_id', meetingId);
 
-      return data.map((e) => MeetingAttendanceModel.fromJson(e as Map<String, dynamic>)).toList();
+      return data
+          .map(
+            (e) => MeetingAttendanceModel.fromJson(e as Map<String, dynamic>),
+          )
+          .toList();
     } catch (e, stack) {
       handleException(e, stack);
     }

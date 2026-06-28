@@ -27,8 +27,6 @@ class GetPlanUsageUseCase {
       throw ArgumentError('Leader ID cannot be empty');
     }
 
-    return _repository.getPlanUsage(
-      leaderId: leaderId.trim(),
-    );
+    return _repository.getPlanUsage(leaderId: leaderId.trim());
   }
 }

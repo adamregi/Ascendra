@@ -54,6 +54,8 @@ dependencies:
   connectivity_plus: ^6.1.4
   hmssdk_flutter: ^1.11.1
   video_player: ^2.10.1
+  lucide_icons: ^0.257.0
+  fl_chart: ^0.69.0
 
 dev_dependencies:
   flutter_test:

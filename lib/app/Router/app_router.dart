@@ -13,10 +13,18 @@ import '../../features/meetings/presentation/pages/meeting_detail_page.dart';
 import '../../features/meetings/presentation/pages/schedule_meeting_page.dart';
 import '../../features/meetings/presentation/pages/live_meeting_page.dart';
 import '../../features/meetings/presentation/pages/meeting_replay_page.dart';
+import '../../features/tasks/presentation/pages/tasks_page.dart';
+import '../../features/tasks/presentation/pages/task_detail_page.dart';
+import '../../features/tasks/presentation/pages/create_task_page.dart';
+import '../../features/tasks/presentation/pages/task_followups_page.dart';
 import '../../features/alerts/presentation/pages/alerts_page.dart';
 import '../../features/ai/presentation/pages/ai_page.dart';
 import '../../features/settings/presentation/pages/settings_page.dart';
 import '../../features/dev/presentation/pages/component_gallery_page.dart';
+import '../../features/dev/presentation/pages/qa_screen.dart';
+import '../../features/members/presentation/pages/member_directory_page.dart';
+import '../../features/members/presentation/pages/member_profile_page.dart';
+import '../../features/more/presentation/pages/more_page.dart';
 import '../../shared/widgets/app_shell.dart';
 
 part 'app_router.g.dart';
@@ -43,10 +51,12 @@ GoRouter appRouter(Ref ref) {
           break;
         case BootstrapState.unauthenticated:
         case BootstrapState.unauthorizedRole:
-          if (!isLogin) return '/login';
+          // Do not interrupt splash. Splash will navigate itself when the video finishes.
+          if (!isSplash && !isLogin) return '/login';
           break;
         case BootstrapState.ready:
-          if (isSplash || isLogin) return '/dashboard';
+          // Do not interrupt splash. Splash will navigate itself when the video finishes.
+          if (isLogin) return '/dashboard';
           break;
       }
       return null;
@@ -58,7 +68,14 @@ GoRouter appRouter(Ref ref) {
       ),
       GoRoute(
         path: '/login',
-        builder: (context, state) => const LoginPage(),
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const LoginPage(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+          transitionDuration: const Duration(milliseconds: 300),
+        ),
       ),
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
@@ -68,11 +85,22 @@ GoRouter appRouter(Ref ref) {
         routes: [
           GoRoute(
             path: '/dashboard',
-            builder: (context, state) => const DashboardPage(),
+            pageBuilder: (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              child: const DashboardPage(),
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                return FadeTransition(opacity: animation, child: child);
+              },
+              transitionDuration: const Duration(milliseconds: 300),
+            ),
           ),
           GoRoute(
             path: '/meetings',
             builder: (context, state) => const MeetingsPage(),
+          ),
+          GoRoute(
+            path: '/tasks',
+            builder: (context, state) => const TasksPage(),
           ),
           GoRoute(
             path: '/alerts',
@@ -86,11 +114,34 @@ GoRouter appRouter(Ref ref) {
             path: '/settings',
             builder: (context, state) => const SettingsPage(),
           ),
+          GoRoute(
+            name: 'members',
+            path: '/members',
+            builder: (context, state) => const MemberDirectoryPage(),
+            routes: [
+              GoRoute(
+                name: 'memberProfile',
+                path: ':memberId',
+                builder: (context, state) {
+                  final id = state.pathParameters['memberId']!;
+                  return MemberProfilePage(memberId: id);
+                },
+              ),
+            ],
+          ),
+          GoRoute(
+            path: '/more',
+            builder: (context, state) => const MorePage(),
+          ),
         ],
       ),
       GoRoute(
         path: '/dev/components',
         builder: (context, state) => const ComponentGalleryPage(),
+      ),
+      GoRoute(
+        path: '/dev/qa',
+        builder: (context, state) => const QaScreen(),
       ),
       GoRoute(
         path: '/meetings/schedule',
@@ -115,6 +166,24 @@ GoRouter appRouter(Ref ref) {
         builder: (context, state) {
           final id = state.pathParameters['id']!;
           return MeetingReplayPage(meetingId: id);
+        },
+      ),
+      GoRoute(
+        path: '/tasks/create',
+        builder: (context, state) => const CreateTaskPage(),
+      ),
+      GoRoute(
+        path: '/tasks/:id',
+        builder: (context, state) {
+          final id = state.pathParameters['id']!;
+          return TaskDetailPage(taskId: id);
+        },
+      ),
+      GoRoute(
+        path: '/tasks/:id/followups',
+        builder: (context, state) {
+          final id = state.pathParameters['id']!;
+          return TaskFollowupsPage(taskId: id);
         },
       ),
     ],

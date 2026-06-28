@@ -35,7 +35,10 @@ class ScheduleMeetingPage extends ConsumerWidget {
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.more_vert, color: AppColors.onSurfaceVariant),
+            icon: const Icon(
+              Icons.more_vert,
+              color: AppColors.onSurfaceVariant,
+            ),
             onPressed: () {},
           ),
         ],
@@ -54,7 +57,7 @@ class ScheduleMeetingPage extends ConsumerWidget {
               children: [
                 _buildLivePreviewCard(draft),
                 const SizedBox(height: AppSpacing.xxl),
-                
+
                 // Form Fields
                 AppTextField(
                   label: 'Meeting Title',
@@ -64,7 +67,7 @@ class ScheduleMeetingPage extends ConsumerWidget {
                   // AppTextField might not expose onChanged easily, but let's assume standard behavior or wrap in Focus
                 ),
                 const SizedBox(height: AppSpacing.lg),
-                
+
                 // Date & Time Row
                 Row(
                   children: [
@@ -77,7 +80,9 @@ class ScheduleMeetingPage extends ConsumerWidget {
                             context: context,
                             initialDate: draft.scheduledAt ?? DateTime.now(),
                             firstDate: DateTime.now(),
-                            lastDate: DateTime.now().add(const Duration(days: 365)),
+                            lastDate: DateTime.now().add(
+                              const Duration(days: 365),
+                            ),
                           );
                           if (date != null) notifier.updateDate(date);
                         },
@@ -91,21 +96,26 @@ class ScheduleMeetingPage extends ConsumerWidget {
                         onTap: () async {
                           final time = await showTimePicker(
                             context: context,
-                            initialTime: TimeOfDay.fromDateTime(draft.scheduledAt ?? DateTime.now()),
+                            initialTime: TimeOfDay.fromDateTime(
+                              draft.scheduledAt ?? DateTime.now(),
+                            ),
                           );
-                          if (time != null) notifier.updateTime(time.hour, time.minute);
+                          if (time != null)
+                            notifier.updateTime(time.hour, time.minute);
                         },
                       ),
                     ),
                   ],
                 ),
-                
+
                 const SizedBox(height: AppSpacing.lg),
-                
+
                 // Duration
                 Text(
                   'Duration',
-                  style: AppTypography.labelMd.copyWith(color: AppColors.onSurface),
+                  style: AppTypography.labelMd.copyWith(
+                    color: AppColors.onSurface,
+                  ),
                 ),
                 const SizedBox(height: AppSpacing.sm),
                 Container(
@@ -115,20 +125,21 @@ class ScheduleMeetingPage extends ConsumerWidget {
                     borderRadius: BorderRadius.circular(AppRadius.lg),
                   ),
                   child: Row(
-                    children: MeetingDuration.values.map((d) {
-                      return Expanded(
-                        child: _buildDurationButton(
-                          d.label,
-                          draft.duration == d,
-                          () => notifier.updateDuration(d),
-                        ),
-                      );
-                    }).toList(),
+                    children:
+                        MeetingDuration.values.map((d) {
+                          return Expanded(
+                            child: _buildDurationButton(
+                              d.label,
+                              draft.duration == d,
+                              () => notifier.updateDuration(d),
+                            ),
+                          );
+                        }).toList(),
                   ),
                 ),
-                
+
                 const SizedBox(height: AppSpacing.lg),
-                
+
                 AppTextField(
                   label: 'Agenda (Optional)',
                   hint: 'What will be discussed?',
@@ -137,7 +148,7 @@ class ScheduleMeetingPage extends ConsumerWidget {
               ],
             ),
           ),
-          
+
           // Sticky Bottom Action Bar
           Positioned(
             bottom: 0,
@@ -167,9 +178,11 @@ class ScheduleMeetingPage extends ConsumerWidget {
                         context.pop();
                       }
                     } catch (e) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(e.toString())),
-                      );
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(
+                          context,
+                        ).showSnackBar(SnackBar(content: Text(e.toString())));
+                      }
                     }
                   },
                   icon: const Icon(Icons.calendar_today),
@@ -219,7 +232,10 @@ class ScheduleMeetingPage extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 4,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.primary.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(AppRadius.lg),
@@ -246,21 +262,32 @@ class ScheduleMeetingPage extends ConsumerWidget {
           const SizedBox(height: AppSpacing.md),
           Row(
             children: [
-              Icon(Icons.calendar_today, size: 16, color: AppColors.onSurfaceVariant),
+              Icon(
+                Icons.calendar_today,
+                size: 16,
+                color: AppColors.onSurfaceVariant,
+              ),
               const SizedBox(width: AppSpacing.xs),
               Text(
                 _formatDate(draft.scheduledAt),
-                style: AppTypography.body2.copyWith(color: AppColors.onSurfaceVariant),
+                style: AppTypography.body2.copyWith(
+                  color: AppColors.onSurfaceVariant,
+                ),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: AppSpacing.sm),
-                child: CircleAvatar(radius: 2, backgroundColor: AppColors.borderSubtle),
+                child: CircleAvatar(
+                  radius: 2,
+                  backgroundColor: AppColors.borderSubtle,
+                ),
               ),
               Icon(Icons.schedule, size: 16, color: AppColors.onSurfaceVariant),
               const SizedBox(width: AppSpacing.xs),
               Text(
                 _formatTime(draft.scheduledAt),
-                style: AppTypography.body2.copyWith(color: AppColors.onSurfaceVariant),
+                style: AppTypography.body2.copyWith(
+                  color: AppColors.onSurfaceVariant,
+                ),
               ),
             ],
           ),
@@ -269,7 +296,11 @@ class ScheduleMeetingPage extends ConsumerWidget {
     );
   }
 
-  Widget _buildDateTimeSelector({required IconData icon, required String value, required VoidCallback onTap}) {
+  Widget _buildDateTimeSelector({
+    required IconData icon,
+    required String value,
+    required VoidCallback onTap,
+  }) {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(AppRadius.lg),
@@ -298,7 +329,11 @@ class ScheduleMeetingPage extends ConsumerWidget {
     );
   }
 
-  Widget _buildDurationButton(String label, bool isSelected, VoidCallback onTap) {
+  Widget _buildDurationButton(
+    String label,
+    bool isSelected,
+    VoidCallback onTap,
+  ) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -307,9 +342,16 @@ class ScheduleMeetingPage extends ConsumerWidget {
           color: isSelected ? AppColors.surface : Colors.transparent,
           borderRadius: BorderRadius.circular(AppRadius.lg),
           border: isSelected ? Border.all(color: AppColors.borderSubtle) : null,
-          boxShadow: isSelected
-              ? const [BoxShadow(color: Color(0x05000000), blurRadius: 4, offset: Offset(0, 2))]
-              : null,
+          boxShadow:
+              isSelected
+                  ? const [
+                    BoxShadow(
+                      color: Color(0x05000000),
+                      blurRadius: 4,
+                      offset: Offset(0, 2),
+                    ),
+                  ]
+                  : null,
         ),
         alignment: Alignment.center,
         child: Text(
@@ -330,7 +372,8 @@ class ScheduleMeetingPage extends ConsumerWidget {
 
   String _formatTime(DateTime? date) {
     if (date == null) return 'Select Time';
-    final hour = date.hour > 12 ? date.hour - 12 : (date.hour == 0 ? 12 : date.hour);
+    final hour =
+        date.hour > 12 ? date.hour - 12 : (date.hour == 0 ? 12 : date.hour);
     final period = date.hour >= 12 ? 'PM' : 'AM';
     return '$hour:${date.minute.toString().padLeft(2, '0')} $period';
   }

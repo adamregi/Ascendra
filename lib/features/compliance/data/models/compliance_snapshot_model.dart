@@ -25,7 +25,10 @@ class ComplianceSnapshotModel extends ComplianceSnapshot {
       followupScore: (json['followup_score'] as num).toDouble(),
       complianceScore: (json['compliance_score'] as num).toDouble(),
       memberHealthScore: (json['member_health_score'] as num).toDouble(),
-      teamHealthScore: json['team_health_score'] != null ? (json['team_health_score'] as num).toDouble() : null,
+      teamHealthScore:
+          json['team_health_score'] != null
+              ? (json['team_health_score'] as num).toDouble()
+              : null,
       snapshotDate: DateTime.parse(json['snapshot_date'] as String),
       createdAt: DateTime.parse(json['created_at'] as String),
     );

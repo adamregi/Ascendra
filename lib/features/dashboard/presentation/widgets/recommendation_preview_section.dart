@@ -36,10 +36,11 @@ class RecommendationPreviewSection extends StatelessWidget {
         return _buildSuccessState(context, allRecs.take(3).toList());
       },
       loading: () => const _RecommendationSkeleton(),
-      error: (err, stack) => ErrorCard(
-        message: 'Failed to load AI recommendations',
-        onRetry: onRetry,
-      ),
+      error:
+          (err, stack) => ErrorCard(
+            message: 'Failed to load AI recommendations',
+            onRetry: onRetry,
+          ),
     );
   }
 
@@ -50,14 +51,18 @@ class RecommendationPreviewSection extends StatelessWidget {
         padding: const EdgeInsets.all(AppSpacing.lg),
         child: Column(
           children: [
-            const Icon(Icons.psychology_alt, size: 48, color: AppColors.secondary),
+            const Icon(
+              Icons.psychology_alt,
+              size: 48,
+              color: AppColors.secondary,
+            ),
             const SizedBox(height: AppSpacing.md),
             Text(
               'AI is analyzing your team. Check back later for insights.',
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppColors.onSurfaceVariant,
-                  ),
+                color: AppColors.onSurfaceVariant,
+              ),
             ),
           ],
         ),
@@ -65,7 +70,10 @@ class RecommendationPreviewSection extends StatelessWidget {
     );
   }
 
-  Widget _buildSuccessState(BuildContext context, List<RecommendationItem> recs) {
+  Widget _buildSuccessState(
+    BuildContext context,
+    List<RecommendationItem> recs,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -74,96 +82,108 @@ class RecommendationPreviewSection extends StatelessWidget {
           children: [
             Row(
               children: [
-                const Icon(Icons.psychology, color: AppColors.primary, size: 20),
+                const Icon(
+                  Icons.psychology,
+                  color: AppColors.primary,
+                  size: 20,
+                ),
                 const SizedBox(width: AppSpacing.xs),
                 Text(
                   'AI INSIGHTS',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: AppColors.primary,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    color: AppColors.primary,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
-            TextButton(
-              onPressed: () {},
-              child: const Text('View All'),
-            ),
+            TextButton(onPressed: () {}, child: const Text('View All')),
           ],
         ),
         const SizedBox(height: AppSpacing.sm),
         Column(
-          children: recs.map((rec) {
-            return Padding(
-              padding: const EdgeInsets.only(bottom: AppSpacing.sm),
-              child: AppCard(
-                padding: const EdgeInsets.all(AppSpacing.md),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: AppColors.primary.withValues(alpha: 0.1),
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Icon(
-                        Icons.auto_awesome,
-                        color: AppColors.primary,
-                        size: 20,
-                      ),
-                    ),
-                    const SizedBox(width: AppSpacing.md),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children:
+              recs.map((rec) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: AppSpacing.sm),
+                  child: AppCard(
+                    padding: const EdgeInsets.all(AppSpacing.md),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            color: AppColors.primary.withValues(alpha: 0.1),
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            Icons.auto_awesome,
+                            color: AppColors.primary,
+                            size: 20,
+                          ),
+                        ),
+                        const SizedBox(width: AppSpacing.md),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                rec.memberName,
-                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    rec.memberName,
+                                    style: Theme.of(
+                                      context,
+                                    ).textTheme.bodyMedium?.copyWith(
                                       fontWeight: FontWeight.w600,
                                       color: AppColors.primary,
                                     ),
-                              ),
-                              Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                                decoration: BoxDecoration(
-                                  color: AppColors.secondaryContainer,
-                                  borderRadius: BorderRadius.circular(4),
-                                ),
-                                child: Text(
-                                  '${rec.confidenceScore.toInt()}% Match',
-                                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                                  ),
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 6,
+                                      vertical: 2,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.secondaryContainer,
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                    child: Text(
+                                      '${rec.confidenceScore.toInt()}% Match',
+                                      style: Theme.of(
+                                        context,
+                                      ).textTheme.labelSmall?.copyWith(
                                         color: AppColors.onSecondaryContainer,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 10,
                                       ),
-                                ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            rec.reasoning,
-                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              const SizedBox(height: 4),
+                              Text(
+                                rec.reasoning,
+                                style: Theme.of(
+                                  context,
+                                ).textTheme.bodySmall?.copyWith(
                                   color: AppColors.onSurfaceVariant,
                                   height: 1.4,
                                 ),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-            );
-          }).toList(),
+                  ),
+                );
+              }).toList(),
         ),
       ],
     );
@@ -200,7 +220,11 @@ class _RecommendationSkeleton extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SkeletonLoader(width: 100, height: 16),
-                              SkeletonLoader(width: 60, height: 16, borderRadius: 4),
+                              SkeletonLoader(
+                                width: 60,
+                                height: 16,
+                                borderRadius: 4,
+                              ),
                             ],
                           ),
                           SizedBox(height: 8),

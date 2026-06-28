@@ -77,9 +77,10 @@ class MetricChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
-        color: Theme.of(context).brightness == Brightness.dark 
-            ? const Color(0xFF374151) 
-            : const Color(0xFFF3F4F6),
+        color:
+            Theme.of(context).brightness == Brightness.dark
+                ? const Color(0xFF374151)
+                : const Color(0xFFF3F4F6),
         borderRadius: BorderRadius.circular(AppRadius.full),
       ),
       child: Row(
@@ -100,5 +101,29 @@ class MetricChip extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class PriorityBadge extends StatelessWidget {
+  final String priority; // 'high', 'medium', 'low'
+
+  const PriorityBadge({super.key, required this.priority});
+
+  @override
+  Widget build(BuildContext context) {
+    Color color;
+    switch (priority.toLowerCase()) {
+      case 'high':
+        color = AppColors.error;
+        break;
+      case 'medium':
+        color = AppColors.warning;
+        break;
+      case 'low':
+      default:
+        color = AppColors.textSecondary;
+    }
+
+    return StatusBadge(label: priority, color: color);
   }
 }

@@ -18,5 +18,6 @@ abstract class MemberProfile with _$MemberProfile {
     @JsonKey(name: 'created_at') String? createdAt,
   }) = _MemberProfile;
 
-  factory MemberProfile.fromJson(Map<String, dynamic> json) => _$MemberProfileFromJson(json);
+  factory MemberProfile.fromJson(Map<String, dynamic> json) =>
+      _$MemberProfileFromJson(json);
 }

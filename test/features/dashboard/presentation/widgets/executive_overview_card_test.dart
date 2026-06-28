@@ -6,37 +6,42 @@ import 'package:distributor_os/features/dashboard/data/models/executive_overview
 import 'package:distributor_os/shared/widgets/error_widgets.dart';
 
 void main() {
-  testWidgets('ExecutiveOverviewCard shows ErrorCard on error and calls onRetry', (WidgetTester tester) async {
-    bool retryCalled = false;
-    
-    await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(
-          body: ExecutiveOverviewCard(
-            data: AsyncValue.error(Exception('Failed API'), StackTrace.empty),
-            onRetry: () {
-              retryCalled = true;
-            },
+  testWidgets(
+    'ExecutiveOverviewCard shows ErrorCard on error and calls onRetry',
+    (WidgetTester tester) async {
+      bool retryCalled = false;
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: ExecutiveOverviewCard(
+              data: AsyncValue.error(Exception('Failed API'), StackTrace.empty),
+              onRetry: () {
+                retryCalled = true;
+              },
+            ),
           ),
         ),
-      ),
-    );
+      );
 
-    // Verify ErrorCard is shown
-    expect(find.byType(ErrorCard), findsOneWidget);
-    expect(find.text('Failed to load executive overview'), findsOneWidget);
+      // Verify ErrorCard is shown
+      expect(find.byType(ErrorCard), findsOneWidget);
+      expect(find.text('Failed to load executive overview'), findsOneWidget);
 
-    // Tap retry button
-    final retryButton = find.text('Retry');
-    expect(retryButton, findsOneWidget);
-    
-    await tester.tap(retryButton);
-    await tester.pump();
-    
-    expect(retryCalled, isTrue);
-  });
-  
-  testWidgets('ExecutiveOverviewCard shows large numbers correctly', (WidgetTester tester) async {
+      // Tap retry button
+      final retryButton = find.text('Retry');
+      expect(retryButton, findsOneWidget);
+
+      await tester.tap(retryButton);
+      await tester.pump();
+
+      expect(retryCalled, isTrue);
+    },
+  );
+
+  testWidgets('ExecutiveOverviewCard shows large numbers correctly', (
+    WidgetTester tester,
+  ) async {
     final mockData = ExecutiveOverviewModel(
       generatedAt: DateTime.now(),
       health: const OverviewHealth(
@@ -51,9 +56,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
-          body: ExecutiveOverviewCard(
-            data: AsyncValue.data(mockData),
-          ),
+          body: ExecutiveOverviewCard(data: AsyncValue.data(mockData)),
         ),
       ),
     );

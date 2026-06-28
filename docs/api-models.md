@@ -146,3 +146,63 @@ Output of `route_skill()`.
   "needs_clarification": false
 }
 ```
+
+## 5. Member Profile Models (M5)
+
+### `MemberProfileViewModel`
+Returned by `get_member_profile_view_model()` RPC. Represents the complete state of a member's profile, including their KPIs, compliance, timeline, and achievements.
+
+```json
+{
+  "version": 1,
+  "generated_at": "2026-06-28T10:00:00Z",
+  "hero": {
+    "avatar_url": "https://...",
+    "first_name": "Jane",
+    "last_name": "Doe",
+    "distributor_id": "DIST-9999",
+    "leader_name": "John Smith",
+    "rank": "Team Leader",
+    "status": "active",
+    "joined_date": "2025-01-01T00:00:00Z",
+    "current_streak": 5
+  },
+  "overview": {
+    "leadership_score": 85,
+    "recognition_count": 4,
+    "compliance_score": 98,
+    "meeting_percent": 100,
+    "task_percent": 95,
+    "risk_level": "low"
+  },
+  "compliance": {
+    "score": 98,
+    "reasons": ["Missed 1 task deadline"],
+    "next_improvement": "Submit proof on time"
+  },
+  "timeline": [
+    {
+      "type": "meeting",
+      "timestamp": "2026-06-25T09:30:00Z",
+      "title": "Weekly Sync",
+      "description": "Meeting Joined"
+    }
+  ],
+  "recognition": [
+    {
+      "name": "Top Performer",
+      "description": "Consistently hit targets",
+      "earned_date": "2026-06-01T00:00:00Z",
+      "category": "performance",
+      "icon": "award",
+      "level": 1,
+      "points": 100
+    }
+  ],
+  "analytics": {
+    "leadership_trend": [80, 82, 85, 87, 86, 90],
+    "attendance_trend": [100, 100, 100, 95, 100],
+    "task_trend": [90, 95, 100, 90, 100]
+  }
+}
+```

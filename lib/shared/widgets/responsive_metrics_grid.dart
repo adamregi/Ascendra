@@ -86,7 +86,9 @@ class ResponsiveMetricsGrid extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.surfaceContainerLow,
         borderRadius: BorderRadius.circular(AppRadius.lg),
-        border: Border.all(color: AppColors.borderSubtle.withValues(alpha: 0.5)),
+        border: Border.all(
+          color: AppColors.borderSubtle.withValues(alpha: 0.5),
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -136,7 +138,7 @@ class ResponsiveMetricsGrid extends StatelessWidget {
                       color: AppColors.onSurfaceVariant,
                     ),
                   ),
-                ]
+                ],
               ],
             ),
           ),

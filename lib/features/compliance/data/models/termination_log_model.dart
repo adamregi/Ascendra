@@ -20,7 +20,10 @@ class TerminationLogModel extends TerminationLog {
       terminatorId: json['terminator_id'] as String,
       reason: json['reason'] as String,
       parentReassignedTo: json['parent_reassigned_to'] as String?,
-      restructuredAt: json['restructured_at'] != null ? DateTime.parse(json['restructured_at'] as String) : null,
+      restructuredAt:
+          json['restructured_at'] != null
+              ? DateTime.parse(json['restructured_at'] as String)
+              : null,
       createdAt: DateTime.parse(json['created_at'] as String),
     );
   }

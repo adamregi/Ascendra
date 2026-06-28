@@ -31,31 +31,32 @@ class LiveMeetingRepositoryImpl implements LiveMeetingRepository {
 
       // 2. Build HMSSDK and join the room
       await _hmsSdk.build();
-      final config = HMSConfig(
-        authToken: token,
-        userName: userName,
-      );
+      final config = HMSConfig(authToken: token, userName: userName);
       await _hmsSdk.join(config: config);
 
       // Store active state
       _activeMeetingId = meetingId;
-      
+
       // Resolve user profile ID from auth_user_id
       final currentUser = _supabaseClient.auth.currentUser;
       if (currentUser != null) {
-        final profileResponse = await _supabaseClient
-            .from('profiles')
-            .select('id')
-            .eq('auth_user_id', currentUser.id)
-            .single();
+        final profileResponse =
+            await _supabaseClient
+                .from('profiles')
+                .select('id')
+                .eq('auth_user_id', currentUser.id)
+                .single();
         _activeProfileId = profileResponse['id'] as String;
 
         // 3. Register attendance on database
-        await _supabaseClient.rpc('join_meeting_session', params: {
-          'p_meeting_id': meetingId,
-          'p_profile_id': _activeProfileId,
-          'p_join_source': 'mobile',
-        });
+        await _supabaseClient.rpc(
+          'join_meeting_session',
+          params: {
+            'p_meeting_id': meetingId,
+            'p_profile_id': _activeProfileId,
+            'p_join_source': 'mobile',
+          },
+        );
       }
     } catch (e) {
       // Cleanup on failure
@@ -73,10 +74,13 @@ class LiveMeetingRepositoryImpl implements LiveMeetingRepository {
 
       // 2. Register leave in DB
       if (_activeMeetingId != null && _activeProfileId != null) {
-        await _supabaseClient.rpc('leave_meeting_session', params: {
-          'p_meeting_id': _activeMeetingId,
-          'p_profile_id': _activeProfileId,
-        });
+        await _supabaseClient.rpc(
+          'leave_meeting_session',
+          params: {
+            'p_meeting_id': _activeMeetingId,
+            'p_profile_id': _activeProfileId,
+          },
+        );
       }
     } finally {
       // Clear active state regardless of database operation outcome

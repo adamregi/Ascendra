@@ -16,10 +16,6 @@ class DocumentChunkModel extends DocumentChunk {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'document_id': documentId,
-      'chunk_text': chunkText,
-    };
+    return {'id': id, 'document_id': documentId, 'chunk_text': chunkText};
   }
 }

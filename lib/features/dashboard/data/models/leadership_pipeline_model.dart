@@ -6,10 +6,16 @@ part 'leadership_pipeline_model.g.dart';
 @freezed
 abstract class LeadershipPipelineModel with _$LeadershipPipelineModel {
   const factory LeadershipPipelineModel({
-    @JsonKey(name: 'future_leaders') @Default([]) List<PipelineMember> futureLeaders,
-    @JsonKey(name: 'emerging_leaders') @Default([]) List<PipelineMember> emergingLeaders,
+    @JsonKey(name: 'future_leaders')
+    @Default([])
+    List<PipelineMember> futureLeaders,
+    @JsonKey(name: 'emerging_leaders')
+    @Default([])
+    List<PipelineMember> emergingLeaders,
     @JsonKey(name: 'developing') @Default([]) List<PipelineMember> developing,
-    @JsonKey(name: 'needs_development') @Default([]) List<PipelineMember> needsDevelopment,
+    @JsonKey(name: 'needs_development')
+    @Default([])
+    List<PipelineMember> needsDevelopment,
   }) = _LeadershipPipelineModel;
 
   factory LeadershipPipelineModel.fromJson(Map<String, dynamic> json) =>

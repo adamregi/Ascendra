@@ -13,12 +13,13 @@ class UserRepository {
 
   Future<MemberProfile> getProfile(String authUserId) async {
     try {
-      final response = await _supabase
-          .from('profiles')
-          .select()
-          .eq('auth_user_id', authUserId)
-          .single();
-      
+      final response =
+          await _supabase
+              .from('profiles')
+              .select()
+              .eq('auth_user_id', authUserId)
+              .single();
+
       return MemberProfile.fromJson(response);
     } catch (e) {
       throw UnknownFailure(message: 'Failed to fetch profile: ${e.toString()}');
@@ -32,10 +33,14 @@ class UserRepository {
           .from('profiles')
           .select()
           .inFilter('id', ids);
-      
-      return (response as List).map((e) => MemberProfile.fromJson(e as Map<String, dynamic>)).toList();
+
+      return (response as List)
+          .map((e) => MemberProfile.fromJson(e as Map<String, dynamic>))
+          .toList();
     } catch (e) {
-      throw UnknownFailure(message: 'Failed to fetch profiles: ${e.toString()}');
+      throw UnknownFailure(
+        message: 'Failed to fetch profiles: ${e.toString()}',
+      );
     }
   }
 }

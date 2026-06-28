@@ -16,7 +16,10 @@ class MeetingSessionModel extends MeetingSession {
       id: json['id'] as String,
       attendanceId: json['attendance_id'] as String,
       joinedAt: DateTime.parse(json['joined_at'] as String),
-      leftAt: json['left_at'] != null ? DateTime.parse(json['left_at'] as String) : null,
+      leftAt:
+          json['left_at'] != null
+              ? DateTime.parse(json['left_at'] as String)
+              : null,
       durationMinutes: json['duration_minutes'] as int?,
       joinSource: json['join_source'] as String? ?? 'mobile',
       createdAt: DateTime.parse(json['created_at'] as String),

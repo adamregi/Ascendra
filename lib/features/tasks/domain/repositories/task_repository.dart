@@ -22,9 +22,7 @@ abstract class TaskRepository {
   });
 
   /// Mark task assignment as in-progress.
-  Future<void> startAssignment({
-    required String assignmentId,
-  });
+  Future<void> startAssignment({required String assignmentId});
 
   /// Submit task completion proof.
   Future<TaskProof> submitProof({

@@ -12,7 +12,8 @@ import '../models/compliance_violation_model.dart';
 import '../models/compliance_snapshot_model.dart';
 import '../../domain/entities/compliance_snapshot.dart';
 
-class ComplianceRepositoryImpl extends BaseRepository implements ComplianceRepository {
+class ComplianceRepositoryImpl extends BaseRepository
+    implements ComplianceRepository {
   final supabase.SupabaseClient _client;
 
   ComplianceRepositoryImpl(this._client);
@@ -24,7 +25,9 @@ class ComplianceRepositoryImpl extends BaseRepository implements ComplianceRepos
           .from('compliance_rules')
           .select()
           .eq('company_id', companyId);
-      return response.map((e) => ComplianceRuleModel.fromJson(e as Map<String, dynamic>)).toList();
+      return response
+          .map((e) => ComplianceRuleModel.fromJson(e as Map<String, dynamic>))
+          .toList();
     } catch (e, stack) {
       handleException(e, stack);
     }
@@ -40,18 +43,19 @@ class ComplianceRepositoryImpl extends BaseRepository implements ComplianceRepos
     String? description,
   }) async {
     try {
-      final response = await _client
-          .from('compliance_rules')
-          .insert({
-            'company_id': companyId,
-            'rule_type': ruleType.toJson(),
-            'threshold': threshold,
-            'severity': severity.toJson(),
-            'enabled': enabled,
-            'description': description,
-          })
-          .select()
-          .single();
+      final response =
+          await _client
+              .from('compliance_rules')
+              .insert({
+                'company_id': companyId,
+                'rule_type': ruleType.toJson(),
+                'threshold': threshold,
+                'severity': severity.toJson(),
+                'enabled': enabled,
+                'description': description,
+              })
+              .select()
+              .single();
       return ComplianceRuleModel.fromJson(response);
     } catch (e, stack) {
       handleException(e, stack);
@@ -65,15 +69,13 @@ class ComplianceRepositoryImpl extends BaseRepository implements ComplianceRepos
     required bool enabled,
   }) async {
     try {
-      final response = await _client
-          .from('compliance_rules')
-          .update({
-            'threshold': threshold,
-            'enabled': enabled,
-          })
-          .eq('id', ruleId)
-          .select()
-          .single();
+      final response =
+          await _client
+              .from('compliance_rules')
+              .update({'threshold': threshold, 'enabled': enabled})
+              .eq('id', ruleId)
+              .select()
+              .single();
       return ComplianceRuleModel.fromJson(response);
     } catch (e, stack) {
       handleException(e, stack);
@@ -86,12 +88,17 @@ class ComplianceRepositoryImpl extends BaseRepository implements ComplianceRepos
     String? profileId,
   }) async {
     try {
-      var query = _client.from('compliance_events').select().eq('company_id', companyId);
+      var query = _client
+          .from('compliance_events')
+          .select()
+          .eq('company_id', companyId);
       if (profileId != null) {
         query = query.eq('profile_id', profileId);
       }
       final List<dynamic> response = await query;
-      return response.map((e) => ComplianceEventModel.fromJson(e as Map<String, dynamic>)).toList();
+      return response
+          .map((e) => ComplianceEventModel.fromJson(e as Map<String, dynamic>))
+          .toList();
     } catch (e, stack) {
       handleException(e, stack);
     }
@@ -103,12 +110,19 @@ class ComplianceRepositoryImpl extends BaseRepository implements ComplianceRepos
     String? profileId,
   }) async {
     try {
-      var query = _client.from('compliance_violations').select().eq('company_id', companyId);
+      var query = _client
+          .from('compliance_violations')
+          .select()
+          .eq('company_id', companyId);
       if (profileId != null) {
         query = query.eq('profile_id', profileId);
       }
       final List<dynamic> response = await query;
-      return response.map((e) => ComplianceViolationModel.fromJson(e as Map<String, dynamic>)).toList();
+      return response
+          .map(
+            (e) => ComplianceViolationModel.fromJson(e as Map<String, dynamic>),
+          )
+          .toList();
     } catch (e, stack) {
       handleException(e, stack);
     }
@@ -117,9 +131,10 @@ class ComplianceRepositoryImpl extends BaseRepository implements ComplianceRepos
   @override
   Future<void> evaluateCompliance({required String companyId}) async {
     try {
-      await _client.rpc('evaluate_compliance', params: {
-        'p_company_id': companyId,
-      });
+      await _client.rpc(
+        'evaluate_compliance',
+        params: {'p_company_id': companyId},
+      );
     } catch (e, stack) {
       handleException(e, stack);
     }
@@ -131,10 +146,10 @@ class ComplianceRepositoryImpl extends BaseRepository implements ComplianceRepos
     required String leaderId,
   }) async {
     try {
-      await _client.rpc('acknowledge_violation', params: {
-        'p_violation_id': violationId,
-        'p_leader_id': leaderId,
-      });
+      await _client.rpc(
+        'acknowledge_violation',
+        params: {'p_violation_id': violationId, 'p_leader_id': leaderId},
+      );
     } catch (e, stack) {
       handleException(e, stack);
     }
@@ -143,9 +158,10 @@ class ComplianceRepositoryImpl extends BaseRepository implements ComplianceRepos
   @override
   Future<ComplianceSnapshot> createSnapshot({required String profileId}) async {
     try {
-      final response = await _client.rpc('create_compliance_snapshot', params: {
-        'p_profile_id': profileId,
-      });
+      final response = await _client.rpc(
+        'create_compliance_snapshot',
+        params: {'p_profile_id': profileId},
+      );
       return ComplianceSnapshotModel.fromJson(response as Map<String, dynamic>);
     } catch (e, stack) {
       handleException(e, stack);
@@ -155,9 +171,7 @@ class ComplianceRepositoryImpl extends BaseRepository implements ComplianceRepos
   @override
   Future<void> warnMember({required String profileId}) async {
     try {
-      await _client.rpc('warn_member', params: {
-        'p_profile_id': profileId,
-      });
+      await _client.rpc('warn_member', params: {'p_profile_id': profileId});
     } catch (e, stack) {
       handleException(e, stack);
     }
@@ -166,9 +180,7 @@ class ComplianceRepositoryImpl extends BaseRepository implements ComplianceRepos
   @override
   Future<void> suspendMember({required String profileId}) async {
     try {
-      await _client.rpc('suspend_member', params: {
-        'p_profile_id': profileId,
-      });
+      await _client.rpc('suspend_member', params: {'p_profile_id': profileId});
     } catch (e, stack) {
       handleException(e, stack);
     }
@@ -181,11 +193,14 @@ class ComplianceRepositoryImpl extends BaseRepository implements ComplianceRepos
     required String reason,
   }) async {
     try {
-      await _client.rpc('terminate_member', params: {
-        'p_profile_id': profileId,
-        'p_leader_id': leaderId,
-        'p_reason': reason,
-      });
+      await _client.rpc(
+        'terminate_member',
+        params: {
+          'p_profile_id': profileId,
+          'p_leader_id': leaderId,
+          'p_reason': reason,
+        },
+      );
     } catch (e, stack) {
       handleException(e, stack);
     }

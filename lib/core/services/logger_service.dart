@@ -6,7 +6,12 @@ class LoggerService {
     if (kDebugMode) developer.log(message, name: tag);
   }
 
-  static void e(String message, {Object? error, StackTrace? stackTrace, String tag = 'ERROR'}) {
+  static void e(
+    String message, {
+    Object? error,
+    StackTrace? stackTrace,
+    String tag = 'ERROR',
+  }) {
     developer.log(message, name: tag, error: error, stackTrace: stackTrace);
   }
 
@@ -21,14 +26,16 @@ class LoggerService {
     String? statusCode,
   }) {
     final status = isSuccess ? 'SUCCESS' : 'FAILED';
-    
+
     final buffer = StringBuffer();
-    buffer.writeln('[$rpcName] completed in ${duration.inMilliseconds}ms ($status)');
+    buffer.writeln(
+      '[$rpcName] completed in ${duration.inMilliseconds}ms ($status)',
+    );
     if (userId != null) buffer.writeln('  User: $userId');
     if (companyId != null) buffer.writeln('  Company: $companyId');
     if (exceptionType != null) buffer.writeln('  Exception: $exceptionType');
     if (statusCode != null) buffer.writeln('  Status Code: $statusCode');
-    
+
     if (isSuccess) {
       i(buffer.toString(), tag: 'RPC');
     } else {

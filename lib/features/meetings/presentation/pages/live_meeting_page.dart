@@ -48,9 +48,11 @@ class _LiveMeetingPageState extends ConsumerState<LiveMeetingPage> {
     if (cameraStatus.isGranted && micStatus.isGranted) {
       final profile = await ref.read(profileProvider.future);
       final userName = profile?.fullName ?? 'Ascendra Member';
-      
+
       if (mounted) {
-        await ref.read(liveMeetingControllerProvider.notifier).joinMeeting(widget.meetingId, userName);
+        await ref
+            .read(liveMeetingControllerProvider.notifier)
+            .joinMeeting(widget.meetingId, userName);
       }
     } else {
       if (mounted) {
@@ -86,14 +88,20 @@ class _LiveMeetingPageState extends ConsumerState<LiveMeetingPage> {
     final controller = ref.read(liveMeetingControllerProvider.notifier);
 
     // Auto-pop or handle transition on disconnect
-    ref.listen(liveMeetingControllerProvider.select((s) => s.status), (prev, next) {
+    ref.listen(liveMeetingControllerProvider.select((s) => s.status), (
+      prev,
+      next,
+    ) {
       if (next == LiveMeetingStatus.disconnected) {
         context.pop();
       }
     });
 
     if (_permissionError) {
-      return _buildErrorState('Permissions Denied', 'Camera and microphone permissions are required to join video meetings.');
+      return _buildErrorState(
+        'Permissions Denied',
+        'Camera and microphone permissions are required to join video meetings.',
+      );
     }
 
     switch (state.status) {
@@ -101,7 +109,10 @@ class _LiveMeetingPageState extends ConsumerState<LiveMeetingPage> {
       case LiveMeetingStatus.joining:
         return _buildConnectingState();
       case LiveMeetingStatus.error:
-        return _buildErrorState('Connection Failed', state.errorMessage ?? 'An unknown error occurred while joining.');
+        return _buildErrorState(
+          'Connection Failed',
+          state.errorMessage ?? 'An unknown error occurred while joining.',
+        );
       case LiveMeetingStatus.disconnected:
         return const Scaffold(body: Center(child: CircularProgressIndicator()));
       case LiveMeetingStatus.connected:
@@ -137,7 +148,10 @@ class _LiveMeetingPageState extends ConsumerState<LiveMeetingPage> {
                       alignment: Alignment.center,
                       child: Text(
                         'Reconnecting... Please check your internet connection.',
-                        style: AppTypography.body2.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+                        style: AppTypography.body2.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -152,7 +166,10 @@ class _LiveMeetingPageState extends ConsumerState<LiveMeetingPage> {
                     children: [
                       // LIVE Badge & Stopwatch
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 6,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.black.withValues(alpha: 0.6),
                           borderRadius: BorderRadius.circular(AppRadius.full),
@@ -183,7 +200,10 @@ class _LiveMeetingPageState extends ConsumerState<LiveMeetingPage> {
 
                       // Participant count badge
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 6,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.black.withValues(alpha: 0.6),
                           borderRadius: BorderRadius.circular(AppRadius.full),
@@ -192,11 +212,17 @@ class _LiveMeetingPageState extends ConsumerState<LiveMeetingPage> {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            const Icon(Icons.group, size: 16, color: Colors.white70),
+                            const Icon(
+                              Icons.group,
+                              size: 16,
+                              color: Colors.white70,
+                            ),
                             const SizedBox(width: 6),
                             Text(
                               '${state.remotePeers.length + 1}',
-                              style: AppTypography.labelMd.copyWith(color: Colors.white),
+                              style: AppTypography.labelMd.copyWith(
+                                color: Colors.white,
+                              ),
                             ),
                           ],
                         ),
@@ -267,7 +293,7 @@ class _LiveMeetingPageState extends ConsumerState<LiveMeetingPage> {
 
   Widget _buildConnectingState() {
     return Scaffold(
-      backgroundColor: AppColors.surface,
+      backgroundColor: AppColors.background,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -276,12 +302,16 @@ class _LiveMeetingPageState extends ConsumerState<LiveMeetingPage> {
             const SizedBox(height: AppSpacing.xl),
             Text(
               'Connecting to Room...',
-              style: AppTypography.headlineSm.copyWith(color: AppColors.primary),
+              style: AppTypography.headlineSm.copyWith(
+                color: AppColors.primary,
+              ),
             ),
             const SizedBox(height: AppSpacing.xs),
             Text(
               'Configuring hardware & media streams',
-              style: AppTypography.body2.copyWith(color: AppColors.onSurfaceVariant),
+              style: AppTypography.body2.copyWith(
+                color: AppColors.onSurfaceVariant,
+              ),
             ),
           ],
         ),
@@ -291,7 +321,7 @@ class _LiveMeetingPageState extends ConsumerState<LiveMeetingPage> {
 
   Widget _buildErrorState(String title, String subtitle) {
     return Scaffold(
-      backgroundColor: AppColors.surface,
+      backgroundColor: AppColors.background,
       body: Padding(
         padding: const EdgeInsets.all(AppSpacing.xl),
         child: Center(
@@ -304,7 +334,9 @@ class _LiveMeetingPageState extends ConsumerState<LiveMeetingPage> {
               const SizedBox(height: AppSpacing.md),
               Text(
                 subtitle,
-                style: AppTypography.body2.copyWith(color: AppColors.onSurfaceVariant),
+                style: AppTypography.body2.copyWith(
+                  color: AppColors.onSurfaceVariant,
+                ),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: AppSpacing.xxl),
@@ -312,7 +344,10 @@ class _LiveMeetingPageState extends ConsumerState<LiveMeetingPage> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,
                   foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                    vertical: 12,
+                  ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(AppRadius.md),
                   ),
@@ -343,9 +378,16 @@ class _LiveMeetingPageState extends ConsumerState<LiveMeetingPage> {
         itemBuilder: (context, index) {
           final peer = allPeers[index];
           final isMuted = peer.audioTrack?.isMute ?? true;
-          final initials = peer.name.trim().isNotEmpty
-              ? peer.name.trim().split(' ').map((e) => e[0]).take(2).join().toUpperCase()
-              : '?';
+          final initials =
+              peer.name.trim().isNotEmpty
+                  ? peer.name
+                      .trim()
+                      .split(' ')
+                      .map((e) => e[0])
+                      .take(2)
+                      .join()
+                      .toUpperCase()
+                  : '?';
 
           return Padding(
             padding: const EdgeInsets.only(right: AppSpacing.md),
@@ -374,7 +416,11 @@ class _LiveMeetingPageState extends ConsumerState<LiveMeetingPage> {
                             color: AppColors.error,
                             shape: BoxShape.circle,
                           ),
-                          child: const Icon(Icons.mic_off, size: 8, color: Colors.white),
+                          child: const Icon(
+                            Icons.mic_off,
+                            size: 8,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                   ],

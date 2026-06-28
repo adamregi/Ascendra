@@ -17,10 +17,12 @@ class AuthRepositoryImpl extends BaseRepository implements AuthRepository {
   }) async {
     try {
       // 1. Resolve distributor_id to email using secure RPC
-      final email = await _client.rpc(
-        'resolve_distributor_login',
-        params: {'p_distributor_id': distributorId},
-      ) as String?;
+      final email =
+          await _client.rpc(
+                'resolve_distributor_login',
+                params: {'p_distributor_id': distributorId},
+              )
+              as String?;
 
       if (email == null || email.trim().isEmpty) {
         throw supabase.AuthException('Distributor ID not found');
@@ -47,9 +49,7 @@ class AuthRepositoryImpl extends BaseRepository implements AuthRepository {
   @override
   Future<void> requestOtp({required String phone}) async {
     try {
-      await _client.auth.signInWithOtp(
-        phone: phone,
-      );
+      await _client.auth.signInWithOtp(phone: phone);
     } catch (e, stack) {
       handleException(e, stack);
     }
@@ -115,11 +115,8 @@ class AuthRepositoryImpl extends BaseRepository implements AuthRepository {
   }
 
   Future<ProfileModel> _fetchProfile(String userId) async {
-    final data = await _client
-        .from('profiles')
-        .select()
-        .eq('id', userId)
-        .single();
+    final data =
+        await _client.from('profiles').select().eq('id', userId).single();
     return ProfileModel.fromJson(data);
   }
 }

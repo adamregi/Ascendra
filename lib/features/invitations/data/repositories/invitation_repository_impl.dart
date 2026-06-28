@@ -4,7 +4,8 @@ import '../../domain/entities/invitation.dart';
 import '../../domain/repositories/invitation_repository.dart';
 import '../models/invitation_model.dart';
 
-class InvitationRepositoryImpl extends BaseRepository implements InvitationRepository {
+class InvitationRepositoryImpl extends BaseRepository
+    implements InvitationRepository {
   final supabase.SupabaseClient _client;
 
   InvitationRepositoryImpl(this._client);
@@ -39,15 +40,14 @@ class InvitationRepositoryImpl extends BaseRepository implements InvitationRepos
     try {
       final user = _client.auth.currentUser;
       if (user == null) {
-        throw supabase.AuthException('Must be authenticated to accept an invitation.');
+        throw supabase.AuthException(
+          'Must be authenticated to accept an invitation.',
+        );
       }
 
       final data = await _client.rpc(
         'accept_invitation_atomic',
-        params: {
-          'p_invitation_id': invitationId,
-          'p_auth_user_id': user.id,
-        },
+        params: {'p_invitation_id': invitationId, 'p_auth_user_id': user.id},
       );
       return InvitationModel.fromJson(data as Map<String, dynamic>);
     } catch (e, stack) {
@@ -60,9 +60,7 @@ class InvitationRepositoryImpl extends BaseRepository implements InvitationRepos
     try {
       await _client.rpc(
         'cancel_invitation_atomic',
-        params: {
-          'p_invitation_id': invitationId,
-        },
+        params: {'p_invitation_id': invitationId},
       );
     } catch (e, stack) {
       handleException(e, stack);
@@ -72,11 +70,12 @@ class InvitationRepositoryImpl extends BaseRepository implements InvitationRepos
   @override
   Future<Invitation?> getInvitation({required String invitationId}) async {
     try {
-      final data = await _client
-          .from('invitations')
-          .select()
-          .eq('id', invitationId)
-          .maybeSingle();
+      final data =
+          await _client
+              .from('invitations')
+              .select()
+              .eq('id', invitationId)
+              .maybeSingle();
 
       if (data == null) return null;
       return InvitationModel.fromJson(data);
@@ -95,7 +94,9 @@ class InvitationRepositoryImpl extends BaseRepository implements InvitationRepos
           .select()
           .eq('inviter_id', inviterId);
 
-      return data.map((e) => InvitationModel.fromJson(e as Map<String, dynamic>)).toList();
+      return data
+          .map((e) => InvitationModel.fromJson(e as Map<String, dynamic>))
+          .toList();
     } catch (e, stack) {
       handleException(e, stack);
     }
@@ -112,7 +113,9 @@ class InvitationRepositoryImpl extends BaseRepository implements InvitationRepos
           .eq('company_id', companyId)
           .eq('status', 'pending');
 
-      return data.map((e) => InvitationModel.fromJson(e as Map<String, dynamic>)).toList();
+      return data
+          .map((e) => InvitationModel.fromJson(e as Map<String, dynamic>))
+          .toList();
     } catch (e, stack) {
       handleException(e, stack);
     }

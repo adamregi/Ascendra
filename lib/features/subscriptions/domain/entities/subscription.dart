@@ -69,8 +69,7 @@ class Subscription {
   ///
   /// Upgrades are allowed: higher member limit.
   /// Downgrades are blocked: would require removing members.
-  bool canUpgradeTo(SubscriptionPlan newPlan) =>
-      newPlan.isUpgradeFrom(plan);
+  bool canUpgradeTo(SubscriptionPlan newPlan) => newPlan.isUpgradeFrom(plan);
 
   /// The member limit from the current plan.
   int get memberLimit => plan.memberLimit;

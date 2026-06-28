@@ -10,7 +10,7 @@ enum BootstrapState {
   unauthenticated,
   fetchingProfile,
   unauthorizedRole,
-  ready
+  ready,
 }
 
 @riverpod
@@ -24,28 +24,28 @@ class Bootstrap extends _$Bootstrap {
   void _initialize() {
     ref.listen(authStateProvider, (previous, next) async {
       final authState = next.value;
-      
+
       if (authState == null || authState.session == null) {
         state = BootstrapState.unauthenticated;
         return;
       }
 
       state = BootstrapState.fetchingProfile;
-      
+
       try {
         final profile = await ref.read(profileProvider.future);
         if (profile == null) {
-           state = BootstrapState.unauthenticated;
-           return;
+          state = BootstrapState.unauthenticated;
+          return;
         }
 
         if (profile.role != 'leader' && profile.role != 'admin') {
-           state = BootstrapState.unauthorizedRole;
-           return;
+          state = BootstrapState.unauthorizedRole;
+          return;
         }
 
         state = BootstrapState.ready;
-        
+
         // Start dashboard provider futures (unawaited)
         ref.read(executiveOverviewProvider.future).ignore();
         ref.read(leadershipPipelineProvider.future).ignore();

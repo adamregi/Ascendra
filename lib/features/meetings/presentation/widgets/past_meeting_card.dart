@@ -53,7 +53,9 @@ class PastMeetingCard extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        DateFormat.MMM().format(meeting.scheduledAt.toLocal()).toUpperCase(),
+                        DateFormat.MMM()
+                            .format(meeting.scheduledAt.toLocal())
+                            .toUpperCase(),
                         style: AppTypography.labelSm.copyWith(
                           color: AppColors.onSurfaceVariant,
                           fontSize: 10,
@@ -91,19 +93,31 @@ class PastMeetingCard extends StatelessWidget {
                       const SizedBox(height: 4),
                       Row(
                         children: [
-                          Icon(Icons.schedule, size: 14, color: AppColors.onSurfaceVariant),
+                          Icon(
+                            Icons.schedule,
+                            size: 14,
+                            color: AppColors.onSurfaceVariant,
+                          ),
                           const SizedBox(width: 4),
                           Text(
                             time,
-                            style: AppTypography.labelSm.copyWith(color: AppColors.onSurfaceVariant),
+                            style: AppTypography.labelSm.copyWith(
+                              color: AppColors.onSurfaceVariant,
+                            ),
                           ),
                           if (attendancePercent != null) ...[
                             const SizedBox(width: 12),
-                            Icon(Icons.group, size: 14, color: AppColors.onSurfaceVariant),
+                            Icon(
+                              Icons.group,
+                              size: 14,
+                              color: AppColors.onSurfaceVariant,
+                            ),
                             const SizedBox(width: 4),
                             Text(
                               '${attendancePercent!.round()}%',
-                              style: AppTypography.labelSm.copyWith(color: AppColors.onSurfaceVariant),
+                              style: AppTypography.labelSm.copyWith(
+                                color: AppColors.onSurfaceVariant,
+                              ),
                             ),
                           ],
                         ],

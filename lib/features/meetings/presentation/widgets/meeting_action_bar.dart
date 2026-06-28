@@ -38,7 +38,8 @@ class MeetingActionBar extends StatelessWidget {
     String primaryLabel;
     bool isPrimaryEnabled = true;
 
-    if (status == MeetingStatus.completed || status == MeetingStatus.cancelled) {
+    if (status == MeetingStatus.completed ||
+        status == MeetingStatus.cancelled) {
       primaryLabel = 'Meeting Ended';
       isPrimaryEnabled = false;
     } else if (permissions.isLeader) {
@@ -51,9 +52,7 @@ class MeetingActionBar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       decoration: BoxDecoration(
         color: AppColors.surface.withValues(alpha: 0.9),
-        border: const Border(
-          top: BorderSide(color: AppColors.borderSubtle),
-        ),
+        border: const Border(top: BorderSide(color: AppColors.borderSubtle)),
         boxShadow: const [
           BoxShadow(
             color: Color(0x05000000),
@@ -85,8 +84,10 @@ class MeetingActionBar extends StatelessWidget {
               ),
               const SizedBox(width: 16),
             ],
-            
-            if (permissions.canEdit && status != MeetingStatus.completed && status != MeetingStatus.cancelled) ...[
+
+            if (permissions.canEdit &&
+                status != MeetingStatus.completed &&
+                status != MeetingStatus.cancelled) ...[
               Expanded(
                 child: OutlinedButton(
                   onPressed: onEdit,

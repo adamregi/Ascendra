@@ -4,16 +4,12 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'connectivity_service.g.dart';
 
-enum AppConnectionState {
-  online,
-  offline,
-  reconnecting,
-}
+enum AppConnectionState { online, offline, reconnecting }
 
 @riverpod
 Stream<AppConnectionState> connectivityStatus(Ref ref) async* {
   final connectivity = Connectivity();
-  
+
   // Initial check
   final initialResult = await connectivity.checkConnectivity();
   if (initialResult.contains(ConnectivityResult.none)) {

@@ -3,11 +3,7 @@ abstract class Failure implements Exception {
   final String? code;
   final dynamic details;
 
-  const Failure({
-    required this.message,
-    this.code,
-    this.details,
-  });
+  const Failure({required this.message, this.code, this.details});
 
   @override
   String toString() => 'Failure(code: $code, message: $message)';

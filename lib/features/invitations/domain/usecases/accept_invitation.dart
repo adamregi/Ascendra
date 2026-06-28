@@ -26,8 +26,6 @@ class AcceptInvitationUseCase {
       throw ArgumentError('Invitation ID cannot be empty');
     }
 
-    return _repository.acceptInvitation(
-      invitationId: invitationId.trim(),
-    );
+    return _repository.acceptInvitation(invitationId: invitationId.trim());
   }
 }

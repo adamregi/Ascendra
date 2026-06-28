@@ -34,10 +34,11 @@ class LeadershipPipelinePreview extends StatelessWidget {
         return _buildSuccessState(context, allLeaders.take(4).toList());
       },
       loading: () => const _PipelineSkeleton(),
-      error: (err, stack) => ErrorCard(
-        message: 'Failed to load leadership pipeline',
-        onRetry: onRetry,
-      ),
+      error:
+          (err, stack) => ErrorCard(
+            message: 'Failed to load leadership pipeline',
+            onRetry: onRetry,
+          ),
     );
   }
 
@@ -48,14 +49,18 @@ class LeadershipPipelinePreview extends StatelessWidget {
         padding: const EdgeInsets.all(AppSpacing.lg),
         child: Column(
           children: [
-            const Icon(Icons.psychology, size: 48, color: AppColors.onSurfaceVariant),
+            const Icon(
+              Icons.psychology,
+              size: 48,
+              color: AppColors.onSurfaceVariant,
+            ),
             const SizedBox(height: AppSpacing.md),
             Text(
               'No upcoming leaders identified yet.',
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppColors.onSurfaceVariant,
-                  ),
+                color: AppColors.onSurfaceVariant,
+              ),
             ),
           ],
         ),
@@ -63,7 +68,10 @@ class LeadershipPipelinePreview extends StatelessWidget {
     );
   }
 
-  Widget _buildSuccessState(BuildContext context, List<PipelineMember> leaders) {
+  Widget _buildSuccessState(
+    BuildContext context,
+    List<PipelineMember> leaders,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -73,14 +81,11 @@ class LeadershipPipelinePreview extends StatelessWidget {
             Text(
               'LEADERSHIP PIPELINE',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: AppColors.primary,
-                    fontWeight: FontWeight.bold,
-                  ),
+                color: AppColors.primary,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            TextButton(
-              onPressed: () {},
-              child: const Text('View All'),
-            ),
+            TextButton(onPressed: () {}, child: const Text('View All')),
           ],
         ),
         const SizedBox(height: AppSpacing.sm),
@@ -98,26 +103,25 @@ class LeadershipPipelinePreview extends StatelessWidget {
                   horizontal: AppSpacing.md,
                   vertical: AppSpacing.xs,
                 ),
-                leading: AppAvatar(
-                  name: member.fullName,
-                  radius: 20,
-
-                ),
+                leading: AppAvatar(name: member.fullName, radius: 20),
                 title: Text(
                   member.fullName,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.primary,
-                      ),
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.primary,
+                  ),
                 ),
                 subtitle: Text(
                   member.leadershipBand,
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        color: AppColors.onSurfaceVariant,
-                      ),
+                    color: AppColors.onSurfaceVariant,
+                  ),
                 ),
                 trailing: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4,
+                  ),
                   decoration: BoxDecoration(
                     color: AppColors.secondaryContainer,
                     borderRadius: BorderRadius.circular(12),
@@ -125,9 +129,9 @@ class LeadershipPipelinePreview extends StatelessWidget {
                   child: Text(
                     member.leadershipScore.toInt().toString(),
                     style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                          color: AppColors.onSecondaryContainer,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      color: AppColors.onSecondaryContainer,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               );

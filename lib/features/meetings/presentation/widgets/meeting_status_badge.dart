@@ -21,11 +21,20 @@ class MeetingStatusBadgeTheme {
       case MeetingStatus.live:
         return const MeetingStatusBadgeTheme(label: 'Live', color: _teal);
       case MeetingStatus.scheduled:
-        return MeetingStatusBadgeTheme(label: 'Scheduled', color: AppColors.secondary);
+        return MeetingStatusBadgeTheme(
+          label: 'Scheduled',
+          color: AppColors.secondary,
+        );
       case MeetingStatus.completed:
-        return const MeetingStatusBadgeTheme(label: 'Completed', color: _emerald);
+        return const MeetingStatusBadgeTheme(
+          label: 'Completed',
+          color: _emerald,
+        );
       case MeetingStatus.cancelled:
-        return MeetingStatusBadgeTheme(label: 'Cancelled', color: AppColors.error);
+        return MeetingStatusBadgeTheme(
+          label: 'Cancelled',
+          color: AppColors.error,
+        );
     }
   }
 }
@@ -67,9 +76,10 @@ class _LivePulseIndicatorState extends State<LivePulseIndicator>
       vsync: this,
       duration: const Duration(seconds: 2),
     )..repeat();
-    _animation = Tween<double>(begin: 0, end: 6).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeOut),
-    );
+    _animation = Tween<double>(
+      begin: 0,
+      end: 6,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
   }
 
   @override
@@ -91,7 +101,9 @@ class _LivePulseIndicatorState extends State<LivePulseIndicator>
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                color: _teal.withValues(alpha: 0.4 * (1 - _animation.value / 6)),
+                color: _teal.withValues(
+                  alpha: 0.4 * (1 - _animation.value / 6),
+                ),
                 blurRadius: _animation.value,
                 spreadRadius: _animation.value / 2,
               ),

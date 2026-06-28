@@ -14,9 +14,7 @@ Future<void> main() async {
   await Supabase.initialize(
     url: SupabaseConfig.url,
     publishableKey: SupabaseConfig.anonKey,
-    authOptions: FlutterAuthClientOptions(
-      localStorage: SecureLocalStorage(),
-    ),
+    authOptions: FlutterAuthClientOptions(localStorage: SecureLocalStorage()),
   );
 
   runApp(const ProviderScope(child: DistributorOS()));

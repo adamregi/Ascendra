@@ -20,11 +20,20 @@ class MeetingAttendanceModel extends MeetingAttendance {
       id: json['id'] as String,
       meetingId: json['meeting_id'] as String,
       profileId: json['profile_id'] as String,
-      firstJoinedAt: json['first_joined_at'] != null ? DateTime.parse(json['first_joined_at'] as String) : null,
-      lastLeftAt: json['last_left_at'] != null ? DateTime.parse(json['last_left_at'] as String) : null,
+      firstJoinedAt:
+          json['first_joined_at'] != null
+              ? DateTime.parse(json['first_joined_at'] as String)
+              : null,
+      lastLeftAt:
+          json['last_left_at'] != null
+              ? DateTime.parse(json['last_left_at'] as String)
+              : null,
       totalDurationMinutes: json['total_duration_minutes'] as int? ?? 0,
-      attendancePercentage: (json['attendance_percentage'] as num? ?? 0.0).toDouble(),
-      attendanceStatus: AttendanceStatus.fromString(json['attendance_status'] as String),
+      attendancePercentage:
+          (json['attendance_percentage'] as num? ?? 0.0).toDouble(),
+      attendanceStatus: AttendanceStatus.fromString(
+        json['attendance_status'] as String,
+      ),
       createdAt: DateTime.parse(json['created_at'] as String),
       updatedAt: DateTime.parse(json['updated_at'] as String),
     );

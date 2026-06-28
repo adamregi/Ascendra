@@ -17,11 +17,16 @@ class SubscriptionModel extends Subscription {
     return SubscriptionModel(
       id: json['id'] as String,
       leaderId: json['leader_id'] as String,
-      plan: SubscriptionPlanModel.fromJson(json['plan'] as Map<String, dynamic>),
+      plan: SubscriptionPlanModel.fromJson(
+        json['plan'] as Map<String, dynamic>,
+      ),
       status: SubscriptionStatus.fromString(json['status'] as String),
       startedAt: DateTime.parse(json['started_at'] as String),
       expiresAt: DateTime.parse(json['expires_at'] as String),
-      cancelledAt: json['cancelled_at'] != null ? DateTime.parse(json['cancelled_at'] as String) : null,
+      cancelledAt:
+          json['cancelled_at'] != null
+              ? DateTime.parse(json['cancelled_at'] as String)
+              : null,
     );
   }
 }

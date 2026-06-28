@@ -15,9 +15,7 @@ abstract class SubscriptionRepository {
   /// (e.g. first-time leader, or subscription expired/cancelled).
   ///
   /// Business rule: one leader = one active subscription.
-  Future<Subscription?> getCurrentSubscription({
-    required String leaderId,
-  });
+  Future<Subscription?> getCurrentSubscription({required String leaderId});
 
   /// Get all available subscription plans.
   ///

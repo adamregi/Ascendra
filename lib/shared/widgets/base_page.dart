@@ -27,11 +27,7 @@ class BasePage extends StatelessWidget {
       // Dismiss keyboard when tapping outside
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        appBar: title != null
-            ? AppBar(
-                title: Text(title!),
-              )
-            : null,
+        appBar: title != null ? AppBar(title: Text(title!)) : null,
         floatingActionButton: floatingActionButton,
         body: SafeArea(
           child: Stack(
@@ -48,10 +44,7 @@ class BasePage extends StatelessWidget {
 
   Widget _buildBody() {
     if (onRefresh != null) {
-      return RefreshIndicator(
-        onRefresh: onRefresh!,
-        child: body,
-      );
+      return RefreshIndicator(onRefresh: onRefresh!, child: body);
     }
     return body;
   }
@@ -93,9 +86,7 @@ class BasePage extends StatelessWidget {
   Widget _buildLoadingOverlay() {
     return Container(
       color: Colors.black26,
-      child: const Center(
-        child: CircularProgressIndicator(),
-      ),
+      child: const Center(child: CircularProgressIndicator()),
     );
   }
 }

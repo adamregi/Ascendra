@@ -36,8 +36,7 @@ class StatCard extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              if (icon != null)
-                Icon(icon, color: AppColors.textHint, size: 20),
+              if (icon != null) Icon(icon, color: AppColors.textHint, size: 20),
             ],
           ),
           const SizedBox(height: AppSpacing.md),
@@ -62,7 +61,8 @@ class StatCard extends StatelessWidget {
                 Text(
                   trend!,
                   style: TextStyle(
-                    color: isPositiveTrend ? AppColors.success : AppColors.error,
+                    color:
+                        isPositiveTrend ? AppColors.success : AppColors.error,
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
                   ),
@@ -109,10 +109,7 @@ class InfoTile extends StatelessWidget {
             const SizedBox(height: 2),
             Text(
               value,
-              style: const TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 14,
-              ),
+              style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
             ),
           ],
         ),
@@ -148,10 +145,7 @@ class ListTileCard extends StatelessWidget {
           vertical: AppSpacing.xs,
         ),
         leading: leading,
-        title: Text(
-          title,
-          style: const TextStyle(fontWeight: FontWeight.w600),
-        ),
+        title: Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
         subtitle: subtitle != null ? Text(subtitle!) : null,
         trailing: trailing,
       ),

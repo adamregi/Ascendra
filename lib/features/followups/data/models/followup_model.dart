@@ -26,7 +26,10 @@ class FollowUpModel extends FollowUp {
       reasonType: FollowUpReasonType.fromString(json['reason_type'] as String),
       reason: json['reason'] as String,
       notes: json['notes'] as String?,
-      dueDate: json['due_date'] != null ? DateTime.parse(json['due_date'] as String) : null,
+      dueDate:
+          json['due_date'] != null
+              ? DateTime.parse(json['due_date'] as String)
+              : null,
       status: FollowUpStatus.fromString(json['status'] as String),
       createdAt: DateTime.parse(json['created_at'] as String),
       updatedAt: DateTime.parse(json['updated_at'] as String),

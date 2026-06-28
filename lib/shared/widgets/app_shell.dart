@@ -10,42 +10,47 @@ class AppShell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
-      mobile: (context, constraints) => Scaffold(
-        body: child,
-        bottomNavigationBar: NavigationBar(
-          selectedIndex: _calculateSelectedIndex(context),
-          onDestinationSelected: (index) => _onItemTapped(index, context),
-          destinations: _destinations(),
-        ),
-      ),
-      tablet: (context, constraints) => Scaffold(
-        body: Row(
-          children: [
-            NavigationRail(
+      mobile:
+          (context, constraints) => Scaffold(
+            body: child,
+            bottomNavigationBar: NavigationBar(
               selectedIndex: _calculateSelectedIndex(context),
               onDestinationSelected: (index) => _onItemTapped(index, context),
-              labelType: NavigationRailLabelType.all,
-              destinations: _railDestinations(),
+              destinations: _destinations(),
             ),
-            const VerticalDivider(thickness: 1, width: 1),
-            Expanded(child: child),
-          ],
-        ),
-      ),
-      desktop: (context, constraints) => Scaffold(
-        body: Row(
-          children: [
-            NavigationRail(
-              extended: true,
-              selectedIndex: _calculateSelectedIndex(context),
-              onDestinationSelected: (index) => _onItemTapped(index, context),
-              destinations: _railDestinations(),
+          ),
+      tablet:
+          (context, constraints) => Scaffold(
+            body: Row(
+              children: [
+                NavigationRail(
+                  selectedIndex: _calculateSelectedIndex(context),
+                  onDestinationSelected:
+                      (index) => _onItemTapped(index, context),
+                  labelType: NavigationRailLabelType.all,
+                  destinations: _railDestinations(),
+                ),
+                const VerticalDivider(thickness: 1, width: 1),
+                Expanded(child: child),
+              ],
             ),
-            const VerticalDivider(thickness: 1, width: 1),
-            Expanded(child: child),
-          ],
-        ),
-      ),
+          ),
+      desktop:
+          (context, constraints) => Scaffold(
+            body: Row(
+              children: [
+                NavigationRail(
+                  extended: true,
+                  selectedIndex: _calculateSelectedIndex(context),
+                  onDestinationSelected:
+                      (index) => _onItemTapped(index, context),
+                  destinations: _railDestinations(),
+                ),
+                const VerticalDivider(thickness: 1, width: 1),
+                Expanded(child: child),
+              ],
+            ),
+          ),
     );
   }
 
@@ -62,19 +67,14 @@ class AppShell extends StatelessWidget {
         label: 'Meetings',
       ),
       NavigationDestination(
-        icon: Icon(Icons.notifications_outlined),
-        selectedIcon: Icon(Icons.notifications),
-        label: 'Alerts',
+        icon: Icon(Icons.task_alt_outlined),
+        selectedIcon: Icon(Icons.task_alt),
+        label: 'Tasks',
       ),
       NavigationDestination(
-        icon: Icon(Icons.auto_awesome_outlined),
-        selectedIcon: Icon(Icons.auto_awesome),
-        label: 'AI Chat',
-      ),
-      NavigationDestination(
-        icon: Icon(Icons.settings_outlined),
-        selectedIcon: Icon(Icons.settings),
-        label: 'Settings',
+        icon: Icon(Icons.menu),
+        selectedIcon: Icon(Icons.menu),
+        label: 'More',
       ),
     ];
   }
@@ -92,30 +92,32 @@ class AppShell extends StatelessWidget {
         label: Text('Meetings'),
       ),
       NavigationRailDestination(
-        icon: Icon(Icons.notifications_outlined),
-        selectedIcon: Icon(Icons.notifications),
-        label: Text('Alerts'),
+        icon: Icon(Icons.task_alt_outlined),
+        selectedIcon: Icon(Icons.task_alt),
+        label: Text('Tasks'),
       ),
       NavigationRailDestination(
-        icon: Icon(Icons.auto_awesome_outlined),
-        selectedIcon: Icon(Icons.auto_awesome),
-        label: Text('AI Chat'),
-      ),
-      NavigationRailDestination(
-        icon: Icon(Icons.settings_outlined),
-        selectedIcon: Icon(Icons.settings),
-        label: Text('Settings'),
+        icon: Icon(Icons.menu),
+        selectedIcon: Icon(Icons.menu),
+        label: Text('More'),
       ),
     ];
+  }
+
+  static bool _isMoreRoute(String location) {
+    return location.startsWith('/members') ||
+        location.startsWith('/alerts') ||
+        location.startsWith('/settings') ||
+        location.startsWith('/ai') ||
+        location.startsWith('/more');
   }
 
   static int _calculateSelectedIndex(BuildContext context) {
     final String location = GoRouterState.of(context).matchedLocation;
     if (location.startsWith('/dashboard')) return 0;
     if (location.startsWith('/meetings')) return 1;
-    if (location.startsWith('/alerts')) return 2;
-    if (location.startsWith('/ai')) return 3;
-    if (location.startsWith('/settings')) return 4;
+    if (location.startsWith('/tasks')) return 2;
+    if (_isMoreRoute(location)) return 3;
     return 0;
   }
 
@@ -128,13 +130,10 @@ class AppShell extends StatelessWidget {
         context.go('/meetings');
         break;
       case 2:
-        context.go('/alerts');
+        context.go('/tasks');
         break;
       case 3:
-        context.go('/ai');
-        break;
-      case 4:
-        context.go('/settings');
+        context.go('/more');
         break;
     }
   }

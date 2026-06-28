@@ -39,8 +39,14 @@ class MeetingModel extends Meeting {
       roomId: json['room_id'] as String?,
       meetingStatus: MeetingStatus.fromString(json['meeting_status'] as String),
       scheduledAt: DateTime.parse(json['scheduled_at'] as String),
-      startedAt: json['started_at'] != null ? DateTime.parse(json['started_at'] as String) : null,
-      endedAt: json['ended_at'] != null ? DateTime.parse(json['ended_at'] as String) : null,
+      startedAt:
+          json['started_at'] != null
+              ? DateTime.parse(json['started_at'] as String)
+              : null,
+      endedAt:
+          json['ended_at'] != null
+              ? DateTime.parse(json['ended_at'] as String)
+              : null,
       durationMinutes: json['duration_minutes'] as int?,
       recordingEnabled: json['recording_enabled'] as bool? ?? false,
       recordingUrl: json['recording_url'] as String?,

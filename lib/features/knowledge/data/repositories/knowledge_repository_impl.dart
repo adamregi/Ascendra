@@ -8,7 +8,8 @@ import '../models/product_model.dart';
 import '../models/product_faq_model.dart';
 import '../models/success_story_model.dart';
 
-class KnowledgeRepositoryImpl extends BaseRepository implements KnowledgeRepository {
+class KnowledgeRepositoryImpl extends BaseRepository
+    implements KnowledgeRepository {
   final supabase.SupabaseClient _client;
 
   KnowledgeRepositoryImpl(this._client);
@@ -16,7 +17,10 @@ class KnowledgeRepositoryImpl extends BaseRepository implements KnowledgeReposit
   @override
   Future<List<Product>> getProducts({required String companyId}) async {
     try {
-      final response = await _client.from('products').select().eq('company_id', companyId);
+      final response = await _client
+          .from('products')
+          .select()
+          .eq('company_id', companyId);
       return (response as List).map((e) => ProductModel.fromJson(e)).toList();
     } catch (e, stack) {
       handleException(e, stack);
@@ -26,18 +30,30 @@ class KnowledgeRepositoryImpl extends BaseRepository implements KnowledgeReposit
   @override
   Future<List<ProductFaq>> getFaqs({required String productId}) async {
     try {
-      final response = await _client.from('product_faqs').select().eq('product_id', productId);
-      return (response as List).map((e) => ProductFaqModel.fromJson(e)).toList();
+      final response = await _client
+          .from('product_faqs')
+          .select()
+          .eq('product_id', productId);
+      return (response as List)
+          .map((e) => ProductFaqModel.fromJson(e))
+          .toList();
     } catch (e, stack) {
       handleException(e, stack);
     }
   }
 
   @override
-  Future<List<SuccessStory>> getSuccessStories({required String companyId}) async {
+  Future<List<SuccessStory>> getSuccessStories({
+    required String companyId,
+  }) async {
     try {
-      final response = await _client.from('success_stories').select().eq('company_id', companyId);
-      return (response as List).map((e) => SuccessStoryModel.fromJson(e)).toList();
+      final response = await _client
+          .from('success_stories')
+          .select()
+          .eq('company_id', companyId);
+      return (response as List)
+          .map((e) => SuccessStoryModel.fromJson(e))
+          .toList();
     } catch (e, stack) {
       handleException(e, stack);
     }
@@ -51,12 +67,17 @@ class KnowledgeRepositoryImpl extends BaseRepository implements KnowledgeReposit
     String? benefits,
   }) async {
     try {
-      final response = await _client.from('products').insert({
-        'company_id': companyId,
-        'name': name,
-        'description': description,
-        'benefits': benefits,
-      }).select().single();
+      final response =
+          await _client
+              .from('products')
+              .insert({
+                'company_id': companyId,
+                'name': name,
+                'description': description,
+                'benefits': benefits,
+              })
+              .select()
+              .single();
       return ProductModel.fromJson(response);
     } catch (e, stack) {
       handleException(e, stack);
@@ -70,11 +91,16 @@ class KnowledgeRepositoryImpl extends BaseRepository implements KnowledgeReposit
     required String answer,
   }) async {
     try {
-      final response = await _client.from('product_faqs').insert({
-        'product_id': productId,
-        'question': question,
-        'answer': answer,
-      }).select().single();
+      final response =
+          await _client
+              .from('product_faqs')
+              .insert({
+                'product_id': productId,
+                'question': question,
+                'answer': answer,
+              })
+              .select()
+              .single();
       return ProductFaqModel.fromJson(response);
     } catch (e, stack) {
       handleException(e, stack);
@@ -89,12 +115,17 @@ class KnowledgeRepositoryImpl extends BaseRepository implements KnowledgeReposit
     String? youtubeUrl,
   }) async {
     try {
-      final response = await _client.from('success_stories').insert({
-        'company_id': companyId,
-        'title': title,
-        'description': description,
-        'youtube_url': youtubeUrl,
-      }).select().single();
+      final response =
+          await _client
+              .from('success_stories')
+              .insert({
+                'company_id': companyId,
+                'title': title,
+                'description': description,
+                'youtube_url': youtubeUrl,
+              })
+              .select()
+              .single();
       return SuccessStoryModel.fromJson(response);
     } catch (e, stack) {
       handleException(e, stack);

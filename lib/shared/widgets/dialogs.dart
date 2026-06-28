@@ -13,23 +13,27 @@ class Dialogs {
   }) {
     return showDialog<bool>(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text(title, style: AppTypography.h3),
-        content: Text(message),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: Text(cancelLabel),
+      builder:
+          (context) => AlertDialog(
+            title: Text(title, style: AppTypography.h3),
+            content: Text(message),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: Text(cancelLabel),
+              ),
+              ElevatedButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                style:
+                    isDestructive
+                        ? ElevatedButton.styleFrom(
+                          backgroundColor: Theme.of(context).colorScheme.error,
+                        )
+                        : null,
+                child: Text(confirmLabel),
+              ),
+            ],
           ),
-          ElevatedButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            style: isDestructive 
-              ? ElevatedButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.error)
-              : null,
-            child: Text(confirmLabel),
-          ),
-        ],
-      ),
     );
   }
 
@@ -44,33 +48,34 @@ class Dialogs {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
       ),
-      builder: (context) => SafeArea(
-        child: Padding(
-          padding: EdgeInsets.only(
-            bottom: MediaQuery.of(context).viewInsets.bottom,
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const SizedBox(height: AppSpacing.sm),
-              Container(
-                width: 40,
-                height: 4,
-                decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                  borderRadius: BorderRadius.circular(2),
-                ),
+      builder:
+          (context) => SafeArea(
+            child: Padding(
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom,
               ),
-              if (title != null) ...[
-                const SizedBox(height: AppSpacing.md),
-                Text(title, style: AppTypography.h3),
-              ],
-              const SizedBox(height: AppSpacing.md),
-              Flexible(child: child),
-            ],
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(height: AppSpacing.sm),
+                  Container(
+                    width: 40,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.circular(2),
+                    ),
+                  ),
+                  if (title != null) ...[
+                    const SizedBox(height: AppSpacing.md),
+                    Text(title, style: AppTypography.h3),
+                  ],
+                  const SizedBox(height: AppSpacing.md),
+                  Flexible(child: child),
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
     );
   }
 }

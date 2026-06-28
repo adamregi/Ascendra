@@ -1,4 +1,4 @@
-﻿class AppStrings {
+class AppStrings {
   static const appName = 'Distributor OS';
   static const tagline = 'Lead. Track. Grow.';
   static const signIn = 'Sign In';

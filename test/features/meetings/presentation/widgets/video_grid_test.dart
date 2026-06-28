@@ -5,7 +5,9 @@ import 'package:distributor_os/features/meetings/presentation/widgets/participan
 import '../../meetings_test_mocks.dart';
 
 void main() {
-  testWidgets('VideoGrid renders single participant', (WidgetTester tester) async {
+  testWidgets('VideoGrid renders single participant', (
+    WidgetTester tester,
+  ) async {
     final guestRole = MockHMSRole(name: 'guest');
     final localPeer = MockHMSLocalPeer(
       name: 'Pam Beesly',
@@ -16,10 +18,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
-          body: VideoGrid(
-            localPeer: localPeer,
-            remotePeers: const [],
-          ),
+          body: VideoGrid(localPeer: localPeer, remotePeers: const []),
         ),
       ),
     );
@@ -28,7 +27,9 @@ void main() {
     expect(find.text('Pam Beesly'), findsOneWidget);
   });
 
-  testWidgets('VideoGrid renders multiple participants', (WidgetTester tester) async {
+  testWidgets('VideoGrid renders multiple participants', (
+    WidgetTester tester,
+  ) async {
     final guestRole = MockHMSRole(name: 'guest');
     final localPeer = MockHMSLocalPeer(
       name: 'Pam Beesly',
@@ -44,10 +45,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
-          body: VideoGrid(
-            localPeer: localPeer,
-            remotePeers: [remotePeer],
-          ),
+          body: VideoGrid(localPeer: localPeer, remotePeers: [remotePeer]),
         ),
       ),
     );

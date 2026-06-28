@@ -21,7 +21,10 @@ class _MeetingCountdownWidgetState extends State<MeetingCountdownWidget> {
   void initState() {
     super.initState();
     _calculateRemaining();
-    _timer = Timer.periodic(const Duration(seconds: 1), (_) => _calculateRemaining());
+    _timer = Timer.periodic(
+      const Duration(seconds: 1),
+      (_) => _calculateRemaining(),
+    );
   }
 
   void _calculateRemaining() {
@@ -59,7 +62,7 @@ class _MeetingCountdownWidgetState extends State<MeetingCountdownWidget> {
         _buildTimeSegment(minutes.toString().padLeft(2, '0'), 'Mins'),
         _buildSeparator(),
         _buildTimeSegment(
-          seconds.toString().padLeft(2, '0'), 
+          seconds.toString().padLeft(2, '0'),
           'Secs',
           valueColor: AppColors.secondary,
         ),
@@ -67,7 +70,11 @@ class _MeetingCountdownWidgetState extends State<MeetingCountdownWidget> {
     );
   }
 
-  Widget _buildTimeSegment(String value, String label, {Color valueColor = AppColors.primary}) {
+  Widget _buildTimeSegment(
+    String value,
+    String label, {
+    Color valueColor = AppColors.primary,
+  }) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [

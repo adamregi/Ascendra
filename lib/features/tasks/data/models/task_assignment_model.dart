@@ -22,9 +22,18 @@ class TaskAssignmentModel extends TaskAssignment {
       taskId: json['task_id'] as String,
       memberId: json['member_id'] as String,
       assignedAt: DateTime.parse(json['assigned_at'] as String),
-      startedAt: json['started_at'] != null ? DateTime.parse(json['started_at'] as String) : null,
-      submittedAt: json['submitted_at'] != null ? DateTime.parse(json['submitted_at'] as String) : null,
-      reviewedAt: json['reviewed_at'] != null ? DateTime.parse(json['reviewed_at'] as String) : null,
+      startedAt:
+          json['started_at'] != null
+              ? DateTime.parse(json['started_at'] as String)
+              : null,
+      submittedAt:
+          json['submitted_at'] != null
+              ? DateTime.parse(json['submitted_at'] as String)
+              : null,
+      reviewedAt:
+          json['reviewed_at'] != null
+              ? DateTime.parse(json['reviewed_at'] as String)
+              : null,
       status: AssignmentStatus.fromString(json['status'] as String),
       reviewComment: json['review_comment'] as String?,
       createdAt: DateTime.parse(json['created_at'] as String),
